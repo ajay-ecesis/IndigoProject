@@ -29,7 +29,8 @@ const ManufacturerRoute = ({children}) => {
         try {
             const {data} = await axios.get('/api/auth');
             console.log("Man Data", data);
-            if(data.role === 1){
+            //made correction old->data.role
+            if(data.user.role === 1){
                 setOk(true);
             }else {
                 const {data} = await axios.get('/api/logout');

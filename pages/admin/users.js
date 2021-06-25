@@ -72,12 +72,20 @@ const ManageUsers = () => {
     var columns = [
        
         {title: "id", field: "_id", hidden: true},
-        {title: "First Name", field: "firstName"},
+        {title: "First Name", field: "firstName", render: rowData => {return <Link href={`/admin/user/${rowData._id}`}><a>{rowData.firstName}</a></Link>}},
         {title: "Last name", field: "lastName"},
         {title: "Email", field: "email"},
+        {title: "Product Category", field: "category"},
         {title: "Role", field: "role", render: rowData => {
-            return rowData.role === 0 ? <span>Brand</span> : (rowData.role === 1 ?
-            <span>Manufacturer</span> : <span>Admin</span>)
+            if(rowData.role === 0){
+                return <span>Brand</span>
+            }
+            else if(rowData.role === 1){
+                return <span>Manufacturer</span>
+            }
+            else if(rowData.role === 2){
+                return <span>Admin</span>
+            }
         }},
         {title: "Status", field: "status", render: rowData => {
             return rowData.status === 0 ? <span>Active</span> :
@@ -87,7 +95,8 @@ const ManageUsers = () => {
 
     const loadUsers = async () => {
         try {
-            let { data } = await axios.get(`/api/getUsers`)
+            let { data } = await axios.get(`/api/users/list`)
+            console.log("data",data)
             setUsers(data);
             setBtnloading(false);
             setError('');
