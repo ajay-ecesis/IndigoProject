@@ -76,6 +76,7 @@ const ManageBrands = () => {
         {title: "Product Category", render: rowData => { return <>{rowData.userId.category}</> }},
         {title: "Market", field: "market"},
         {title: "LinkedIn", field: "linkedIn"},
+        {title: "Actions", render: rowData => <Link href={`/admin/brands/edit/${rowData._id}`}><a><Edit /></a></Link>},
     ]
 
     const loadUsers = async () => {

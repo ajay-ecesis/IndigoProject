@@ -88,6 +88,30 @@ module.exports = {
         source: '/api/likefromlist',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/likefromlist`,
       },
+      {
+        source:'/api/getManufacturers',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturers`
+      },
+      {
+        source:'/api/getBrands',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrands`
+      },
+      {
+        source:'/api/getManufacturerById',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturerById`
+      },
+      {
+        source:'/api/getBrandById',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrandById`
+      },
+      {
+        source:'/api/update/manufacturer',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateManufacturer` 
+      },
+      {
+        source:'/api/update/brand',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateBrand` 
+      }
     ]
   },
 }
