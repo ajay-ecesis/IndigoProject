@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="15" viewBox="0 0 17 15">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Shape" d="M6.44,14.561l-6-6A1.5,1.5,0,0,1,.012,7.31l0-.012,0-.022,0-.024,0-.009.005-.028v0l.007-.032v0q.008-.034.017-.068h0l.009-.033v0l.009-.03,0-.006.009-.027L.085,7l.008-.023L.1,6.962l.007-.017.01-.025,0-.006a1.492,1.492,0,0,1,.256-.406l0,0L.4,6.485.4,6.475l.016-.017.011-.011L.439,6.44l6-6A1.5,1.5,0,0,1,8.561,2.561L5.121,6H15.5a1.5,1.5,0,1,1,0,3H5.122l3.439,3.439A1.5,1.5,0,0,1,6.44,14.561Z" transform="translate(0 0.5)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="back-arrow" transform="translate(0 -0.5)">
+    <path id="Shape-2" data-name="Shape" d="M6.44,14.561l-6-6A1.5,1.5,0,0,1,.012,7.31l0-.012,0-.022,0-.024,0-.009.005-.028v0l.007-.032v0q.008-.034.017-.068h0l.009-.033v0l.009-.03,0-.006.009-.027L.085,7l.008-.023L.1,6.962l.007-.017.01-.025,0-.006a1.492,1.492,0,0,1,.256-.406l0,0L.4,6.485.4,6.475l.016-.017.011-.011L.439,6.44l6-6A1.5,1.5,0,0,1,8.561,2.561L5.121,6H15.5a1.5,1.5,0,1,1,0,3H5.122l3.439,3.439A1.5,1.5,0,0,1,6.44,14.561Z" transform="translate(0 0.5)" fill="none"/>
+    <g id="Icons_Hamburger_Copy" data-name="Icons/Hamburger Copy" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="↳ 🎨Color" transform="translate(-4 -5)">
+        <rect id="Background" width="26" height="26" fill="#0d0e15"/>
+      </g>
+    </g>
+  </g>
+</svg>

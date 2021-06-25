@@ -1,0 +1,39 @@
+{
+  "name": "indigo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^2.10.5",
+    "@sanity/image-url": "^0.140.22",
+    "axios": "^0.21.1",
+    "clsx": "^1.1.1",
+    "cookies": "^0.8.0",
+    "form-data": "^4.0.0",
+    "material-table": "^1.69.3",
+    "moment": "^2.29.1",
+    "next": "11.0.0",
+    "next-sanity": "^0.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-google-login": "^5.2.2",
+    "react-share": "^4.4.0",
+    "react-slick": "^0.28.1",
+    "react-toastify": "^7.0.4",
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.0"
+  }
+}

@@ -1,0 +1,211 @@
+import {clientRead} from '../utils/sanity'
+import { client } from '../utils/sanity'
+import { usePreviewSubscription } from '../utils/previewConfig'
+import { urlFor } from '../utils/tools'
+import BlockContent from '@sanity/block-content-to-react';
+import {useRouter} from 'next/router'
+import Head from 'next/head';
+import Navbar from '../pagecomponents/Navbar';
+import Footer from '../pagecomponents/Footer';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Image from 'next/image'
+
+const DynamicPage = (props)=>{
+    const router = useRouter();
+    if(router.isFallback){
+      return <div>Loading ....</div>
+  }
+    const  postQuery=`*[slug._ref=="${props?.data[0]?.slug?._ref}"]`
+
+    const {data} = usePreviewSubscription(postQuery, {
+      initialData: props.data,
+      enabled: props.preview,
+    })
+
+  
+    const settings = {
+        infinite: true,
+        autoplay:true,
+        speed: 500,
+        slidesToShow: 4,
+        arrows:false,
+        slidesToScroll: 1,
+        responsive: [
+           
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+              }
+            }
+          ]
+      };
+
+   
+    
+    const getComponent = (content,i)=>{
+        switch (content._type) {
+            case 'mainheading':
+                return(
+                  <div className="row">
+                  <div className="col-md-12 section-head text-center">
+                      {content?.heading && <span className="heading__span">{content?.heading}</span>}
+                 
+                  </div>
+              </div>
+                       
+                    // <span className="heading__span">{content?.heading}</span>
+            
+           
+                    
+                ) 
+           
+                break;
+            case 'subheading':
+                return (
+                  <div className="row">
+                    <div className="col-md-12 section-head text-center">
+                        {content?.heading && <h2 className="heading">
+                            {content?.heading}
+                        </h2>}
+                    </div>
+                </div>
+                  //   <div key={i}>
+                  //  <h2 className="heading">{content?.heading}</h2>
+                  //  </div>
+                )
+                break;
+            case 'components':
+              return(
+                <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
+                <div className="container-fluid ">
+                   
+                  
+                    <div className="row row--chnage">
+                        <div className="col-md-6">
+                            <div className="thumb">
+                                <Image src={urlFor(content?.mainimage)} alt="" />
+                            </div>
+                          {content.imagetext && <div className="content">
+                        <h2 className="heading-inner">{content?.imagetext}</h2> 
+                          </div>}
+                        </div>
+                       {content?.description &&  <div className="col-md-6 manufacturers-content">
+                        <BlockContent blocks={content?.description} />
+                        </div>}
+                      </div>
+                    </div>
+              </section>
+              )
+              break;
+
+          case 'image':
+            return(
+              <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
+              <div className="container-fluid "> 
+                        <Image className="dynamic_image" src={urlFor(content?.asset)} />
+                  </div>
+            </section>
+            
+            );
+            break;
+          case 'slider':
+            return(
+              <section key={i} className="section aboutus-slider">
+              <div className="container-fluid about">
+               
+                  <div  className="row Artisanal-slider">
+                      <Slider {...settings}>
+                    {content.slideritem && content.slideritem.map((item,i)=>(
+                      <div key={i} className=" col-md-4">
+                      {item.image && <Image src={urlFor(item.image)} alt="" /> }  
+                      {item.description && <BlockContent blocks={item.description} />}               
+                  </div>
+                    ))}
+                      </Slider>
+                    
+                  </div>
+              </div>
+          </section>
+            )
+        }
+    } 
+
+    return(
+        <>
+        <Head>
+            <title>{data[0]?.pagetitle}</title>
+        </Head>
+        
+            {props.nav && <Navbar preview={props.preview} nav={props.nav} />}
+            <div className="dynamic_container">
+            {data[0]?.content?.map((content,i)=>(
+                <div>
+                     {getComponent(content,i)}
+                </div>
+               
+            ))}
+            </div>
+      
+        <Footer />
+        </>
+    )
+}
+
+export default DynamicPage;
+
+
+
+// export async function getStaticPaths() {
+
+//     const links = await clientRead.fetch(`*[_type=="link" && usergeneratedlink==true]`);
+//     const paths = links.map((link) => ({
+//         params: { page: link.slug.current },
+//       })) 
+// console.log("the paths is ",paths)
+//     return {
+//       paths,
+//       fallback: true 
+//     };
+//   }
+
+
+export async function getServerSideProps(context) {
+    // console.log("the context",context)
+    let data = null;
+    // const slug = context.params.page;
+    const slug = await client.fetch(`*[slug.current=="${context.params.page}"]{_id}`);
+    
+// console.log("the slug from new",slug)
+    if (!slug[0] || slug.length<1) {
+        return {
+          notFound: true,
+        }
+      }
+    const slugId = slug[0]._id;
+    // console.log("the slug id is",slugId)
+
+    let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
+    // console.log("the navbar",nav)
+    let preview = context.preview ? context.preview : null
+    if(context.preview){
+        data = await client.fetch(`*[slug._ref=="${slugId}"]`);
+    }
+    else{
+        data = await clientRead.fetch(`*[slug._ref=="${slugId}"]`);
+    }
+    // console.log("the data is",data)
+  if (!data[0] || data.length<1) {
+    return {
+      notFound: true,
+    }
+  }
+  
+ 
+    return {
+      props: { data,preview,nav }
+    }
+  }
