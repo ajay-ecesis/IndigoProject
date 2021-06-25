@@ -440,10 +440,10 @@ const Navbar = (props)=>{
                         </div>
                         <ul className="Navbar">
                         {data[0].navlinks && data[0].navlinks.map((item,i)=>(
-                                <>
-                                { item.slug.current=="/" ? <li key={i} ><a href="/">{item && item.linkname}</a></li>:
-                                <li key={i} ><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
-                                </>
+                                <span key={i}>
+                                { item.slug.current=="/" ? <li  ><a href="/">{item && item.linkname}</a></li>:
+                                <li  ><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
+                                </span>
                             ))}
                           
                                 {user === null && 

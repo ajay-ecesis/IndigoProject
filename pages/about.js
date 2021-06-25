@@ -55,7 +55,10 @@ const About = (props)=>{
               <div className="container-fluid ">
                   <div className="row">
                     { i==0 && <div className="col-md-12 section-head text-center">
-                         {data[0].heading && <BlockContent blocks={data[0].heading} />}
+                    <span class="heading__span">{data[0].heading2 && data[0].heading1}</span>
+                        <h2 class="heading">
+                           {data[0].heading2 && data[0].heading2}
+                        </h2>
                       </div>}
                   </div>
                 
