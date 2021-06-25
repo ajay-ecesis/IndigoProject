@@ -129,7 +129,7 @@ const ManageUsers = () => {
             try {
                 setBtnloading(true);
                 let { data } = await axios.put(`/api/update/user/status`, {
-                    userId: id,
+                    userId,
                 })
                 toast.success("User successfully deleted.")
                 setOpen(false);
