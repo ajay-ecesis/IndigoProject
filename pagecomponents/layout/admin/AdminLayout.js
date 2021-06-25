@@ -144,7 +144,8 @@ const AdminLayout = ({children}) => {
         dispatch({type: "LOGOUT"});
         const {data} = await axios.get('/api/logout');
         toast(data.message);
-        router.push('/');
+        //router.push('/');
+        return window.location.replace("/");
     }
 
     return (

@@ -278,7 +278,8 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
         )
     }
 
-    const clickReplyCommentSubmit = async() => {
+    const clickReplyCommentSubmit = async(e) => {
+        e.preventDefault()
         var tempCmtId = cmntId;
         if(user){
             try {
@@ -377,7 +378,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
                         <div className="row">
                             <div className="col-md-12">
                                 <form onSubmit={clickReplyCommentSubmit}>
-                                    <textarea onChange={(e) => handleChangeForReplyComment(e)} value={replyCmt} className="form-control" rows="2" placeholder="write some comments" />
+                                    <textarea onChange={(e) => handleChangeForReplyComment(e)} value={replyCmt} className="form-control" rows="2" placeholder="write some comments" required/>
                                     <br/>
                                     <button className="btn btn-success">Reply</button>
                                 </form>    
