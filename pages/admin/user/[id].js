@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const userDetails = () => {
+const UserDetails = () => {
 
     const classes = useStyles();
 
@@ -27,10 +27,10 @@ const userDetails = () => {
 
     const [user, setUser] = useState([]);
 
-    const loadUsers = async () => {
+    const loadUsers = async (id) => {
         try {
             let { data } = await axios.post(`/api/user/id`, {
-                userId: id
+                userId: id/* '60d56e6483e21a3088798db9' */
             })
             console.log("data",data)
             setUser(data);
@@ -44,8 +44,10 @@ const userDetails = () => {
     };
 
     useEffect(() => {
-        loadUsers()
-    },[])
+        if(id){
+            loadUsers(id)
+        }
+    },[id])
 
     const showUserDetails = () => (
         <div className="card mb-4 bord-line">
@@ -67,7 +69,6 @@ const userDetails = () => {
         </div>
     )
 
-
     return (
 
         <AdminRoute>
@@ -88,4 +89,4 @@ const userDetails = () => {
     )
 }
 
-export default userDetails
+export default UserDetails

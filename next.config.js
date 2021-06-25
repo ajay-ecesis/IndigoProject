@@ -48,6 +48,14 @@ module.exports = {
         source: '/api/manufactureGoogleReg',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/manufacturer-reg-google`,
       },
+      {
+        source: '/api/update/user',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/update/user`,
+      },
+      {
+        source: '/api/update/user/status',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/update/user/status`,
+      },
       
     ]
   },

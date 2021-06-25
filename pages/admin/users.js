@@ -23,6 +23,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import {toast} from 'react-toastify'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -91,6 +92,8 @@ const ManageUsers = () => {
             return rowData.status === 0 ? <span>Active</span> :
             <span>Deleted</span>
         }},
+        {title: "Actions", render: rowData => <Link href={`/admin/user/edit/${rowData._id}`}><a><Edit /></a></Link>},
+        {title: "",render: rowData => <span style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData._id)}><DeleteOutline /></span>},
     ]
 
     const loadUsers = async () => {
@@ -119,6 +122,24 @@ const ManageUsers = () => {
     useEffect(() => {
         loadUsers()
     }, [])
+
+    const destroy = async(userId) => {
+        if(window.confirm("Do you want to delete this user?")){
+            
+            try {
+                setBtnloading(true);
+                let { data } = await axios.put(`/api/update/user/status`, {
+                    userId: id,
+                })
+                toast.success("User successfully deleted.")
+                setOpen(false);
+                loadUsers()
+            } catch (error) {
+                setError(error.response.data);
+                setOpen(true);
+            }
+        }
+    }
 
 
     return (
