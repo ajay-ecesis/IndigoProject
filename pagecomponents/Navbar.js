@@ -459,15 +459,21 @@ const Navbar = (props)=>{
                                                 </button>
                                             </div>
                                         </li>
-                                        <li className="bottom-buttons"><a href="#">Login </a>
+                                        <li className="bottom-buttons"><a href="#">Login</a>
+                                        <div className="bottom-btn">
                                         <GoogleLogin 
                                             className="btn btn-block btn-primary" 
                                             clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                            render={renderProps => (
+                                                <a href="" style={{padding:10,paddingLeft:25,paddingRight:25,borderRadius:30}} onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                                
+                                              )}
                                             buttonText="Continue with Google"
                                             onSuccess={responseGooglelogin}
                                             onFailure={responseGooglelogin}
                                             cookiePolicy={'single_host_origin'}
                                         />
+                                        </div>
                                         </li>
                                 
                                     </>
@@ -495,7 +501,7 @@ const Navbar = (props)=>{
         <div className="signin-popup signin-popup-open">
             <div className="modal-bg">
                 <div className="modal_box">
-                    <span><a href="#" className="modal_close"><img src="images/back-arrow.svg" alt="" /></a>Log in</span>
+                    <span><a href="/" className="modal_close"><img src="images/back-arrow.svg" alt="" /></a>Log in</span>
                     <div className="form-heading">
                         <h3 className="text-center">SIGN IN</h3>
                     </div>
@@ -514,18 +520,33 @@ const Navbar = (props)=>{
                             </div>
                             <label htmlFor="">Forgot password ?</label>
                         </div>
-                        <GoogleLogin 
+                        {/* <GoogleLogin 
                                 className="btn btn-block btn-primary" 
                                 clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                render={renderProps => (
+                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                    
+                                  )}
+                                buttonText="Continue with Google"
+                                onSuccess={responseGooglelogin}
+                                onFailure={responseGooglelogin}
+                                cookiePolicy={'single_host_origin'}
+                            /> */}
+                        <div className="bottom-btn">
+                            <input id="singupSubmit" type="submit" value={loginValues.loading ? "Loading..." : "Sign in"} />
+                            {/* <a href="" className="btn-yellow border-not">Continue with Google</a> */}
+                            <GoogleLogin 
+                                className="btn btn-block btn-primary" 
+                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                render={renderProps => (
+                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                    
+                                  )}
                                 buttonText="Continue with Google"
                                 onSuccess={responseGooglelogin}
                                 onFailure={responseGooglelogin}
                                 cookiePolicy={'single_host_origin'}
                             />
-                        <div className="bottom-btn">
-                            <input id="singupSubmit" type="submit" value={loginValues.loading ? "Loading..." : "Sign in"} />
-                            {/* <a href="" className="btn-yellow border-not">Continue with Google</a> */}
-                           
                             <p className="or">OR</p>
                             <a id="forSignUp"  href="#" className="btn-yellow btn-black-yellow">Sign Up</a>
                         </div>
@@ -541,7 +562,7 @@ const Navbar = (props)=>{
         <div className="signin-popup signUp-popup signUp-popup-open">
              <div className="modal-bg">
              <div id="modal2" className="modal_box">
-                 <span><a clas="modal_close" href="#" ><img src="images/back-arrow.svg" alt="" /></a>Sign up</span>
+                 <span><a clas="modal_close" href="/" ><img src="images/back-arrow.svg" alt="" /></a>Sign up</span>
                  <div className="form-heading">
                      <h3>Register</h3>
                      <p>Register as a Brand or Manufacturer</p>
@@ -586,7 +607,7 @@ const Navbar = (props)=>{
                             <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} required />
                         </div>
                         <div className="form-group form-group-change">
-                            <select onChange={handleChangeRegBrand('city')} placeholder="City">
+                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City">
                                 <option>City</option>
                                 <option value="volvo">America</option>
                                 <option value="saab">London</option>
@@ -625,15 +646,21 @@ const Navbar = (props)=>{
                         <div className="bottom-btn">
                             <input id="forUpload" type="submit" className="btn-yellow" value={regBrandValues.loading ? 'Loading...' : "Register"} />
                         </div>
+                        <div className="bottom-btn">
                         <GoogleLogin 
                         className="btn btn-block btn-primary"
                         clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                        render={renderProps => (
+                            <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                            
+                          )}
                         buttonText="SignUp"
                         onSuccess={responseGoogleBrand}
                         onFailure={responseGoogleBrand}
                         cookiePolicy={'single_host_origin'}
                         disabled={!regBrandValues.brandName || !regBrandValues.url || !regBrandValues.category || !regBrandValues.market || !regBrandValues.linkedIn || !regBrandValues.zipCode || !regBrandValues.city || !regBrandValues.country}
                     /> 
+                    </div>
                         <div className="term-conditions">
                             <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
                         </div>
@@ -795,9 +822,14 @@ const Navbar = (props)=>{
                         <div className="bottom-btn">
                             <input type="submit" className="btn-yellow" value={regManufacturerValues.loading ? "Loading..." : "Register"} />
                         </div>
+                        <div className="bottom-btn">
                         <GoogleLogin 
                         className="btn btn-block btn-primary"
                         clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                        render={renderProps => (
+                            <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                            
+                          )}
                         buttonText="SignUp"
                         onSuccess={responseGoogleManufacture}
                         onFailure={responseGoogleManufacture}
@@ -809,6 +841,7 @@ const Navbar = (props)=>{
                         || !regManufacturerValues.zipCode || !regManufacturerValues.country || !regManufacturerValues.certifications || !regManufacturerValues.multiphotos
                         }
                     /> 
+                    </div>
                         <div className="term-conditions">
                             <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
                         </div>

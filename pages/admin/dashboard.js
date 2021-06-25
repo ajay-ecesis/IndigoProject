@@ -1,8 +1,7 @@
 import {useContext} from 'react'
 import {Context} from '../../context'
 import AdminRoute from '../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../pagecomponents/routes/AdminLayout'
-import Navbar from '../../pagecomponents/Navbar'
+import AdminLayout from '../../pagecomponents/layout/admin/AdminLayout'
 
 const Dashboard = () => {
 

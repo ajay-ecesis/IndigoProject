@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import AdminRoute from '../../../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../../../pagecomponents/routes/AdminLayout'
+import AdminLayout from '../../../../pagecomponents/layout/admin/AdminLayout'
 import { useRouter } from 'next/router'
 import {toast} from 'react-toastify'
 import Backdrop from '@material-ui/core/Backdrop';

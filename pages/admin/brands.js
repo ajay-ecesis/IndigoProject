@@ -1,6 +1,6 @@
 import { useState, useEffect, forwardRef} from 'react'
 import AdminRoute from '../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../pagecomponents/routes/AdminLayout'
+import AdminLayout from '../../pagecomponents/layout/admin/AdminLayout'
 import Link from 'next/link'
 import axios from 'axios'
 import MaterialTable from "material-table";

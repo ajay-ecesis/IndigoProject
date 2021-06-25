@@ -1,6 +1,6 @@
+import {useState, useEffect, useContext} from 'react'
 import Navbar from '../../pagecomponents/Navbar';
 import Footer from '../../pagecomponents/Footer';
-import {useState, useEffect} from 'react'
 import Head from "next/head";
 import { client } from "../../utils/sanity";
 import { urlFor } from "../../utils/tools";
@@ -10,7 +10,7 @@ import axios from 'axios'
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
 import {toast} from 'react-toastify'
 import moment from 'moment';
-//import AddreplyComment from '../../components/AddreplyComment'
+import {Context} from '../../context/index'
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -36,6 +36,10 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
     const classes = useStyles();
 
     const [loading, setLoading] = useState(false);
+
+    // user state
+    const {state, dispatch} = useContext(Context);
+    const { user } = state;
 
     const [loadingCmt, setLoadingCmt] = useState(false);
 
@@ -66,40 +70,36 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-    const handleCloseModal = () => {
-        setReplyComments([]);
-        setCmntId('');
-        setOpenModal(false);
-    };
+    // Like section starts
+    // get the curret use liked posts
 
-    /* useEffect(() => {
-        const imgBuilder = imageUrlBuilder({
-            projectId:'a4cdxjbi',
-            dataset:'production',
-        });
-
-        setImageUrl(imgBuilder.image(image));
-    },[image]) */
-
-
+    useEffect(async()=>{
    
+        const response = await fetch(`/api/userlikedposts`)
+        const data = await response.json()
+        if(data){
+            checkIsLikedPost(data)
+            console.log(data)
+        }
+    },[user]);
 
-   const checkIsLikedPost =(data)=>{
+    const checkIsLikedPost =(data)=>{
 
         if(!data || data.length < 1){
             setIsliked(false)
             return
         }
         for(let i in data){
-            if(data[i]._ref == postId){
+            if(data[i].postId == postId && data[i].status==true){
                 setIsliked(true)
                 console.log("this post is liked") //should remove
                 return
             }
         }
-   }
-//this function is for liking the post
-   const likePost = ()=>{
+    }
+
+    //this function is for liking the post
+    const likePost = ()=>{
         setIsliked(true)
         fetch('/api/likeblogpost',{
             method:'POST',
@@ -116,69 +116,64 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
             if(res.ok){
                 setIsliked(true)
                 setbtnloading(false)
+            }  
+            return res.json()          
+        })
+        .then(data=>{
+            console.log(data)
+            toast.success(data.success);
+            return
+        })
+        .catch(err=>{
+            setIsliked(false);
+            toast.error("Something went wrong, Please try again");
+            console.log(err);
+            setbtnloading(false);
+        })
+    }
+
+    //this function is for unlike a liked post
+
+    const unlikePost = ()=>{
+        setIsliked(false)
+        fetch('/api/unlikeblogposts',{
+            method:'POST',
+            headers:{
+                "Accept":"application/json",
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                postId:postId,
+                userId:user._id
+            })
+        })
+        .then(res=>{
+            if(res.ok){
+                setIsliked(false);
+                setbtnloading(false);
             }
         return res.json()
             
         })
         .then(data=>{
             console.log(data)
-            setMessage(data.success);
-            toast.success(data.success);
+            toast.error(data.success)
+            return
         })
         .catch(err=>{
-            setIsliked(false);
-            setMessage("Something went wrong, Please try again");
-            toast.success("Something went wrong, Please try again");
+            setIsliked(true)
+            toast.error("Something went wrong, Please try again.")
             console.log(err);
             setbtnloading(false);
         })
-   }
+    }
 
-//this function is for unlike a liked post
-
-const unlikePost = ()=>{
-    setIsliked(false)
-    fetch('/api/unlikeblogposts',{
-        method:'POST',
-        headers:{
-            "Accept":"application/json",
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            postId:postId,
-            userId:user._id
-        })
-    })
-    .then(res=>{
-        if(res.ok){
-            setIsliked(false);
-            setbtnloading(false);
-        }
-    return res.json()
-        
-    })
-    .then(data=>{
-        console.log(data)
-        setMessage(data.success);
-        toast.success(data.success)
-    })
-    .catch(err=>{
-        setIsliked(true)
-        setMessage("Something went wrong, Please try again.");
-        toast.success("Something went wrong, Please try again.")
-        console.log(err);
-        setbtnloading(false);
-    })
-}
-
-//if the post is already liked it will call the dislike function
+    //if the post is already liked it will call the dislike function
 
     const handleLike = ()=>{
         setbtnloading(true);
         if(!user){
-            console.log("You should login first to like the post");
-            setMessage("You should login first to like the post");
-            toast.success("You should login first to like the post")
+            toast.error("You should login first to like the post")
             setbtnloading(false);
             return
         }
@@ -189,16 +184,15 @@ const unlikePost = ()=>{
         }
     }
 
+    // like section ends
+
     useEffect(()=>{
         setTimeout(() => {
             setMessage('')
         }, 3000);
     },[isliked]);
 
-    const handleCloseToggle = () => {
-        setopen(!open)
-    }
-   const shareComponent = ()=>(
+    const shareComponent = ()=>(
        <>
         <EmailShareButton style={{margin:'10px'}} subject={title} url={blogurl}>
             <EmailIcon />
@@ -216,7 +210,15 @@ const unlikePost = ()=>{
             <LinkedinIcon />
         </LinkedinShareButton>
        </>
-   )
+    )
+
+    // Comment section Starts
+
+    const handleCloseModal = () => {
+        setReplyComments([]);
+        setCmntId('');
+        setOpenModal(false);
+    };
 
     const loadComments = async() => {
         try {
@@ -224,7 +226,6 @@ const unlikePost = ()=>{
             const {data} = await axios.post(`/api/getComments`, {
                 postId
             })
-            console.log("Comment data12", data);
             setComments(data);
             setLoadingCmt(false);
             setDisplayCmt(true);
@@ -245,13 +246,11 @@ const unlikePost = ()=>{
         e.preventDefault();
         if(user){
             try {
-                console.log("Hello man")
                 const {data} = await axios.post(`/api/createComment`, {
-                    user:user._id,
-                    post:postId,
-                    comment
+                    userId:user._id,
+                    postId:postId,
+                    message:comment
                 })
-                console.log("data", data);
                 setComment('');
                 loadComments()    
             } catch (error) {
@@ -266,26 +265,6 @@ const unlikePost = ()=>{
         
     }
 
-    /* const clickDeleteComment = async(id) => {
-        if(user){
-            try {
-                console.log("Hello man")
-                const {data} = await axios.post(`/api/deleteComment`, {
-                    commentId:id
-                })
-                console.log("data", data);
-                toast.success("Your comment removed successfully.");
-                loadComments()    
-            } catch (error) {
-                console.log("Error from login", error);
-                toast.error(error.response.data);
-            }
-        }
-        else {
-            toast.error("You must login to delete comments");
-        }   
-    }
- */
     const addComment = () => {
         return (
             <form onSubmit={clickCommentSubmit}>  
@@ -299,52 +278,24 @@ const unlikePost = ()=>{
         )
     }
 
-    /* const clickReplyCommentSubmit = async(id, replyCmt) => {
-        console.log("Helloooo from reply cmt submit")
-        console.log("Id", id);
-        console.log("cmt", replyCmt)
-        if(user){
-            try {
-                console.log("Hello man")
-                const {data} = await axios.post(`/api/createReplyComment`, {
-                    user:user._id,
-                    post:postId,
-                    commentId:id,
-                    comment: replyCmt
-                })
-                console.log("data", data);
-                setComment('');
-                loadComments()    
-            } catch (error) {
-                console.log("Error from login", error);
-                toast.error(error.response.data);
-            }
-        }
-        else {
-            toast.error("You must login to add comments");
-        }   
-    } */
-
     const clickReplyCommentSubmit = async() => {
         var tempCmtId = cmntId;
         if(user){
             try {
                 setLoading(true);
-                console.log("Hello man")
                 const {data} = await axios.post(`/api/createReplyComment`, {
-                    user:user._id,
-                    post:postId,
+                    userId:user._id,
+                    postId:postId,
                     commentId:tempCmtId,
-                    comment: replyCmt
+                    message: replyCmt
                 })
-                console.log("data", data);
                 setReplyCmt('');
                 setComment('');
-                loadComments();
+                /* loadComments(); */
                 loadReplyComments(tempCmtId)
             } catch (error) {
+                console.log("err", error);
                 setLoading(false);
-                console.log("Error from login", error);
                 toast.error(error.response.data);
             }
         }
@@ -358,15 +309,14 @@ const unlikePost = ()=>{
             const {data} = await axios.post(`/api/getReplyComments`, {
                 commentId
             })
-            console.log("Comment data12", data);
             setReplyComments(data);
             setCmntId(commentId)
             setOpenModal(true);
             setLoading(false);
             /* setCheckReply(true); */
         } catch (error) {
+            console.log("lload reply err", error);
             setLoading(false);
-            console.log("Error from login", error);
         }
     }
 
@@ -389,18 +339,17 @@ const unlikePost = ()=>{
                             <div key={s._id}>
                                 <Grid container wrap="nowrap" spacing={2}>
                                     <Grid item>
-                                        <Avatar alt="User Logo" src='/userlogo.png' />
+                                        <Avatar alt="User Logo" src='/images/userlogo.png' />
                                     </Grid>
                                     <Grid justifycontent="left" item xs zeroMinWidth>
-                                        <h4 style={{ margin: 0, textAlign: "left" }}>{s.writer.firstname+' '+s.writer.lastname}</h4>
+                                        <h4 style={{ margin: 0, textAlign: "left" }}>{s.userId.firstName+' '+s.userId.lastName}</h4>
                                         <p style={{ textAlign: "left" }}>
-                                            {s.comment}
+                                            {s.message}
                                         </p>
                                         
-                                        <span style={{textAlign: "left", color:'blue', cursor:'pointer'}} >Reply</span>
-                                           {/*  <AddreplyComment id={s._id} clickComment={clickReplyCommentSubmit} />*/}
-                                        
-                                        {s.isReply ? <p style={{ textAlign: "left", color: 'red', cursor:'pointer' }} >View {s.replyCount} Replies</p> :null }
+                                        <span style={{textAlign: "left", color:'blue', cursor:'pointer'}} onClick={() => handleClickOpenModal(s._id)} >Reply | View Replies</span>
+                                                          
+                                       {/*  {s.isReply ? <p style={{ textAlign: "left", color: 'red', cursor:'pointer' }} >View {s.replyCount} Replies</p> :null } */}
                                         <p style={{ textAlign: "left", color: "gray" }}>
                                         posted {moment(s._createdAt).fromNow()}
                                         </p>
@@ -416,38 +365,6 @@ const unlikePost = ()=>{
         )
     }
 
-    /* const showReplyComments = () => {
-        return (
-            <>
-                <Paper style={{ padding: "40px 20px" }}>
-                    {replyComments.map((s) => (
-                            <div key={s._id}>
-                                <Grid container wrap="nowrap" spacing={2}>
-                                    <Grid item>
-                                        <Avatar alt="User Logo" src='/userlogo.png' />
-                                    </Grid>
-                                    <Grid justifycontent="left" item xs zeroMinWidth>
-                                        <h4 style={{ margin: 0, textAlign: "left" }}>{s.writer.firstname+' '+s.writer.lastname}</h4>
-                                        <p style={{ textAlign: "left" }}>
-                                            {s.comment}
-                                        </p>
-                                        <p style={{ textAlign: "left" }}>
-                                        <span style={{color:'blue', cursor:'pointer'}}>Reply</span>
-                                        </p>
-                                        {s.isReply ? <p style={{ textAlign: "left" }}>View Replies</p> :null }
-                                        <p style={{ textAlign: "left", color: "gray" }}>
-                                        posted {moment(s._createdAt).fromNow()}
-                                        </p>                                 
-                                    </Grid>
-                                </Grid>
-                                <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
-                            </div>
-                    ))}                
-                </Paper>
-            </>
-        )
-    } */
-
     const showReplyCommentsModal = () => {
         return (
             <>
@@ -459,13 +376,13 @@ const unlikePost = ()=>{
                         </DialogContentText>
                         <div className="row">
                             <div className="col-md-12">
-                                <textarea onChange={(e) => handleChangeForReplyComment(e)} value={replyCmt} className="form-control" rows="2" placeholder="write some comments" />
-                                <br/>
-                                <button  className="btn btn-success">Reply</button>
+                                <form onSubmit={clickReplyCommentSubmit}>
+                                    <textarea onChange={(e) => handleChangeForReplyComment(e)} value={replyCmt} className="form-control" rows="2" placeholder="write some comments" />
+                                    <br/>
+                                    <button className="btn btn-success">Reply</button>
+                                </form>    
                             </div>
-                        </div>
-
-                        
+                        </div>   
 
                         <div className="row">
                             <div className="col-md-12">
@@ -479,16 +396,13 @@ const unlikePost = ()=>{
                                             <div key={s._id}>
                                                 <Grid container wrap="nowrap" spacing={2}>
                                                     <Grid item>
-                                                        <Avatar alt="User Logo" src='/userlogo.png' />
+                                                        <Avatar alt="User Logo" src='/images/userlogo.png' />
                                                     </Grid>
                                                     <Grid justifycontent="left" item xs zeroMinWidth>
-                                                        <h4 style={{ margin: 0, textAlign: "left" }}>{s.writer.firstname+' '+s.writer.lastname}</h4>
+                                                        <h4 style={{ margin: 0, textAlign: "left" }}>{s.userId.firstName+' '+s.userId.lastName}</h4>
                                                         <p style={{ textAlign: "left" }}>
-                                                            {s.comment}
+                                                            {s.message}
                                                         </p>
-                                                        {/* <p style={{ textAlign: "left" }}>
-                                                        <span style={{color:'blue', cursor:'pointer'}}>Reply</span>
-                                                        </p> */}
                                                         <p style={{ textAlign: "left", color: "gray" }}>
                                                         posted {moment(s._createdAt).fromNow()}
                                                         </p>                                 
@@ -504,7 +418,7 @@ const unlikePost = ()=>{
                         
                     </DialogContent>
                     <DialogActions>
-                    <button className="btn btn-success" color="primary">
+                    <button onClick={() => handleCloseModal()} className="btn btn-success">
                         Close Reply Comments
                     </button>
                     </DialogActions>
@@ -519,7 +433,6 @@ const unlikePost = ()=>{
                 <img src={urlFor(item.mainimage)} alt="" />          
             </div>
             <div>
-                {console.log("ii", i)}
                 <div className="post_head">
                 {(data.heading && Number(i) === 0) && <h2 className="title">{data.heading}</h2>}
                     <div className="post-details">
@@ -602,13 +515,14 @@ const unlikePost = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+
+                    {user !== null && <div className="row">
                         <div className="col-md-12 text-center">
                             <div>
                                 <span style={{cursor:'pointer', margin:'20px'}} >
-                                    <img src="/images/clapping.svg" alt="" width="40px" height="auto" />
+                                    <img onClick={()=>handleLike()} src="/images/clapping.svg" alt="" width="40px" height="auto" />
                                 </span>
-                                <span style={{cursor:'pointer', margin:'20px'}} >
+                                <span style={{cursor:'pointer', margin:'20px'}} onClick={() => loadComments()}>
                                     <img src="/images/chat.svg" alt="" width="40px" height="auto" />
                                 </span>
                                 <span style={{cursor:'pointer', margin:'20px'}} >
@@ -635,31 +549,12 @@ const unlikePost = ()=>{
                                 
                             </div>                        
                         </div>
-                    </div>
+                    </div>}
                 </div>
             </div>
 
             <Footer />
-            {/* <div className={styles.main}>
-                {imageUrl && <img className={styles.mainImage} src={imageUrl} alt="" />}
-
-                <div className={styles.body}>
-                    <BlockContent blocks={body} />
-                </div>
-                <div>
-                <button disabled={btnloading} style={{border:'none',background:'none',cursor:'pointer'}} onClick={handleLike}><ThumbUpAltIcon fontSize={'large'} color={isliked ? 'primary' : 'action'} /></button>&nbsp;
-                <button style={{border:'none',background:'none',cursor:'pointer'}} onClick={()=>setopen(true)} ><ShareIcon fontSize={'large'} /></button>
-                {message}
-                </div>
-                <div>
-                    {open && shareComponent()}
-                    {user && <button onClick={() => loadComments()}>Show Comments</button>}
-                    {user && addComment()}
-                    {user && (comments.length >=1 ?  showComments() : <h2>No comments found!</h2>)}     
-                    {showReplyCommentsModal()}           
-                    
-                </div>
-            </div> */}
+           
         </>
     )
 }
@@ -691,7 +586,6 @@ export const getServerSideProps = async pageContext => {
                 data:post,
                 title: post.title,
                 image: post.mainImage,
-                /* body: post.body, */
                 postId:post._id,
                 blogurl:pageurl,
                 category: post.categories,

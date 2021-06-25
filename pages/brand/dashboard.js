@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {Context} from '../../context'
 import BrandRoute from '../../pagecomponents/routes/BrandRoute'
-import Navbar from '../../pagecomponents/Navbar'
+import BrandLayout from '../../pagecomponents/layout/brand/BrandLayout'
 
 const Dashboard = () => {
 
@@ -9,10 +9,11 @@ const Dashboard = () => {
     
     return (
         <BrandRoute>
-        {/* <Navbar /> */}
-            <h1 className="jumbotron text-center square">
-                <pre>{user && `Hello ${user.firstName+" "+user.lastName}`} from brand</pre>
-            </h1> 
+            <BrandLayout>
+                <h1 className="jumbotron text-center square">
+                    <pre>{user && `Hello ${user.firstName+" "+user.lastName}`} from brand</pre>
+                </h1> 
+            </BrandLayout>
         </BrandRoute>
     )
 }

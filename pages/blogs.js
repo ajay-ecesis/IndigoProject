@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect,useContext} from 'react'
 import Head from "next/head";
 import imageUrlBuilder from '@sanity/image-url'
 import { client } from "../utils/sanity";
@@ -11,8 +11,12 @@ import Footer from '../pagecomponents/Footer';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Context } from '../context';
 
 const blogs = ({posts,nav,pageurl}) => {
+
+    const {state, dispatch} = useContext(Context);
+    const { user } = state;
     const settings = {
         infinite: true,
         autoplay:true,
@@ -57,18 +61,33 @@ const blogs = ({posts,nav,pageurl}) => {
             setMappedPosts([])
         }
     },[])
-    const handleLike = (post,section) => {
+    const handleLike =async (postId) => {
         // console.log("Handke Like", postId)
         if(!user){
-            console.log("You should login first to like the post");
-            setMessage("You should login first to like the post");
-            toast.success("You should login first to like the post")
+            toast.error("You should login first to like the post")
             return
         }
-        return
-       
         
-    
+        const response = await   fetch('/api/likefromlist',{
+            method:'POST',
+            headers:{
+                "Accept":"application/json",
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                postId:postId,
+                userId:user._id
+            })
+        })
+        
+        const data = await response.json();
+        console.log(data)
+        if(data.success){
+            toast.success(data.success)
+        }
+        if(data.error){
+            toast.error(data.error)
+        }
     }
 
    
@@ -155,7 +174,7 @@ const blogs = ({posts,nav,pageurl}) => {
                                     
                                     {<div className="icon-gallery">
                                         <span style={{cursor:'pointer'}} >
-                                             <img src="images/clapping.svg" alt="" />
+                                             <img onClick={()=>handleLike(mappedPosts[0]._id)} src="images/clapping.svg" alt="" />
                                         </span>
                                         <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[0].slug.current}`)}>
                                             <img src="images/chat.svg" alt="" />
@@ -200,7 +219,7 @@ const blogs = ({posts,nav,pageurl}) => {
                                 <a href={`/post/${mappedPosts.length && mappedPosts[1].slug.current}`}><a className="btn btn-black btn-hover">Read More <i className="fa fa-chevron-right"></i></a></a>
                                     {<div className="icon-gallery">
                                         <span style={{cursor:'pointer'}} >
-                         <img src="images/clapping.svg" alt="" />
+                         <img onClick={()=>handleLike(mappedPosts[1]._id)} src="images/clapping.svg" alt="" />
                                         </span>
                                         <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[1].slug.current}`)}>
                                             <img src="images/chat.svg" alt="" />
@@ -245,7 +264,7 @@ const blogs = ({posts,nav,pageurl}) => {
                                 <a href={`/post/${mappedPosts.length && mappedPosts[2].slug.current}`}><a className="btn btn-black btn-hover">Read More <i className="fa fa-chevron-right"></i></a></a>
                                 {<div className="icon-gallery">
                                     <span style={{cursor:'pointer'}} >
-                                    <img src="images/clapping.svg" alt="" />
+                                    <img onClick={()=>handleLike(mappedPosts[2]._id)} src="images/clapping.svg" alt="" />
                                     </span>
                                     <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[2].slug.current}`)}>
                                         <img src="images/chat.svg" alt="" />

@@ -1,9 +1,8 @@
 import { useState, useEffect, forwardRef} from 'react'
 import AdminRoute from '../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../pagecomponents/routes/AdminLayout'
+import AdminLayout from '../../pagecomponents/layout/admin/AdminLayout'
 import Link from 'next/link'
 import axios from 'axios'
-//import {getUsers,deleteUser} from './apiAdmin'
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';

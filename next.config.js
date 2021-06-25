@@ -56,7 +56,38 @@ module.exports = {
         source: '/api/update/user/status',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/update/user/status`,
       },
-      
+      {
+        source: '/api/createComment',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/comment`,
+      },
+      {
+        source: '/api/getComments',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/comments`,
+      },
+      {
+        source: '/api/createReplyComment',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/reply/comment`,
+      },
+      {
+        source: '/api/getReplyComments',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/reply/comments`,
+      },
+      {
+        source: '/api/userlikedposts',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/userlikedposts`,
+      },
+      {
+        source: '/api/likeblogpost',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/likepost`,
+      },
+      {
+        source: '/api/unlikeblogposts',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/unlike`,
+      },
+      {
+        source: '/api/likefromlist',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/likefromlist`,
+      },
     ]
   },
 }
