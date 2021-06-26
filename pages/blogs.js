@@ -37,8 +37,34 @@ const blogs = ({posts,nav,pageurl}) => {
       };
     const [mappedPosts, setMappedPosts] = useState([]);
 
-    
-    // state
+    // updated on 26-06-21 start
+    const [liked1,setliked1] = useState()
+    const [liked2,setliked2] = useState()
+    const [liked3,setliked3] = useState()
+    const [likedposts,setlikedposts] = useState([]);
+
+    // state for saved post
+    const [saved1,setSaved1] = useState()
+    const [saved2,setSaved2] = useState()
+    const [saved3,setSaved3] = useState()
+    const [savedPosts,setSavedPosts] = useState([]);
+
+    useEffect(async()=>{
+   
+        const response = await fetch(`/api/userlikedposts`)
+        const data = await response.json()
+        if(data){
+            setlikedposts(data)
+        }
+
+        const savedResponse = await fetch(`/api/user/saved/posts`)
+        const savedPostData = await savedResponse.json()
+        if(savedPostData){
+            setSavedPosts(savedPostData)
+        }
+    },[user]);
+
+
     const [blogurl,setblogurl] = useState(null);
     const [section,setSection] = useState(null)
    
@@ -61,13 +87,52 @@ const blogs = ({posts,nav,pageurl}) => {
             setMappedPosts([])
         }
     },[])
-    const handleLike =async (postId) => {
-        // console.log("Handke Like", postId)
+
+    //updated on 26-06-21
+    useEffect(()=>{
+        for(let i in likedposts){
+            if(likedposts[i].status){
+                if(likedposts[i].postId == mappedPosts[0]._id){
+                    setliked1(true)
+                }
+                if(likedposts[i].postId == mappedPosts[1]._id){
+                    setliked2(true)
+                }
+                if(likedposts[i].postId == mappedPosts[2]._id){
+                    setliked3(true)
+                }
+            }
+        }
+        for(let j in savedPosts){
+            if(savedPosts[j]._id){
+                if(savedPosts[j].postId == mappedPosts[0]._id){
+                    setSaved1(true)
+                }
+                if(savedPosts[j].postId == mappedPosts[1]._id){
+                    setSaved2(true)
+                }
+                if(savedPosts[j].postId == mappedPosts[2]._id){
+                    setSaved3(true)
+                }
+            }
+        }
+    },[mappedPosts,likedposts, savedPosts]);
+
+    const handleLike =async (postId,state) => {
         if(!user){
             toast.error("You should login first to like the post")
             return
         }
         
+        if(state=="liked1"){
+            setliked1(!liked1)
+        }
+        if(state=="liked2"){
+            setliked2(!liked2)
+        }
+        if(state=="liked3"){
+            setliked3(!liked3)
+        }
         const response = await   fetch('/api/likefromlist',{
             method:'POST',
             headers:{
@@ -81,7 +146,6 @@ const blogs = ({posts,nav,pageurl}) => {
         })
         
         const data = await response.json();
-        console.log(data)
         if(data.success){
             toast.success(data.success)
         }
@@ -89,31 +153,38 @@ const blogs = ({posts,nav,pageurl}) => {
             toast.error(data.error)
         }
     }
-
+    //
    
-    const savedPost = async(id) => {
+    // Saved Post Section Start
+
+    const handleSave = async(postId, postName, postSlug) => {
+        if(!user){
+            toast.error("You should login first to save the post")
+            return
+        }
+
+        if(postId === mappedPosts[0]._id){
+            setSaved1(!saved1);
+        }
+        if(postId === mappedPosts[1]._id){
+            setSaved2(!saved2);
+        }
+        if(postId === mappedPosts[2]._id){
+            setSaved3(!saved3);
+        }
+
         try {
-            const {data} = await axios.post(`/api/savedPosts`, {
-                user: user._id,
-                post: id
+            const {data} = await axios.post(`/api/save/post`, {
+                userId: user._id,
+                postId,
+                postName,
+                postSlug
             })
-            console.log("Saved Data", data);
-            toast.success("Post has been saved to your stories.")
+            toast.success(data.success);
         } catch (error) {
             console.log("Saved Error", error)
             toast.error(error.response.data)
         }
-    }
-
-    const isliked = (post)=>{
-        let result=false;
-        post?.likedby.map((likeduser,i)=>{
-            if(likeduser._ref == user._id){
-                return result =true
-            } 
-            else return result = false
-        })
-        return result
     }
 
     const handleShare = (post,section)=>{
@@ -174,17 +245,24 @@ const blogs = ({posts,nav,pageurl}) => {
                                     
                                     {<div className="icon-gallery">
                                         <span style={{cursor:'pointer'}} >
-                                             <img onClick={()=>handleLike(mappedPosts[0]._id)} src="images/clapping.svg" alt="" />
+                                             {liked1 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={()=>handleLike(mappedPosts[0]._id,"liked1")} src="images/clapping.svg" alt="" />
+                                             :<img  onClick={()=>handleLike(mappedPosts[0]._id,"liked1")} src="images/clapping.svg" alt="" />
+                                             }
                                         </span>
-                                        <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[0].slug.current}`)}>
-                                            <img src="images/chat.svg" alt="" />
+                                        <span style={{cursor:'pointer'}}>
+                                            <a href={`/post/${mappedPosts[0].slug.current}/#comment`}><img src="images/chat.svg" alt="" /></a>
                                         </span>
                                         <span onClick={()=>handleShare(mappedPosts[0],'section1')}>
                                             <img src="images/forward.svg" alt="" />
                                         </span>
                                         <span style={{cursor:'pointer'}} >
-                                            <img src="images/bookmark2.svg" alt="" />
+                                             {saved1 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={() => handleSave(mappedPosts[0]._id, mappedPosts[0].title, mappedPosts[0].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             :<img onClick={() => handleSave(mappedPosts[0]._id, mappedPosts[0].title, mappedPosts[0].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             }
                                         </span>
+                                        {/* <span onClick={() => savedPost(mappedPosts[0]._id)} style={{cursor:'pointer'}} >
+                                            <img src="images/bookmark2.svg" alt="" />
+                                        </span> */}
                                         <div>
                                         {blogurl && section=='section1' && shareComponent()}
                                         </div>
@@ -219,17 +297,24 @@ const blogs = ({posts,nav,pageurl}) => {
                                 <a href={`/post/${mappedPosts.length && mappedPosts[1].slug.current}`}><a className="btn btn-black btn-hover">Read More <i className="fa fa-chevron-right"></i></a></a>
                                     {<div className="icon-gallery">
                                         <span style={{cursor:'pointer'}} >
-                         <img onClick={()=>handleLike(mappedPosts[1]._id)} src="images/clapping.svg" alt="" />
+                                            {liked2 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={()=>handleLike(mappedPosts[1]._id,"liked2")} src="images/clapping.svg" alt="" />
+                                             :<img  onClick={()=>handleLike(mappedPosts[1]._id,"liked2")} src="images/clapping.svg" alt="" />
+                                            }
                                         </span>
-                                        <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[1].slug.current}`)}>
-                                            <img src="images/chat.svg" alt="" />
+                                        <span style={{cursor:'pointer'}} >
+                                            <a href={`/post/${mappedPosts[1].slug.current}/#comment`}><img src="images/chat.svg" alt="" /></a>
                                         </span>
                                         <span onClick={()=>handleShare(mappedPosts[1],'section2')}>
                                             <img src="images/forward.svg" alt="" />
                                         </span>
                                         <span style={{cursor:'pointer'}} >
-                                            <img src="images/bookmark2.svg" alt="" />
+                                             {saved2 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={() => handleSave(mappedPosts[1]._id, mappedPosts[1].title, mappedPosts[1].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             :<img onClick={() => handleSave(mappedPosts[1]._id, mappedPosts[1].title, mappedPosts[1].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             }
                                         </span>
+                                        {/* <span onClick={() => savedPost(mappedPosts[1]._id)} style={{cursor:'pointer'}} >
+                                            <img src="images/bookmark2.svg" alt="" />
+                                        </span> */}
                                         <div>
                                         {blogurl && section=='section2' && shareComponent()}
                                         </div>
@@ -264,17 +349,24 @@ const blogs = ({posts,nav,pageurl}) => {
                                 <a href={`/post/${mappedPosts.length && mappedPosts[2].slug.current}`}><a className="btn btn-black btn-hover">Read More <i className="fa fa-chevron-right"></i></a></a>
                                 {<div className="icon-gallery">
                                     <span style={{cursor:'pointer'}} >
-                                    <img onClick={()=>handleLike(mappedPosts[2]._id)} src="images/clapping.svg" alt="" />
+                                        {liked3 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={()=>handleLike(mappedPosts[2]._id,"liked3")} src="images/clapping.svg" alt="" />
+                                        :<img  onClick={()=>handleLike(mappedPosts[2]._id,"liked3")} src="images/clapping.svg" alt="" />
+                                        }
                                     </span>
-                                    <span style={{cursor:'pointer'}} onClick={() => router.push(`/post/${mappedPosts[2].slug.current}`)}>
-                                        <img src="images/chat.svg" alt="" />
+                                    <span style={{cursor:'pointer'}} >
+                                        <a href={`/post/${mappedPosts[2].slug.current}/#comment`}><img src="images/chat.svg" alt="" /></a>
                                     </span>
                                     <span onClick={()=>handleShare(mappedPosts[2],'section3')}>
                                             <img src="images/forward.svg" alt="" />
-                                        </span>
-                                    <span style={{cursor:'pointer'}} >
-                                        <img src="images/bookmark2.svg" alt="" />
                                     </span>
+                                    <span style={{cursor:'pointer'}} >
+                                             {saved3 ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={() => handleSave(mappedPosts[2]._id, mappedPosts[2].title, mappedPosts[2].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             :<img onClick={() => handleSave(mappedPosts[2]._id, mappedPosts[2].title, mappedPosts[2].slug.current)} src="images/bookmark2.svg" alt="" />
+                                             }
+                                    </span>
+                                    {/* <span onClick={() => savedPost(mappedPosts[2]._id)} style={{cursor:'pointer'}} >
+                                        <img src="images/bookmark2.svg" alt="" />
+                                    </span> */}
                                     <div>
                                     {blogurl && section=='section3' && shareComponent()}
                                     </div>
@@ -347,7 +439,6 @@ const blogs = ({posts,nav,pageurl}) => {
                 
             </div>
             {showSlider()}
-            {console.log('mappedPosts', mappedPosts)}
             {/* {showAllBlogsSlider()} */}
             <Footer />
         </>

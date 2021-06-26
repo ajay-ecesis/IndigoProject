@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
+export const Post = ({data, title, image, postId, blogurl, category, nav, preview, pageSlug}) => {
 
     const classes = useStyles();
 
@@ -44,8 +44,6 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
     const [loadingCmt, setLoadingCmt] = useState(false);
 
     const [displayCmt, setDisplayCmt] = useState(false);
-
-    const [imageUrl, setImageUrl] = useState('');
     
     const [isliked,setIsliked] = useState(false);
     const [message,setMessage] = useState('');
@@ -58,8 +56,6 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
 
     const [replyComments, setReplyComments] = useState([]);
 
-    const [checkReply, setCheckReply] = useState(false);
-
     const [replyCmt, setReplyCmt] = useState('')
 
     const [cmntId, setCmntId] = useState('');
@@ -70,6 +66,22 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+    // for focusing comment section from blog page
+    useEffect(()=>{
+        if(window.location.hash === "#comment"){
+            loadComments()
+            .then(()=>{
+                const elmnt = document.getElementById("comment");
+                if(!elmnt){
+                    return
+                }
+                elmnt.scrollIntoView(false);
+            })          
+        }
+    },[displayCmt]);
+
+    const [isSaved, setIsSaved] = useState(false);
+
     // Like section starts
     // get the curret use liked posts
 
@@ -79,7 +91,13 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
         const data = await response.json()
         if(data){
             checkIsLikedPost(data)
-            console.log(data)
+        }
+        if(user){
+            const savedResponse = await fetch(`/api/user/saved/posts`)
+            const savedPostData = await savedResponse.json()
+            if(savedPostData){
+                checkIsSavedPost(savedPostData)
+            }
         }
     },[user]);
 
@@ -92,7 +110,19 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
         for(let i in data){
             if(data[i].postId == postId && data[i].status==true){
                 setIsliked(true)
-                console.log("this post is liked") //should remove
+                return
+            }
+        }
+    }
+
+    const checkIsSavedPost = (data) => {
+        if(!data || data.length < 1){
+            setIsSaved(false)
+            return
+        }
+        for(let i in data){
+            if(data[i].postId === postId && data[i].userId === user._id){
+                setIsSaved(true)
                 return
             }
         }
@@ -120,7 +150,6 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
             return res.json()          
         })
         .then(data=>{
-            console.log(data)
             toast.success(data.success);
             return
         })
@@ -156,7 +185,6 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
             
         })
         .then(data=>{
-            console.log(data)
             toast.error(data.success)
             return
         })
@@ -192,25 +220,55 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
         }, 3000);
     },[isliked]);
 
-    const shareComponent = ()=>(
-       <>
-        <EmailShareButton style={{margin:'10px'}} subject={title} url={blogurl}>
-            <EmailIcon />
-        </EmailShareButton>
-        <FacebookShareButton style={{margin:'10px'}} url={blogurl}>
-            <FacebookIcon />
-        </FacebookShareButton>
-        <WhatsappShareButton style={{margin:'10px'}} url={blogurl}>
-            <WhatsappIcon />
-        </WhatsappShareButton>
-        <TwitterShareButton style={{margin:'10px'}} url={blogurl}>
-            <TwitterIcon />
-        </TwitterShareButton>
-        <LinkedinShareButton style={{margin:'10px'}} title={title} url={blogurl}>
-            <LinkedinIcon />
-        </LinkedinShareButton>
-       </>
+    // Saved Post section start
+
+    const handleSavedPost = async () => {
+        if(!user){
+            toast.error("You should login first to like the post")
+            return
+        }
+        setIsSaved(!isSaved)
+        try {
+            const {data} = await axios.post(`/api/save/post`, {
+                userId: user._id,
+                postId,
+                pageName: title,
+                pageSlug
+            })
+            toast.success(data.success);
+        } catch (error) {
+            console.log("Saved Error", error)
+            toast.error(error.response.data)
+        }
+    }
+
+    // Share section start
+
+    const handleToggleShare = () => {
+        setopen(!open)
+    }
+
+    const shareComponent = () => (
+        <>
+            <EmailShareButton style={{margin:'10px'}} subject={title} url={blogurl}>
+                <EmailIcon />
+            </EmailShareButton>
+            <FacebookShareButton style={{margin:'10px'}} url={blogurl}>
+                <FacebookIcon />
+            </FacebookShareButton>
+            <WhatsappShareButton style={{margin:'10px'}} url={blogurl}>
+                <WhatsappIcon />
+            </WhatsappShareButton>
+            <TwitterShareButton style={{margin:'10px'}} url={blogurl}>
+                <TwitterIcon />
+            </TwitterShareButton>
+            <LinkedinShareButton style={{margin:'10px'}} title={title} url={blogurl}>
+                <LinkedinIcon />
+            </LinkedinShareButton>
+        </>
     )
+
+    // Share section End
 
     // Comment section Starts
 
@@ -230,11 +288,11 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
             setLoadingCmt(false);
             setDisplayCmt(true);
         } catch (error) {
-                setLoading(false);
-                setLoadingCmt(false);
-                setDisplayCmt(false);
-                console.log("Error from login", error);
-                //toast.error(error);
+            setLoading(false);
+            setLoadingCmt(false);
+            setDisplayCmt(false);
+            console.log("Error from login", error);
+            //toast.error(error);
         }
     }
 
@@ -267,7 +325,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
 
     const addComment = () => {
         return (
-            <form onSubmit={clickCommentSubmit}>  
+            <form onSubmit={clickCommentSubmit} id="comment">  
                 <h2 className="mt-10 mb-4 text-4xl lg:text-6xl leading-tight">Add a Comment:</h2>        
                 <textarea onChange={e => handleChangeComment(e)} value={comment} className="form-control" rows="8" placeholder="write some comments" required />
                 <center>
@@ -521,17 +579,24 @@ export const Post = ({data, title, image, postId, blogurl, category, nav}) => {
                         <div className="col-md-12 text-center">
                             <div>
                                 <span style={{cursor:'pointer', margin:'20px'}} >
-                                    <img onClick={()=>handleLike()} src="/images/clapping.svg" alt="" width="40px" height="auto" />
+                                    {isliked ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={()=>handleLike()} src="/images/clapping.svg" alt="" width="40px" height="auto" />
+                                    :<img onClick={()=>handleLike()} src="/images/clapping.svg" alt="" width="40px" height="auto" />
+                                    }
                                 </span>
                                 <span style={{cursor:'pointer', margin:'20px'}} onClick={() => loadComments()}>
                                     <img src="/images/chat.svg" alt="" width="40px" height="auto" />
                                 </span>
-                                <span style={{cursor:'pointer', margin:'20px'}} >
+                                <span onClick={() => handleToggleShare()} style={{cursor:'pointer', margin:'20px'}} >
                                     <img src="/images/forward.svg" alt="" width="40px" height="auto" />
                                 </span>
-                                <span style={{cursor:'pointer', margin:'20px'}}>
-                                    <img src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
+                                <span style={{cursor:'pointer', margin:'20px'}} >
+                                    {isSaved ? <img style={{borderRadius:'50%',background:'#40b36c'}} onClick={()=>handleSavedPost()} src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
+                                    :<img onClick={()=>handleSavedPost()} src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
+                                    }
                                 </span>
+                                {/* <span style={{cursor:'pointer', margin:'20px'}}>
+                                    <img src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
+                                </span> */}
                             </div>                 
                         </div>
                         {message}
@@ -591,7 +656,8 @@ export const getServerSideProps = async pageContext => {
                 blogurl:pageurl,
                 category: post.categories,
                 nav,
-                preview
+                preview,
+                pageSlug
             }
         }
     }

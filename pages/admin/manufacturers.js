@@ -22,6 +22,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import Moment from 'react-moment';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -80,6 +81,7 @@ const ManageManufacturers = () => {
         {title: "Manufacturer Name", field: "supplierName"},
         {title: "Daily Capacity", field: "dailyCapacity"},
         {title: "Monthly Capacity", field: "monthlyCapacity"},
+        {title: "Created At", field: "createdAt", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
     ]
 
     const loadUsers = async () => {

@@ -32,7 +32,6 @@ const Provider = ({children}) => {
     useEffect(async () => {
         try{
             const {data} = await axios.get('/api/auth');
-            console.log('auth', data);
             if(data.error){
                 dispatch({
                     type:"LOGIN",
@@ -54,7 +53,6 @@ const Provider = ({children}) => {
                 }           
             }
         }catch(err){
-            console.log(err);
             dispatch({
                 type:"LOGIN",
                 payload: null,

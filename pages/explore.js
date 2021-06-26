@@ -87,7 +87,7 @@ const Explore = (props)=>{
                         {data[0].featuresbrand && <><div className="title">Features</div>
                        <Features content={data[0].featuresbrand} /></>}
                         <div className="bottom-btn">
-                            <a className="btn btn-yellow" href="">Register as brand</a>
+                            <a className="btn btn-yellow brand_open" href="">Register as brand</a>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ const Explore = (props)=>{
                         {data[0].featuresmanufacturer && <> <div className="title">Features</div>
                         <Features content={data[0].featuresmanufacturer} /></>}
                         <div className="bottom-btn">
-                            <a className="btn btn-yellow" href="">Register as manufacturer</a>
+                            <a className="btn btn-yellow manufactur_open" href="">Register as manufacturer</a>
                         </div>
                     </div>
                 </div>

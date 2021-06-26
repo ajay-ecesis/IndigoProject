@@ -19,7 +19,7 @@ export const mainListItems =  (
       </a>
     </Link>
     
-    <Link href='/admin/users'>
+    {/* <Link href='/admin/users'>
         <a>
       <ListItem button>
         <ListItemIcon>
@@ -28,9 +28,9 @@ export const mainListItems =  (
         <ListItemText primary="Manage Users" />
       </ListItem> 
       </a>
-    </Link>
+    </Link> */}
 
-    {/* <Link href='/admin/brands'>
+    <Link href='/admin/brands'>
         <a>
       <ListItem button>
         <ListItemIcon>
@@ -39,9 +39,9 @@ export const mainListItems =  (
         <ListItemText primary="Manage Brands" />
       </ListItem> 
       </a>
-    </Link> */}
+    </Link> 
 
-    {/* <Link href='/admin/manufacturers'>
+    <Link href='/admin/manufacturers'>
         <a>
       <ListItem button>
         <ListItemIcon>
@@ -50,7 +50,7 @@ export const mainListItems =  (
         <ListItemText primary="Manage Manufacturers" />
       </ListItem> 
       </a>
-    </Link> */}
+    </Link>
 
   </div>
 );

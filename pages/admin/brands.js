@@ -22,6 +22,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import Moment from 'react-moment';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -76,6 +77,7 @@ const ManageBrands = () => {
         {title: "Product Category", render: rowData => { return <>{rowData.userId.category}</> }},
         {title: "Market", field: "market"},
         {title: "LinkedIn", field: "linkedIn"},
+        {title: "Created At", field: "createdAt", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
         {title: "Actions", render: rowData => <Link href={`/admin/brands/edit/${rowData._id}`}><a><Edit /></a></Link>},
     ]
 

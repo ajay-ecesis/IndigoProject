@@ -111,6 +111,18 @@ module.exports = {
       {
         source:'/api/update/brand',
         destination:`${process.env.EXTERNAL_RESOLVER}/api/updateBrand` 
+      },
+      {
+        source:'/api/save/post',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/save/post` 
+      },
+      {
+        source:'/api/user/saved/posts',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/user/saved/posts` 
+      },
+      {
+        source:'/api/user/remove/saved/post',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/user/remove/saved/post` 
       }
     ]
   },
