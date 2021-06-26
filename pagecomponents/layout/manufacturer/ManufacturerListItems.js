@@ -17,6 +17,17 @@ export const mainListItems =  (
       </ListItem>
       </a>
     </Link>
+    
+    <Link href='/manufacturer/saved-posts'>
+      <a>
+      <ListItem button>   
+        <ListItemIcon>
+          <Dashboard />
+        </ListItemIcon>
+        <ListItemText primary="Saved Posts" />   
+      </ListItem>
+      </a>
+    </Link>
 
   </div>
 );
