@@ -19,33 +19,12 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
 import Moment from 'react-moment';
-
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-  
-const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-}));
+import {toast} from 'react-toastify'
 
 const ManageBrands = () => {
     
-    const classes = useStyles();
-
     const [ btnLoading, setBtnloading] = useState(true);
-
-    const [open, setOpen] = useState(false);
-
-    const [error, setError] = useState('');
 
     const [users, setUsers] = useState([])
 
@@ -74,54 +53,74 @@ const ManageBrands = () => {
         {title: "id", field: "_id", hidden: true},
         {title: "Brand Name", field: "brandName", render: rowData => {return <Link href={`/admin/brands/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.brandName}</a></Link>}},
         {title: "Website Url", field: "url"},
-        {title: "Product Category", render: rowData => { return <>{rowData.userId.category}</> }},
-        {title: "Market", field: "market"},
+        {title: "Product Category", render: rowData => { return <>{rowData.category.categoryName}</> }},
+        {title: "Market",  render: rowData => { return <>{rowData.market.marketName}</> }},
         {title: "LinkedIn", field: "linkedIn"},
+        {title: "Status", field: "status", render: rowData => {
+            return rowData.userId.status === 0 ? <h6 style={{color:"green"}}>Active</h6> :
+            <h6 style={{color:"red"}}>Deleted</h6>
+        }},
         {title: "Created At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
         {title: "Updated At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.updatedAt}</Moment>}},
         {title: "Actions", render: rowData => <Link href={`/admin/brands/edit/${rowData._id}`}><a style={{color:"#106eea"}}><Edit /></a></Link>},
+        {title: "",render: rowData => {
+            if(rowData.userId.status === 0){
+                return <span style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData.userId._id, 1)}><DeleteOutline /></span>
+            }
+            else if(rowData.userId.status === 1){
+                return <h5 style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData.userId._id, 0)}>Activate</h5>
+            }
+        }},
     ]
 
-    const loadUsers = async () => {
+    const loadBrands = async () => {
         try {
             let { data } = await axios.get(`/api/getBrands`)
             setUsers(data);
             setBtnloading(false);
-            setError('');
-            setOpen(false);
-            console.log("brands", data);
         } catch (error) {
             setBtnloading(false);
-            setError(error.response.data);
-            setOpen(true);
+            toast.error(error.response.data);
         }
     };
 
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-        return;
-        }
-        setOpen(false);
-    }
-
     useEffect(() => {
-        loadUsers()
+        loadBrands()
     }, [])
 
+    const destroy = async(userId, status) => {
+        var tempStatus = "";
+        if(status === 0){
+            tempStatus = "activate"
+        }
+        else if(status === 1){
+            tempStatus = "delete"
+        }
+        if(window.confirm(`Do you want to ${tempStatus} this brand?`)){
+            try {
+                setBtnloading(true);
+                let { data } = await axios.put(`/api/update/user/status`, {
+                    userId, status
+                })
+                toast.success("Brand successfully deleted.")
+                loadBrands()
+            } catch (error) {
+                setBtnloading(false);
+                toast.error(error.response.data);
+            }
+        }
+    }
 
     return (
         <AdminRoute>
-        <AdminLayout>
-
-            <div className="row">     
-                <div className="col-lg-12 grid-margin stretch-card">
-                    <div className="card">
-                        <div className="card-body">
-                            
-                                    <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Manage Brands</h4>
-
-                                    <MaterialTable
-                                    title=""/* {<Link to='/admin/add/user'>Add new user</Link>} */
+            <AdminLayout>
+                <div className="row">     
+                    <div className="col-lg-12 grid-margin stretch-card">
+                        <div className="card">
+                            <div className="card-body">                               
+                                <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Manage Brands</h4>
+                                <MaterialTable
+                                    title=""
                                     columns={columns}
                                     isLoading={btnLoading}
                                     data={users}
@@ -130,19 +129,12 @@ const ManageBrands = () => {
                                         pageSize:10,                    
                                     }}
                                     localization={{ body:{ emptyDataSourceMessage:<h6>No brands to display</h6> } }}
-                                    />
-
-                                    <div className={classes.root}>
-                                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>                                             
-                                            <Alert onClose={handleClose} severity="error">{error}</Alert>                                                                                  
-                                        </Snackbar>
-                                    </div>
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-        </AdminLayout>
+                </div>        
+            </AdminLayout>
         </AdminRoute>
     )
 }

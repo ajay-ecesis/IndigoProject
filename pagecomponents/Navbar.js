@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import { usePreviewSubscription } from '../utils/previewConfig';
 import {Context} from '../context'
 import axios from 'axios'
@@ -22,6 +22,38 @@ const Navbar = (props) => {
     // router
     const router = useRouter();
 
+    const {regBrand,setregBrand,regmanufacture,setregmanufacture}  = useAppContext()
+
+    // Get Category and Market Value from api
+
+    const [categories, setCategories] = useState([]);
+    const [markets, setMarkets] = useState([]);
+
+    const loadCategory = async() => {
+        try {
+            const {data} = await axios.get('/api/get/active/categories');
+            setCategories(data);
+        } catch (error) {
+            console.log("Error", error);
+            toast.error(error.response.data);
+        }
+    }
+
+    const loadMarket = async() => {
+        try {
+            const {data} = await axios.get('/api/get/active/markets');
+            setMarkets(data);
+        } catch (error) {
+            console.log("Error", error);
+            toast.error(error.response.data);
+        }
+    }
+
+    useEffect(() => {
+            loadCategory();
+            loadMarket();
+    }, [])
+
     // Login Values
     const [loginValues, setLoginValues] = useState({
         email:'',
@@ -29,13 +61,8 @@ const Navbar = (props) => {
         loading: false
     })
     
-    // const [regBrand,setregBrand]  = useAppContext()
-    // const [regmanufacture,setregmanufacture] = useAppContext();
-    const {regBrand,setregBrand,regmanufacture,setregmanufacture}  = useAppContext()
-
     const [selectReg,setselectReg] = useState("")
     const [login,setlogin] = useState("");
-   
     
     // Register Brand Values
     const [regBrandValues, setRegBrandValues] = useState({
@@ -597,11 +624,29 @@ const Navbar = (props) => {
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} required />
                         </div>
-                        <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('category')} placeholder="Product Category" value={regBrandValues.category} required />
+                        <div className="form-group form-group-change full-width">
+                            {/* <input type="text" onChange={handleChangeRegBrand('category')} placeholder="Product Category" value={regBrandValues.category} required /> */}
+                            <select required
+                                onChange={handleChangeRegBrand('category')}
+                            >
+                                <option>Product Category</option>{
+                                    categories && categories.map((s) => (
+                                        <option key={s._id} value={s._id}>{s.categoryName}</option>
+                                    ))
+                                }
+                            </select>
                         </div>
-                        <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('market')} placeholder="Market" value={regBrandValues.market} required />
+                        <div className="form-group form-group-change full-width">
+                            {/* <input type="text" onChange={handleChangeRegBrand('market')} placeholder="Market" value={regBrandValues.market} required /> */}
+                            <select required
+                                onChange={handleChangeRegBrand('market')}
+                            >
+                                <option>Market</option>{
+                                    markets && markets.map((s) => (
+                                        <option key={s._id} value={s._id}>{s.marketName}</option>
+                                    ))
+                                }
+                            </select>
                         </div>
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} required />

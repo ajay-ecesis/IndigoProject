@@ -36,7 +36,12 @@ const CommentDetails = () => {
             })
             console.log("data", data)
             setComment(data);
-            loadReplyComments(data._id)
+            if(data){
+                loadReplyComments(data._id)
+            }
+            else {
+                setLoading(false);
+            }  
         } catch (error) {
             console.log("error", error)
             setLoading(false);
@@ -72,6 +77,7 @@ const CommentDetails = () => {
                     <div className="col-md-12">
                         <h2>{comment.postName}</h2>
                         <h3>{comment.message}</h3>
+                        {replyComments.length >=1 ? 
                         <table>
                             <thead>
                                 <tr>
@@ -90,8 +96,17 @@ const CommentDetails = () => {
                                 ))}
                             </tbody>
                         </table>
+                        : <center><h2>No reply comments</h2></center>}
                     </div>
                 </div>
+            </div>
+        </div>
+    )
+
+    const showNotFound = () => (
+        <div className="row">
+            <div className="col-md-12 text-center">
+                <h1 style={{color:'red'}}>Comment Not Found!</h1>
             </div>
         </div>
     )
@@ -104,7 +119,7 @@ const CommentDetails = () => {
                     <div className="col-md-12">
                         <div className="card">
                         <h2 style={{textAlign:'center', color:"#106eea"}}>Comment Details</h2>
-                        {(!loading && comment._id) && showCommentDetails()}
+                        {(!loading) && (comment ? showCommentDetails() : showNotFound())}
                         </div>
                     </div>
                 </div>

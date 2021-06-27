@@ -58,9 +58,9 @@ const brandDetails = () => {
                         <h3>Brand Details</h3>    
                         <p className="card-text"><b>Brand Name : </b>{brand.brandName}</p>
                         <p className="card-text"><b>Website Url: </b>{brand.url}</p>                 
-                        <p className="card-text"><b>Product Category: </b>{brand.userId.category}</p>     
+                        <p className="card-text"><b>Product Category: </b>{brand.category.categoryName}</p>     
                         <p className="card-text"><b>LinkedIn : </b>{brand.linkedIn}</p>
-                        <p className="card-text"><b>Market : </b>{brand.market}</p>      
+                        <p className="card-text"><b>Market : </b>{brand.market.marketName}</p>      
                     </div>
                     <div className="col-md-6">
                         <h3>User Details</h3>
@@ -77,6 +77,14 @@ const brandDetails = () => {
         </div>
     )
 
+    const showNotFound = () => (
+        <div className="row">
+            <div className="col-md-12 text-center">
+                <h1 style={{color:'red'}}>Brand Not Found!</h1>
+            </div>
+        </div>
+    )
+
     return (
 
         <AdminRoute>
@@ -85,7 +93,7 @@ const brandDetails = () => {
                     <div className="col-md-12">
                         <div className="card">
                         <h2 style={{textAlign:'center', color:"#106eea"}}>brand Details</h2>
-                        {(!loading && brand._id) && showbrandDetails()}
+                        {(!loading) && (brand ? showbrandDetails() : showNotFound())}
                         </div>
                     </div>
                 </div>

@@ -27,9 +27,14 @@ const EditBrand = () => {
 
     const [btnloading, setBtnloading] = useState(false);
 
-    const [user, setUser] = useState([]);
+    const [brand, setBrand] = useState('');
+
+    const [categories, setCategories] = useState([]);
+    
+    const [markets, setMarkets] = useState([]);
 
     const [brandValues, setBrandValues] = useState({
+        userId:'',
         firstName:'',
         lastName:'',
         email:'',
@@ -42,36 +47,33 @@ const EditBrand = () => {
         market:'',
         category:'',
         url:'',
-        role:'',
-        status:''
     })
             
-    const {firstName, lastName, email, category, city, zipCode, country, role, status, brandName, linkedIn, market,url} = brandValues
+    const {userId, firstName, lastName, email, category, city, zipCode, country, brandName, linkedIn, market,url} = brandValues
 
-    const loadManufacturer = async (id) => {
+    const loadBrand = async (id) => {
         try {
            
             let { data } = await axios.post(`/api/getBrandById`, {
                 brandId: id
             })
-            console.log("data",data)
-            setUser(data);
-            setBrandValues({
-                firstName: data.userId.firstName,
-                lastName: data.userId.lastName,
-                email: data.userId.email,
-                category: data.userId.category,
-                city: data.userId.city,
-                zipCode: data.userId.zipCode,
-                country: data.userId.country,
-                role: data.userId.role,
-                status: data.userId.status,
-                brandName: data.brandName,
-                linkedIn: data.linkedIn, 
-                market: data.market,
-                url: data.url,            
-
-            })
+            setBrand(data);
+            if(data){
+                setBrandValues({
+                    userId: data.userId._id,
+                    firstName: data.userId.firstName,
+                    lastName: data.userId.lastName,
+                    email: data.userId.email,
+                    category: data.category._id,
+                    market: data.market._id,
+                    city: data.userId.city,
+                    zipCode: data.userId.zipCode,
+                    country: data.userId.country,
+                    brandName: data.brandName,
+                    linkedIn: data.linkedIn, 
+                    url: data.url,
+                })
+            }
             setLoading(false);
         } catch (error) {
             console.log("error", error)
@@ -80,9 +82,34 @@ const EditBrand = () => {
         }
     };
 
+    const loadCategory = async() => {
+        try {
+            const {data} = await axios.get('/api/get/active/categories');
+            setCategories(data);
+        } catch (error) {
+            console.log("Error", error);
+            toast.error(error.response.data);
+        }
+    }
+
+    const loadMarket = async() => {
+        try {
+            const {data} = await axios.get('/api/get/active/markets');
+            setMarkets(data);
+        } catch (error) {
+            console.log("Error", error);
+            toast.error(error.response.data);
+        }
+    }
+
+    useEffect(() => {
+        loadCategory();
+        loadMarket();
+    }, [])
+
     useEffect(() => {
         if(id){
-            loadManufacturer(id)
+            loadBrand(id)
         }
     },[id])
 
@@ -96,7 +123,9 @@ const EditBrand = () => {
         try { 
             setBtnloading(true);
             let { data } = await axios.post(`/api/update/brand`, {
-                Id: id,
+                Id: id, 
+                userId,
+                firstName, lastName, email, category, city, zipCode,
                 brandName, linkedIn, market, url
             })
             setBtnloading(false)
@@ -114,16 +143,66 @@ const EditBrand = () => {
     const showUpdateForm = () => (
         <form onSubmit={clickSubmit}>
             <div className="form-group">
+                <label className="text-muted">First Name<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('firstName')} type="text" className="form-control" value={firstName} required/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Last Name<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('lastName')} type="text" className="form-control" value={lastName} required/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Email<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('email')} type="email" className="form-control" value={email} readOnly required/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">City<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('city')} type="text" className="form-control" value={city} required/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Zip Code<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('zipCode')} type="text" className="form-control" value={zipCode} required/>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Country<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('country')} type="text" className="form-control" value={country} required/>
+            </div>
+
+            <div className="form-group">
                 <label className="text-muted">Brand Name<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('brandName')} type="text" className="form-control" value={brandName} required/>
             </div>
+            
             <div className="form-group"> 
                 <label className="text-muted">Website Url<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('url')} type="text" className="form-control" value={url} required/>
             </div>
             <div className="form-group">
-                <label className="text-muted">market<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('market')} type="text" className="form-control" value={market} required/>
+                <label className="text-muted">Product Category<span style={{color:"red"}}> *</span></label>
+                <select 
+                    onChange={handleChange('category')} 
+                    className="form-control"
+                >
+                    <option >Select Product Category</option> { 
+                        categories && categories.map((s) => (
+                        (category === s._id ? <option selected key={s._id} value={s._id}>{s.categoryName}
+                        </option> : <option key={s._id} value={s._id}>{s.categoryName}
+                        </option>)                         
+                        ))}                          
+                </select>
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Market<span style={{color:"red"}}> *</span></label>
+                <select 
+                    onChange={handleChange('market')} 
+                    className="form-control"
+                >
+                    <option >Select Market</option> { 
+                        markets && markets.map((c) => (
+                        (market === c._id ? <option selected key={c._id} value={c._id}>{c.marketName}
+                        </option> : <option key={c._id} value={c._id}>{c.marketName}
+                        </option>)                         
+                        ))}                          
+                </select>
             </div> 
             <div className="form-group"> 
                 <label className="text-muted">linkedIn<span style={{color:"red"}}> *</span></label>
@@ -136,6 +215,14 @@ const EditBrand = () => {
         </form>
     )
 
+    const showNotFound = () => (
+        <div className="row">
+            <div className="col-md-12 text-center">
+                <h1 style={{color:'red'}}>Brand Not Found!</h1>
+            </div>
+        </div>
+    )
+
     return (
         <AdminRoute>
             <AdminLayout>
@@ -143,7 +230,7 @@ const EditBrand = () => {
                     <div className="col-md-12">
                         <div className="card">
                         <h2 style={{textAlign:'center', color:"#106eea"}}>Brand Details</h2>
-                        {(!loading && user._id) && showUpdateForm()}
+                        {(!loading) && (brand ? showUpdateForm() : showNotFound())}
                         </div>
                     </div>
                 </div>
