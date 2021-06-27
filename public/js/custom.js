@@ -462,11 +462,6 @@ $("#productBtn").click(function(){
 });
 
 
-
-
-
-
-
 //  sign in
 
 $('#signIn').click(function(){
@@ -482,7 +477,7 @@ $('.modal_close').click(function(){
 });
 
 
-$('#forSignUp').click(function(){
+/* $('#forSignUp').click(function(){
   event.preventDefault();
   $('.signUp-popup-open').addClass('active');
   $('.modal-bg').addClass('active');
@@ -498,4 +493,4 @@ $('.manufactur_open').click(function(){
   $('.uploadFile').addClass('active');
   $('.modal-bg').addClass('active');
 });
-
+ */

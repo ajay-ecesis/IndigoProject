@@ -5,10 +5,11 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import {useRouter} from 'next/router'
 import { GoogleLogin } from 'react-google-login';
+import {useAppContext} from '../context/loginmodal'
 
-const Navbar = (props)=>{
+const Navbar = (props) => {
+
     const  postQuery= `*[_id=="navbar"]{navlinks[]->}`
-
     const {data} = usePreviewSubscription(postQuery, {
       initialData: props.nav,
       enabled: props.preview,
@@ -27,7 +28,15 @@ const Navbar = (props)=>{
         password:'',
         loading: false
     })
+    
+    // const [regBrand,setregBrand]  = useAppContext()
+    // const [regmanufacture,setregmanufacture] = useAppContext();
+    const {regBrand,setregBrand,regmanufacture,setregmanufacture}  = useAppContext()
 
+    const [selectReg,setselectReg] = useState("")
+    const [login,setlogin] = useState("");
+   
+    
     // Register Brand Values
     const [regBrandValues, setRegBrandValues] = useState({
         firstName:'',
@@ -79,7 +88,6 @@ const Navbar = (props)=>{
         loading: false
     })
 
-
     // logout function
     const logout = async() => {
         dispatch({type: "LOGOUT"});
@@ -116,7 +124,7 @@ const Navbar = (props)=>{
             else if(data.role === 2){
                 router.push('/admin/dashboard');
             }
-            setLoginValues({...loginValues, email:'', password:'', loading: false});
+            //setLoginValues({...loginValues, email:'', password:'', loading: false});
         } catch (error) {
             console.log("Error", error);
             toast.error(error.response.data);
@@ -152,8 +160,11 @@ const Navbar = (props)=>{
                 country: regBrandValues.country,
             });
             toast.success('Registration successfull, Please login to continue.');
-            router.push('/');
+            // router.push('/');          
             setRegBrandValues({...regBrandValues, firstName:'', lastName:'', email:'', password:'', password1:'',brandName:'', url:'', category:'', market:'', linkedIn:'', zipCode:'', city:'', country:'', loading:false})
+            setregBrand("");
+            setselectReg("")
+            setlogin("active")
         } catch (error) {
             console.log("Error", error);
             setRegBrandValues({...regBrandValues, loading:false});
@@ -233,7 +244,6 @@ const Navbar = (props)=>{
         
     }
 
-
     const responseGoogleBrand = async(response) => {
         
         try {
@@ -261,7 +271,6 @@ const Navbar = (props)=>{
         
     }
 
-   
     const responseGooglelogin = async (response) => {
         try {
             const {data} = await axios.post(`/api/googlelogin`, {
@@ -286,10 +295,8 @@ const Navbar = (props)=>{
             toast.error(err.response.data);
         }
     } 
-    // Register Manufacturer functioality START
 
     // Register Manufacturer functioality START
-
     const clickSubmitRegManufacturer = async(e) => {
         e.preventDefault();
         try {
@@ -328,7 +335,7 @@ const Navbar = (props)=>{
             })
 
             toast.success('Registration successfull, Please login to continue...');
-            router.push('/');
+            // router.push('/');
             setRegManufacturerValues({
                 ...regManufacturerValues,
                 firstName:'',
@@ -360,6 +367,9 @@ const Navbar = (props)=>{
                 multiphotos:[],
                 loading:false
             }) 
+            setregmanufacture("");
+            setselectReg("");
+            setlogin("active")
         } catch (error) {
             toast.error(error.response.data);
             setRegManufacturerValues({...regManufacturerValues, loading: false})
@@ -412,7 +422,6 @@ const Navbar = (props)=>{
 
     return(
         <>
-            {/* For preloader start*/}
             <div className="preloader">
                 <div id="mdiv">
                     <div className="cdiv">
@@ -421,34 +430,33 @@ const Navbar = (props)=>{
                     </div>
                 </div>
             </div>
-            {/* For preloader end*/}
             <div className="header">
                 <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-1">
-                        <a href="/"><img className="brand-logo-main" src="/images/logo.svg" alt="logo" /></a>
-                    </div>
-                    <div className="col-md-11">
-                        <div className="Nav">
-                            <div className="humburger-menu">
-                                <input type="checkbox" id="toggle-check" />
-                                <label id="toggle-btn" className="btn_new" htmlFor="toggle-check">
-                                    <span className="humburger-span"></span>
-                                    <span className="humburger-span"></span>
-                                    <span className="humburger-span"></span>
-                                </label>
-                            </div>
-                            <div className="bookmark-menu">
-                                <div className="bookmark"><a href="#"><img className="bookmark-icon" src="/images/bookmark-white.svg" /></a></div>
-                            </div>
-                            <ul className="Navbar">
-                            {data[0].navlinks && data[0].navlinks.map((item,i)=>(
-                                    <span key={i}>
-                                    { item.slug.current=="/" ? <li  ><a href="/">{item && item.linkname}</a></li>:
-                                    <li  ><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
-                                    </span>
-                                ))}
-                            
+                    <div className="row">
+                        <div className="col-md-1">
+                            <a href="/"><img className="brand-logo-main" src="/images/logo.svg" alt="logo" /></a>
+                        </div>
+                        <div className="col-md-11">
+                            <div className="Nav">
+                                <div className="humburger-menu">
+                                    <input type="checkbox" id="toggle-check" />
+                                    <label id="toggle-btn" className="btn_new" htmlFor="toggle-check">
+                                        <span className="humburger-span"></span>
+                                        <span className="humburger-span"></span>
+                                        <span className="humburger-span"></span>
+                                    </label>
+                                </div>
+                                <div className="bookmark-menu">
+                                    <div className="bookmark"><a href="#"><img className="bookmark-icon" src="/images/bookmark-white.svg" /></a></div>
+                                </div>
+                                <ul className="Navbar">
+                                    {data[0].navlinks && data[0].navlinks.map((item,i)=>(
+                                        <span key={i}>
+                                        { item.slug.current=="/" ? <li  ><a href="/">{item && item.linkname}</a></li>:
+                                        <li  ><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
+                                        </span>
+                                    ))}
+                                
                                     {user === null && 
                                         <>
                                             <li className="sign__btn"><a id="signIn" href="#">Sign Up & Login</a></li>
@@ -463,22 +471,22 @@ const Navbar = (props)=>{
                                                 </div>
                                             </li>
                                             <li className="bottom-buttons"><a href="#">Login</a>
-                                            <div className="bottom-btn">
-                                            <GoogleLogin 
-                                                className="btn btn-block btn-primary" 
-                                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                                render={renderProps => (
-                                                    <a href="" style={{padding:10,paddingLeft:25,paddingRight:25,borderRadius:30}} onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                                    
-                                                )}
-                                                buttonText="Continue with Google"
-                                                onSuccess={responseGooglelogin}
-                                                onFailure={responseGooglelogin}
-                                                cookiePolicy={'single_host_origin'}
-                                            />
-                                            </div>
+                                                <div className="bottom-btn">
+                                                    <GoogleLogin 
+                                                        className="btn btn-block btn-primary" 
+                                                        clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                                        render={renderProps => (
+                                                            <a href="" style={{padding:10,paddingLeft:25,paddingRight:25,borderRadius:30}} onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                                            
+                                                        )}
+                                                        buttonText="Continue with Google"
+                                                        onSuccess={responseGooglelogin}
+                                                        onFailure={responseGooglelogin}
+                                                        cookiePolicy={'single_host_origin'}
+                                                    />
+                                                </div>
                                             </li>
-                                    
+                                        
                                         </>
                                     }
                                     {user !== null && (
@@ -491,18 +499,18 @@ const Navbar = (props)=>{
                                             </li>
                                         </>
                                     )}
-                            </ul>
+                                </ul>
+                            </div>
+                            {props.preview && <p>this site is in preview mode <a style={{color:'blue'}} href="/api/exit-preview">click here</a> to exit preview</p>}
                         </div>
-                        {props.preview && <p>this site is in preview mode <a style={{color:'blue'}} href="/api/exit-preview">click here</a> to exit preview</p>}
                     </div>
                 </div>
             </div>
-        </div>
 
 
             {/* sign in */}
-            <div className="signin-popup signin-popup-open">
-                <div className="modal-bg">
+            <div className={"signin-popup signin-popup-open "+login}>
+                <div className={"modal-bg "+login}>
                     <div className="modal_box">
                         <span><a href="/" className="modal_close"><img src="images/back-arrow.svg" alt="" /></a>Log in</span>
                         <div className="form-heading">
@@ -523,18 +531,7 @@ const Navbar = (props)=>{
                                 </div>
                                 <label htmlFor="">Forgot password ?</label>
                             </div>
-                            {/* <GoogleLogin 
-                                    className="btn btn-block btn-primary" 
-                                    clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                    render={renderProps => (
-                                        <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                        
-                                    )}
-                                    buttonText="Continue with Google"
-                                    onSuccess={responseGooglelogin}
-                                    onFailure={responseGooglelogin}
-                                    cookiePolicy={'single_host_origin'}
-                                /> */}
+                            
                             <div className="bottom-btn">
                                 <input id="singupSubmit" type="submit" value={loginValues.loading ? "Loading..." : "Sign in"} />
                                 {/* <a href="" className="btn-yellow border-not">Continue with Google</a> */}
@@ -551,7 +548,7 @@ const Navbar = (props)=>{
                                     cookiePolicy={'single_host_origin'}
                                 />
                                 <p className="or">OR</p>
-                                <a id="forSignUp"  href="#" className="btn-yellow btn-black-yellow">Sign Up</a>
+                                <a id="forSignUp" onClick={()=>setselectReg("active")} href="#" className="btn-yellow btn-black-yellow">Sign Up</a>
                             </div>
                             <div className="term-conditions">
                                 <p>Terms of Use <a className="txt-light">and</a> Privacy Policy</p>
@@ -562,307 +559,305 @@ const Navbar = (props)=>{
             </div>
 
             {/* sign up */}
-            <div className="signin-popup signUp-popup signUp-popup-open">
+            <div className={"signin-popup signUp-popup signUp-popup-open "+selectReg}>
                 <div className="modal-bg">
-                <div id="modal2" className="modal_box">
-                    <span><a className="modal_close" href="/" ><img src="images/back-arrow.svg" alt="" /></a>Sign up</span>
-                    <div className="form-heading">
-                        <h3>Register</h3>
-                        <p>Register as a Brand or Manufacturer</p>
+                    <div id="modal2" className="modal_box">
+                        <span><a className="modal_close" href="/" ><img src="images/back-arrow.svg" alt="" /></a>Sign up</span>
+                        <div className="form-heading">
+                            <h3>Register</h3>
+                            <p>Register as a Brand or Manufacturer</p>
+                        </div>
+                        <form>
+                            <div className="both-buttons">
+                                <a onClick={()=>setregBrand("active")} id="Brand-clickble2" className="nav-btn brand_open">
+                                Brand
+                            </a>
+                            <a onClick={()=>setregmanufacture("active")} id="Manufacturer-clickble2" className="nav-btn manufactur_open">
+                                Manufacturer
+                            </a>
+                            </div>
+                        </form>
                     </div>
-                    <form>
-                        <div className="both-buttons">
-                            <a id="Brand-clickble2" className="nav-btn brand_open">
-                            Brand
-                        </a>
-                        <a id="Manufacturer-clickble2" className="nav-btn manufactur_open">
-                            Manufacturer
-                        </a>
+                </div>
+            </div>
+
+        {/* register */}
+        <div className={"signin-popup registar-popup_new registar-popup "+regBrand  }>
+            <div className={"modal-bg "+regBrand }>
+                <div className="modal_box">
+                    <span><a href="" onClick={() => setregBrand("")} className="modal_close"><img src="images/back-arrow.svg" alt="" /></a></span>
+                    <div className="form-heading">
+                        <h2>Welcome to Projekt Indigo</h2>
+                        <p>Please tell us about your brand</p>
+                    </div>
+                    <form onSubmit={clickSubmitRegBrand}>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name" value={regBrandValues.brandName} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('category')} placeholder="Product Category" value={regBrandValues.category} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('market')} placeholder="Market" value={regBrandValues.market} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} required />
+                        </div>
+                        <div className="form-group form-group-change">
+                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City">
+                                <option>City</option>
+                                <option value="volvo">America</option>
+                                <option value="saab">London</option>
+                                <option value="mercedes">Canada</option>
+                                <option value="audi">Austrailia</option>
+                            </select>
+                            <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code" value={regBrandValues.zipCode} />
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
+                                <option value="" disabled selected hidden>Country</option>
+                                <option value="volvo">America</option>
+                                <option value="saab">London</option>
+                                <option value="mercedes">Canada</option>
+                                <option value="audi">Austrailia</option>
+                            </select>
+                        </div>
+                        <div className="mid-heading">
+                            <p>Register</p>
+                        </div>
+                        {/* Google Brand Register */}
+                        <div className="bottom-btn">
+                            <GoogleLogin 
+                                className="btn btn-block btn-primary"
+                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                render={renderProps => (
+                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                    
+                                )}
+                                buttonText="SignUp"
+                                onSuccess={responseGoogleBrand}
+                                onFailure={responseGoogleBrand}
+                                cookiePolicy={'single_host_origin'}
+                                disabled={!regBrandValues.brandName || !regBrandValues.url || !regBrandValues.category || !regBrandValues.market || !regBrandValues.linkedIn || !regBrandValues.zipCode || !regBrandValues.city || !regBrandValues.country}
+                            /> 
+                            <p className="or">OR</p>
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name" value={regBrandValues.firstName} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name" value={regBrandValues.lastName} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email" value={regBrandValues.email} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" onChange={handleChangeRegBrand('password')} placeholder="Password" value={regBrandValues.password} />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password" value={regBrandValues.password1} />
+                        </div>
+                        <div className="bottom-btn">
+                            <input id="forUpload" type="submit" className="btn-yellow" value={regBrandValues.loading ? 'Loading...' : "Register"} />
+                        </div>
+                        
+                        <div className="term-conditions">
+                            <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
                         </div>
                     </form>
                 </div>
-                </div>
             </div>
+        </div>
 
-            {/* register */}
-            <div className="signin-popup registar-popup_new registar-popup">
-                <div className="modal-bg">
-                    <div className="modal_box">
-                        <span><a href="#" className="modal_close"><img src="images/back-arrow.svg" alt="" /></a></span>
-                        <div className="form-heading">
-                            <h2>Welcome to Projekt Indigo</h2>
-                            <p>Please tell us about your brand</p>
-                        </div>
-                        <form onSubmit={clickSubmitRegBrand}>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name" value={regBrandValues.brandName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('category')} placeholder="Product Category" value={regBrandValues.category} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('market')} placeholder="Market" value={regBrandValues.market} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} required />
-                            </div>
-                            <div className="form-group form-group-change">
-                                <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City">
-                                    <option>City</option>
-                                    <option value="volvo">America</option>
-                                    <option value="saab">London</option>
-                                    <option value="mercedes">Canada</option>
-                                    <option value="audi">Austrailia</option>
-                                </select>
-                                <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code" value={regBrandValues.zipCode} />
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
-                                    <option value="" disabled selected hidden>City</option>
-                                    <option value="volvo">America</option>
-                                    <option value="saab">London</option>
-                                    <option value="mercedes">Canada</option>
-                                    <option value="audi">Austrailia</option>
-                                </select>
-                            </div>
-                            <div className="mid-heading">
-                                <p>Register</p>
-                            </div>
-                            {/* For Google Register */}
-                            <div className="bottom-btn">
-                                <GoogleLogin 
-                                    className="btn btn-block btn-primary"
-                                    clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                    render={renderProps => (
-                                        <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                        
-                                    )}
-                                    buttonText="SignUp"
-                                    onSuccess={responseGoogleBrand}
-                                    onFailure={responseGoogleBrand}
-                                    cookiePolicy={'single_host_origin'}
-                                    disabled={!regBrandValues.brandName || !regBrandValues.url || !regBrandValues.category || !regBrandValues.market || !regBrandValues.linkedIn || !regBrandValues.zipCode || !regBrandValues.city || !regBrandValues.country}
-                                /> 
-                                <p className="or">OR</p>
-                            </div>
-                            
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name" value={regBrandValues.firstName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name" value={regBrandValues.lastName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email" value={regBrandValues.email} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" onChange={handleChangeRegBrand('password')} placeholder="Password" value={regBrandValues.password} />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password" value={regBrandValues.password1} />
-                            </div>
-                            <div className="bottom-btn">
-                                <input id="forUpload" type="submit" className="btn-yellow" value={regBrandValues.loading ? 'Loading...' : "Register"} />
-                            </div>
-                            
-                            <div className="term-conditions">
-                                <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
-                            </div>
-                        </form>
+        {/* Manufacturer Register */}
+
+        <div className={"uploadFile signin-popup registar-popup "+regmanufacture}>
+            <div className={"modal-bg "+regmanufacture}>
+                <div className="modal_box">
+                    <span><a href="" onClick={() => setregmanufacture("")} className="modal_close"><img src="images/back-arrow.svg" alt="" /></a></span>
+                    <div className="form-heading">
+                        <h2>Welcome to Projekt Indigo</h2>
+                        <p>Please tell us about your company</p>
                     </div>
-                </div>
-            </div>
-
-            {/* Manufacturer Register */}
-
-            <div className="uploadFile signin-popup registar-popup">
-                <div className="modal-bg">
-                    <div className="modal_box">
-                        <span><a href="#" className="modal_close"><img src="images/back-arrow.svg" alt="" /></a></span>
-                        <div className="form-heading">
-                            <h2>Welcome to Projekt Indigo</h2>
-                            <p>Please tell us about your company</p>
+                    <form onSubmit={clickSubmitRegManufacturer}>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name" value={regManufacturerValues.supplierName} required />
                         </div>
-                        <form onSubmit={clickSubmitRegManufacturer}>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name" value={regManufacturerValues.supplierName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('year')} placeholder="Year established" value={regManufacturerValues.year} required />
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('employees')} placeholder="Number of employees" defaultValue={regManufacturerValues.employees} required>
-                                    <option value="" disabled selected hidden>Number of employees</option>
-                                    <option value="100">100</option>
-                                    <option value="200">200</option>
-                                    <option value="300">300</option>
-                                    <option value="400">400</option>
-                                </select>
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('category')} placeholder="Product Category" defaultValue={regManufacturerValues.category} required>
-                                    <option value="" disabled selected hidden>Product Category</option>
-                                    <option value="Jeans">Jeans</option>
-                                    <option value="Shirts">Shirts</option>
-                                    <option value="Trousers">Trousers</option>
-                                    <option value="T shirts">T shirts</option>
-                                    <option value="Shorts">Shorts</option>
-                                    <option value="Bags">Bags</option>
-                                    <option value="Jackets">Jackets</option>
-                                    <option value="Beanies">Beanies</option>
-                                    <option value="Shoes">Shoes</option>
-                                    <option value="Sweaters">Sweaters</option>
-                                    <option value="Overshirts">Overshirts</option>
-                                    <option value="Dresses">Dresses</option>
-                                </select>
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('speciality')}  placeholder="Speciality" defaultValue={regManufacturerValues.speciality} required>
-                                    <option value="" disabled selected hidden>Speciality</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <input type="number" onChange={handleChangeRegManufacturer('sku')} placeholder="Minimum order per SKU" value={regManufacturerValues.sku} required />
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('samplingTime')} placeholder="Sampling time in weeks" defaultValue={regManufacturerValues.samplingTime} required>
-                                    <option value="" disabled selected hidden>Sampling time in weeks</option>
-                                    <option value="option sampling1">option sampling1</option>
-                                    <option value="option sampling2">option sampling2</option>
-                                    <option value="option sampling3">option sampling3</option>
-                                    <option value="option sampling4">option sampling4</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <input type="number" onChange={handleChangeRegManufacturer('dailyCapacity')} placeholder="Maximum daily capacity" value={regManufacturerValues.dailyCapacity} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="number" onChange={handleChangeRegManufacturer('monthlyCapacity')} placeholder="Maximum monthly capacity" value={regManufacturerValues.monthlyCapacity} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('terms')} placeholder="What are your standard payment terms?" value={regManufacturerValues.terms} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('importantClients')} placeholder="Can you state the names of 5 of your most important clients" value={regManufacturerValues.importantClients} required />
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('heading')} placeholder="Profile heading" defaultValue={regManufacturerValues.heading} required>
-                                    <option value="" disabled selected hidden>Profile heading</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                </select>
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('factoryInfo')} placeholder="Please share as much information" defaultValue={regManufacturerValues.factoryInfo} required>
-                                    <option value="" disabled selected hidden>Please share as much information</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                    <option value="volvo">option</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('skills')} placeholder="Add skills" value={regManufacturerValues.skills} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('addressLine1')} placeholder="First line of address" value={regManufacturerValues.addressLine1} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('addressLine2')} placeholder="Second line of address" value={regManufacturerValues.addressLine2} required />
-                            </div>
-                            <div className="form-group form-group-change">
-                                <select onChange={handleChangeRegManufacturer('city')} placeholder="City" defaultValue={regManufacturerValues.city} required>
-                                    <option value="" disabled="" selected="" hidden="">City</option>
-                                    <option value="volvo">America</option>
-                                    <option value="saab">London</option>
-                                    <option value="mercedes">Canada</option>
-                                    <option value="audi">Austrailia</option>
-                                </select>
-                                <input type="text" onChange={handleChangeRegManufacturer('zipCode')} placeholder="Zip Code" value={regManufacturerValues.zipCode} />
-                            </div>
-                            <div className="form-group form-group-change full-width">
-                                <select onChange={handleChangeRegManufacturer('country')} placeholder="Country" value={regManufacturerValues.country} required>
-                                    <option value="" disabled="" selected="" hidden="">Country</option>
-                                    <option value="volvo">America</option>
-                                    <option value="saab">London</option>
-                                    <option value="mercedes">Canada</option>
-                                    <option value="audi">Austrailia</option>
-                                </select>
-                            </div>
-                            <div className="form-group form-group-change  upload">
-                                <a href="">Please share any certifications and/or Audits that you have</a>
-                                <label htmlFor="myCertification">Upload</label>
-                                <input onChange={handleChangeRegManufacturer('certifications')} type="file" id="myCertification" name="certifications" accept="image/*" required />
-                            </div>
-                            <div className="form-group form-group-change  upload">
-                                <a href="">Please share between 5-10 photos of your factory and your products for Brands to see.</a>
-                                <label htmlFor="myMultiphoto">Upload</label>
-                                <input type="file" multiple onChange={handleChangeRegManufacturer('multiphotos')}  accept="image/*" id="myMultiphoto" name="multiphotos"  required/>
-                            </div>
-                            <div className="mid-heading">
-                                <p>Register</p>
-                            </div>
-                            {/* Google Register */}
-                            <div className="bottom-btn">
-                                <GoogleLogin 
-                                    className="btn btn-block btn-primary"
-                                    clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                    render={renderProps => (
-                                        <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                        
-                                    )}
-                                    buttonText="SignUp"
-                                    onSuccess={responseGoogleManufacture}
-                                    onFailure={responseGoogleManufacture}
-                                    cookiePolicy={'single_host_origin'}
-                                    disabled={!regManufacturerValues.supplierName || !regManufacturerValues.year || !regManufacturerValues.employees || !regManufacturerValues.category 
-                                    || !regManufacturerValues.speciality || !regManufacturerValues.sku || !regManufacturerValues.samplingTime || !regManufacturerValues.dailyCapacity 
-                                    || !regManufacturerValues.monthlyCapacity || !regManufacturerValues.terms || !regManufacturerValues.importantClients || !regManufacturerValues.factoryInfo
-                                    || !regManufacturerValues.heading || !regManufacturerValues.skills || !regManufacturerValues.addressLine1 || !regManufacturerValues.addressLine2 || !regManufacturerValues.city
-                                    || !regManufacturerValues.zipCode || !regManufacturerValues.country || !regManufacturerValues.certifications || !regManufacturerValues.multiphotos
-                                    }
-                                /> 
-                                <p className="or">OR</p>
-                            </div>
-                            
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('firstName')} placeholder="First name" value={regManufacturerValues.firstName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="text" onChange={handleChangeRegManufacturer('lastName')} placeholder="Last name" value={regManufacturerValues.lastName} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="email" onChange={handleChangeRegManufacturer('email')} placeholder="Email" value={regManufacturerValues.email} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" onChange={handleChangeRegManufacturer('password')} placeholder="Password" value={regManufacturerValues.password} required />
-                            </div>
-                            <div className="form-group">
-                                <input type="password" onChange={handleChangeRegManufacturer('password1')} placeholder="Confirm Password" value={regManufacturerValues.password1} required />
-                            </div>
-                            <div className="bottom-btn">
-                                <input type="submit" className="btn-yellow" value={regManufacturerValues.loading ? "Loading..." : "Register"} />
-                            </div>
-                            
-                            
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('year')} placeholder="Year established" value={regManufacturerValues.year} required />
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('employees')} placeholder="Number of employees" defaultValue={regManufacturerValues.employees} required>
+                                <option value="" disabled selected hidden>Number of employees</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="400">400</option>
+                            </select>
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('category')} placeholder="Product Category" defaultValue={regManufacturerValues.category} required>
+                                <option value="" disabled selected hidden>Product Category</option>
+                                <option value="Jeans">Jeans</option>
+                                <option value="Shirts">Shirts</option>
+                                <option value="Trousers">Trousers</option>
+                                <option value="T shirts">T shirts</option>
+                                <option value="Shorts">Shorts</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Jackets">Jackets</option>
+                                <option value="Beanies">Beanies</option>
+                                <option value="Shoes">Shoes</option>
+                                <option value="Sweaters">Sweaters</option>
+                                <option value="Overshirts">Overshirts</option>
+                                <option value="Dresses">Dresses</option>
+                            </select>
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('speciality')}  placeholder="Speciality" defaultValue={regManufacturerValues.speciality} required>
+                                <option value="" disabled selected hidden>Speciality</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="number" onChange={handleChangeRegManufacturer('sku')} placeholder="Minimum order per SKU" value={regManufacturerValues.sku} required />
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('samplingTime')} placeholder="Sampling time in weeks" defaultValue={regManufacturerValues.samplingTime} required>
+                                <option value="" disabled selected hidden>Sampling time in weeks</option>
+                                <option value="option sampling1">option sampling1</option>
+                                <option value="option sampling2">option sampling2</option>
+                                <option value="option sampling3">option sampling3</option>
+                                <option value="option sampling4">option sampling4</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="number" onChange={handleChangeRegManufacturer('dailyCapacity')} placeholder="Maximum daily capacity" value={regManufacturerValues.dailyCapacity} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="number" onChange={handleChangeRegManufacturer('monthlyCapacity')} placeholder="Maximum monthly capacity" value={regManufacturerValues.monthlyCapacity} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('terms')} placeholder="What are your standard payment terms?" value={regManufacturerValues.terms} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('importantClients')} placeholder="Can you state the names of 5 of your most important clients" value={regManufacturerValues.importantClients} required />
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('heading')} placeholder="Profile heading" defaultValue={regManufacturerValues.heading} required>
+                                <option value="" disabled selected hidden>Profile heading</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                            </select>
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('factoryInfo')} placeholder="Please share as much information" defaultValue={regManufacturerValues.factoryInfo} required>
+                                <option value="" disabled selected hidden>Please share as much information</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                                <option value="volvo">option</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('skills')} placeholder="Add skills" value={regManufacturerValues.skills} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('addressLine1')} placeholder="First line of address" value={regManufacturerValues.addressLine1} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('addressLine2')} placeholder="Second line of address" value={regManufacturerValues.addressLine2} required />
+                        </div>
+                        <div className="form-group form-group-change">
+                            <select onChange={handleChangeRegManufacturer('city')} placeholder="City" defaultValue={regManufacturerValues.city} required>
+                                <option value="" disabled="" selected="" hidden="">City</option>
+                                <option value="volvo">America</option>
+                                <option value="saab">London</option>
+                                <option value="mercedes">Canada</option>
+                                <option value="audi">Austrailia</option>
+                            </select>
+                            <input type="text" onChange={handleChangeRegManufacturer('zipCode')} placeholder="Zip Code" value={regManufacturerValues.zipCode} />
+                        </div>
+                        <div className="form-group form-group-change full-width">
+                            <select onChange={handleChangeRegManufacturer('country')} placeholder="Country" value={regManufacturerValues.country} required>
+                                <option value="" disabled="" selected="" hidden="">Country</option>
+                                <option value="volvo">America</option>
+                                <option value="saab">London</option>
+                                <option value="mercedes">Canada</option>
+                                <option value="audi">Austrailia</option>
+                            </select>
+                        </div>
+                        <div className="form-group form-group-change  upload">
+                            <a href="">Please share any certifications and/or Audits that you have</a>
+                            <label htmlFor="myCertification">Upload</label>
+                            <input onChange={handleChangeRegManufacturer('certifications')} type="file" id="myCertification" name="certifications" accept="image/*" required />
+                        </div>
+                        <div className="form-group form-group-change  upload">
+                            <a href="">Please share between 5-10 photos of your factory and your products for Brands to see.</a>
+                            <label htmlFor="myMultiphoto">Upload</label>
+                            <input  type="file" multiple onChange={handleChangeRegManufacturer('multiphotos')}  accept="image/*" id="myMultiphoto" name="multiphotos"  required/>
+                        </div>
+                        <div className="mid-heading">
+                            <p>Register</p>
+                        </div>
+                        {/* Google Manufacturer Register */}
+                        <div className="bottom-btn">
+                            <GoogleLogin 
+                                className="btn btn-block btn-primary"
+                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
+                                render={renderProps => (
+                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
+                                    
+                                )}
+                                buttonText="SignUp"
+                                onSuccess={responseGoogleManufacture}
+                                onFailure={responseGoogleManufacture}
+                                cookiePolicy={'single_host_origin'}
+                                disabled={!regManufacturerValues.supplierName || !regManufacturerValues.year || !regManufacturerValues.employees || !regManufacturerValues.category 
+                                || !regManufacturerValues.speciality || !regManufacturerValues.sku || !regManufacturerValues.samplingTime || !regManufacturerValues.dailyCapacity 
+                                || !regManufacturerValues.monthlyCapacity || !regManufacturerValues.terms || !regManufacturerValues.importantClients || !regManufacturerValues.factoryInfo
+                                || !regManufacturerValues.heading || !regManufacturerValues.skills || !regManufacturerValues.addressLine1 || !regManufacturerValues.addressLine2 || !regManufacturerValues.city
+                                || !regManufacturerValues.zipCode || !regManufacturerValues.country || !regManufacturerValues.certifications || !regManufacturerValues.multiphotos
+                                }
+                            /> 
+                            <p className="or">OR</p>
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('firstName')} placeholder="First name" value={regManufacturerValues.firstName} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="text" onChange={handleChangeRegManufacturer('lastName')} placeholder="Last name" value={regManufacturerValues.lastName} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="email" onChange={handleChangeRegManufacturer('email')} placeholder="Email" value={regManufacturerValues.email} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" onChange={handleChangeRegManufacturer('password')} placeholder="Password" value={regManufacturerValues.password} required />
+                        </div>
+                        <div className="form-group">
+                            <input type="password" onChange={handleChangeRegManufacturer('password1')} placeholder="Confirm Password" value={regManufacturerValues.password1} required />
+                        </div>
+                        <div className="bottom-btn">
+                            <input type="submit" className="btn-yellow" value={regManufacturerValues.loading ? "Loading..." : "Register"} />
+                        </div>
                         
-                            <div className="term-conditions">
-                                <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
-                            </div>
-                        </form>
-                    </div>
+                        <div className="term-conditions">
+                            <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
         </>
+
+
     )
 }
 

@@ -72,13 +72,14 @@ const ManageBrands = () => {
     var columns = [
        
         {title: "id", field: "_id", hidden: true},
-        {title: "Brand Name", field: "brandName"},
+        {title: "Brand Name", field: "brandName", render: rowData => {return <Link href={`/admin/brands/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.brandName}</a></Link>}},
         {title: "Website Url", field: "url"},
         {title: "Product Category", render: rowData => { return <>{rowData.userId.category}</> }},
         {title: "Market", field: "market"},
         {title: "LinkedIn", field: "linkedIn"},
-        {title: "Created At", field: "createdAt", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
-        {title: "Actions", render: rowData => <Link href={`/admin/brands/edit/${rowData._id}`}><a><Edit /></a></Link>},
+        {title: "Created At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
+        {title: "Updated At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.updatedAt}</Moment>}},
+        {title: "Actions", render: rowData => <Link href={`/admin/brands/edit/${rowData._id}`}><a style={{color:"#106eea"}}><Edit /></a></Link>},
     ]
 
     const loadUsers = async () => {
@@ -88,7 +89,7 @@ const ManageBrands = () => {
             setBtnloading(false);
             setError('');
             setOpen(false);
-
+            console.log("brands", data);
         } catch (error) {
             setBtnloading(false);
             setError(error.response.data);

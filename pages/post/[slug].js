@@ -307,7 +307,8 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                 const {data} = await axios.post(`/api/createComment`, {
                     userId:user._id,
                     postId:postId,
-                    message:comment
+                    message:comment,
+                    postName: title
                 })
                 setComment('');
                 loadComments()    
@@ -346,7 +347,8 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                     userId:user._id,
                     postId:postId,
                     commentId:tempCmtId,
-                    message: replyCmt
+                    message: replyCmt,
+                    postName: title
                 })
                 setReplyCmt('');
                 setComment('');

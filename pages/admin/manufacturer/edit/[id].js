@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import AdminRoute from '../../../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../../../pagecomponents/routes/AdminLayout'
+import AdminLayout from '../../../../pagecomponents/layout/admin/AdminLayout'
 import { useRouter } from 'next/router'
 import {toast} from 'react-toastify'
 import Backdrop from '@material-ui/core/Backdrop';
@@ -31,32 +31,42 @@ const EditManufacturer = () => {
 
     const [role, setRole] = useState('');
 
-    const [userValues, setUserValues] = useState({
-        firstName:'',
-        lastName:'',
-        email:'',
-        category:'',
-        city:'',
-        zipCode:'',
-        country:'',
+    const [ManufacturerValues, setManufacturerValues] = useState({
+        addressLine1:'',
+        addressLine2:'',
+        dailyCapacity:'',
+        employees:'',
+        factoryInfo:'',
+        heading:'',
+        importantClients:'',
+        samplingTime:'',
+        skills:'',
+        sku:'',
+        speciality:'',
+        supplierName:'',terms:'',
+        year:''
+
+        
     })
 
-    const {addressLine1, addressLine2, dailyCapacity,employees, factoryInfo, heading, importantClients,samplingTime,skills,sku,speciality,supplierName,terms,year} = userValues
+    const {manufacturerName,addressLine1, addressLine2, dailyCapacity,employees, factoryInfo, heading, importantClients,samplingTime,skills,sku,speciality,supplierName,terms,year,certifications,
+        multiphotos} = ManufacturerValues
+
 
     const loadManufacturer = async (id) => {
         try {
            
             let { data } = await axios.post(`/api/getManufacturerById`, {
-                userId: id
+                Id: id
             })
             console.log("data",data)
             let tempType ="";
             
             setUser(data);
-            setUserValues({
+            setManufacturerValues({
+                manufacturerName:data.supplierName,
                 addressLine1: data.addressLine1,
                 addressLine2: data.addressLine2,
-              
                 dailyCapacity: data.dailyCapacity,
                 employees: data.employees,
                 factoryInfo: data.factoryInfo,
@@ -68,9 +78,13 @@ const EditManufacturer = () => {
                 speciality:data.speciality,
                 supplierName:data.supplierName,
                 terms:data.terms,
-                year:data.year
+                year:data.year,
+                certifications:data.certifications,
+                 multiphotos:data.multiphotos[0]
 
             })
+          
+         
             setLoading(false);
 
         } catch (error) {
@@ -79,6 +93,7 @@ const EditManufacturer = () => {
             toast.error(error.response.data);
         }
     };
+    console.log("add",certifications);
 
     useEffect(() => {
         if(id){
@@ -86,9 +101,49 @@ const EditManufacturer = () => {
         }
     },[id])
 
-    const handleChange = name => event => {
+
+    // handle change to reflect changes
+
+    const getBase64 = file => {
+        return new Promise(resolve => {
+          let baseURL = "";
+          // Make new FileReader
+          let reader = new FileReader();
+          // Convert the file to base64 text
+          reader.readAsDataURL(file);
+          // on reader load somthing...
+          reader.onload = () => {
+            baseURL = reader.result;
+            resolve(baseURL);
+          };
+        });
+    };
+
+const handleChangeFile=(name)=>async(event)=>{
+
+    if(name=='certifications')
+{
+    let temp= await getBase64(event.target.files[0]);
+
+    
+    setManufacturerValues({...ManufacturerValues, [name]: temp})
+    console.log("THIS IS SI",certifications);
+
+}
+if (name=='multiphotos')
+{
+  let  temp = await getBase64(event.target.files[0]);
+    setManufacturerValues({...ManufacturerValues, [name]: temp})
+
+}
+}
+
+
+    const handleChange = (name) =>async (event )=> {
+
+
         setBtnloading(false);
-        setUserValues({...userValues, [name]: event.target.value})
+        setManufacturerValues({...ManufacturerValues, [name]: event.target.value})
     }
 
     const clickSubmit = async (e) => {
@@ -97,12 +152,13 @@ const EditManufacturer = () => {
             setBtnloading(true);
             let { data } = await axios.put(`/api/update/manufacturer`, {
                 Id: id,
-                addressLine1, addressLine2, dailyCapacity,employees, factoryInfo, heading, importantClients,samplingTime,skills,sku,speciality,supplierName,terms,year
+                 addressLine1, addressLine2, dailyCapacity,employees, factoryInfo, heading, importantClients,samplingTime,skills,sku,speciality,supplierName,terms,year,
+                certifications,multiphotos
             })
             setBtnloading(false)
             console.log("Data", data);
             toast.success("Successfully Updated");
-            router.push('/admin/users');
+            router.push('/admin/manufacturers');
 
         } catch (error) {
             console.log("error", error)
@@ -111,11 +167,17 @@ const EditManufacturer = () => {
         }
     }
 
- 
+
+ console.log("THIS IS BASE ^$ CERTi",certifications);
 
     const showUpdateForm = () => (
-        <form onSubmit={clickSubmit}>
+        <form onSubmit={clickSubmit}  enctype="multipart/form-data">
 
+
+<div className="form-group">
+                <label className="text-muted">supplierName<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('supplierName')} type="text" className="form-control" value={supplierName}  required/>
+            </div>
             <div className="form-group">
                 <label className="text-muted">Address Line 1<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('addressLine1')} type="text" className="form-control" value={addressLine1} required/>
@@ -137,7 +199,7 @@ const EditManufacturer = () => {
 
             <div className="form-group">
                 <label className="text-muted">employees<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('employees')} type="text" className="form-control" value={employees} required/>
+                <input onChange={handleChange('employees')} type="text" className="form-control" value={employees} />
             </div>
 
             <div className="form-group">
@@ -178,10 +240,7 @@ const EditManufacturer = () => {
                 <label className="text-muted">speciality<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('speciality')} type="text" className="form-control" value={speciality}  required/>
             </div>
-            <div className="form-group">
-                <label className="text-muted">supplierName<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('supplierName')} type="text" className="form-control" value={supplierName}  required/>
-            </div>
+           
             <div className="form-group">
                 <label className="text-muted">terms<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('terms')} type="text" className="form-control" value={terms}  required/>
@@ -190,6 +249,31 @@ const EditManufacturer = () => {
                 <label className="text-muted">year<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('year')} type="text" className="form-control" value={year}  required/>
             </div>
+
+
+            <div className="form-group">
+                <label className="text-muted">multiphotos<span style={{color:"red"}}> *</span></label>
+               
+                <img src={multiphotos} alt="multiphotos"  width="200px" height="150px" />
+
+
+            </div>
+
+
+            <div className="form-group">
+                <label className="text-muted">Upload new multiphotos<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChangeFile('multiphotos')} type="file" className="form-control"   />
+            </div>
+
+
+            <img src={certifications} alt="certification" width="200px" height="150px" />
+
+            <div className="form-group">
+                <label className="text-muted">Upload new Certification<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChangeFile('certifications')} type="file" className="form-control"    />
+
+            </div>
+
             <center>
                  <br/>
                  <button  className="btn btn-outline-primary" disabled={btnloading}> {btnloading ? "Loading..." : "Update"} </button>

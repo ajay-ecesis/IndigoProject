@@ -30,6 +30,28 @@ export const mainListItems =  (
       </a>
     </Link> */}
 
+    <Link href='/admin/categories'>
+      <a>
+        <ListItem button>
+          <ListItemIcon>
+            <Category />
+          </ListItemIcon>
+          <ListItemText primary="Manage Categories" />
+        </ListItem> 
+      </a>
+    </Link>
+
+    <Link href='/admin/markets'>
+      <a>
+        <ListItem button>
+          <ListItemIcon>
+            <LocalMall />
+          </ListItemIcon>
+          <ListItemText primary="Manage Markets" />
+        </ListItem> 
+      </a>
+    </Link>
+
     <Link href='/admin/brands'>
         <a>
       <ListItem button>
@@ -45,9 +67,20 @@ export const mainListItems =  (
         <a>
       <ListItem button>
         <ListItemIcon>
-          <People />
+          <DeviceHub />
         </ListItemIcon>
         <ListItemText primary="Manage Manufacturers" />
+      </ListItem> 
+      </a>
+    </Link>
+
+    <Link href='/admin/comments'>
+        <a>
+      <ListItem button>
+        <ListItemIcon>
+          <People />
+        </ListItemIcon>
+        <ListItemText primary="Manage Comments" />
       </ListItem> 
       </a>
     </Link>

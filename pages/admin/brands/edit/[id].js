@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import AdminRoute from '../../../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../../../pagecomponents/routes/AdminLayout'
+import AdminLayout from '../../../../pagecomponents/layout/admin/AdminLayout'
 import { useRouter } from 'next/router'
 import {toast} from 'react-toastify'
 import Backdrop from '@material-ui/core/Backdrop';
@@ -29,9 +29,7 @@ const EditBrand = () => {
 
     const [user, setUser] = useState([]);
 
-    const [role, setRole] = useState('');
-
-    const [userValues, setUserValues] = useState({
+    const [brandValues, setBrandValues] = useState({
         firstName:'',
         lastName:'',
         email:'',
@@ -39,9 +37,16 @@ const EditBrand = () => {
         city:'',
         zipCode:'',
         country:'',
+        brandName:'',
+        linkedIn:'',
+        market:'',
+        category:'',
+        url:'',
+        role:'',
+        status:''
     })
-
-    const {brandName, linkedIn, market,url} = userValues
+            
+    const {firstName, lastName, email, category, city, zipCode, country, role, status, brandName, linkedIn, market,url} = brandValues
 
     const loadManufacturer = async (id) => {
         try {
@@ -50,19 +55,24 @@ const EditBrand = () => {
                 brandId: id
             })
             console.log("data",data)
-            let tempType ="";
-            
             setUser(data);
-            setUserValues({
+            setBrandValues({
+                firstName: data.userId.firstName,
+                lastName: data.userId.lastName,
+                email: data.userId.email,
+                category: data.userId.category,
+                city: data.userId.city,
+                zipCode: data.userId.zipCode,
+                country: data.userId.country,
+                role: data.userId.role,
+                status: data.userId.status,
                 brandName: data.brandName,
-                linkedIn: data.linkedIn,
-              
+                linkedIn: data.linkedIn, 
                 market: data.market,
                 url: data.url,            
 
             })
             setLoading(false);
-
         } catch (error) {
             console.log("error", error)
             setLoading(false);
@@ -78,74 +88,55 @@ const EditBrand = () => {
 
     const handleChange = name => event => {
         setBtnloading(false);
-        setUserValues({...userValues, [name]: event.target.value})
+        setBrandValues({...brandValues, [name]: event.target.value})
     }
 
     const clickSubmit = async (e) => {
         e.preventDefault();
         try { 
             setBtnloading(true);
-
-            
-            let { data } = await axios.put(`/api/update/brand`, {
+            let { data } = await axios.post(`/api/update/brand`, {
                 Id: id,
-                brandName, linkedIn, market,employees, url
+                brandName, linkedIn, market, url
             })
             setBtnloading(false)
             console.log("Data", data);
             toast.success("Successfully Updated");
-            router.push('/admin/users');
+            router.push('/admin/brands');
 
         } catch (error) {
             console.log("error", error)
-            setBtnloading(false);
+            setBtnloading(false);   
             toast.error(error.response.data);
         }
     }
 
- 
-
     const showUpdateForm = () => (
         <form onSubmit={clickSubmit}>
-
             <div className="form-group">
                 <label className="text-muted">Brand Name<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('brandName')} type="text" className="form-control" value={brandName} required/>
             </div>
-
             <div className="form-group"> 
-                <label className="text-muted">linkedIn<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('linkedIn')} type="text" className="form-control" value={linkedIn} required/>
+                <label className="text-muted">Website Url<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('url')} type="text" className="form-control" value={url} required/>
             </div>
-
-           
-
             <div className="form-group">
                 <label className="text-muted">market<span style={{color:"red"}}> *</span></label>
                 <input onChange={handleChange('market')} type="text" className="form-control" value={market} required/>
-            </div>
-      
-               
-
-
-            
-
-
-
-
-
-          
-     
+            </div> 
+            <div className="form-group"> 
+                <label className="text-muted">linkedIn<span style={{color:"red"}}> *</span></label>
+                <input onChange={handleChange('linkedIn')} type="text" className="form-control" value={linkedIn} required/>
+            </div>      
             <center>
                  <br/>
-                 <button  className="btn btn-outline-primary" disabled={btnloading}> {btnloading ? "Loading..." : "Update"} </button>
+                 <button className="btn btn-outline-primary" disabled={btnloading}> {btnloading ? "Loading..." : "Update"} </button>
              </center>
-
         </form>
     )
 
     return (
-
         <AdminRoute>
             <AdminLayout>
                 <div className="row">

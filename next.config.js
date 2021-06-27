@@ -8,6 +8,7 @@ module.exports = {
   },
   async rewrites() {
     return [
+      // Login, Registration Section START
       {
         source: '/api/login',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/login`,
@@ -19,22 +20,6 @@ module.exports = {
       {
         source: '/api/createSupplier',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/manufacturer`,
-      },
-      {
-        source: '/api/auth',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/auth`,
-      },
-      {
-        source: '/api/logout',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/logout`,
-      },
-      {
-        source: '/api/users/list',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/users/list`,
-      },
-      {
-        source: '/api/user/id',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/user/id`,
       },
       {
         source: '/api/googlelogin',
@@ -49,6 +34,25 @@ module.exports = {
         destination: `${process.env.EXTERNAL_RESOLVER}/api/manufacturer-reg-google`,
       },
       {
+        source: '/api/auth',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/auth`,
+      },
+      {
+        source: '/api/logout',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/logout`,
+      },
+      // Login, Registration Section END
+
+      // Manage Users Section START
+      {
+        source: '/api/users/list',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/users/list`,
+      },
+      {
+        source: '/api/user/id',
+        destination: `${process.env.EXTERNAL_RESOLVER}/api/user/id`,
+      },
+      {
         source: '/api/update/user',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/update/user`,
       },
@@ -56,6 +60,10 @@ module.exports = {
         source: '/api/update/user/status',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/update/user/status`,
       },
+      // Manage Users Section END
+
+      // POST Section START
+        // Comment Section START
       {
         source: '/api/createComment',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/comment`,
@@ -72,6 +80,9 @@ module.exports = {
         source: '/api/getReplyComments',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/reply/comments`,
       },
+        // Comment Section END
+
+        // Like Section START
       {
         source: '/api/userlikedposts',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/userlikedposts`,
@@ -88,30 +99,9 @@ module.exports = {
         source: '/api/likefromlist',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/likefromlist`,
       },
-      {
-        source:'/api/getManufacturers',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturers`
-      },
-      {
-        source:'/api/getBrands',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrands`
-      },
-      {
-        source:'/api/getManufacturerById',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturerById`
-      },
-      {
-        source:'/api/getBrandById',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrandById`
-      },
-      {
-        source:'/api/update/manufacturer',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateManufacturer` 
-      },
-      {
-        source:'/api/update/brand',
-        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateBrand` 
-      },
+        // Like Section END
+
+        // Saved Post Section START
       {
         source:'/api/save/post',
         destination:`${process.env.EXTERNAL_RESOLVER}/api/save/post` 
@@ -123,7 +113,106 @@ module.exports = {
       {
         source:'/api/user/remove/saved/post',
         destination:`${process.env.EXTERNAL_RESOLVER}/api/user/remove/saved/post` 
-      }
+      },
+        // Saved Post Section END
+      // POST Section END
+
+      // Manage Manufacturers Section START
+      {
+        source:'/api/getManufacturers',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturers`
+      },
+      {
+        source:'/api/getManufacturerById',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getManufacturerById`
+      },
+      {
+        source:'/api/update/manufacturer',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateManufacturer` 
+      },
+      // Manage Manufacturers Section END
+
+      // Manage Brands Section START
+      {
+        source:'/api/getBrands',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrands`
+      },
+      
+      {
+        source:'/api/getBrandById',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/getBrandById`
+      },
+      
+      {
+        source:'/api/update/brand',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/updateBrand` 
+      },
+      // Manage Brands Section END
+
+      // Manage Comments Section START
+      {
+        source:'/api/getAllComments',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/comments` 
+      },
+      {
+        source:'/api/getUserComment',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/user/comment` 
+      },
+      // Manage Comments Section END
+
+      // Category Section START
+      {
+        source:'/api/create/category',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/category`
+      },
+      {
+        source:'/api/get/categories',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/category`
+      },
+      {
+        source:'/api/get/active/categories',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/active/category`
+      },
+      {
+        source:'/api/update/category',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/category`
+      },
+      {
+        source:'/api/get/category',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/get/category`
+      },
+      {
+        source:'/api/remove/category',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/category/status`
+      },
+      // Category Section END
+
+      // Market Section START
+      {
+        source:'/api/create/market',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/market`
+      },
+      {
+        source:'/api/get/markets',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/market`
+      },
+      {
+        source:'/api/get/active/markets',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/active/markets`
+      },
+      {
+        source:'/api/update/market',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/market`
+      },
+      {
+        source:'/api/get/market',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/get/market`
+      },
+      {
+        source:'/api/remove/market',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/market/status`
+      },
+      // Market Section END
     ]
   },
 }

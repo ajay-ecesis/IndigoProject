@@ -19,35 +19,14 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
+import {toast} from 'react-toastify'
 import Moment from 'react-moment';
 
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-  
-const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-}));
-
-const ManageManufacturers = () => {
-    
-    const classes = useStyles();
+const ManageComments = () => {
 
     const [ btnLoading, setBtnloading] = useState(true);
 
-    const [open, setOpen] = useState(false);
-
-    const [error, setError] = useState('');
-
-    const [users, setUsers] = useState([])
+    const [comments, setComments] = useState([])
 
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -70,84 +49,55 @@ const ManageManufacturers = () => {
     };
 
     var columns = [
-       
         {title: "id", field: "_id", hidden: true},
-        {title: "Manufacturer Name", field: "supplierName", render: rowData => {return <Link href={`/admin/manufacturer/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.supplierName}</a></Link>}},
-        {title: "Year", field: "year"},
-        {title: "Product Category", render: rowData => { return <>{rowData.userId.category}</> }},
-        {title: "No of Employees", field: "employees"},
-        {title: "SKU", field: "sku"},
-        {title: "Speciality", field: "speciality"},
-        {title: "Manufacturer Name", field: "supplierName"},
-        {title: "Daily Capacity", field: "dailyCapacity"},
-        {title: "Monthly Capacity", field: "monthlyCapacity"},
-        {title: "Created At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
-        {title: "Updated At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.updatedAt}</Moment>}},
+        {title: "Post Name", render: rowData => {return <Link href={`/admin/comment/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.postName}</a></Link>}},
+        {title: "Commented By", render: rowData => {return <span>{rowData.userId.firstName+" "+rowData.userId.lastName}</span>}},
+        {title: "Comment", field: "message"},
+        {title: "Commented At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
     ]
 
     const loadUsers = async () => {
         try {
-            let { data } = await axios.get(`/api/getManufacturers`)
-            setUsers(data);
+            let { data } = await axios.get(`/api/getAllComments`)
+            console.log("data",data)
+            setComments(data);
             setBtnloading(false);
-            setError('');
-            setOpen(false);
         } catch (error) {
-            console.log("Error", error);
             setBtnloading(false);
-            setError(error.response.data);
-            setOpen(true);
+            toast.error(error.response.data);
         }
     };
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-        return;
-        }
-        setOpen(false);
-    }
 
     useEffect(() => {
         loadUsers()
     }, [])
 
-
     return (
         <AdminRoute>
-        <AdminLayout>
-
-            <div className="row">     
-                <div className="col-lg-12 grid-margin stretch-card">
-                    <div className="card">
-                        <div className="card-body">
-                            
-                                    <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Manage Manufacturers</h4>
-
-                                    <MaterialTable
-                                    title=""/* {<Link to='/admin/add/user'>Add new user</Link>} */
+            <AdminLayout>
+                <div className="row">     
+                    <div className="col-lg-12 grid-margin stretch-card">
+                        <div className="card">
+                            <div className="card-body">                          
+                                <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Manage Comments</h4>
+                                <MaterialTable
+                                    title=""
                                     columns={columns}
                                     isLoading={btnLoading}
-                                    data={users}
+                                    data={comments}
                                     icons={tableIcons}
                                     options={{
                                         pageSize:10,                    
                                     }}
-                                    localization={{ body:{ emptyDataSourceMessage:<h6>No manufacturers to display</h6> } }}
-                                    />
-
-                                    <div className={classes.root}>
-                                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>                                             
-                                            <Alert onClose={handleClose} severity="error">{error}</Alert>                                                                                  
-                                        </Snackbar>
-                                    </div>
+                                    localization={{ body:{ emptyDataSourceMessage:<h6>No comments to display</h6> } }}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-        </AdminLayout>
+                </div>     
+            </AdminLayout>
         </AdminRoute>
     )
 }
 
-export default ManageManufacturers
+export default ManageComments
