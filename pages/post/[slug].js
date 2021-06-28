@@ -38,7 +38,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
     const [loading, setLoading] = useState(false);
 
     // user state
-    const {state, dispatch} = useContext(Context);
+    const {state} = useContext(Context);
     const { user } = state;
 
     const [loadingCmt, setLoadingCmt] = useState(false);
@@ -412,7 +412,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                                                           
                                        {/*  {s.isReply ? <p style={{ textAlign: "left", color: 'red', cursor:'pointer' }} >View {s.replyCount} Replies</p> :null } */}
                                         <p style={{ textAlign: "left", color: "gray" }}>
-                                        posted {moment(s._createdAt).fromNow()}
+                                        posted {moment(s.createdAt).fromNow()}
                                         </p>
                                        
                                     </Grid>
@@ -465,7 +465,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                                                             {s.message}
                                                         </p>
                                                         <p style={{ textAlign: "left", color: "gray" }}>
-                                                        posted {moment(s._createdAt).fromNow()}
+                                                        posted {moment(s.createdAt).fromNow()}
                                                         </p>                                 
                                                     </Grid>
                                                 </Grid>

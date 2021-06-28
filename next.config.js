@@ -22,18 +22,6 @@ module.exports = {
         destination: `${process.env.EXTERNAL_RESOLVER}/api/manufacturer`,
       },
       {
-        source: '/api/googlelogin',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/googlelogin`,
-      },
-      {
-        source: '/api/brandRegGoogle',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/brand-reg-google`,
-      },
-      {
-        source: '/api/manufactureGoogleReg',
-        destination: `${process.env.EXTERNAL_RESOLVER}/api/manufacturer-reg-google`,
-      },
-      {
         source: '/api/auth',
         destination: `${process.env.EXTERNAL_RESOLVER}/api/auth`,
       },
@@ -157,6 +145,14 @@ module.exports = {
       {
         source:'/api/getUserComment',
         destination:`${process.env.EXTERNAL_RESOLVER}/api/user/comment` 
+      },
+      {
+        source:'/api/remove/comment',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/remove/comment` 
+      },
+      {
+        source:'/api/remove/reply/comment',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/remove/reply/comment` 
       },
       // Manage Comments Section END
 

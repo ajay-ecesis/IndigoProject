@@ -1413,7 +1413,18 @@ section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .
   font-size: 20px;
       margin-left: -10px;
 }
+.modal_close1 {
+  float: left;
+  color: #fff;
+  margin-top: -14px;
+  font-family: serif;
+  font-size: 20px;
+      margin-left: -10px;
+}
 .signin-popup .modal_close:hover{
+	color:gray;
+}
+.modal_close1:hover{
 	color:gray;
 }
 
@@ -1842,11 +1853,44 @@ section.section.artisanal__experiences {
 }
 /* ========== Artisanal Experiences Details ========== */
 
-
-
 .signin-popup {
   display: none;
 }
 .signin-popup.active {
   display: block;
 }
+
+
+/* Additional */
+
+.btn1 {
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 70px;
+  border: none;
+  font-weight: 700;
+  padding: 10px 30px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.comment-text { font-size: 13px; }
+
+.panel-body { padding:0px; }
+
+.mic-info { color: #666666;font-size: 14px;text-decoration: underline; }
+
+.mic-info1 { color: #666666;font-size: 12px; }
+
+.list-group { margin-bottom: 0; }
+
+.panel-title { display:inline }
+
+.label-info { float: right; }
+
+li.list-group-item {border-radius: 0;border: 0;border-top: 1px solid #ddd;}
+
+li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
+
+.action { margin-top:5px; }

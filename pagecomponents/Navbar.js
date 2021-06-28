@@ -4,7 +4,6 @@ import {Context} from '../context'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import {useRouter} from 'next/router'
-import { GoogleLogin } from 'react-google-login';
 import {useAppContext} from '../context/loginmodal'
 
 const Navbar = (props) => {
@@ -201,128 +200,6 @@ const Navbar = (props) => {
 
     // Register Brand functionality END
 
-    const responseGoogleManufacture = async(response) => {
-        try {
-           
-            const {data}=await axios.post('/api/manufactureGoogleReg',{
-
-                response,
-                role:regManufacturerValues.role,
-                supplierName:regManufacturerValues.supplierName,
-                year:regManufacturerValues.year,
-                monthlyCapacity:regManufacturerValues.monthlyCapacity,
-                terms:regManufacturerValues.terms,
-                importantClients:regManufacturerValues.importantClients,
-                heading:regManufacturerValues.heading,
-                factoryInfo:regManufacturerValues.factoryInfo,
-                skills:regManufacturerValues.skills,
-                addressLine1:regManufacturerValues.addressLine1,
-                addressLine2:regManufacturerValues.addressLine2,
-                zipCode:regManufacturerValues.zipCode,
-                city:regManufacturerValues.city,
-                country:regManufacturerValues.country,
-                employees:regManufacturerValues.employees,
-                category:regManufacturerValues.category,
-                speciality:regManufacturerValues.speciality,
-                sku:regManufacturerValues.sku,
-                samplingTime:regManufacturerValues.samplingTime,
-                dailyCapacity:regManufacturerValues.dailyCapacity,
-                certifications:regManufacturerValues.certifications,
-                multiphotos:regManufacturerValues.multiphotos
-            })
-
-            toast.success('Registration successfull, Please login to continue...');
-            router.push('/');
-            setRegManufacturerValues({
-                ...regManufacturerValues,
-                firstName:'',
-                lastName:'',
-                email:'',
-                password:'',
-                password1:'',
-                role:1,
-                supplierName:'',
-                year:'',
-                category:'',
-                employees:'',
-                speciality:'',
-                sku:'',
-                samplingTime:'',
-                dailyCapacity:'',
-                monthlyCapacity:'',
-                terms:'',
-                importantClients:'',
-                heading:'',
-                factoryInfo:'',
-                skills:'',
-                addressLine1:'',
-                addressLine2:'',
-                zipCode:'',
-                city:'',
-                country:'',
-                certifications:'',
-                multiphotos:[],
-                loading:false
-            }) 
-        } catch (error) {
-            toast.error(error.response.data);
-            setRegManufacturerValues({...regManufacturerValues, loading: false})
-        }
-        
-    }
-
-    const responseGoogleBrand = async(response) => {
-        
-        try {
-            setRegBrandValues({...regBrandValues, loading:true});
-            const {data} = await axios.post(`/api/brandRegGoogle`, {
-                response,
-                role:0,
-                brandName: regBrandValues.brandName, 
-                url: regBrandValues.url, 
-                category: regBrandValues.category, 
-                market: regBrandValues.market, 
-                linkedIn: regBrandValues.linkedIn, 
-                zipCode: regBrandValues.zipCode, 
-                city: regBrandValues.city, 
-                country: regBrandValues.country,
-            });
-            toast.success('Registration successfull, Please login to continue.');
-            router.push('/');
-            setRegBrandValues({...regBrandValues, firstName:'', lastName:'', email:'', password:'', password1:'',brandName:'', url:'', category:'', market:'', linkedIn:'', zipCode:'', city:'', country:'', loading:false})
-        } catch (error) {
-            console.log("Error", error);
-            setRegBrandValues({...regBrandValues, loading:false});
-            toast.error(error.response.data);
-        }
-        
-    }
-
-    const responseGooglelogin = async (response) => {
-        try {
-            const {data} = await axios.post(`/api/googlelogin`, {
-                response
-            });
-            toast.success('login success')
-            dispatch({
-                type:"LOGIN",
-                payload: data
-            });
-            if(data.role === 0){
-                router.push('/brand/dashboard');
-            }
-            else if(data.role === 1){
-                router.push('/manufacturer/dashboard');
-            }
-            else if(data.role === 2){
-                router.push('/admin/dashboard');
-            }  
-        } catch (err) {
-            console.log("Err", err);
-            toast.error(err.response.data);
-        }
-    } 
-
     // Register Manufacturer functioality START
     const clickSubmitRegManufacturer = async(e) => {
         e.preventDefault();
@@ -499,18 +376,6 @@ const Navbar = (props) => {
                                             </li>
                                             <li className="bottom-buttons"><a href="#">Login</a>
                                                 <div className="bottom-btn">
-                                                    <GoogleLogin 
-                                                        className="btn btn-block btn-primary" 
-                                                        clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                                        render={renderProps => (
-                                                            <a href="" style={{padding:10,paddingLeft:25,paddingRight:25,borderRadius:30}} onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                                            
-                                                        )}
-                                                        buttonText="Continue with Google"
-                                                        onSuccess={responseGooglelogin}
-                                                        onFailure={responseGooglelogin}
-                                                        cookiePolicy={'single_host_origin'}
-                                                    />
                                                 </div>
                                             </li>
                                         
@@ -561,19 +426,7 @@ const Navbar = (props) => {
                             
                             <div className="bottom-btn">
                                 <input id="singupSubmit" type="submit" value={loginValues.loading ? "Loading..." : "Sign in"} />
-                                {/* <a href="" className="btn-yellow border-not">Continue with Google</a> */}
-                                <GoogleLogin 
-                                    className="btn btn-block btn-primary" 
-                                    clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                    render={renderProps => (
-                                        <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                        
-                                    )}
-                                    buttonText="Continue with Google"
-                                    onSuccess={responseGooglelogin}
-                                    onFailure={responseGooglelogin}
-                                    cookiePolicy={'single_host_origin'}
-                                />
+                        
                                 <p className="or">OR</p>
                                 <a id="forSignUp" onClick={()=>setselectReg("active")} href="#" className="btn-yellow btn-black-yellow">Sign Up</a>
                             </div>
@@ -673,23 +526,7 @@ const Navbar = (props) => {
                         <div className="mid-heading">
                             <p>Register</p>
                         </div>
-                        {/* Google Brand Register */}
-                        <div className="bottom-btn">
-                            <GoogleLogin 
-                                className="btn btn-block btn-primary"
-                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                render={renderProps => (
-                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                    
-                                )}
-                                buttonText="SignUp"
-                                onSuccess={responseGoogleBrand}
-                                onFailure={responseGoogleBrand}
-                                cookiePolicy={'single_host_origin'}
-                                disabled={!regBrandValues.brandName || !regBrandValues.url || !regBrandValues.category || !regBrandValues.market || !regBrandValues.linkedIn || !regBrandValues.zipCode || !regBrandValues.city || !regBrandValues.country}
-                            /> 
-                            <p className="or">OR</p>
-                        </div>
+                        
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name" value={regBrandValues.firstName} required />
                         </div>
@@ -852,28 +689,7 @@ const Navbar = (props) => {
                         <div className="mid-heading">
                             <p>Register</p>
                         </div>
-                        {/* Google Manufacturer Register */}
-                        <div className="bottom-btn">
-                            <GoogleLogin 
-                                className="btn btn-block btn-primary"
-                                clientId="562948689292-a88f1a8k0ofopafidnte67hm33iu8uj5.apps.googleusercontent.com"
-                                render={renderProps => (
-                                    <a href="" onClick={renderProps.onClick} className="btn-yellow border-not">Continue with Google</a>
-                                    
-                                )}
-                                buttonText="SignUp"
-                                onSuccess={responseGoogleManufacture}
-                                onFailure={responseGoogleManufacture}
-                                cookiePolicy={'single_host_origin'}
-                                disabled={!regManufacturerValues.supplierName || !regManufacturerValues.year || !regManufacturerValues.employees || !regManufacturerValues.category 
-                                || !regManufacturerValues.speciality || !regManufacturerValues.sku || !regManufacturerValues.samplingTime || !regManufacturerValues.dailyCapacity 
-                                || !regManufacturerValues.monthlyCapacity || !regManufacturerValues.terms || !regManufacturerValues.importantClients || !regManufacturerValues.factoryInfo
-                                || !regManufacturerValues.heading || !regManufacturerValues.skills || !regManufacturerValues.addressLine1 || !regManufacturerValues.addressLine2 || !regManufacturerValues.city
-                                || !regManufacturerValues.zipCode || !regManufacturerValues.country || !regManufacturerValues.certifications || !regManufacturerValues.multiphotos
-                                }
-                            /> 
-                            <p className="or">OR</p>
-                        </div>
+                        
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegManufacturer('firstName')} placeholder="First name" value={regManufacturerValues.firstName} required />
                         </div>

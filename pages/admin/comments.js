@@ -54,9 +54,12 @@ const ManageComments = () => {
         {title: "Commented By", render: rowData => {return <span>{rowData.userId.firstName+" "+rowData.userId.lastName}</span>}},
         {title: "Comment", field: "message"},
         {title: "Commented At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
+        {title: "Action",render: rowData => {        
+                return <span style={{color:"red", cursor:'pointer'}} onClick={() => destroy(rowData._id)}><DeleteOutline /></span> 
+        }},
     ]
 
-    const loadUsers = async () => {
+    const loadComments = async () => {
         try {
             let { data } = await axios.get(`/api/getAllComments`)
             console.log("data",data)
@@ -69,8 +72,25 @@ const ManageComments = () => {
     };
 
     useEffect(() => {
-        loadUsers()
+        loadComments()
     }, [])
+
+    const destroy = async(id) => {  
+        if(window.confirm(`Do you want to remove this comment?`)){   
+            try {
+                setBtnloading(true);
+                let { data } = await axios.post(`/api/remove/comment`, {
+                    id
+                })
+                toast.success("Comment removed successfully.")
+                loadComments()
+            } catch (error) {
+                setBtnloading(false);
+                console.log(error);
+                toast.error(error.response.data);
+            }
+        }
+    }
 
     return (
         <AdminRoute>
