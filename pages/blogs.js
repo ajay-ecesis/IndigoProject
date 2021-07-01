@@ -506,7 +506,7 @@ accessibility: false,
                 <title>Indigo | Stories</title>
             </Head>
 
-            <div className="main_banner_new about_us_banner">
+            <div className="main_banner_new about_us_banner blog_banner">
                 <Navbar nav={nav} />
                 <div className="banner ">
                     <div id="bannerWrapper" className="banner-wrapper">
