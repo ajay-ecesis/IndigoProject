@@ -6,35 +6,36 @@ import BlockContent from '@sanity/block-content-to-react';
 
 const ProjectIndigo = ({content})=>{
     const settings = {
-        dots: true,
-        infinite: true,
-        autoplay:true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              }
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed:1500,
+      prevArrow: '<span class="prev"><i class="fal fa-long-arrow-alt-left"></i></span>',
+            nextArrow: '<span class="next"><i class="fal fa-long-arrow-alt-right"></i></span>',
+      dots: true,
+      arrows: false,
+    
+      responsive: [
+          {
+            breakpoint: 1440,
+            settings: {
+              arrows: false,
+              centerMode: false,
+              centerPadding: '0',
+              slidesToShow: 2
             }
-          ]
+          },
+          {
+            breakpoint: 767,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: '0',
+              slidesToShow: 1
+            }
+          }
+        ]
       };
     return(
         <>
@@ -49,7 +50,7 @@ const ProjectIndigo = ({content})=>{
                                       
                                              <img src={urlFor(item.image)} className="projekt-img"  alt="" />
                                             <div className="content">
-                                            <BlockContent blocks={item.description} />
+                                                <BlockContent blocks={item.description} />
                                             </div>
                                         </div>
                                             ))}

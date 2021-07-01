@@ -1,4 +1,5 @@
 import { urlFor } from "../utils/tools";
+import Head from "next/head";
 import BlockContent from '@sanity/block-content-to-react';
 import { client,clientRead } from "../utils/sanity";
 import { usePreviewSubscription } from "../utils/previewConfig";
@@ -16,118 +17,143 @@ const Detail = (props)=>{
     initialData: props.data,
     enabled: props.preview,
   })
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay:true,
-    speed: 500,
+
+  /* const settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed:1500,
+    dots: false,
+    arrows: false,
     responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          }
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          dots: false
         }
-      ]
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+      centerPadding: '20px'
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
-
-          const mapSection1 = (item,i)=>{
-            return(
-              <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
+ */
+  const mapSection1 = (item,i) => {
+    return(
+          <section key={i} className="section trustBrand manufacturers Sustainability brands about about1">
               <div className="container-fluid ">
-                    { i==0 && <div className="row">
-                    <div className="col-md-12 section-head text-center">
-                        {data[0].heading1 && <span className="heading__span">{data[0].heading1}</span>}
-                        {data[0].heading2 && <h2 className="heading">
-                          {data[0].heading2}
-                        </h2>}
-                    </div>
-                    </div>}                
+                              
                   <div className="row row--chnage">
+                      
+                      <div className="col-md-6 manufacturers-content">
+                          <BlockContent blocks={item.description} />
+                      </div>
+
                       <div className="col-md-6">
                           <div className="thumb">
                               <img src={urlFor(item.mainimage)} alt="" />
                           </div>
-                        {item.imagetext && <div className="content">
+                        {/* {item.imagetext && <div className="content">
                       <h2 className="heading-inner">{item.imagetext}</h2> 
-                        </div>}
+                        </div>} */}
                       </div>
-                      <div className="col-md-6 manufacturers-content">
-                      <BlockContent blocks={item.description} />
-                 
-                      </div>
+
                     </div>
                   </div>
-            </section>
-            )
-          }
-          const mapSection2= (item,i)=>(
-            <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
+          </section>
+    )
+  }
+
+  const mapSection2= (item,i) => (
+
+      <section key={i} className="section trustBrand manufacturers Sustainability brands about about2 sustainability_details">
           <div className="container-fluid ">
               <div className="row row--chnage">
                   <div className="col-md-6">
                       <div className="thumb">
-                      <img src={urlFor(item.mainimage)} alt="" />
+                          <img src={urlFor(item.mainimage)} alt="" />
                       </div>
                       {item.imagetext && <div className="content">
                       <h2 className="heading-inner">{item.imagetext}</h2> 
                         </div>}
                   </div>
                   <div className="col-md-6 manufacturers-content">
-                  <BlockContent blocks={item.description} /> 
+                      <BlockContent blocks={item.description} /> 
                   </div>
               </div>
           </div>
       </section>
-          )
+  )
 
 
-    return(
+  return(
         <>
-        <Navbar preview={props.preview} nav={props.nav} />
-    <div id="main2">
-    {data[0].content && data[0].content.map((item,i)=>(
-         i%2==0 ? mapSection1(item,i) : mapSection2(item,i)
-       ))}
-        
-    </div>
 
-    
-     <section className="section aboutus-slider">
-        <div className="container-fluid about">
-            
-            <div  className=" row Artisanal-slider">
-            <Slider {...settings}>
-              {data[0].slider && data[0].slider.map((item,i)=>(
-                   <div key={i} className="col-md-4">
-                   <img src={urlFor(item)} alt="" />                  
-               </div>
-              ))}
-               </Slider>
+            <Head>
+                <meta charSet="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Indigo | Sustainability</title>
+            </Head>
+
+            <div className="main_banner_new about_us_banner sustainability_details_banner">
+                <Navbar preview={props.preview} nav={props.nav} />
+                {/* <!-- banner --> */}
+                <div className="banner ">
+                    <div id="bannerWrapper" className="banner-wrapper">
+                      <div className="bg-img_about">
+                        <img src="images/sustailabilty_new.png" alt="" />
+                      </div>
+                        <div className="container-fluid">
+                            <div className="banner-inner row">
+                                <div className="left-side col-md-6">
+                                    {data[0]?.heading1 && <h6>{data[0].heading1}</h6>}
+                                    {data[0]?.heading2 && <h1>{data[0]?.heading2}</h1>}
+                                    {/* <h6>We believe in</h6>
+                                    <h1>Sustainability</h1> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        
+            <div id="main2">
+              {data[0]?.content && data[0].content.map((item,i)=>(
+                i%2==0 ? mapSection1(item,i) : mapSection2(item,i)
+              ))}       
+            </div>
+
+            <section className="section aboutus-slider">
+                <div className="container-fluid about">           
+                    <div className="row">
+                        <div className="col-md-12">
+                            <img src="images/sustainability_new2.png" alt="" />                  
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             
-        </div>
-    </section>
-    <Footer />
+
+            <Footer />
         </>
-    )
+  )
 }
 
 

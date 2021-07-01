@@ -62,10 +62,10 @@ const ManageMarkets = () => {
         {title: "Actions", render: rowData => <Link href={`/admin/market/edit/${rowData._id}`}><a style={{color:"#106eea"}}><Edit /></a></Link>},
         {title: "",render: rowData => {
             if(rowData.status === 0){
-                return <span style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData._id, 1)}><DeleteOutline /></span>
+                return <span style={{color:"red", cursor:'pointer'}} onClick={() => destroy(rowData._id, 1)}><DeleteOutline /></span>
             }
             else if(rowData.status === 1){
-                return <h5 style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData._id, 0)}>Activate</h5>
+                return <h5 style={{color:"green", cursor:'pointer'}} onClick={() => destroy(rowData._id, 0)}>Activate</h5>
             }
         }},
     ]

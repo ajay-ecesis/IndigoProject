@@ -15,25 +15,44 @@ import { Context } from '../context';
 
 const blogs = ({posts,nav,pageurl}) => {
 
-    const {state, dispatch} = useContext(Context);
+    const {state} = useContext(Context);
     const { user } = state;
     const settings = {
-        infinite: true,
-        autoplay:true,
-        speed: 500,
         slidesToShow: 3,
-        arrows:false,
-        slidesToScroll: 1,
-        responsive: [
-           
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
-            }
-          ]
+   slidesToScroll: 1,
+   autoplay: true,
+   autoplaySpeed: 3000,
+accessibility: false,
+   infinite: true,
+   cssEase: 'linear',
+   dots: false,
+   arrows: false,
+   responsive: [
+     {
+       breakpoint: 1500,
+       settings: {
+         slidesToShow: 3,
+         slidesToScroll: 2,
+         infinite: true,
+         dots: false
+       }
+     },
+     {
+       breakpoint: 1024,
+       settings: {
+         slidesToShow: 2,
+         slidesToScroll: 1,
+    centerPadding: '20px'
+       }
+     },
+     {
+       breakpoint: 767,
+       settings: {
+         slidesToShow: 1,
+         slidesToScroll: 1
+       }
+     }
+   ]
       };
     const [mappedPosts, setMappedPosts] = useState([]);
 
@@ -219,11 +238,8 @@ const blogs = ({posts,nav,pageurl}) => {
             <section className="explore stories section trustBrand manufacturers brands">
                 <div className="container-fluid ">
                     <div className="row">
-                        <div className="col-md-12 section-head text-center">
-                            <span className="heading__span">Explore our</span>
-                            <h2 className="heading">
-                                Stories
-                            </h2>
+                        <div className="col-md-12">
+                            <h5>Featured Stories</h5>
                         </div>
                     </div>
                     <div className="row row--chnage">
@@ -394,23 +410,24 @@ const blogs = ({posts,nav,pageurl}) => {
                         </div>
                     </div>
                     <div className="row Artisanal-slider_second">
-                        
-                        
+                                    
                         <Slider {...settings}>
                             { mappedPosts.length && mappedPosts.map((item,i)=>(
                                 
-                                    <div key={item._id} className=" col-md-4">
+                                    <div key={item._id} className="col-md-4">
                                         <img src={item.mainImage} alt="" /> 
                                         <div className="footer-content--change">
                                             {item.categories.map((data) => (
                                                 <><div key={data._id} className="title__change">{data.title}</div>&nbsp;</>
                                             ))} 
                                             <h5 className="title">{item.title}</h5>
-                                            <p>{item.maincomponents[0].subHeading}</p> 
+                                            <p>{item.maincomponents[0].subHeading.slice(0, 60)} ...</p>
+                                            {/* <p>{item.maincomponents[0].subHeading}</p>  */}
                                             <div className="read_more">
-                                                <button onClick={() => router.push(`/post/${item.slug.current}`)} key={i} className="btn btn-black btnSm">Read more <i className="fa fa-chevron-right"></i></button>
-                                                <span>{item.readMin}</span>
+                                                <a href= {`/post/${item.slug.current}`} key={i} className="btn btn-black btnSm">Read more <i className="fa fa-chevron-right"></i></a>
+                                                <span> {item.readMin} min read</span>
                                             </div>
+                                            <a href={`/post/${item.slug.current}`} key={i}><i onClick={() => router.push(`/post/${item.slug.current}`)} className="fas fa-arrow-right"></i></a>
                                         </div>                 
                                     </div>          
                             ))}
@@ -420,6 +437,64 @@ const blogs = ({posts,nav,pageurl}) => {
             </section>
         )
     }
+
+    const showTopBlogSection = () => (
+        <section className="explore stories section trustBrand manufacturers brands">
+            <div className="container-fluid ">
+                <div className="all_manu_brand_wrapper">
+
+                    <div className="row row--chnage">
+                        <div className="col-md-6">
+                            <div className="thumb">
+                                <img src={mappedPosts[0].mainImage && mappedPosts[0].mainImage } alt="" />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="manufacturers-content">
+                                {mappedPosts[0].categories.length && mappedPosts[0].categories.map((s) => (
+                                    <><div key={s._id} className="title title__change">{s.title}</div>&nbsp;</>
+                                ))}  
+                                <h3 className="inner__heading">{mappedPosts[0].title && mappedPosts[0].title}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    {mappedPosts.length >= 2 && <div className="row row--chnage">
+                        <div className="col-md-6">
+                            <div className="thumb">
+                                <img src={mappedPosts[1].mainImage && mappedPosts[1].mainImage } alt="" />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="manufacturers-content">
+                                {mappedPosts[1].categories.length && mappedPosts[1].categories.map((s) => (
+                                    <><div key={s._id} className="title title__change">{s.title}</div>&nbsp;</>
+                                ))}  
+                                <h3 className="inner__heading">{mappedPosts[1].title && mappedPosts[1].title}</h3>
+                            </div>
+                        </div>
+                    </div> }
+
+                    {mappedPosts.length >= 3 && <div className="row row--chnage">
+                        <div className="col-md-6">
+                            <div className="thumb">
+                                <img src={mappedPosts[2].mainImage && mappedPosts[2].mainImage } alt="" />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="manufacturers-content">
+                                {mappedPosts[2].categories.length && mappedPosts[2].categories.map((s) => (
+                                    <><div key={s._id} className="title title__change">{s.title}</div>&nbsp;</>
+                                ))}  
+                                <h3 className="inner__heading">{mappedPosts[2].title && mappedPosts[2].title}</h3>
+                            </div>
+                        </div>
+                    </div> }
+
+                </div>
+            </div>
+        </section>
+    )
     
     return (
         <>
@@ -430,9 +505,28 @@ const blogs = ({posts,nav,pageurl}) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Indigo | Stories</title>
             </Head>
-            <Navbar nav={nav} />
 
-            <div id="main" className="blog">
+            <div className="main_banner_new about_us_banner">
+                <Navbar nav={nav} />
+                <div className="banner ">
+                    <div id="bannerWrapper" className="banner-wrapper">
+                    <div className="bg-img_about">
+                        <img src="images/stories_new.png" alt="" />
+                    </div>
+                        <div className="container-fluid">
+                            <div className="banner-inner row">
+                                <div className="left-side col-md-6">
+                                    <h6>Blogs</h6>
+                                    <h1>We Are <br/>Project Indigo</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="blog_new" className="blog">
+                {mappedPosts.length && showTopBlogSection()}
                 {mappedPosts.length && showSection1()}
                 {mappedPosts.length >=2 && showSection2()}
                 {mappedPosts.length >=3 && showSection3()}
@@ -449,7 +543,7 @@ export const getServerSideProps = async () => {
 
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
     const query = encodeURIComponent('*[_type == "post"]{...,categories[]->} | order(_createdAt desc)');
-    const url = `https://a4cdxjbi.api.sanity.io/v1/data/query/production?query=${query}`;
+    const url = `https://${process.env.SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/production?query=${query}`;
     const result = await fetch(url).then(res => res.json());
 
     if(!result.result || !result.result.length){

@@ -5,35 +5,42 @@ import BlockContent from '@sanity/block-content-to-react';
 
 const Section3 = ({content})=>{
 
+
     const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
+        autoplaySpeed: 2000,
+        centerMode: false,
+        speed:1500,
+        centerPadding: '60px',
         slidesToShow: 4,
-        slidesToScroll: 1,
         responsive: [
             {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
+            breakpoint: 1440,
+                settings: {
+                    arrows: true,
+                    centerMode: false,
+                    centerPadding: '30px',
+                    slidesToShow: 3
+                }
             },
             {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              }
+            breakpoint: 1024,
+                settings: {
+                    arrows: true,
+                    centerMode: false,
+                    centerPadding: '30px',
+                    slidesToShow: 2
+                }
             },
             {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              }
+                breakpoint: 767,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '30px',
+                    slidesToShow: 1
+                }
             }
-          ]
+        ]
       };
 
     return(
@@ -42,7 +49,7 @@ const Section3 = ({content})=>{
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12 section-head text-center">
-                        <BlockContent blocks={content[0]} />
+                        <h2 className="heading"><BlockContent blocks={content[0]} /></h2>
                     </div>
                 </div>
                 <div className="row">
@@ -59,7 +66,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">East Indigo co.</h5>
                                         <p className="cardDisc txt-light txt-light">Manufacturer</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star5" name="rate" value="5" />
                                                 <label htmlFor="star5" title="text">5 stars</label>
@@ -91,7 +98,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">Atlantic Mills</h5>
                                         <p className="cardDisc txt-light">Mills</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star6" name="rate" value="5" />
                                                 <label htmlFor="star6" title="text">5 stars</label>
@@ -123,7 +130,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">Arvind’s Mills</h5>
                                         <p className="cardDisc txt-light">Mills</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star5" name="rate" value="5" />
                                                 <label htmlFor="star5" title="text">5 stars</label>
@@ -155,7 +162,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">East Indigo co.</h5>
                                         <p className="cardDisc txt-light">Manufacturer</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star5" name="rate" value="5" />
                                                 <label htmlFor="star5" title="text">5 stars</label>
@@ -219,7 +226,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">Arvind’s Mills</h5>
                                         <p className="cardDisc txt-light">Mills</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star5" name="rate" value="5" />
                                                 <label htmlFor="star5" title="text">5 stars</label>

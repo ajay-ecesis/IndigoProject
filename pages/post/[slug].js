@@ -490,9 +490,10 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
 
     const mapSection1 = (item, i) => (
         <div key={i} className="col-12 post">
+            {item.mainimage && 
             <div className="post__thumb">
                 <img src={urlFor(item.mainimage)} alt="" />          
-            </div>
+            </div>}
             <div>
                 <div className="post_head">
                 {(data.heading && Number(i) === 0) && <h2 className="title">{data.heading}</h2>}
@@ -519,25 +520,20 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
     const mapSection2 = (item,i) => {
         return (
             <div key={i} className="col-12 post post-change">
-                <div className="post__thumb">
-                    <img src={urlFor(item.mainimage)} alt="" /> 
-                </div>
+                {item.mainimage && 
+                    <div className="post__thumb">
+                        <img src={urlFor(item.mainimage)} alt="" />          
+                    </div>
+                }
                     <div>
                         <div className="post_head">
-                            {/* <div className="post__footer">
-                                <h3>The Flip-side</h3>
-                                <p>Organic cotton often gets the popular vote for its many facets of friendliness. From the complete refusal of GMOs (genetically modified organisms) at the birth stage, avoiding fertilisers and pesticides for growth, saving water and energy till the end, it has a pretty healthy lifespan. While many of these life choices have their own downsides, the most surefire change is seen in the water impact. Organic cotton directly reduces the impact on our natural water resources as the crops are 80% rain-fed. Considering it uses no chemicals, it causes 98% less water pollution as well.</p>
-                            </div> */}
+                        {item.subHeading && 
                             <div className="post-details">
-                            {item.subHeading && <h3 className="sub_heading">{item.subHeading}</h3>}
-                                {/* <p>While organic cotton depends mostly on rain-water, the same factor limits the area and timeline of its production. Most countries are dependent on importing organic cotton because their natural climate doesn’t support its cultivation. Moreover, the lower yield per hectare leads to increased pressure on land and other energy sources. Unless farming units support cotton production with the usage of completely renewable energy, they won’t be able to reduce the environmental impact greatly in the long run.
-
-                                    Not to be progressively pessimistic, but in several instances, organic cotton meets chemical dyes and fabric enhancers. This renders the final garment not-so-organic. And when these garments end up in landfills as biodegradable waste, they stand a greater chance of polluting the land.</p> */}
+                                <h3 className="sub_heading">{item.subHeading}</h3>
                             </div>
+                        }
                             <div className="post__footer">
                                 <BlockContent blocks={item.description} />
-                                {/* <h3>A More Sustainable Alternative</h3>
-                                <p>An alternative path lies in zero-virgin cotton, which can be regenerated completely from recycled cotton yarns. Zero-virgin directly counters the flip sides of organic cotton, reducing the impact on fresh natural resources. And while its production process does involve chemicals, manufacturing units can reuse these chemicals as well. A comprehensive comparison of the impact created by both these materials is sure to end in favour of regenerated cotton. But very few manufacturing setups across the world are aware of this fairly new concept. Therefore it’s still in the process of meeting logistic perfection to emerge as a clear, better choice.</p> */}
                             </div>
                         </div>
                     </div>
@@ -554,25 +550,36 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Indigo | Story</title>
             </Head>
-            <Navbar nav={nav} />
-            <div className="section story-page">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-12 section-head text-center">
-                            <span className="heading__span">{category && category.length && category[0].title}</span>
-                            <h2 className="heading">
-                                {title}
-                            </h2>
+            <div className="main_banner_new about_us_banner story_banner">
+                <Navbar nav={nav} />
+                <div className="banner ">
+                    <div id="bannerWrapper" className="banner-wrapper">
+                    <div className="bg-img_about">
+                        <img src={urlFor(image)} alt="" />
+                    </div>
+                        <div className="container-fluid">
+                            <div className="banner-inner row">
+                                <div className="left-side col-md-6">
+                                    <h6>{category && category.length && category[0].title}</h6>
+                                    <h1>{title}</h1>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div className="section story-page">
+                <div className="container-fluid">
+                    
                     <div className="row">
                         <div className="col-12">
                             <div className="row">
                                 {data.maincomponents && data.maincomponents.map((s,i) => (
-                                    i%2 === 0 ? mapSection1(s,i) : mapSection2(s,i)
+                                    mapSection1(s,i)
+                                   /*  i%2 === 0 ? mapSection1(s,i) : mapSection2(s,i) */
                                 ))}
-                               {/*  {mapSection1()}
-                                {mapSection2()} */}
+                              
                             </div>
                         </div>
                     </div>
@@ -596,9 +603,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                                     :<img onClick={()=>handleSavedPost()} src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
                                     }
                                 </span>
-                                {/* <span style={{cursor:'pointer', margin:'20px'}}>
-                                    <img src="/images/bookmark2.svg" alt="" width="40px" height="auto" />
-                                </span> */}
+                               
                             </div>                 
                         </div>
                         {message}
@@ -638,7 +643,7 @@ export const getServerSideProps = async pageContext => {
         }
     }
     const query = encodeURIComponent(`*[_type == "post" && slug.current == "${pageSlug}"]{..., categories[]->}`);
-    const url = `https://a4cdxjbi.api.sanity.io/v1/data/query/production?query=${query}`;
+    const url = `https://${process.env.SANITY_PROJECT_ID}.api.sanity.io/v1/data/query/production?query=${query}`;
 
     const result = await fetch(url).then(res => res.json());
     const post = result.result[0];

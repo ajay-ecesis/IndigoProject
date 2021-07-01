@@ -45,9 +45,7 @@ const Logoslider = ({content})=>{
                                      <div key={i} className="col-md-4">
                                       <img src={urlFor(item.asset)} alt="" />
                                  </div>
-                                ))}
-                           
-                           
+                                ))}          
                             </Slider>
                         </div>
                     {/* </div> */}

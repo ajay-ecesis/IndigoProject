@@ -37,52 +37,52 @@ const Details = (props)=>{
         <title>Indigo | Product</title>
         </Head>
         <Navbar preview={props.preview} nav={props.nav} />
-         <section class="explore stories section trustBrand manufacturers brands product-detail">
-       <div class="container-fluid ">
-           <div class="row">
-               <div class="col-12">
-                <a class="backArrow" href="/"> <img  src="images/back-arrow.svg" alt="" /> </a>
+         <section className="explore stories section trustBrand manufacturers brands product-detail">
+       <div className="container-fluid ">
+           <div className="row">
+               <div className="col-12">
+                <a className="backArrow" href="/"> <img  src="images/back-arrow.svg" alt="" /> </a>
                </div>
-               <div class="col-md-12 section-head">
-                    <div class="left-side">
-                        <h2 class="heading">
+               <div className="col-md-12 section-head">
+                    <div className="left-side">
+                        <h2 className="heading">
                             Basic plan
                         </h2>
-                        <span class="heading__span txt-light">A Modern Tradition</span>
+                        <span className="heading__span txt-light">A Modern Tradition</span>
                     </div>
-                    <div id="productBtn" class="right-side">
+                    <div id="productBtn" className="right-side">
                         <span>More info</span>
-                        <i class="fa fa-chevron-down"></i>
+                        <i className="fa fa-chevron-down"></i>
                     </div>
                </div>
            </div>
-           <div class="row row--chnage">
-                <div class="col-9">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="thumb">
+           <div className="row row--chnage">
+                <div className="col-9">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="thumb">
                                 <img src="images/12.jpg" alt="" />
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="manufacturers-content">
-                                <div class="head">
-                                    <p class="price">$0/month</p>
-                                    <a class="btn btn-yellow" href="">Coming Soon</a>
+                        <div className="col-md-12">
+                            <div className="manufacturers-content">
+                                <div className="head">
+                                    <p className="price">$0/month</p>
+                                    <a className="btn btn-yellow" href="">Coming Soon</a>
                                 </div>
-                                <div class="footer-info">
-                                 <ul id="accordion" class="accordion pl-0">
-                                     <div role="contentinfo" class="l-footer02">
-                                         <div class="l-footer02-inner cf">
-                                             <nav class="l-footer02-nav">
-                                                    <ul class="l-footer02-nav-list">
-                                                        <li class="l-footer02-nav-item">
-                                                        <h2 class="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change"><span>Details</span><i class="fa fa-chevron-down"></i></h2>
-                                                        <div class="l-footer02-nav-panel js-dropdown-footer-menu" style={{display:'none'}}>
-                                                            <ul class="l-footer02-nav-panel-inner">
-                                                            <li class="l-footer02-nav-panel-item">
+                                <div className="footer-info">
+                                 <ul id="accordion" className="accordion pl-0">
+                                     <div role="contentinfo" className="l-footer02">
+                                         <div className="l-footer02-inner cf">
+                                             <nav className="l-footer02-nav">
+                                                    <ul className="l-footer02-nav-list">
+                                                        <li className="l-footer02-nav-item">
+                                                        <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change"><span>Details</span><i className="fa fa-chevron-down"></i></h2>
+                                                        <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display:'none'}}>
+                                                            <ul className="l-footer02-nav-panel-inner">
+                                                            <li className="l-footer02-nav-panel-item">
                                                                 <a href="#"><p>Create a free profile and get matched with information and connections.</p>
-                                                                <ul class="details">
+                                                                <ul className="details">
                                                                     <li>Access all free content</li>
                                                                     <li>5 connections per month</li>
                                                                     <li>Basic individual profile</li>
@@ -109,77 +109,77 @@ const Details = (props)=>{
        </div>
    </section>
         
-   <section class="section artisanalExperiences Plans bottom-blog-gallery-section product-detail">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 section-head text-center">
-                        <p class="browse_plan">Browse other plans</p>
-                        <div class="view__all">
+   <section className="section artisanalExperiences Plans bottom-blog-gallery-section product-detail">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-12 section-head text-center">
+                        <p className="browse_plan">Browse other plans</p>
+                        <div className="view__all">
                             <h6>View all</h6>
                         </div>
                     </div>
                 </div>
-                <div class="row Artisanal-slider_second Artisanal-slider_second_view_all">
+                <div className="row Artisanal-slider_second Artisanal-slider_second_view_all">
                     <Slider {...settings} >
-                    <div class="col-md-4">
-                        <div class="product">
+                    <div className="col-md-4">
+                        <div className="product">
                             <img src="images/15.jpg" alt="" />
-                        <div class="product-footer">
-                            <h5 class="title">Professional plan</h5>
+                        <div className="product-footer">
+                            <h5 className="title">Professional plan</h5>
                             <p>A modern take on tradition</p>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <p>$21</p>
                                 <img src="images/cart-checkout.png" alt="" />
                             </div>
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product">
+                    <div className="col-md-4">
+                        <div className="product">
                             <img src="images/14.jpg" alt="" />
-                        <div class="product-footer">
-                            <h5 class="title">Professional plan</h5>
+                        <div className="product-footer">
+                            <h5 className="title">Professional plan</h5>
                             <p>A modern take on tradition</p>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <p>$21</p>
                                 <img src="images/cart-checkout.png" alt="" />
                             </div>
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product">
+                    <div className="col-md-4">
+                        <div className="product">
                             <img src="images/15.jpg" alt="" />
-                        <div class="product-footer">
-                            <h5 class="title">Professional plan</h5>
+                        <div className="product-footer">
+                            <h5 className="title">Professional plan</h5>
                             <p>A modern take on tradition</p>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <p>$21</p>
                                 <img src="images/cart-checkout.png" alt="" />
                             </div>
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product">
+                    <div className="col-md-4">
+                        <div className="product">
                             <img src="images/14.jpg" alt="" />
-                        <div class="product-footer">
-                            <h5 class="title">Professional plan</h5>
+                        <div className="product-footer">
+                            <h5 className="title">Professional plan</h5>
                             <p>A modern take on tradition</p>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <p>$21</p>
                                 <img src="images/cart-checkout.png" alt="" />
                             </div>
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product">
+                    <div className="col-md-4">
+                        <div className="product">
                             <img src="images/15.jpg" alt="" />
-                        <div class="product-footer">
-                            <h5 class="title">Professional plan</h5>
+                        <div className="product-footer">
+                            <h5 className="title">Professional plan</h5>
                             <p>A modern take on tradition</p>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <p>$21</p>
                                 <img src="/images/cart-checkout.png" alt="" />
                             </div>

@@ -37,6 +37,7 @@ const manufacturerDetails = () => {
             }
             else {
                 setSupplier(data);
+                console.log(data)
             } 
             setLoading(false);
 
@@ -52,6 +53,26 @@ const manufacturerDetails = () => {
             loadManufacturer(id)
         }
     },[id])
+
+    const viewCertifications=(data,event)=>{
+        event.preventDefault();
+        const newtab = window.open();
+        newtab.document.body.innerHTML = `<object data=${data} width=${window.screen.availWidth} height=${window.screen.availHeight}  />`
+        console.log(data)
+    }
+    const checkmimetype = (data)=>{
+        const mime = data.split(";")[0];
+        const positive = ['data:image/jpeg','data:image/png','data:application/pdf']
+        for(let i in positive){
+            if(mime ==positive[i]){
+                console.log("this is image or pdf")
+                return true
+            }
+        } 
+        
+
+    }
+
 
     const showbrandDetails = () => (
         <div className="card mb-4 bord-line">
@@ -93,8 +114,12 @@ const manufacturerDetails = () => {
                         )}
                         <hr/>
                         <h5>Certification</h5>
-                        <img src={supplier.certifications} alt="certification" width="20%" height="auto" />
-                        
+                        {/* <img src={supplier.certifications} alt="certification" width="20%" height="auto" /> */}
+                        {checkmimetype(supplier.certifications) && <object data={`${supplier.certifications}`} width="20%" height="auto" ></object>}
+                        <div>
+                        <a href={`${supplier.certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
+                         {checkmimetype(supplier.certifications) &&<a href=""  onClick={(event)=>viewCertifications(supplier.certifications,event)}>View Document</a>}
+                         </div>
                     </div>
                     
                 </div>

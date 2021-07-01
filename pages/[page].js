@@ -80,14 +80,37 @@ const DynamicPage = (props)=>{
                 break;
             case 'components':
               return(
-                <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
+                <>
+                <section key={i} className="artisnal-details-section">
+        <div className="container-fluid">
+            <div className="row wrapper">
+                <div className="col-md-6">
+                    <div className="left-side">
+                        <a className="backArrow" href="/artisanal"> <img src="images/back-arrow.svg" alt="" /> </a>
+                        <img src={urlFor(content?.mainimage)} alt="" />
+                        <div className="location">
+                            <p className="title">{content?.imagetext}</p>
+                            {/* <p class="place">New Delhi, India</p> */}
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="right-side">
+                    <BlockContent blocks={content?.description} />
+                        <a href="#" className="btn btn-yellow">Coming soon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                {/* <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
                 <div className="container-fluid ">
                    
                   
                     <div className="row row--chnage">
                         <div className="col-md-6">
                             <div className="thumb">
-                                <Image src={urlFor(content?.mainimage)} alt="" />
+                                <img src={urlFor(content?.mainimage)} alt="" />
                             </div>
                           {content.imagetext && <div className="content">
                         <h2 className="heading-inner">{content?.imagetext}</h2> 
@@ -98,7 +121,8 @@ const DynamicPage = (props)=>{
                         </div>}
                       </div>
                     </div>
-              </section>
+              </section> */}
+              </>
               )
               break;
 
@@ -114,14 +138,39 @@ const DynamicPage = (props)=>{
             break;
           case 'slider':
             return(
-              <section key={i} className="section aboutus-slider">
-              <div className="container-fluid about">
+              <>
+              <section className="section artisanalExperiences Plans bottom-blog-gallery-section artisnal-details_gallery_new">
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-md-12 section-head text-center">
+                    <p className="txt-light">Featured</p>
+                    <div className="view__all">
+                        <h6>View all</h6>
+                    </div>
+                </div>
+            </div>
+            <div className="row Artisanal-slider_second artisnal-details_gallery_new_slider">
+            <Slider {...settings}>
+                    {content.slideritem && content.slideritem.map((item,i)=>(
+                      <div key={i} className=" col-md-4">
+                      {item.image && <img src={urlFor(item.image)} alt="" /> }  
+                      {item.description && <BlockContent blocks={item.description} />}               
+                  </div>
+                    ))}
+                      </Slider>
                
+            </div>
+        </div>
+    </section>  
+              {/* <section key={i} className="section aboutus-slider">
+                
+              <div className="container-fluid about">
+            
                   <div  className="row Artisanal-slider">
                       <Slider {...settings}>
                     {content.slideritem && content.slideritem.map((item,i)=>(
                       <div key={i} className=" col-md-4">
-                      {item.image && <Image src={urlFor(item.image)} alt="" /> }  
+                      {item.image && <img src={urlFor(item.image)} alt="" /> }  
                       {item.description && <BlockContent blocks={item.description} />}               
                   </div>
                     ))}
@@ -129,7 +178,8 @@ const DynamicPage = (props)=>{
                     
                   </div>
               </div>
-          </section>
+          </section> */}
+          </>
             )
         }
     } 
@@ -145,6 +195,7 @@ const DynamicPage = (props)=>{
             {data[0]?.content?.map((content,i)=>(
                 <div>
                      {getComponent(content,i)}
+                     <div style={{marginTop:'4rem'}}></div>
                 </div>
                
             ))}

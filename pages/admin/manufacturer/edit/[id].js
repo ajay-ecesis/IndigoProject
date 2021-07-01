@@ -207,6 +207,25 @@ const EditManufacturer = () => {
         }
     }
 
+    const viewCertifications=(data,event)=>{
+        event.preventDefault();
+        const newtab = window.open();
+        newtab.document.body.innerHTML = `<object data=${data} width=${window.screen.availWidth} height=${window.screen.availHeight}  />`
+        console.log(data)
+    }
+    const checkmimetype = (data)=>{
+        const mime = data.split(";")[0];
+        const positive = ['data:image/jpeg','data:image/png','data:application/pdf']
+        for(let i in positive){
+            if(mime ==positive[i]){
+                console.log("this is image or pdf")
+                return true
+            }
+        } 
+        
+
+    }
+
     const showUpdateForm = () => (
 
         <form onSubmit={clickSubmit} enctype="multipart/form-data">
@@ -296,7 +315,14 @@ const EditManufacturer = () => {
                         <input onChange={handleChangeFile('multiphotos')} multiple type="file" accept="image/*" className="form-control"   />
                     </div>
 
-                    <img src={certifications} alt="certification" width="15%" height="auto" />
+                    {/* <img src={certifications} alt="certification" width="15%" height="auto" /> */}
+                    {/* <button onClick={(event)=>viewCertifications(certifications,event)}>View certifications</button> */}
+                   {checkmimetype(certifications) && <object data={`${certifications}`} width="200" height="200" ></object>}
+                    <div>
+                    <a href={`${certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
+                    {checkmimetype(certifications) &&<a href=""  onClick={(event)=>viewCertifications(certifications,event)}>View Document</a>}
+                    </div>
+                    
 
                     <div className="form-group">
                         <label className="text-muted">Upload new Certification<span style={{color:"red"}}> *</span></label>

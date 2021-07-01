@@ -8,38 +8,20 @@ import Footer from "../pagecomponents/Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {useAppContext} from '../context/loginmodal'
 
 const Features = ({content})=>{
-    const settings = {
-        infinite: true,
-        autoplay:true,
-        speed: 500,
-        slidesToShow: 4,
-        arrows:false,
-        slidesToScroll: 1,
-        responsive: [
-           
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
-            }
-          ]
-      };
+   
     
     return(
-        <div  className="row gallery gallery-slider2">
-            <Slider {...settings}>
+        <div className="row gallery">
+            {console.log("from fatures",content)}
             {content?.map((item,i)=>(
                  <div key={i} className=" col-md-3">
-                 <img src={urlFor(item)} alt="" />
-                 <span >Browse</span>
+                 <img src={urlFor(item.image)} alt="" />
+                 <span><BlockContent blocks={item.description} /></span>
              </div>
             ))}   
-            </Slider>           
+                  
             </div>
     )
 }
@@ -53,8 +35,6 @@ const Explore = (props)=>{
       enabled: props.preview,
     })
 
-    const {regBrand,setregBrand,regmanufacture,setregmanufacture}  = useAppContext()
-
     return(
         <>
             <Head>
@@ -63,58 +43,67 @@ const Explore = (props)=>{
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Indigo | Explore</title>
             </Head>
-            <Navbar preview={props.preview} nav={props.nav}  />
+
+            <div className="main_banner_new about_us_banner expore_details_banner">
+                <Navbar preview={props.preview} nav={props.nav}  />
+            </div>
+            
             <div id="main">
-                <section className="explore explore2 section trustBrand manufacturers brands">
+                <section className="explore section trustBrand trustBrand_new_change manufacturers ">
                     <div className="container-fluid ">
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-12 section-head text-center">
-                                {data[0].heading1 && <span className="heading__span">{data[0].heading1}</span>}
-                                {data[0].heading2 && <h2 className="heading">
-                                    {data[0].heading2}
+                                {data[0]?.heading1 && <span className="heading__span">{data[0].heading1}</span>}
+                                {data[0]?.heading2 && <h2 className="heading">
+                                    {data[0]?.heading2}
                                 </h2>}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row row--chnage">
-                            <div className="col-md-6">
+
+                            <div className="col-md-12">
                                 <div className="thumb">
-                                    {data[0].brands && <img src={urlFor(data[0].brands.image)} alt="" />}
+                                    {data[0]?.manufactures && <img src={urlFor(data[0].manufactures.image)} alt="" />}
                                 </div>
-                            { data[0].brands && <div className="content">
-                                    <BlockContent blocks={data[0].brands.description} />
+                                { data[0]?.manufactures && <div className="content">
+                                    <BlockContent blocks={data[0]?.manufactures.description} />
                                 </div>}
                             </div>
-                            <div className="col-md-6 manufacturers-content">
-                                {data[0].branddescription && <p className="info">{data[0].branddescription}</p>}
-                                {data[0].featuresbrand && <><div className="title">Features</div>
-                            <Features content={data[0].featuresbrand} /></>}
+
+                            <div className="col-md-12 manufacturers-content">
+                                {data[0]?.manufacturedescription && <p className="info">{data[0].manufacturedescription} </p>}
+                                {data[0]?.featuresmanufacturer && <> <div className="title">Features</div>
+                                <Features content={data[0]?.featuresmanufacturer} /></>}
+                                
                                 <div className="bottom-btn">
-                                    <a onClick={() => setregBrand("active")} className="btn btn-yellow" >Register as brand</a>
+                                    <a className="btn btn-yellow" href="/manufactureregister">Register as manufacturer</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="explore section trustBrand manufacturers">
+                <section className="explore explore2 section trustBrand manufacturers trustBrand_new_change brands">
                     <div className="container-fluid">
                         <div className="row row--chnage">
-                            <div className="col-md-6">
+
+                            <div className="col-md-12">
                                 <div className="thumb">
-                                    {data[0].manufactures && <img src={urlFor(data[0].manufactures.image)} alt="" />}
+                                    {data[0]?.brands && <img src={urlFor(data[0].brands.image)} alt="" />}
                                 </div>
-                                {data[0].manufactures && <div className="content">
-                                    <BlockContent blocks={data[0].manufactures.description} />
+                                { data[0]?.brands && <div className="content">
+                                    <BlockContent blocks={data[0]?.brands.description} />
                                 </div>}
                             </div>
-                            <div className="col-md-6 manufacturers-content">
-                                {data[0].manufacturedescription && <p className="info">{data[0].manufacturedescription} </p>}
-                                {data[0].featuresmanufacturer && <> <div className="title">Features</div>
-                                <Features content={data[0].featuresmanufacturer} /></>}
+
+                            <div className="col-md-12 manufacturers-content">
+                                {data[0]?.branddescription && <p className="info">{data[0].branddescription}</p>}
+                                {data[0]?.featuresbrand && <><div className="title">Features</div>
+                                    <Features content={data[0]?.featuresbrand} /></>} 
                                 <div className="bottom-btn">
-                                    <a onClick={() => setregmanufacture("active")} className="btn btn-yellow">Register as manufacturer</a>
+                                    <a className="btn btn-yellow brand_open" href="/brandregister">Register as brand</a>
                                 </div>
-                            </div>
+                            </div>          
                         </div>
                     </div>
                 </section>

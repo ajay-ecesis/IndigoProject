@@ -1,67 +1,53 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import { urlFor } from "../utils/tools"
 import BlockContent from '@sanity/block-content-to-react';
 
 const Artisanal = ({content})=>{
-    const settings = {
-        dots: true,
-        infinite: true,
-        autoplay:true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              }
-            }
-          ]
-      };
+   
+  const overrides = {
+    h2: props => <h2 className="heading" {...props} />,
+  }
+  
+  const serializers = {
+    types: {
+      block: props =>
+        // Check if we have an override for the “style”
+        overrides[props.node.style] 
+          // if so, call the function and pass in the children, ignoring
+          // the other unnecessary props
+          ? overrides[props.node.style]({ children: props.children })
+  
+          // otherwise, fallback to the provided default with all props
+          : BlockContent.defaultSerializers.types.block(props),
+    }
+  }
+    
     return(
         <>
-        <section className="section artisanalExperiences">
-                    <div className="container-fluid">
+        <section className="section features artisanalExperiences">
+            <div className="container-fluid ">
+                <div className="row">
+                    <div className="wrapper col-12">
                         <div className="row">
-                            <div className="col-md-12 section-head text-center">
-                                <h2 className="heading">
-                                    Artisanal
-                                </h2>
+                            <div className="col-md-6">
+                                <div className="section-head text-center">
+                                        {content?.heading && <BlockContent blocks={content?.heading} serializers={serializers} />}
+                                </div>
+                                <div className="content">
+                                {content?.subheading &&<p className="title"> <BlockContent blocks={content?.subheading} serializers={serializers} /></p>}
+                                    
+                                    <p className="sub_title">Designer Artisan Connection</p>
+                                    <a href="/artisanal" className="btn btn-hover btn-black">Explore more</a>
+                                </div>
                             </div>
-                        </div>
-                        <div className="row Artisanal-slider">
-                            <Slider {...settings}>
-                            {content.slider.map((item,i)=>(
-                                <div key={i} className=" col-md-4">
-                                <img src={urlFor(item.image)} alt="" />
-                                <div className="title"><BlockContent blocks={item.description} /></div>
-                                <button  className="btn btn-light-black-sm"><a style={{color:'white'}} href={item.link}>Explore more</a></button>
+                            <div className="col-md-6">
+                                <img src="images/artisnal2.jpg" alt="" />
                             </div>
-                            ))}
-                          
-                            
-                            </Slider>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
         </>
     )
 }
