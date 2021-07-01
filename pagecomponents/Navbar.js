@@ -25,7 +25,7 @@ const Navbar = (props) => {
         return window.location.replace("/");
     }
 
-    const handleRedirectToRegister = (id) => {
+   /*  const handleRedirectToRegister = (id) => {
         if(id === 1){ // brand Register
             return window.location.replace("/brandregister");
         }
@@ -36,7 +36,7 @@ const Navbar = (props) => {
             return window.location.replace("/signin");
         }
         return;
-    }
+    } */
 
     return(
         <>
@@ -74,15 +74,11 @@ const Navbar = (props) => {
                                         </span>
                                     ))}
                                     {user === null && 
-                                        <li className="bottom-buttons"><a href="#">Sign up</a>
-                                            <div className="both-buttons">
-                                                <button onClick={() => handleRedirectToRegister(1)} className="nav-btn Brand-clickble3 brand_open">
-                                                Brand
-                                                </button>
-                                                <button onClick={() => handleRedirectToRegister(2)} className="nav-btn manufactur_open">
-                                                    Manufacturer
-                                                </button>
-                                            </div>
+                                        <li className="bottom-buttons"><p>Sign up</p>
+                                            <p>
+                                                <a href="/brandregister">Brand</a>
+                                                <a href="/manufactureregister">Manufacturer</a>
+                                            </p>
                                         </li>
                                     }
 

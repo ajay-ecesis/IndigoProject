@@ -554,7 +554,7 @@ export const Post = ({data, title, image, postId, blogurl, category, nav, previe
                 <Navbar nav={nav} />
                 <div className="banner ">
                     <div id="bannerWrapper" className="banner-wrapper">
-                    <div className="bg-img_about">
+                    <div className="bg-img_about bg-img_banner">
                         <img src={urlFor(image)} alt="" />
                     </div>
                         <div className="container-fluid">

@@ -111,7 +111,7 @@ const About = (props) => {
 
               <div className="banner ">
                 <div id="bannerWrapper" className="banner-wrapper">
-                  <div className="bg-img_about">
+                  <div className="bg-img_banner bg-img_about">
                     <img src={urlFor(data[0]?.mainimage)} alt="" />
                   </div>
                     <div className="container-fluid">

@@ -18,7 +18,7 @@ const Artisanal = (props)=>{
         <>
             <Head>
                 <meta charset="UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Indigo | Artisanal</title>
             </Head>
@@ -32,7 +32,7 @@ const Artisanal = (props)=>{
                         <div>
                             <a className="backArrow" href={props.prevUrl}> <img src="images/back-arrow.svg" alt="" /> </a>
                         </div>
-                    <div className="bg-img_about">
+                    <div className="bg-img_about bg-img_banner">
                         <img src="images/aristanal_new.png" alt="" />
                     </div>
                         <div className="container-fluid">
@@ -48,7 +48,7 @@ const Artisanal = (props)=>{
             </div>
 
         
-            <section className="section artisanal__experiences">
+            <section className="section artisanal__experiences artisanal__experiences_new">
                 
                 <div className="row">
                     {data[0]?.contents?.map((content,i)=>(

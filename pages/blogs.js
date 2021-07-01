@@ -510,7 +510,7 @@ accessibility: false,
                 <Navbar nav={nav} />
                 <div className="banner ">
                     <div id="bannerWrapper" className="banner-wrapper">
-                    <div className="bg-img_about">
+                    <div className="bg-img_about bg-img_banner">
                         <img src="images/stories_new.png" alt="" />
                     </div>
                         <div className="container-fluid">
