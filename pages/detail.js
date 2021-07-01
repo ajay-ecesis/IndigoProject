@@ -116,7 +116,7 @@ const Detail = (props)=>{
                 {/* <!-- banner --> */}
                 <div className="banner ">
                     <div id="bannerWrapper" className="banner-wrapper">
-                      <div className="bg-img_about">
+                      <div className="bg-img_about bg-img_banner">
                         <img src="images/sustailabilty_new.png" alt="" />
                       </div>
                         <div className="container-fluid">
