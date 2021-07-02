@@ -21,7 +21,7 @@ const Sustainability = ({content})=>{
       }
     return(
         <>
-         <section className="section Sustainability">
+         <section className="section Sustainability new">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12 wrapper">

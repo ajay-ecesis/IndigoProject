@@ -10,7 +10,6 @@ import Footer from '../pagecomponents/Footer';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image from 'next/image'
 
 const DynamicPage = (props)=>{
     const router = useRouter();
@@ -24,24 +23,60 @@ const DynamicPage = (props)=>{
       enabled: props.preview,
     })
 
-  
+    const overrides = {
+      h5: props => <h5 className="title" {...props} />,
+      normal:props=><p className="disc" {...props} />
+    }
+    
+    const serializers = {
+      types: {
+        block: props =>
+          // Check if we have an override for the “style”
+          overrides[props.node.style] 
+            // if so, call the function and pass in the children, ignoring
+            // the other unnecessary props
+            ? overrides[props.node.style]({ children: props.children })
+    
+            // otherwise, fallback to the provided default with all props
+            : BlockContent.defaultSerializers.types.block(props),
+      }
+    }
     const settings = {
-        infinite: true,
-        autoplay:true,
-        speed: 500,
-        slidesToShow: 4,
-        arrows:false,
-        slidesToScroll: 1,
-        responsive: [
-           
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-              }
-            }
-          ]
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      cssEase: 'linear',
+   accessibility: false,
+      infinite: true,
+      dots: false,
+      arrows: false,
+      responsive: [
+        {
+          breakpoint: 1500,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 2,
+            infinite: true,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+       centerPadding: '20px'
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          }
+        }
+      ]
       };
 
    
@@ -81,47 +116,32 @@ const DynamicPage = (props)=>{
             case 'components':
               return(
                 <>
-                <section key={i} className="artisnal-details-section">
+                    <section key={i} className="artisnal-details-section">
         <div className="container-fluid">
             <div className="row wrapper">
                 <div className="col-md-6">
                     <div className="left-side">
-                        <a className="backArrow" href="/artisanal"> <img src="images/back-arrow.svg" alt="" /> </a>
+                        <a className="backArrow" href="/artisanal"> <img src="/images/back-arrow.svg" alt="" /> </a>
                         <img src={urlFor(content?.mainimage)} alt="" />
                         <div className="location">
-                            <p className="title">{content?.imagetext}</p>
-                            {/* <p class="place">New Delhi, India</p> */}
+                        <p className="title">{content?.imagetext}</p>
+                            {/* <p class="title">Artisans of Fashion</p>
+                            <p class="place">New Delhi, India</p> */}
+                            <p className="place">{content?.imagesubtext}</p> 
                         </div>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="right-side">
-                    <BlockContent blocks={content?.description} />
+                    <BlockContent blocks={content?.description} serializers={serializers} />
                         <a href="#" className="btn btn-yellow">Coming soon</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-                {/* <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
-                <div className="container-fluid ">
-                   
-                  
-                    <div className="row row--chnage">
-                        <div className="col-md-6">
-                            <div className="thumb">
-                                <img src={urlFor(content?.mainimage)} alt="" />
-                            </div>
-                          {content.imagetext && <div className="content">
-                        <h2 className="heading-inner">{content?.imagetext}</h2> 
-                          </div>}
-                        </div>
-                       {content?.description &&  <div className="col-md-6 manufacturers-content">
-                        <BlockContent blocks={content?.description} />
-                        </div>}
-                      </div>
-                    </div>
-              </section> */}
+       
+             
               </>
               )
               break;
@@ -130,7 +150,7 @@ const DynamicPage = (props)=>{
             return(
               <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
               <div className="container-fluid "> 
-                        <Image className="dynamic_image" src={urlFor(content?.asset)} />
+                        <img className="dynamic_image" src={urlFor(content?.asset)} />
                   </div>
             </section>
             
@@ -162,23 +182,7 @@ const DynamicPage = (props)=>{
             </div>
         </div>
     </section>  
-              {/* <section key={i} className="section aboutus-slider">
-                
-              <div className="container-fluid about">
-            
-                  <div  className="row Artisanal-slider">
-                      <Slider {...settings}>
-                    {content.slideritem && content.slideritem.map((item,i)=>(
-                      <div key={i} className=" col-md-4">
-                      {item.image && <img src={urlFor(item.image)} alt="" /> }  
-                      {item.description && <BlockContent blocks={item.description} />}               
-                  </div>
-                    ))}
-                      </Slider>
-                    
-                  </div>
-              </div>
-          </section> */}
+          
           </>
             )
         }

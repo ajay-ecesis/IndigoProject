@@ -5,6 +5,7 @@ import {toast} from 'react-toastify'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Footer from '../pagecomponents/Footer';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 
 const brandregister = (props) => {

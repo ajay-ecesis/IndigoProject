@@ -1,13 +1,15 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
+//import PasswordRoute from './PasswordRoute';
 
 const Preloader = () => (
     <div className="preloader">
         <div id="mdiv">
             <div className="cdiv">
                 <div className="rot"></div>
-                <h4 className="lh">INDIGO</h4>
+                    <h4 className="lh"><div className="circle pulse blue">
+                    <img className="loader-img" src="/images/new_logo.svg" alt="" />
+                </div></h4>
             </div>
         </div>
     </div>
@@ -17,9 +19,6 @@ const ManufacturerRoute = ({children}) => {
 
     // state
     const [ok, setOk] = useState(false);
-
-    // router
-    const router = useRouter();
 
     useEffect(() => {
         fetchUser()
@@ -35,12 +34,12 @@ const ManufacturerRoute = ({children}) => {
             }else {
                 const {data} = await axios.get('/api/logout');
                 toast(data.message);
-                router.push('/');
+                return window.location.replace("/signin");
             }  
         } catch(err){
             console.log(err);
             setOk(false);
-            router.push('/')
+            return window.location.replace("/signin");
         }
     };
 

@@ -12,49 +12,33 @@ import "slick-carousel/slick/slick-theme.css";
 
 const About = (props) => {
 
-    /* const settings = {
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      speed:1500,
-      dots: false,
-      arrows: false,
-      responsive: [
-        {
-          breakpoint: 1500,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 2,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            centerPadding: '20px'
-          }
-        },
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    }; */
+  const overrides = {
+    normal: props => <p className="disc" {...props} />,
+    h5:props =><h5 className="title" {...props} />,
+  }
+  
+  const serializers = {
+    types: {
+      block: props =>
+        // Check if we have an override for the “style”
+        overrides[props.node.style] 
+          // if so, call the function and pass in the children, ignoring
+          // the other unnecessary props
+          ? overrides[props.node.style]({ children: props.children })
+  
+          // otherwise, fallback to the provided default with all props
+          : BlockContent.defaultSerializers.types.block(props),
+    }
+  }
 
-    const  postQuery= `*[_type=="siteabout"]`
+  const  postQuery= `*[_type=="siteabout"]`
 
-    const {data} = usePreviewSubscription(postQuery, {
+  const {data} = usePreviewSubscription(postQuery, {
       initialData: props.data,
       enabled: props.preview,
-    })
+  })
     
-    const mapSection1 = (item,i) => {
+  const mapSection1 = (item,i) => {
             return(
               
               <section key={i} className="section trustBrand manufacturers Sustainability brands about about1">
@@ -63,11 +47,11 @@ const About = (props) => {
                     <div className="row row--chnage">
                       {item.description &&  
                         <div className="col-md-6 manufacturers-content">
-                            <BlockContent blocks={item.description} />
+                            <BlockContent blocks={item.description} serializers={serializers} />
                         </div>
                       }
                       <div className="col-md-6">
-                            <div className="thumb">
+                            <div className="thumb hideMobile">
                                 <img src={urlFor(item.mainimage)} alt="" />
                             </div>
                       </div>
@@ -75,9 +59,9 @@ const About = (props) => {
                 </div>
               </section> 
             )
-    }
+  }
 
-    const mapSection2= (item,i) => (
+  const mapSection2= (item,i) => (
         <section key={i} className="section trustBrand manufacturers Sustainability brands about about2">
           <div className="container-fluid ">
               <div className="row row--chnage">
@@ -90,14 +74,14 @@ const About = (props) => {
                         </div>}
                   </div>
                   {item.description && <div className="col-md-6 manufacturers-content">
-                  <BlockContent blocks={item.description} /> 
+                  <BlockContent blocks={item.description} serializers={serializers} /> 
                   </div>}
               </div>
           </div>
       </section>
-    )
+  )
 
-    return(
+  return(
         <>
           <Head>
             <meta charSet="UTF-8" />
@@ -106,26 +90,28 @@ const About = (props) => {
             <title>Indigo | About Us</title>
           </Head>
 
-          <div className="main_banner_new about_us_banner">
+          <div className="main_banner_new about_us_banner new about-changed">
               <Navbar preview={props.preview} nav={props.nav} />
 
               <div className="banner ">
-                <div id="bannerWrapper" className="banner-wrapper">
-                  <div className="bg-img_banner bg-img_about">
-                    <img src={urlFor(data[0]?.mainimage)} alt="" />
+                  <div>
+                    <a className="backArrow" href={props.prevUrl}> <img src="/images/back-arrow.svg" alt="" /> </a>
                   </div>
-                    <div className="container-fluid">
-                        <div className="banner-inner row">
-                            <div className="left-side col-md-6">
-                                {data[0]?.heading1 && <h6>{data[0].heading1}</h6>}
-                                {data[0]?.heading2 && <h1>{data[0]?.heading2}</h1>}
-                                {/* <h6>About Us</h6>
-                                <h1>We Are <br/> Project Indigo</h1> */}
-                            </div>
-                        </div>
+                  <div id="bannerWrapper" className="banner-wrapper">
+                    
+                    <div className="bg-img_banner bg-img_about">
+                      <img src={urlFor(data[0]?.mainimage)} alt="" />
                     </div>
-                </div>
-            </div>
+                      <div className="container-fluid">
+                          <div className="banner-inner row">
+                              <div className="left-side col-md-6">
+                                  {data[0]?.heading1 && <h6>{data[0].heading1}</h6>}
+                                  {data[0]?.heading2 && <h1>{data[0]?.heading2}</h1>}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
           </div>
 
@@ -149,8 +135,8 @@ const About = (props) => {
           </section>
   
       <Footer />
-</>
-    )
+    </>
+  )
 }
 
 
@@ -161,6 +147,10 @@ export async function getServerSideProps(context) {
   // console.log("the context",context)
   let data = null;
   let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
+  let prevUrl = "/";
+    if(context.req.headers.referer){
+        prevUrl = context.req.headers.referer
+    }
   let preview = context.preview ? context.preview : null
   if(context.preview){
      
@@ -177,7 +167,7 @@ if (!data) {
 }
 
   return {
-    props: { data,preview,nav }, // will be passed to the page component as props
+    props: { data,preview,nav, prevUrl }, // will be passed to the page component as props
   }
 }
 

@@ -12,6 +12,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Context } from '../context';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const blogs = ({posts,nav,pageurl}) => {
 
@@ -235,7 +236,7 @@ accessibility: false,
 
     const showSection1 = () => {
         return (
-            <section className="explore stories section trustBrand manufacturers brands">
+            <section className="explore stories section trustBrand manufacturers brands change">
                 <div className="container-fluid ">
                     <div className="row">
                         <div className="col-md-12">
@@ -245,7 +246,7 @@ accessibility: false,
                     <div className="row row--chnage">
                         <div className="col-md-6">
                             <div className="thumb">
-                                <img src={mappedPosts.length && mappedPosts[0].mainImage} alt="" />
+                                <img className="first_img" src={mappedPosts.length && mappedPosts[0].mainImage} alt="" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -439,14 +440,14 @@ accessibility: false,
     }
 
     const showTopBlogSection = () => (
-        <section className="explore stories section trustBrand manufacturers brands">
+        <section className="explore stories section trustBrand manufacturers brands new">
             <div className="container-fluid ">
                 <div className="all_manu_brand_wrapper">
 
                     <div className="row row--chnage">
                         <div className="col-md-6">
                             <div className="thumb">
-                                <img src={mappedPosts[0].mainImage && mappedPosts[0].mainImage } alt="" />
+                                <img className="imgae_changed" src={mappedPosts[0].mainImage && mappedPosts[0].mainImage } alt="" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -506,7 +507,7 @@ accessibility: false,
                 <title>Indigo | Stories</title>
             </Head>
 
-            <div className="main_banner_new about_us_banner blog_banner">
+            <div className="main_banner_new about_us_banner blog_banner new">
                 <Navbar nav={nav} />
                 <div className="banner ">
                     <div id="bannerWrapper" className="banner-wrapper">
@@ -515,17 +516,21 @@ accessibility: false,
                     </div>
                         <div className="container-fluid">
                             <div className="banner-inner row">
-                                <div className="left-side col-md-6">
-                                    <h6>Blogs</h6>
-                                    <h1>We Are <br/>Project Indigo</h1>
+                                <div className="left-side col-md-6 on-desktop">
+                                    <h6>Fibre</h6>
+                                    <h1>Zero virgin</h1>
                                 </div>
+                                <div className="left-side col-md-6 on-mobile">
+                                    <h6>Explore our</h6>
+                                    <h1>Stories</h1>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="blog_new" className="blog">
+            <div id="blog_new" className="blog changed_new_blog">
                 {mappedPosts.length && showTopBlogSection()}
                 {mappedPosts.length && showSection1()}
                 {mappedPosts.length >=2 && showSection2()}

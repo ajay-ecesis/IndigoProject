@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import { usePreviewSubscription } from '../utils/previewConfig';
 import {Context} from '../context'
 
@@ -14,10 +14,12 @@ const Navbar = (props) => {
     const {state, dispatch} = useContext(Context);
     const { user } = state;
 
-    // Register Manufacturer functioality END
+    useEffect(() => {
+        checkToken(); 
+    },[])
 
-     // logout function
-     const logout = async() => {
+    // logout function
+    const logout = async() => {
         dispatch({type: "LOGOUT"});
         const {data} = await axios.get('/api/logout');
         toast(data.message);
@@ -25,18 +27,33 @@ const Navbar = (props) => {
         return window.location.replace("/");
     }
 
-   /*  const handleRedirectToRegister = (id) => {
-        if(id === 1){ // brand Register
-            return window.location.replace("/brandregister");
+    // Check Token for Password Page
+    const checkToken = () => {
+        try {
+          let data = JSON.parse(window.localStorage.getItem("pwd"))
+         
+          if(data){     
+            let sdecode = decodeURIComponent(escape(window.atob(data)));
+              if(sdecode === process.env.INDIGO_PWD){
+                  return;
+                /* setSuccess(true); */
+              }
+              else {
+                window.localStorage.removeItem('pwd');
+                return window.location.replace("/password");
+              }  
+          }
+          else {
+            window.localStorage.removeItem('pwd');
+            return window.location.replace("/password");
+          }
+            
+        } catch (error) {
+            window.localStorage.removeItem('pwd');
+            return window.location.replace("/password");
         }
-        else if(id === 2){
-            return window.location.replace("/manufactureregister");
-        }
-        else if(id === 3){
-            return window.location.replace("/signin");
-        }
-        return;
-    } */
+    }
+
 
     return(
         <>

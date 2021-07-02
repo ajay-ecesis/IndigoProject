@@ -3,11 +3,9 @@ import Head from "next/head";
 import BlockContent from '@sanity/block-content-to-react';
 import { client,clientRead } from "../utils/sanity";
 import { usePreviewSubscription } from "../utils/previewConfig";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Navbar from "../pagecomponents/Navbar";
 import Footer from "../pagecomponents/Footer";
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const Detail = (props)=>{
 
@@ -18,50 +16,33 @@ const Detail = (props)=>{
     enabled: props.preview,
   })
 
-  /* const settings = {
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    speed:1500,
-    dots: false,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 1500,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-      centerPadding: '20px'
-        }
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
- */
+  const overrides = {
+    h5: props => <h5 className="title" {...props} />,
+    normal:props=><p className="disc" {...props} />
+  }
+  
+  const serializers = {
+    types: {
+      block: props =>
+        // Check if we have an override for the “style”
+        overrides[props.node.style] 
+          // if so, call the function and pass in the children, ignoring
+          // the other unnecessary props
+          ? overrides[props.node.style]({ children: props.children })
+  
+          // otherwise, fallback to the provided default with all props
+          : BlockContent.defaultSerializers.types.block(props),
+    }
+  }
   const mapSection1 = (item,i) => {
     return(
-          <section key={i} className="section trustBrand manufacturers Sustainability brands about about1">
+          <section key={i} className="section trustBrand manufacturers Sustainability brands about about1 new">
               <div className="container-fluid ">
                               
                   <div className="row row--chnage">
                       
                       <div className="col-md-6 manufacturers-content">
-                          <BlockContent blocks={item.description} />
+                          <BlockContent blocks={item.description} serializers={serializers} />
                       </div>
 
                       <div className="col-md-6">
@@ -93,7 +74,7 @@ const Detail = (props)=>{
                         </div>}
                   </div>
                   <div className="col-md-6 manufacturers-content">
-                      <BlockContent blocks={item.description} /> 
+                      <BlockContent blocks={item.description} serializers={serializers} /> 
                   </div>
               </div>
           </div>

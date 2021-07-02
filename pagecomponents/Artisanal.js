@@ -36,7 +36,7 @@ const Artisanal = ({content})=>{
                                 <div className="content">
                                 {content?.subheading &&<p className="title"> <BlockContent blocks={content?.subheading} serializers={serializers} /></p>}
                                     
-                                    <p className="sub_title">Designer Artisan Connection</p>
+                                    <span><p className="sub_title">Designer Artisan Connection</p></span>
                                     <a href="/artisanal" className="btn btn-hover btn-black">Explore more</a>
                                 </div>
                             </div>

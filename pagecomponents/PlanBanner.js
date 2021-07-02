@@ -6,6 +6,7 @@ const PlanBanner = ({content}) => {
 
     const overrides = {
         h2: props => <h2 className="heading-inner" {...props} />,
+        normal:props =><p className="disc" {...props} />
       }
       
       const serializers = {

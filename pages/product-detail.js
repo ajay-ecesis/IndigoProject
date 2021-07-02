@@ -8,106 +8,122 @@ import { usePreviewSubscription } from "../utils/previewConfig";
 import { urlFor } from "../utils/tools";
 import BlockContent from '@sanity/block-content-to-react';
 import Footer from "../pagecomponents/Footer";
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const Details = (props)=>{
     const settings = {
-        infinite: true,
-        autoplay:true,
-        speed: 500,
         slidesToShow: 3,
-        arrows:false,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        cssEase: 'linear',
+        accessibility: false,
+        infinite: true,
+        dots: false,
+        arrows: false,
         responsive: [
-           
             {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 3,
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2,
                 slidesToScroll: 1,
-              }
+            centerPadding: '20px'
             }
-          ]
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                centerPadding: '5px'
+            }
+            }
+        ]
       };
     return(
         <>
-        <Head>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Indigo | Product</title>
-        </Head>
-        <Navbar preview={props.preview} nav={props.nav} />
-         <section className="explore stories section trustBrand manufacturers brands product-detail">
-       <div className="container-fluid ">
-           <div className="row">
-               <div className="col-12">
-                <a className="backArrow" href="/"> <img  src="images/back-arrow.svg" alt="" /> </a>
-               </div>
-               <div className="col-md-12 section-head">
-                    <div className="left-side">
-                        <h2 className="heading">
-                            Basic plan
-                        </h2>
-                        <span className="heading__span txt-light">A Modern Tradition</span>
-                    </div>
-                    <div id="productBtn" className="right-side">
-                        <span>More info</span>
-                        <i className="fa fa-chevron-down"></i>
-                    </div>
-               </div>
-           </div>
-           <div className="row row--chnage">
-                <div className="col-9">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="thumb">
-                                <img src="images/12.jpg" alt="" />
+            <Head>
+            <meta charSet="UTF-8" />
+            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Indigo | Product</title>
+            </Head>
+
+            <div className="main_banner_new about_us_banner expore_details_banner">
+                <Navbar preview={props.preview} nav={props.nav} />
+            </div>
+
+            <section className="explore stories section trustBrand manufacturers brands product-detail">
+                <div className="container-fluid ">
+                        <div className="row">
+                            <div className="col-12">
+                                <a className="backArrow" href={props.prevUrl}> <img src="/images/back-arrow.svg" alt="" /> </a>
+                            </div>
+                            <div className="col-md-12 section-head">
+                                    <div className="left-side">
+                                        <h2 className="heading">
+                                            Basic plan
+                                        </h2>
+                                        <span className="heading__span txt-light">A Modern Tradition</span>
+                                    </div>
+                                    <div id="productBtn" className="right-side">
+                                        <span>More info</span>
+                                        <i className="fa fa-chevron-down"></i>
+                                    </div>
                             </div>
                         </div>
-                        <div className="col-md-12">
-                            <div className="manufacturers-content">
-                                <div className="head">
-                                    <p className="price">$0/month</p>
-                                    <a className="btn btn-yellow" href="">Coming Soon</a>
-                                </div>
-                                <div className="footer-info">
-                                 <ul id="accordion" className="accordion pl-0">
-                                     <div role="contentinfo" className="l-footer02">
-                                         <div className="l-footer02-inner cf">
-                                             <nav className="l-footer02-nav">
-                                                    <ul className="l-footer02-nav-list">
-                                                        <li className="l-footer02-nav-item">
-                                                        <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change"><span>Details</span><i className="fa fa-chevron-down"></i></h2>
-                                                        <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display:'none'}}>
-                                                            <ul className="l-footer02-nav-panel-inner">
-                                                            <li className="l-footer02-nav-panel-item">
-                                                                <a href="#"><p>Create a free profile and get matched with information and connections.</p>
-                                                                <ul className="details">
-                                                                    <li>Access all free content</li>
-                                                                    <li>5 connections per month</li>
-                                                                    <li>Basic individual profile</li>
-                                                                    <li>3 portfolio files</li>
-                                                                    <li>Basic business profile</li>
-                                                                    <li>3 portfolio / product files</li>
-                                                                </ul>
-                                                                </a>
-                                                            </li>
-                                                            </ul>
+                        <div className="row row--chnage">
+                                <div className="col-9">
+                                    <div className="row">
+                                        <div className="col-md-12">
+                                            <div className="thumb">
+                                                <img src="images/12.jpg" alt="" />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12">
+                                            <div className="manufacturers-content">
+                                                <div className="head">
+                                                    <p className="price">$0/month</p>
+                                                    <a className="btn btn-yellow" href="">Coming Soon</a>
+                                                </div>
+                                                <div className="footer-info">
+                                                <ul id="accordion" className="accordion pl-0">
+                                                    <div role="contentinfo" className="l-footer02">
+                                                        <div className="l-footer02-inner cf">
+                                                            <nav className="l-footer02-nav">
+                                                                    <ul className="l-footer02-nav-list">
+                                                                        <li className="l-footer02-nav-item">
+                                                                        <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change"><span>Details</span><i className="fa fa-chevron-down"></i></h2>
+                                                                        <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display:'none'}}>
+                                                                            <ul className="l-footer02-nav-panel-inner">
+                                                                            <li className="l-footer02-nav-panel-item">
+                                                                                <a href="#"><p>Create a free profile and get matched with information and connections.</p>
+                                                                                <ul className="details">
+                                                                                    <li>Access all free content</li>
+                                                                                    <li>5 connections per month</li>
+                                                                                    <li>Basic individual profile</li>
+                                                                                    <li>3 portfolio files</li>
+                                                                                    <li>Basic business profile</li>
+                                                                                    <li>3 portfolio / product files</li>
+                                                                                </ul>
+                                                                                </a>
+                                                                            </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        </li>
+                                                                    </ul>
+                                                            </nav>
                                                         </div>
-                                                        </li>
-                                                    </ul>
-                                             </nav>
-                                         </div>
-                                     </div>
-                                 </ul>
+                                                    </div>
+                                                </ul>
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
-            </div>
-       </div>
-       </div>
-   </section>
+            </section>
         
    <section className="section artisanalExperiences Plans bottom-blog-gallery-section product-detail">
             <div className="container-fluid">
@@ -203,6 +219,12 @@ export async function getServerSideProps(context) {
     // console.log("the context",context)
     let data = null;
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
+
+    let prevUrl = "/";
+    if(context.req.headers.referer){
+        prevUrl = context.req.headers.referer
+    }
+
     let preview = context.preview ? context.preview : null
     if(context.preview){
        
@@ -219,6 +241,6 @@ export async function getServerSideProps(context) {
 //   }
   
     return {
-      props: { data,preview,nav }, // will be passed to the page component as props
+      props: { data,preview,nav, prevUrl }, // will be passed to the page component as props
     }
   }

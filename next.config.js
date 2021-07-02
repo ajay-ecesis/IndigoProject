@@ -5,6 +5,7 @@ module.exports = {
       SANITY_API_KEY :process.env.SANITY_API_KEY,
       SANITY_PROJECT_ID:process.env.SANITY_PROJECT_ID,
       SANITY_DATASET:process.env.SANITY_DATASET,
+      INDIGO_PWD:process.env.INDIGO_PWD
   },
   async rewrites() {
     return [
@@ -209,6 +210,22 @@ module.exports = {
         destination:`${process.env.EXTERNAL_RESOLVER}/api/market/status`
       },
       // Market Section END
+
+      // Manage Newsletter Section START
+      {
+        source:'/api/create/newsletter',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/newsletter`
+      },
+      {
+        source:'/api/get/newsletter',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/newsletter`
+      },
+      {
+        source:'/api/remove/newsletter',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/remove/newsletter`
+      },
+
+      // Manage Newsletter Section END
     ]
   },
 }

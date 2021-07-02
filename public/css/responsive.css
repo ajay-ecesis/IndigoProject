@@ -1148,7 +1148,7 @@ padding-top: 0 !important;
 min-height: 100vh;
 }
 .about-us-main section.section.trustBrand.manufacturers.Sustainability.brands.about1 .manufacturers-content .disc {
-margin-bottom: 50px;
+margin-bottom: 0;
 }
 .main_banner_new .bg-img_home img,.main_banner_new .bg-img_banner img{
     max-height: 270px;
@@ -1637,6 +1637,7 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
 }
 .humburger-menu img {
   filter: brightness(0);
+  width: 80%;
 }
 .banner .banner-inner > div:first-child {
   padding-top: 0;
@@ -1751,8 +1752,11 @@ section.section.features.artisanalExperiences {
   position: relative;
 }
 section.section.features.artisanalExperiences .content {
-  position: absolute;
-  bottom: 0;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 100%;
+    right: initial;
 }
 section.section.features.artisanalExperiences .sub_title {
   font-size: 14px;
@@ -1767,6 +1771,7 @@ section.section.features.artisanalExperiences .sub_title {
 }
 section.section.features.artisanalExperiences img {
   border-radius: 0;
+  margin-bottom:10px;
 }
 .section.Sustainability .container-fluid {
   padding: 0;
@@ -1779,8 +1784,18 @@ section.section.features.artisanalExperiences img {
   background: #faf0e6;
   width: 100%;
   padding: 40px;
-  border-radius: 20px;
-  margin-top: -30px;
+      border-radius: 20px 20px 0 0;
+  margin-top: 0px;
+  padding-top: 75px;
+}
+.section.Sustainability.new .content {
+  position: unset;
+  background: #faf0e6;
+  width: 100%;
+  padding: 40px;
+      border-radius: 20px 20px 0 0;
+          box-shadow: 0 3px 15px -3px #d9d1c8;
+  margin-top: 0px;
   padding-top: 75px;
 }
 .section.Sustainability .wrapper img {
@@ -1792,6 +1807,7 @@ section.section.features.artisanalExperiences img {
 }
 section.section.Sustainability {
   padding-bottom: 0;
+  padding-top: 0;
 }
 .section.trustBrand.projektIndigo {
   padding-bottom: 0;
@@ -1826,7 +1842,7 @@ section.section.trustBrand.projektIndigo .disc {
 }
 .section.trustBrand.trustBrand-change .bottom_speed {
   margin-bottom: 0;
-  margin-top: 30px;
+  margin-top: 0;
 }
 section.section.products {
   padding-bottom: 0;
@@ -1876,7 +1892,8 @@ padding-left: 0;
 }
 .about-us-main section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .content h2.heading-inner {
 color: #fff;
-font-size:36px;
+    font-size: 40px;
+    line-height: 45px;
 }
 .footer-col-text-change {
     font-size: 20px !important;
@@ -1893,14 +1910,13 @@ padding-top: 0 !important;
 .about_us_banner {
 min-height: 100vh;
 }
-.about-us-main section.section.trustBrand.manufacturers.Sustainability.brands.about1 .manufacturers-content .disc {
-margin-bottom: 50px;
-}
-.main_banner_new .bg-img_home img,.main_banner_new .bg-img_banner img{
+
+.main_banner_new .bg-img_home img, .main_banner_new .bg-img_banner img {
     max-height: 270px;
     position: unset;
     min-height: 270px;
     object-fit: cover;
+    border-radius: 0 0 0 20px !important;
 }
 .main_banner_new {
   min-height: 100vh;
@@ -1952,6 +1968,7 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about2.sust
 }
 section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .content h2.heading-inner {
   color: #fff;
+  width:100%;
 }
 .expore_details_banner {
   min-height: auto !important;
@@ -1990,7 +2007,7 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .con
     bottom: -20px;
 }
 section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content .btn.btn-black {
-    font-size: 10px;
+    font-size: 8px;
 }
 .explore.section.trustBrand.manufacturers .gallery img {
     height: 60px;
@@ -2049,12 +2066,12 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
     width: 100%;
 }
 .header .bookmark-menu {
-    right: 15%;
-    top: 28px;
-    display:block;
+    right: 20%;
+    top: 30px;
+    display: block;
 }
 .header .bookmark-menu img {
-    width: 113%;
+    width: 90%;
 }
 .header .Navbar, .header .Navbar.active {
     padding: 0 0 0 5%;
@@ -2146,6 +2163,501 @@ section.section.trustBrand.trustBrand-change .heading-inner {
 }
 .banner .banner-inner {
     margin-bottom: 10px;
+}
+.header .humburger-menu {
+    left: initial;
+    right: 15px;
+}
+.header .main_logo {
+    display: block;
+    visibility: hidden;
+}
+.header .main_logo img {
+    display: block;
+    visibility: visible;
+}
+.header .col-md-4:nth-child(2) {
+    padding-left: 15px;
+}
+.header {
+    margin-bottom: 50px;
+}
+.banner .left-side h1 {
+    margin-bottom: 0;
+    line-height: 55px;
+}
+.banner .banner-inner {
+    margin-bottom: 25px;
+}
+section.section.features {
+    position: relative;
+    padding-bottom: 90px;
+    margin-bottom: 50px;
+}
+.section.features .content {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    margin-left: auto;
+}
+.section.features .container-fluid > .row {
+    border-bottom: none;
+}
+.section.features .btnSm {
+    margin-right: 0;
+    float: right;
+    margin-right: 115px;
+    text-align:left;
+}
+.section.features .title {
+    text-align: left;
+    margin-right: 0px;
+    width: 70%;
+    margin-left: auto;
+}
+.section.features .content .btn i {
+    margin-left: 5px;
+}
+.section.features h2.heading {
+    font-size: 40px;
+    line-height: 45px;
+    padding-left: 15px;
+}
+.section.features .container-fluid {
+    padding: 0 !important;
+}
+section.section.features img {
+    max-height: 380px;
+    min-height: 380px;
+}
+section.section.trustBrand.trustBrand-change.trustBrand_new .heading-inner {
+    font-size: 40px;
+    position: absolute;
+    top: 38%;
+    color: #fff;
+    text-shadow: 1px 1px 2px #1a1919;
+}
+.section.trustBrand.trustBrand_new .disc {
+    margin-left: 0;
+    color: #fff;
+    position: absolute;
+    top: 52%;
+    text-shadow: 1px 1px 2px #1a1919;
+    font-size: 12px;
+}
+
+/*navbar change*/
+.header .Navbar {
+    display: block;
+    background: #ffeacc;
+    width: 100%;
+    position: fixed;
+    z-index: 222;
+    left: inherit;
+    display: flex;
+    top: 0px;
+    right: -100%;
+    min-height: 100vh;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+    padding-left: 4%;
+    flex-direction: column;
+}
+.header .Navbar.active {
+    left: inherit;
+    right: 0;
+}
+section.section.Available_plans {
+    padding-top: 40px;
+}
+.section.features.artisanalExperiences .container-fluid>.row {
+    border-top: none;
+    padding-top: 0px;
+}
+.main_banner_new.about_us_banner .left-side h1 {
+    margin-bottom: 0;
+    font-size: 40px;
+}
+.main_banner_new.about_us_banner .banner .banner-inner {
+    margin-bottom: 15px;
+}
+.main_banner_new .bg-img_banner img {
+    max-height: 370px;
+    min-height: 370px;
+    border-radius: 0 0 20px 20px !important;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about1 .container-fluid .row--chnage .manufacturers-content {
+    box-shadow: none !important;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .container-fluid .row--chnage .manufacturers-content {
+    box-shadow: none !important;
+    position: unset;
+    padding-top: 20px !important;
+    margin-top: 20px;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about .disc {
+    padding-left: 11%;
+    font-size: 13px;
+    line-height: 18px;
+}
+.about-us-main section.section.trustBrand.manufacturers.Sustainability.brands.about1 .row .col-md-6 .thumb img {
+    display: none;
+}
+.section.trustBrand.manufacturers .row > div {
+    border-radius: 20px 20px 0 0;
+    box-shadow: none;
+}
+.section.trustBrand.manufacturers .manufacturers-content {
+    padding: 40px 20px;
+}
+.explore.section.trustBrand.manufacturers .btn-yellow {
+    width: 100%;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .backArrow {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+.artisanal__experiences .aritsnal-card {
+    flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+}
+.artisanal__experiences .aritsnal-card .left-side img {
+    min-height: 190px;
+    max-height: 190px;
+    min-width: 128px;
+    max-width: 128px;
+    margin-right: 15px;
+}
+.artisanal__experiences .aritsnal-card {
+    padding: 15px 15px 15px 15px;
+    border-radius: 16px 0 0 16px;
+    padding-bottom: 0;
+}
+.artisanal__experiences .aritsnal-card .title {
+    line-height: 22px;
+    font-size: 17px;
+}
+.artisanal__experiences .aritsnal-card .disc {
+    line-height: 18px;
+    font-size: 13px;
+}
+section.section.artisanal__experiences {
+    padding: 50px 0 0;
+}
+section.section.artisanal__experiences.artisanal__experiences_new .row > div {
+    padding-right: 0;
+}
+.artisanal__experiences .aritsnal-card .location p {
+    margin-bottom: 10px;
+        font-size: 13px;
+    width: 40%;
+    font-weight: 400;
+}
+/*img dispklay none*/
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about1 .thumb img {
+    display: none;
+}
+.section.trustBrand.manufacturers.Sustainability.brands .title {
+    font-size: 18px;
+    margin-top: 0;
+    line-height: 22px;
+}
+.section.trustBrand.manufacturers .row.row--chnage .col-md-6 .thumb img {
+    max-height: 425px;
+    min-height: 425px;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .content h2.heading-inner br {
+    display: none;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .container-fluid .row--chnage .manufacturers-content {
+    margin-top: 0;
+}
+#blog_new .section.trustBrand.manufacturers .row > div .thumb img {
+    min-height: 400px;
+    max-height: 400px;
+}
+#blog_new .section.trustBrand.manufacturers .all_manu_brand_wrapper > div .thumb img {
+    min-height: 150px;
+    max-height: 150px;
+}
+#blog_new section.explore.stories.trustBrand.manufacturers .manufacturers-content {
+    margin-bottom: 40px;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section .col-md-4 img {
+    min-height: 280px;
+    max-height: 280px;
+}
+.bottom-blog-gallery-section .Artisanal-slider_second .title {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+.bottom-blog-gallery-section .Artisanal-slider_second p {
+  font-size: 12px;
+  margin-bottom: 0;
+      width: 80%;
+}
+.bottom-blog-gallery-section .Artisanal-slider_second .read_more,
+.bottom-blog-gallery-section .Artisanal-slider_second .read_more .btn {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.bottom-blog-gallery-section .Artisanal-slider_second .footer-content--change {
+    top: 41%;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .section-head .heading__span {
+    font-size: 13px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail
+  .section-head
+  .right-side {
+  font-size: 13px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .section-head {
+    margin-bottom: 0 !important;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .row > div:first-child {
+    margin-bottom: 0;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .backArrow {
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .manufacturers-content {
+    margin-top: -40px;
+        padding-bottom: 0;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .row.row--chnage .col-9 .col-md-12 {
+    margin-bottom: 0 !important;
+}
+.bottom-blog-gallery-section.product-detail .Artisanal-slider_second .product_price img {
+    width: auto;
+    height: auto;
+    min-height: auto !important;
+    max-height: initial !important;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section.product-detail {
+    padding: 40px 0 40px;
+}
+ul.l-footer02-nav-list li.l-footer02-nav-item {
+    padding-bottom: 11px;
+    border-bottom: 1px solid #E1D8CF;
+}
+ul.l-footer02-nav-list li.l-footer02-nav-item:first-child {
+    border-bottom: none;
+}
+ul.l-footer02-nav-list li.l-footer02-nav-item:nth-child(2) {
+    border: 1px solid #000;
+    padding:10px;
+}
+.footer {
+    padding: 45px 10px 0;
+}
+.l-footer02-bottom {
+    border-top: none;
+}
+.l-footer02-bottom ul li a {
+    font-size: 11px !important;
+    color: #A2A2A2;
+}
+.footer .col-md-3.footer-info h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
+    font-size: 24px;
+    margin-top: 4px;
+    color: #000;
+}
+.story-page .post_sehdule {
+    font-size: 12px;
+}
+.story-page .post__footer h3 {
+    font-size: 18px;
+}
+.story-page .post_head .post-details h3.sub_heading {
+    font-size: 16px;
+    line-height: 20px;
+}
+.story-page .post__footer p {
+    font-size: 13px;
+    line-height: 18px;
+}
+section.section.trustBrand.projektIndigo .disc {
+  font-size: 12px;
+}
+.story-page .post.post-change .post-details p,.section.Sustainability .content p {
+    line-height: 18px;
+    font-size: 13px;
+}
+.section.trustBrand.manufacturers .disc.disc--change {
+    font-size: 12px;
+}
+.section.trustBrand.manufacturers .manufacturers-content .info {
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 30px;
+}
+.section.trustBrand.manufacturers .manufacturers-content .disc {
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+section.section.trustBrand.trustBrand-change.manufacturers.brands .thumb {
+    padding-top: 0;
+}
+.section.trustBrand.manufacturers .manufacturers-content .title {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.about-us-main section.section.trustBrand.manufacturers.Sustainability.brands.about1 .manufacturers-content .disc {
+    line-height: 18px;
+}
+.explore.section.trustBrand.manufacturers .manufacturers-content .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands .inner__heading {
+    font-size: 28px;
+    width: 100%;
+}
+#blog_new .section.trustBrand.manufacturers .manufacturers-content .info {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.bottom-blog-gallery-section .title__change {
+    font-size: 12px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .manufacturers-content p.price {
+    font-size: 20px;
+}
+h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 {
+    font-size: 16px;
+}
+.footer .col-md-3.footer-info .l-footer02-nav-panel.js-dropdown-footer-menu {
+    display: block !important;
+}
+.section.trustBrand.manufacturers .manufacturers-content .info {
+    font-size: 13px !important;
+    line-height: 18px !important;
+}
+.section.trustBrand.manufacturers .manufacturers-content .disc {
+    font-size: 13px !important;
+    line-height: 18px !important;
+}
+.section.trustBrand.manufacturers .manufacturers-content .info, .section.trustBrand.manufacturers .manufacturers-content .disc {
+    font-size: 13px;
+    line-height: 18px;
+}
+.main_banner_new.home .banner .left-side h1 {
+    width: 50%;
+}
+section.section.products.new .section-head .heading {
+    width: 90% !important;
+}
+.section.trustBrand .heading-inner br {
+    display: none;
+}
+.section.trustBrand .heading-inner {
+    width: 100%;
+}
+.main_banner_new.about_us_banner.new h1 {
+    width: 80%;
+}
+.main_banner_new.about_us_banner.new a.backArrow {
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_custom > div {
+    flex: 0 0 100% !important;
+    text-align: left !important;
+    width: 100% !important;
+        padding-left: 15px;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .section-head .heading {
+    width: 100% !important;
+    margin: 0 !important;
+}
+.main_banner_new.about_us_banner.story_banner #bannerWrapper > div:nth-child(2) {
+    margin-bottom: 0;
+}
+.main_banner_new .bg-img_banner img {
+    display: none;
+}
+section.section.artisanal__experiences {
+    padding: 0;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.new {
+    display: none;
+}
+.left-side.col-md-6.on-mobile {
+    display: block;
+        padding-left: 15px;
+}
+.left-side.col-md-6.on-desktop {
+    display: none;
+}
+.main_banner_new.about_us_banner.blog_banner.new #bannerWrapper > div:first-child {
+    display: none;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.change .row:first-child {
+    display: none;
+}
+.main_banner_new.about_us_banner.blog_banner.new .left-side h6 {
+    margin-bottom: 0;
+}section.section.trustBrand.manufacturers.Sustainability.brands.about.about1.new .thumb img {
+    display: block;
+        max-height: 400px;
+    min-height: 400px;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 5px 21px -5px #474747;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about1.new .row.row--chnage .manufacturers-content {
+    order: 2;
+    padding: 0;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about1.new .row.row--chnage .col-md-6:last-child {
+    padding: 0;
+}
+.main_banner_new.about_us_banner.story_banner.story_banner_new.story_inner .bg-img_banner img {
+    display: block;
+}
+.header .Navbar li {
+    font-size: 28px;
+    text-transform: capitalize;
+    font-weight: 900;
+}
+.header .Navbar li.bottom-buttons a {
+    font-size: 15px;
+}
+.main_banner_new.about_us_banner.new.about-changed .bg-img_banner img {
+    display: block;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_custom > div {
+    display: block;
+}
+.changed_new_blog {
+    padding: 0 !important;
+}
+#blog_new .section.trustBrand.manufacturers .row > div .thumb img.first_img {
+    border-radius: 0 0 20px 20px;
+}
+.header .Navbar.active li.bottom-buttons p {
+    font-size: 15px;
+    font-weight: 800;
+    color: #000;
+    margin-top: 40px;
+}
+section.explore.explore2.section.trustBrand.manufacturers.trustBrand_new_change.brands.changed_new {
+    padding-top: 0;
+}
+
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .row.new_custom {
+    padding-bottom: 20px;
+}
+.expore_details_banner .header {
+    background: transparent;
 }
 }
 

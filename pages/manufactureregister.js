@@ -6,6 +6,7 @@ import {useRouter} from 'next/router'
 import {useState} from 'react'
 import axios from 'axios'
 import Footer from '../pagecomponents/Footer';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 
 const manufacture = (props)=>{

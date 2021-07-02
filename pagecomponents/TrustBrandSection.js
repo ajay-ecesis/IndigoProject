@@ -1,4 +1,3 @@
-
 import { urlFor } from "../utils/tools"
 import BlockContent from '@sanity/block-content-to-react';
 import Slider from "react-slick";
@@ -39,6 +38,7 @@ const Trustbrand = ({content,slider}) => {
       };
     const overrides = {
         h2: props => <h2 className="heading-inner" {...props} />,
+        normal:props =><p className="disc" {...props} />,
       }
       
       const serializers = {
@@ -61,7 +61,7 @@ const Trustbrand = ({content,slider}) => {
     return(
         <>
 
-          <section className="section trustBrand trustBrand-change">
+          <section className="section trustBrand trustBrand-change trustBrand_new">
             <div className="container-fluid ">
                 <div className="row">
                     <div className="wrapper col-12">
@@ -98,30 +98,7 @@ const Trustbrand = ({content,slider}) => {
                 </div>
             </div>
           </section>
-         {/* <section className="section trustBrand">
-            <div className="container-fluid ">
-                <div className="row">
-                    <div className="wrapper col-12">
-                        <div className="row trustBrand-slider">
-                            <Slider {...settings}>
-                                {content.map((item,i)=>(
-                                     <div key={i} className="col-md-12 col">
-                                        <img src={urlFor(item.image)} alt="" />
-                                        <div className="content">
-                                            <BlockContent blocks={item.description} />
-                                        </div>
-                                    </div>
-                                ))}                        
-                            </Slider>                     
-                        </div>               
-                    </div>
-                   
-                   
-                </div>
-             
-            </div>
-           
-        </section> */}
+        
         
         </>
     )

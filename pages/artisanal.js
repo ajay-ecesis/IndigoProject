@@ -5,6 +5,7 @@ import { urlFor } from "../utils/tools";
 import Navbar from "../pagecomponents/Navbar";
 import Footer from "../pagecomponents/Footer";
 import BlockContent from '@sanity/block-content-to-react';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const Artisanal = (props)=>{
 

@@ -45,7 +45,7 @@ const Section3 = ({content})=>{
 
     return(
         <>
-         <section className="section products">
+         <section className="section products new">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12 section-head text-center">

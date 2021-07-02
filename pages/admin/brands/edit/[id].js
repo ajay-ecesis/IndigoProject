@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import AdminRoute from '../../../../pagecomponents/routes/AdminRoute'
 import AdminLayout from '../../../../pagecomponents/layout/admin/AdminLayout'
 import { useRouter } from 'next/router'
@@ -226,6 +227,12 @@ const EditBrand = () => {
     return (
         <AdminRoute>
             <AdminLayout>
+                    <Head>
+                        <meta charSet="UTF-8" />
+                        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Indigo | Admin-Edit Brand</title>
+                    </Head>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="card">

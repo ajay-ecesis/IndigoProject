@@ -1,8 +1,7 @@
 import { useState, useEffect, forwardRef} from 'react'
-import Head from 'next/head'
-import BrandRoute from '../../pagecomponents/routes/BrandRoute'
-import BrandLayout from '../../pagecomponents/layout/brand/BrandLayout'
-import Link from 'next/link'
+import Head from "next/head";
+import AdminRoute from '../../pagecomponents/routes/AdminRoute'
+import AdminLayout from '../../pagecomponents/layout/admin/AdminLayout'
 import axios from 'axios'
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
@@ -23,7 +22,12 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import {toast} from 'react-toastify'
 import Moment from 'react-moment';
 
-const SavedPosts = () => {
+
+const ManageNewsletters = () => {
+
+    const [loading, setLoading] = useState(true);
+
+    const [newsletters, setNewsletters] = useState([]);
 
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -45,82 +49,85 @@ const SavedPosts = () => {
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
 
-    const [savedPosts, setSavedPosts] = useState([]);
-
-    const [loading, setLoading] = useState(true);
-
     var columns = [
-        {title:"id", field:"_id", hidden:true},
-        {title: "Post Name", field: "postName", render: rowData => {return <Link  href={`/post/${rowData.postSlug}`}><a style={{color:"#106eea"}}>{rowData.postName}</a></Link>}},
-        {title: "Created At", field: "createdAt", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
-        {title: "Actions",render: rowData => <span style={{color:"#106eea", cursor:'pointer'}} onClick={() => destroy(rowData._id)}><DeleteOutline /></span>},
+        {title: "id", field: "_id", hidden: true},
+        {title: "Email", field:"email"},
+        {title: "Created At", render: rowData => {return <Moment format='DD/MM/YYYY'>{rowData.createdAt}</Moment>}},
+        {title: "Action",render: rowData => {        
+            return <span style={{color:"red", cursor:'pointer'}} onClick={() => destroy(rowData._id)}><DeleteOutline /></span> 
+    }},
     ]
 
-    const loadSavedPosts = async () => {
+    const loadNewsletters = async () => {
         try {
-            const { data } = await axios.get(`/api/user/saved/posts`);
-            console.log("Data", data);
-            setSavedPosts(data);
+            let {data} = await axios.get(`/api/get/newsletter`);
+            setNewsletters(data);
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            toast.error(error.response.data)
+            toast.error(error.response.data);
         }
     }
 
     useEffect(() => {
-        loadSavedPosts();
-    })
+        loadNewsletters();
+    },[])
 
-    const destroy = async(id) => {
-        if(window.confirm("Do you want to remove this post rom your Saved Posts?")){      
+    const destroy = async (id) => {
+        if(window.confirm(`Do you want to remove this email?`)){   
             try {
                 setLoading(true);
-                let { data } = await axios.delete(`/api/user/saved/post`,{
+                let {data} = await axios.post(`/api/remove/newsletter`, {
                     id
                 })
-                toast.success("Post successfully remove from your Saved Posts.")
-                setOpen(false);
-                loadUsers()
+                if(data.success){
+                    toast.success("Email removed successfully.")
+                }
+                loadNewsletters()
             } catch (error) {
+                setLoading(false);
+                console.log(error);
                 toast.error(error.response.data);
-                setOpen(true);
             }
         }
     }
 
     return (
-        <BrandRoute>
-            <BrandLayout>
+        
+            <AdminRoute>
+                <AdminLayout>
+
                     <Head>
                         <meta charSet="UTF-8" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>Indigo | Brand-Saved Posts</title>
+                        <title>Indigo | Admin-Newsletter</title>
                     </Head>
-                <div className="row">     
-                    <div className="col-lg-12 grid-margin stretch-card">
-                        <div className="card">
-                            <div className="card-body">                             
-                                <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Saved Posts</h4>
+
+                    <div className="row">     
+                        <div className="col-lg-12 grid-margin stretch-card">
+                            <div className="card">
+                                <div className="card-body">                          
+                                    <h4 className="card-title" style={{textAlign:'center', color:"#106eea"}}>Manage Newsletters</h4>
                                     <MaterialTable
-                                        title=""/* {<Link to='/admin/add/user'>Add new user</Link>} */
+                                        title=""
                                         columns={columns}
                                         isLoading={loading}
-                                        data={savedPosts}
+                                        data={newsletters}
                                         icons={tableIcons}
                                         options={{
                                             pageSize:10,                    
                                         }}
-                                        localization={{ body:{ emptyDataSourceMessage:<h6>No Saved posts to display</h6> } }}
+                                        localization={{ body:{ emptyDataSourceMessage:<h6>No emails to display</h6> } }}
                                     />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </BrandLayout>
-        </BrandRoute>
+                    </div>    
+                    
+                </AdminLayout>
+            </AdminRoute>
     )
 }
 
-export default SavedPosts
+export default ManageNewsletters

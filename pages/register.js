@@ -2,6 +2,7 @@ import Navbar from "../pagecomponents/Navbar";
 import { client } from "../utils/sanity";
 import Head from "next/head";
 import Footer from '../pagecomponents/Footer';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const Register = (props) => {     
 

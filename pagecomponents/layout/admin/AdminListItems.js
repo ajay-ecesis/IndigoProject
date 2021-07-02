@@ -73,5 +73,16 @@ export const mainListItems =  (
       </a>
     </Link>
 
+    <Link href='/admin/newsletters'>
+        <a>
+      <ListItem button>
+        <ListItemIcon>
+          <Assignment />
+        </ListItemIcon>
+        <ListItemText primary="Manage Newsletters" />
+      </ListItem> 
+      </a>
+    </Link>
+
   </div>
 );

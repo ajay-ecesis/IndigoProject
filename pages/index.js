@@ -14,6 +14,7 @@ import ProjectIndigo from '../pagecomponents/ProjectIndigo';
 import AvailablePlans from '../pagecomponents/AvailablePlans';
 import PlanBanner from '../pagecomponents/PlanBanner';
 import Footer from '../pagecomponents/Footer';
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const HomePage = (props)=>{
 
@@ -29,7 +30,7 @@ const HomePage = (props)=>{
         <Head>
           <title>Indigo | Best company</title>
         </Head>
-        <div class="main_banner_new">
+        <div className="main_banner_new home">
             {props.nav && <Navbar preview={props.preview} nav={props.nav} />}
             {data[0]?.hero && <Banner content={data[0].hero ? data[0].hero : null} />}
         </div>

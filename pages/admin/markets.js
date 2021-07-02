@@ -1,6 +1,7 @@
 import { useState, useEffect, forwardRef} from 'react'
 import AdminRoute from '../../pagecomponents/routes/AdminRoute'
 import AdminLayout from '../../pagecomponents/layout/admin/AdminLayout'
+import Head from "next/head";
 import Link from 'next/link'
 import axios from 'axios'
 import MaterialTable from "material-table";
@@ -112,6 +113,12 @@ const ManageMarkets = () => {
     return (
         <AdminRoute>
             <AdminLayout>
+                <Head>
+                        <meta charSet="UTF-8" />
+                        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Indigo | Admin-Markets</title>
+                </Head>
                 <div className="row">     
                     <div className="col-lg-12 grid-margin stretch-card">
                         <div className="card">

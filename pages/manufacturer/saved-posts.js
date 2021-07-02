@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef} from 'react'
+import Head from 'next/head'
 import ManufacturerRoute from '../../pagecomponents/routes/ManufacturerRoute'
 import ManufacturerLayout from '../../pagecomponents/layout/manufacturer/ManufacturerLayout'
 import Link from 'next/link'
@@ -91,6 +92,12 @@ const SavedPosts = () => {
     return (
         <ManufacturerRoute>
             <ManufacturerLayout>
+                    <Head>
+                        <meta charSet="UTF-8" />
+                        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Indigo | Manufacturer-Saved Post</title>
+                    </Head>
                 <div className="row">     
                     <div className="col-lg-12 grid-margin stretch-card">
                         <div className="card">

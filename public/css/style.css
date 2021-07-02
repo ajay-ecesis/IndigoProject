@@ -3906,6 +3906,24 @@ section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .
 .main_banner_new {
   z-index: 2;
 }
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .backArrow {
+    display: none;
+}
+.main_banner_new.about_us_banner.new a.backArrow {
+    display: none;
+
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_custom > div {
+    display: none;
+}
+.left-side.col-md-6.on-mobile {
+    display: none;
+}
+.left-side.col-md-6.on-desktop {
+    display: block;
+}
+
+
 
 
 
@@ -3951,3 +3969,41 @@ li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
 .signin-popup.registar-popup.uploadFile #myCertification,.signin-popup.registar-popup.uploadFile #myMultiphoto {
   display: none;
 }
+
+.passpop .modal_box{
+  width: 30%;
+}
+
+.passpop {min-height: 105vh !important;}
+  
+@media screen and (max-width: 480px){
+  .passpop .modal_box{
+  width: 100% !important;}
+  .text-new-center{
+    text-align: left !important;
+  }
+}
+
+/* @media screen and (max-width: 480px){
+  .topBannerRadius img {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .hideMobile {
+    display: none;
+  }
+  .about_section_one_description_dev{
+    padding-left: 72px;
+    color: #8A8A8F;
+    margin-top: 29px;
+  }
+  .about_section_one_heading_dev{
+    padding-left: 34px;
+    font-size: 18px;
+    text-align: left;
+  }
+  .hideBorder {
+    border-radius: 0 0 0 0;
+    box-shadow: 0 0 0 0 #d2d2d2;
+  }
+} */

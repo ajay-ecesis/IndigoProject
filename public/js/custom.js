@@ -105,6 +105,7 @@ $(".humburger-menu img").click(function(){
 });
 
 
+
 $("#productBtn").click(function(){
   $(this).toggleClass("active");
 });
@@ -120,6 +121,8 @@ $('.search_input_wrapper i').click(function(){
   $('.search_input_wrapper').removeClass('active');
   $('#search_btn').show();
 });
+
+
 
 
 var toggle_img = $('.humburger-menu img').attr('src');

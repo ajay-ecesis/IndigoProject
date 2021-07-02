@@ -6,7 +6,7 @@ const Brands = ({content})=>{
 
      const overrides = {
         h2: props => <h2 className="heading-inner" {...props} />,
-        p:props => <p className="disc disc--change" {...props} />,
+        normal:props => <p className="disc disc--change" {...props} />,
       }
       
       const serializers = {
@@ -49,7 +49,7 @@ const Brands = ({content})=>{
                                     {content.featureImages.map((item,i)=>(
                                         <div key={i} className="col-md-3">
                                         <img src={urlFor(item.image)} alt="" />
-                                        <p for=""><BlockContent blocks={item.description} /></p>
+                                        <p htmlFor=""><BlockContent blocks={item.description} /></p>
                                     </div>
                                     ))}
                                     </div>

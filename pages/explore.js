@@ -8,10 +8,10 @@ import Footer from "../pagecomponents/Footer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
-const Features = ({content})=>{
+const Features = ({content}) => {
    
-    
     return(
         <div className="row gallery">
             {console.log("from fatures",content)}
@@ -35,6 +35,25 @@ const Explore = (props)=>{
       enabled: props.preview,
     })
 
+    const overrides = {
+        h2: props => <h5 className="heading-inner" {...props} />,
+        normal:props=><p className="disc disc--change txt-white txt-shadow" {...props} />
+      }
+      
+    const serializers = {
+        types: {
+          block: props =>
+            // Check if we have an override for the “style”
+            overrides[props.node.style] 
+              // if so, call the function and pass in the children, ignoring
+              // the other unnecessary props
+              ? overrides[props.node.style]({ children: props.children })
+      
+              // otherwise, fallback to the provided default with all props
+              : BlockContent.defaultSerializers.types.block(props),
+        }
+    }
+
     return(
         <>
             <Head>
@@ -49,16 +68,27 @@ const Explore = (props)=>{
             </div>
             
             <div id="main">
-                <section className="explore section trustBrand trustBrand_new_change manufacturers ">
+                <section className="explore section trustBrand trustBrand_new_change manufacturers changed ">
                     <div className="container-fluid ">
-                        {/* <div className="row">
+                        <div className="row">
+                            <a className="backArrow" href={props.prevUrl}> <img src="/images/back-arrow.svg" alt="" /> </a>
+                        </div>
+                        <div className="row new_custom">
                             <div className="col-md-12 section-head text-center">
-                                {data[0]?.heading1 && <span className="heading__span">{data[0].heading1}</span>}
+                                <div className="col-md-12 section-head text-center text-new-center">
+                                    <span className="heading__span">Explore</span>
+                                    <h2 className="heading">
+                                        How it works
+                                    </h2>
+                                </div>
+
+                            {/* {data[0]?.heading1 && <span className="heading__span">{data[0].heading1}</span>}
                                 {data[0]?.heading2 && <h2 className="heading">
                                     {data[0]?.heading2}
-                                </h2>}
+                                </h2>} */}
                             </div>
-                        </div> */}
+                        </div>
+                        
                         <div className="row row--chnage">
 
                             <div className="col-md-12">
@@ -66,7 +96,7 @@ const Explore = (props)=>{
                                     {data[0]?.manufactures && <img src={urlFor(data[0].manufactures.image)} alt="" />}
                                 </div>
                                 { data[0]?.manufactures && <div className="content">
-                                    <BlockContent blocks={data[0]?.manufactures.description} />
+                                    <BlockContent blocks={data[0]?.manufactures.description} serializers={serializers} />
                                 </div>}
                             </div>
 
@@ -83,7 +113,7 @@ const Explore = (props)=>{
                     </div>
                 </section>
 
-                <section className="explore explore2 section trustBrand manufacturers trustBrand_new_change brands">
+                <section className="explore explore2 section trustBrand manufacturers trustBrand_new_change brands changed_new">
                     <div className="container-fluid">
                         <div className="row row--chnage">
 
@@ -92,7 +122,7 @@ const Explore = (props)=>{
                                     {data[0]?.brands && <img src={urlFor(data[0].brands.image)} alt="" />}
                                 </div>
                                 { data[0]?.brands && <div className="content">
-                                    <BlockContent blocks={data[0]?.brands.description} />
+                                    <BlockContent blocks={data[0]?.brands.description} serializers={serializers} />
                                 </div>}
                             </div>
 
@@ -120,6 +150,10 @@ export default Explore;
 export async function getServerSideProps(context) {
     let data = null;
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
+    let prevUrl = "/";
+    if(context.req.headers.referer){
+        prevUrl = context.req.headers.referer
+    }
     let preview = context.preview ? context.preview : null
     if(context.preview){
        
@@ -136,6 +170,6 @@ export async function getServerSideProps(context) {
     }
   
     return {
-      props: { data,preview,nav }, // will be passed to the page component as props
+      props: { data,preview,nav,prevUrl }, // will be passed to the page component as props
     }
 }
