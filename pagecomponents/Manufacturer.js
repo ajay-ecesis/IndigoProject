@@ -45,11 +45,11 @@ const Manufacturer = ({content})=>{
                                 <div className="title">
                                     Features
                                 </div>
-                              {content?.featureImages &&  <div className="row gallery2">
+                                {content?.featureImages &&  <div className="row gallery2" >
                                   {content.featureImages.map((item,i)=>(
-                                       <div key={i} className="col-md-3">
+                                       <div key={i} className="col-md-3" style={{textAlign:'center'}}>
                                        <img src={urlFor(item.image)} alt="" />
-                                       <p htmlFor=""><BlockContent blocks={item.description} /></p>
+                                       <p htmlFor="" ><BlockContent blocks={item.description} /></p>
                                    </div>
                                   ))}
                                 </div>}
