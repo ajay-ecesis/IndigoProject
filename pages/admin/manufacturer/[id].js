@@ -61,6 +61,7 @@ const manufacturerDetails = () => {
         newtab.document.body.innerHTML = `<object data=${data} width=${window.screen.availWidth} height=${window.screen.availHeight}  />`
         console.log(data)
     }
+
     const checkmimetype = (data)=>{
         const mime = data.split(";")[0];
         const positive = ['data:image/jpeg','data:image/png','data:application/pdf']
@@ -70,8 +71,6 @@ const manufacturerDetails = () => {
                 return true
             }
         } 
-        
-
     }
 
 
@@ -89,21 +88,22 @@ const manufacturerDetails = () => {
                         <p className="card-text"><b>Country: </b>{supplier.userId.country}</p>
                         <p className="card-text"><b>Status: </b>{supplier.userId.status === 0 ? 'Active' : "Deactivated"}</p>                
                  
-                        <p className="card-text"><b>supplierName : </b>{supplier.supplierName}</p>
+                        <p className="card-text"><b>Supplier name : </b>{supplier.supplierName}</p>
                         <p className="card-text"><b>Product Category : </b>{supplier.category}</p>
-                        <p className="card-text"><b>year : </b>{supplier.year}</p>
-                        <p className="card-text"><b>employees : </b>{supplier.employees}</p>
-                        <p className="card-text"><b> SKU: </b>{supplier.sku}</p>
-                        <p className="card-text"><b>speciality : </b>{supplier.speciality}</p>
-                        <p className="card-text"><b>samplingTime : </b>{supplier.samplingTime}</p>
-                        <p className="card-text"><b>dailyCapacity : </b>{supplier.dailyCapacity}</p>
-                        <p className="card-text"><b> monthlyCapacity: </b>{supplier.monthlyCapacity}</p>
-                        <p className="card-text"><b>terms : </b>{supplier.terms}</p>
-                        <p className="card-text"><b>importantClients : </b>{supplier.importantClients}</p>
-                        <p className="card-text"><b>factoryInfo : </b>{supplier.factoryInfo}</p>
-                        <p className="card-text"><b> skills: </b>{supplier.skills}</p>
-                        <p className="card-text"><b>addressLine1 : </b>{supplier.addressLine1}</p>
-                        <p className="card-text"><b>addressLine2 : </b>{supplier.addressLine2}</p>
+                        <p className="card-text"><b>Year established : </b>{supplier.year ? supplier.year : '-'}</p>
+                        <p className="card-text"><b>Number of employees : </b>{supplier.employees}</p>
+                        <p className="card-text"><b>SKU: </b>{supplier.sku}</p>
+                       {/*  <p className="card-text"><b>speciality : </b>{supplier.speciality}</p> */}
+                        <p className="card-text"><b>Sampling time in weeks : </b>{supplier.samplingTime}</p>
+                        {/* <p className="card-text"><b>dailyCapacity : </b>{supplier.dailyCapacity}</p> */}
+                        <p className="card-text"><b>Maximum monthly capacity: </b>{supplier.monthlyCapacity}</p>
+                        <p className="card-text"><b>What are your standard payment terms? : </b>{supplier.terms ? supplier.terms :'-'}</p>
+                        <p className="card-text"><b>Can you state the names of 5 of your most important clients : </b>{supplier.importantClients ? supplier.importantClients : '-'}</p>
+                        <p className="card-text"><b>Profile heading : </b>{supplier.heading}</p>
+                        <p className="card-text"><b>Please share as much information : </b>{supplier.factoryInfo}</p>
+                        {/* <p className="card-text"><b>skills: </b>{supplier.skills}</p> */}
+                        <p className="card-text"><b>First line of address : </b>{supplier.addressLine1}</p>
+                        <p className="card-text"><b>Second line of address : </b>{supplier.addressLine2 ? supplier.addressLine2 : '-'}</p>
                     </div>
                     
                     <div className="col-md-6">

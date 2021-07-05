@@ -65,8 +65,8 @@ const EditBrand = () => {
                     firstName: data.userId.firstName,
                     lastName: data.userId.lastName,
                     email: data.userId.email,
-                    category: data.category._id,
-                    market: data.market._id,
+                    category: data.category ? data.category._id : '',
+                    market: data.market ? data.market._id : '',
                     city: data.userId.city,
                     zipCode: data.userId.zipCode,
                     country: data.userId.country,
@@ -174,11 +174,11 @@ const EditBrand = () => {
             </div>
             
             <div className="form-group"> 
-                <label className="text-muted">Website Url<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('url')} type="text" className="form-control" value={url} required/>
+                <label className="text-muted">Website Url</label>
+                <input onChange={handleChange('url')} type="text" className="form-control" value={url} />
             </div>
             <div className="form-group">
-                <label className="text-muted">Product Category<span style={{color:"red"}}> *</span></label>
+                <label className="text-muted">Product Category</label>
                 <select 
                     onChange={handleChange('category')} 
                     className="form-control"
@@ -192,7 +192,7 @@ const EditBrand = () => {
                 </select>
             </div>
             <div className="form-group">
-                <label className="text-muted">Market<span style={{color:"red"}}> *</span></label>
+                <label className="text-muted">Market</label>
                 <select 
                     onChange={handleChange('market')} 
                     className="form-control"
@@ -206,8 +206,8 @@ const EditBrand = () => {
                 </select>
             </div> 
             <div className="form-group"> 
-                <label className="text-muted">linkedIn<span style={{color:"red"}}> *</span></label>
-                <input onChange={handleChange('linkedIn')} type="text" className="form-control" value={linkedIn} required/>
+                <label className="text-muted">linkedIn</label>
+                <input onChange={handleChange('linkedIn')} type="text" className="form-control" value={linkedIn}/>
             </div>      
             <center>
                  <br/>

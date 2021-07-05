@@ -4,16 +4,33 @@ import Head from "next/head";
 import {toast} from 'react-toastify'
 import {useRouter} from 'next/router'
 import {Context} from '../context'
-import {useState, useContext} from 'react'
+import {useState, useContext,useEffect} from 'react'
 import axios from 'axios'
 import Footer from '../pagecomponents/Footer';
 //import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const signin = (props) => {
 
+    const choosetarget = ()=>{
+        if(props.query.target){
+            switch (props.query.target) {
+                case 'brand':
+                    settarget('/brandregister')
+                    break;
+            
+                case 'manufacturer':
+                    settarget('/manufactureregister')
+                    break;
+            }
+        }
+    }
+    
     const {state, dispatch} = useContext(Context);
     const { user } = state;
-
+    const [target,settarget] = useState('/register')
+useEffect(()=>{
+    choosetarget();
+},[])
     // router
     const router = useRouter();
 
@@ -98,7 +115,7 @@ const signin = (props) => {
                                 <input id="singupSubmit" type="submit" value={loginValues.loading ? "Loading..." : "Sign in"} />
                         
                                 <p className="or">OR</p>
-                                <a href="/register" className="btn-yellow btn-black-yellow">Sign Up</a>
+                                <a href={target} className="btn-yellow btn-black-yellow">Sign Up</a>
                             </div>
                             <div className="term-conditions">
                                 <p>Terms of Use <a className="txt-light">and</a> Privacy Policy</p>
@@ -116,15 +133,15 @@ const signin = (props) => {
 export default signin;
 
 export async function getServerSideProps(context) {
-    // console.log("the context",context)
+   
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
-  
+    const query = context?.query || null;
     let prevUrl = "/";
     if(context.req.headers.referer){
         prevUrl = context.req.headers.referer
     }
      
     return {
-      props: {nav, prevUrl }, // will be passed to the page component as props
+      props: {nav, prevUrl,query }, // will be passed to the page component as props
     }
 }

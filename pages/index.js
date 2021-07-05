@@ -45,20 +45,6 @@ const HomePage = (props)=>{
         {data[0]?.availableplansbrand && <AvailablePlans contentbrand={data[0]?.availableplansbrand} contentmanufacture={data[0]?.availableplansmanufacturer} />}
 
       <Footer />
-     {/*  {props.nav && <Navbar preview={props.preview} nav={props.nav} />}
-      {data[0]?.hero && <Banner content={data[0].hero ? data[0].hero : null} />}
-      {data[0]?.section2 && <Section2 content={data[0].section2 ? data[0].section2 : null} />}
-      {data[0]?.section3 && <Section3 content={data[0].section3 ? data[0].section3 : null} />}
-      {data[0]?.section4 && <Trustbrand content={data[0].section4} />}
-      {data[0]?.logoslider &&<Logoslider content={data[0].logoslider} />}
-      <div style={{marginTop:'5rem'}}></div>
-      {data[0]?.formanufactures && <Manufacturer content={data[0].formanufactures} />}
-      {data[0]?.forbrands && <Brands content={data[0].forbrands}/>}
-      {data[0]?.artisanal && <Artisanal  content={data[0].artisanal} />}
-      {data[0]?.illustartive && <Sustainability content={data[0].illustartive} />}
-      {data[0]?.slidingillustration &&<ProjectIndigo content={data[0].slidingillustration}/>}
-      {data[0]?.finalsection && <AvailablePlans content={data[0].finalsection} />}
-      <Footer /> */}
     </>
   )
 }

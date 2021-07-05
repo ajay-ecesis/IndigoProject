@@ -106,16 +106,16 @@ const EditManufacturer = () => {
                     manufacturerName:data.supplierName,
                     addressLine1: data.addressLine1,
                     addressLine2: data.addressLine2,
-                    dailyCapacity: data.dailyCapacity,
+                   /*  dailyCapacity: data.dailyCapacity, */
                     monthlyCapacity: data.monthlyCapacity,
                     employees: data.employees,
                     factoryInfo: data.factoryInfo,
                     heading: data.heading,
                     importantClients: data.importantClients,
                     samplingTime:data.samplingTime,
-                    skills:data.skills,
+                    /* skills:data.skills, */
                     sku:data.sku,
-                    speciality:data.speciality,
+                   /*  speciality:data.speciality, */
                     supplierName:data.supplierName,
                     terms:data.terms,
                     year:data.year,
@@ -193,7 +193,7 @@ const EditManufacturer = () => {
                 Id: id,
                 userId,
                 firstName, lastName, email, category, city, zipCode,
-                addressLine1, addressLine2, dailyCapacity, monthlyCapacity, employees, factoryInfo, heading, importantClients,samplingTime,skills,sku,speciality,supplierName,terms,year,
+                addressLine1, addressLine2, monthlyCapacity, employees, factoryInfo, heading, importantClients,samplingTime,sku,supplierName,terms,year,
                 certifications: JSON.stringify(certifications),
                 multiphotos: JSON.stringify(multiphotos)
             })
@@ -214,6 +214,7 @@ const EditManufacturer = () => {
         newtab.document.body.innerHTML = `<object data=${data} width=${window.screen.availWidth} height=${window.screen.availHeight}  />`
         console.log(data)
     }
+
     const checkmimetype = (data)=>{
         const mime = data.split(";")[0];
         const positive = ['data:image/jpeg','data:image/png','data:application/pdf']
@@ -223,9 +224,36 @@ const EditManufacturer = () => {
                 return true
             }
         } 
-        
-
     }
+
+    const [categoryList] = useState([
+        { label:"Jeans",value: "Jeans"},
+        { label:"Shirts",value: "Shirts"},
+        { label:"Trousers",value: "Trousers"},
+        { label:"T shirts",value: "T shirts"},
+        { label:"Shorts",value: "Shorts"},
+        { label:"Bags",value: "Bags"},
+        { label:"Jackets",value: "Jackets"},
+        { label:"Beanies",value: "Beanies"},
+        { label:"Shoes",value: "Shoes"},
+        { label:"Sweaters",value: "Sweaters"},
+        { label:"Overshirts",value: "Overshirts"},
+        { label:"Dresses",value: "Dresses"}
+    ])
+
+    const [employeeList] = useState([
+        { label:"1 - 100",value: "1 - 100"},
+        { label:"100 - 300",value: "100 - 300"},
+        { label:"300 - 500",value: "300 - 500"},
+        { label:"500+",value: "500+"},
+    ])
+
+    const [samplingList] = useState([
+        { label:"2 Weeks",value: "2 Weeks"},
+        { label:"3 Weeks",value: "3 Weeks"},
+        { label:"4 Weeks",value: "4 Weeks"},
+    ])
+
 
     const showUpdateForm = () => (
 
@@ -234,72 +262,105 @@ const EditManufacturer = () => {
             <div className="row">
                 <div className="col-md-6">       
                     <div className="form-group">
-                        <label className="text-muted">supplierName<span style={{color:"red"}}> *</span></label>
+                        <label className="text-muted">Supplier Name<span style={{color:"red"}}> *</span></label>
                         <input onChange={handleChange('supplierName')} type="text" className="form-control" value={supplierName}  required/>
                     </div>
-                    <div className="form-group">
-                        <label className="text-muted">Address Line 1<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('addressLine1')} type="text" className="form-control" value={addressLine1} required/>
-                    </div>
 
                     <div className="form-group">
-                        <label className="text-muted">Address Line 2<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('addressLine2')} type="text" className="form-control" value={addressLine2} required/>
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-muted">Daily Capacity<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('dailyCapacity')} type="text" className="form-control" value={dailyCapacity} required/>
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-muted">Monthly Capacity<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('monthlyCapacity')} type="text" className="form-control" value={monthlyCapacity} required/>
+                        <label className="text-muted">Year</label>
+                        <input onChange={handleChange('year')} type="text" className="form-control" value={year} />
                     </div>
 
                     <div className="form-group">
                         <label className="text-muted">No of Employees<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('employees')} type="text" className="form-control" value={employees} />
+                            <select required
+                            onChange={handleChange('employees')} 
+                            className="form-control">
+                                <option>No of Employees</option> {
+                                    employeeList.map(room =>(
+                                        (employees === room.value ? 
+                                            <option selected key={room.value} value={room.value}>
+                                                {room.value}
+                                            </option> :
+                                            <option key={room.value} value={room.value}>{room.value}</option>)
+                                    ))
+                                }                                                           
+                            </select>
                     </div>
 
                     <div className="form-group">
-                        <label className="text-muted">Factory Info<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('factoryInfo')} type="text" className="form-control" value={factoryInfo} required/>
+                        <label className="text-muted">Product Category</label>
+                            <select
+                            onChange={handleChange('category')} 
+                            className="form-control">
+                                <option>Product Category</option> {
+                                    categoryList.map(room =>(
+                                        (category === room.value ? 
+                                            <option selected key={room.value} value={room.value}>
+                                                {room.value}
+                                            </option> :
+                                            <option key={room.value} value={room.value}>{room.value}</option>)
+                                    ))
+                                }                                                           
+                            </select>
                     </div>
 
-                    <div className="form-group">
-                        <label className="text-muted">Heading<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('heading')} type="text" className="form-control" value={heading}  required/>
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-muted">Important Clients<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('importantClients')} type="text" className="form-control" value={importantClients}  required/>
-                    </div>
-                    <div className="form-group">
-                        <label className="text-muted">Sampling Time<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('samplingTime')} type="text" className="form-control" value={samplingTime}  required/>
-                    </div>
-               
                     <div className="form-group">
                         <label className="text-muted">Sku<span style={{color:"red"}}> *</span></label>
                         <input onChange={handleChange('sku')} type="text" className="form-control" value={sku}  required/>
                     </div>
+                    
+                    {/* <div className="form-group">
+                        <label className="text-muted">Daily Capacity<span style={{color:"red"}}> *</span></label>
+                        <input onChange={handleChange('dailyCapacity')} type="text" className="form-control" value={dailyCapacity} required/>
+                    </div> */}
 
                     <div className="form-group">
+                        <label className="text-muted">Sampling Time<span style={{color:"red"}}> *</span></label>
+                            <select required
+                            onChange={handleChange('employees')} 
+                            className="form-control">
+                                <option>Sampling Time *</option> {
+                                    samplingList.map(room =>(
+                                        (samplingTime === room.value ? 
+                                            <option selected key={room.value} value={room.value}>
+                                                {room.value}
+                                            </option> :
+                                            <option key={room.value} value={room.value}>{room.value}</option>)
+                                    ))
+                                }                                                           
+                            </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">Maximum monthly capacity<span style={{color:"red"}}> *</span></label>
+                        <input onChange={handleChange('monthlyCapacity')} type="text" className="form-control" value={monthlyCapacity} required/>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">What are your standard payment terms?</label>
+                        <input onChange={handleChange('terms')} type="text" className="form-control" value={terms} />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">Can you state the names of 5 of your most important clients</label>
+                        <input onChange={handleChange('importantClients')} type="text" className="form-control" value={importantClients} />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">Profile heading<span style={{color:"red"}}> *</span></label>
+                        <input onChange={handleChange('heading')} type="text" className="form-control" value={heading}  required/>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">Please share as much information<span style={{color:"red"}}> *</span></label>
+                        <input onChange={handleChange('factoryInfo')} type="text" className="form-control" value={factoryInfo} required/>
+                    </div>              
+
+                   {/*  <div className="form-group">
                         <label className="text-muted">Speciality<span style={{color:"red"}}> *</span></label>
                         <input onChange={handleChange('speciality')} type="text" className="form-control" value={speciality}  required/>
-                    </div>
-                
-                    <div className="form-group">
-                        <label className="text-muted">Terms<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('terms')} type="text" className="form-control" value={terms}  required/>
-                    </div>
-
-                    <div className="form-group">
-                        <label className="text-muted">Year<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChange('year')} type="text" className="form-control" value={year}  required/>
-                    </div>
+                    </div> */}      
 
                     <div className="form-group">
                         <label className="text-muted">Multiphotos<span style={{color:"red"}}> *</span></label>                 
@@ -321,7 +382,7 @@ const EditManufacturer = () => {
                    {checkmimetype(certifications) && <object data={`${certifications}`} width="200" height="200" ></object>}
                     <div>
                     <a href={`${certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
-                    {checkmimetype(certifications) &&<a href=""  onClick={(event)=>viewCertifications(certifications,event)}>View Document</a>}
+                    {checkmimetype(certifications) &&<a href="" onClick={(event)=>viewCertifications(certifications,event)}>View Document</a>}
                     </div>
                     
 
@@ -332,6 +393,15 @@ const EditManufacturer = () => {
                 </div>
 
                 <div className="col-md-6">
+                    <div className="form-group">
+                        <label className="text-muted">First line of address<span style={{color:"red"}}> *</span></label>
+                        <input onChange={handleChange('addressLine1')} type="text" className="form-control" value={addressLine1} required/>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="text-muted">Second line of address</label>
+                        <input onChange={handleChange('addressLine2')} type="text" className="form-control" value={addressLine2}/>
+                    </div>
                     <div className="form-group">
                         <label className="text-muted">First Name<span style={{color:"red"}}> *</span></label>
                         <input onChange={handleChange('firstName')} type="text" className="form-control" value={firstName} required/>

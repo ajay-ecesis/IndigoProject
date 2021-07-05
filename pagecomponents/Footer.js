@@ -1,6 +1,4 @@
 
-
-
 const Footer = () => {
 
   return(
@@ -46,7 +44,7 @@ const Footer = () => {
                                               </ul>
                                             </div>
                                           </li>
-                                          <li className="l-footer02-nav-item">
+                                          {/* <li className="l-footer02-nav-item">
                                             <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Terms & condition<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
                                             <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
                                               <ul className="l-footer02-nav-panel-inner">
@@ -59,8 +57,14 @@ const Footer = () => {
 
                                               </ul>
                                             </div>
+                                          </li> */}
+                                          <li className="l-footer02-nav-item">
+                                            <a href="/terms"><h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Terms & condition</h2></a>
                                           </li>
                                           <li className="l-footer02-nav-item">
+                                            <a href="/privacy"><h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Privacy policy</h2></a>
+                                          </li>
+                                          {/* <li className="l-footer02-nav-item">
                                             <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Privacy policy <span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
                                             <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
                                               <ul className="l-footer02-nav-panel-inner">
@@ -73,7 +77,7 @@ const Footer = () => {
 
                                               </ul>
                                             </div>
-                                          </li>
+                                          </li> */}
                                           <li className="l-footer02-nav-item">
                                             <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact us<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
                                             <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>

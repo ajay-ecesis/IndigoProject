@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { urlFor } from "../utils/tools"
 import BlockContent from '@sanity/block-content-to-react';
-import { useState } from "react";
 
 const AvailablePlans =({contentbrand,contentmanufacture})=> {
 
@@ -13,9 +12,9 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
     const settings = {
       slidesToShow: 4,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
-   accessibility: false,
+      accessibility: false,
       infinite: true,
       dots: false,
       cssEase: 'linear',
@@ -35,7 +34,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-       centerPadding: '20px'
+            centerPadding: '20px'
           }
         },
         {

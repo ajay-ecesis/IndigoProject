@@ -69,11 +69,11 @@ const ManageManufacturers = () => {
        
         {title: "id", field: "_id", hidden: true},
         {title: "Manufacturer Name", field: "supplierName", render: rowData => {return <Link href={`/admin/manufacturer/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.supplierName}</a></Link>}},
-        {title: "Year", field: "year"},
-        {title: "Product Category", field:'category'},
+        {title: "Year", field: "year",  render: rowData => {return <span>{rowData.year ? rowData.year : '-'}</span>}},
+        {title: "Product Category", field:'category',  render: rowData => {return <span>{rowData.category ? rowData.category : '-'}</span>}},
         {title: "No of Employees", field: "employees"},
-        {title: "Speciality", field: "speciality"},
-        {title: "Daily Capacity", field: "dailyCapacity"},
+       /*  {title: "Speciality", field: "speciality"}, */
+        /* {title: "Daily Capacity", field: "dailyCapacity"}, */
         {title: "Monthly Capacity", field: "monthlyCapacity"},
         {title: "Status", field: "status", render: rowData => {
             return rowData.userId.status === 0 ? <h6 style={{color:"green"}}>Active</h6> :

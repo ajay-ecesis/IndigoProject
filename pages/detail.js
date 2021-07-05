@@ -154,11 +154,11 @@ export async function getServerSideProps(context) {
       data = await clientRead.fetch('*[_type=="siteSustainability"]');
   }
   console.log(data)
-if (!data) {
-  return {
-    notFound: true,
+  if (!data) {
+    return {
+      notFound: true,
+    }
   }
-}
 
   return {
     props: { data,preview,nav }, // will be passed to the page component as props

@@ -111,14 +111,13 @@ const brandregister = (props) => {
                     </div>
                     <form onSubmit={clickSubmitRegBrand}>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name" value={regBrandValues.brandName} required />
+                            <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name *" value={regBrandValues.brandName} required />
                         </div>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} required />
+                            <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} />
                         </div>
                         <div className="form-group form-group-change full-width">
-                            {/* <input type="text" onChange={handleChangeRegBrand('category')} placeholder="Product Category" value={regBrandValues.category} required /> */}
-                            <select required
+                            <select
                                 onChange={handleChangeRegBrand('category')}
                             >
                                 <option>Product Category</option>{
@@ -130,7 +129,7 @@ const brandregister = (props) => {
                         </div>
                         <div className="form-group form-group-change full-width">
                             {/* <input type="text" onChange={handleChangeRegBrand('market')} placeholder="Market" value={regBrandValues.market} required /> */}
-                            <select required
+                            <select
                                 onChange={handleChangeRegBrand('market')}
                             >
                                 <option>Market</option>{
@@ -141,21 +140,21 @@ const brandregister = (props) => {
                             </select>
                         </div>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} required />
+                            <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} />
                         </div>
                         <div className="form-group form-group-change">
-                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City">
-                                <option>City</option>
+                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City" required>
+                                <option value="" disabled selected hidden>City *</option>
                                 <option value="volvo">America</option>
                                 <option value="saab">London</option>
                                 <option value="mercedes">Canada</option>
                                 <option value="audi">Austrailia</option>
                             </select>
-                            <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code" value={regBrandValues.zipCode} />
+                            <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code *" value={regBrandValues.zipCode} required/>
                         </div>
                         <div className="form-group form-group-change full-width">
-                            <select onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
-                                <option value="" disabled selected hidden>Country</option>
+                            <select required onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
+                                <option value="" disabled selected hidden>Country *</option>
                                 <option value="volvo">America</option>
                                 <option value="saab">London</option>
                                 <option value="mercedes">Canada</option>
@@ -167,19 +166,19 @@ const brandregister = (props) => {
                         </div>
                         
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name" value={regBrandValues.firstName} required />
+                            <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name *" value={regBrandValues.firstName} required />
                         </div>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name" value={regBrandValues.lastName} required />
+                            <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name *" value={regBrandValues.lastName} required />
                         </div>
                         <div className="form-group">
-                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email" value={regBrandValues.email} required />
+                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email *" value={regBrandValues.email} required />
                         </div>
                         <div className="form-group">
-                            <input type="password" onChange={handleChangeRegBrand('password')} placeholder="Password" value={regBrandValues.password} />
+                            <input type="password" onChange={handleChangeRegBrand('password')} placeholder="Password *" value={regBrandValues.password} />
                         </div>
                         <div className="form-group">
-                            <input type="password" onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password" value={regBrandValues.password1} />
+                            <input type="password" onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password *" value={regBrandValues.password1} />
                         </div>
                         <div className="bottom-btn">
                             <input id="forUpload" type="submit" className="btn-yellow" value={regBrandValues.loading ? 'Loading...' : "Register"} />

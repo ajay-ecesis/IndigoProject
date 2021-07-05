@@ -119,8 +119,8 @@ const Navbar = (props) => {
                         </div>
                         <div className="col-md-4 text-right">
                             {user === null && <div className="manufacturer_brand_btn">
-                                <a href="/signin">Manufacturer login</a>
-                                <a href="/signin">Brand login</a>
+                                <a href="/signin/?target=manufacturer">Manufacturer login</a>
+                                <a href="/signin/?target=brand">Brand login</a>
                             </div> }
                             {user !== null && 
                                 <div className="manufacturer_brand_btn">

@@ -21,7 +21,7 @@ const Section2 = ({content})=>{
                                   <div className="content">
                                       <p className="title"> <BlockContent blocks={content?.subhead}  /></p>
                                      
-                                      <button className="btn btn-black btnSm">Get Started <i className="fa fa-chevron-right"></i></button>
+                                      <a href="/register" className="btn btn-black btnSm">Get Started <i className="fa fa-chevron-right"></i></a>
                                   </div>
                               </div>
                               <div className="col-md-6">

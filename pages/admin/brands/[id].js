@@ -58,10 +58,10 @@ const brandDetails = () => {
                     <div className="col-md-6">
                         <h3>Brand Details</h3>    
                         <p className="card-text"><b>Brand Name : </b>{brand.brandName}</p>
-                        <p className="card-text"><b>Website Url: </b>{brand.url}</p>                 
-                        <p className="card-text"><b>Product Category: </b>{brand.category.categoryName}</p>     
-                        <p className="card-text"><b>LinkedIn : </b>{brand.linkedIn}</p>
-                        <p className="card-text"><b>Market : </b>{brand.market.marketName}</p>      
+                        <p className="card-text"><b>Website Url: </b>{brand.url ? brand.url : '-'}</p>                 
+                        <p className="card-text"><b>Product Category: </b>{brand.category ? brand.category.categoryName : '-'}</p>     
+                        <p className="card-text"><b>LinkedIn : </b>{brand.linkedIn ? brand.linkedIn : '-'}</p>
+                        <p className="card-text"><b>Market : </b>{brand.market ? brand.market.marketName :'-'}</p>      
                     </div>
                     <div className="col-md-6">
                         <h3>User Details</h3>

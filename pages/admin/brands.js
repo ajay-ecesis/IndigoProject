@@ -53,10 +53,10 @@ const ManageBrands = () => {
        
         {title: "id", field: "_id", hidden: true},
         {title: "Brand Name", field: "brandName", render: rowData => {return <Link href={`/admin/brands/${rowData._id}`}><a style={{color:"#106eea"}}>{rowData.brandName}</a></Link>}},
-        {title: "Website Url", field: "url"},
-        {title: "Product Category", render: rowData => { return <>{rowData.category.categoryName}</> }},
-        {title: "Market",  render: rowData => { return <>{rowData.market.marketName}</> }},
-        {title: "LinkedIn", field: "linkedIn"},
+        {title: "Website Url", field: "url", render: rowData => {return <>{rowData.url ? rowData.url : '-'}</>}},
+        {title: "Product Category", render: rowData => { return <>{rowData.category ? rowData.category.categoryName : '-'}</> }},
+        {title: "Market",  render: rowData => { return <>{rowData.market ? rowData.market.marketName : '-'}</> }},
+        {title: "LinkedIn", field: "linkedIn", render: rowData => { return <>{rowData.linkedIn ? rowData.linkedIn : '-'}</> }},
         {title: "Status", field: "status", render: rowData => {
             return rowData.userId.status === 0 ? <h6 style={{color:"green"}}>Active</h6> :
             <h6 style={{color:"red"}}>Deleted</h6>
