@@ -193,8 +193,9 @@ const DynamicPage = (props)=>{
         <Head>
             <title>{data[0]?.pagetitle}</title>
         </Head>
-        
+          <div className="main_banner_new about_us_banner banner_min_height expore_details_banner">
             {props.nav && <Navbar preview={props.preview} nav={props.nav} />}
+          </div>
             <div className="dynamic_container">
             {data[0]?.content?.map((content,i)=>(
                 <div>

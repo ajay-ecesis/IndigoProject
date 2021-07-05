@@ -124,7 +124,7 @@ const Detail = (props)=>{
                 <div className="container-fluid about">           
                     <div className="row">
                         <div className="col-md-12">
-                            <img src="images/sustainability_new2.png" alt="" />                  
+                            <img src="images/sustainability.png" alt="" />                  
                         </div>
                     </div>
                 </div>

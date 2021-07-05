@@ -97,6 +97,10 @@ responsive: [
 });
 
 $(".humburger-menu img").click(function(){
+  $(".banner_min_height").toggleClass("show");
+});
+
+$(".humburger-menu img").click(function(){
   $(".user-info").toggleClass("active");
 });
 
@@ -139,49 +143,3 @@ $('.humburger-menu').click(function(){
   }
 });
 
-
-// new
-/* $(document).ready(function(){
-  $(".signin-popup").click(function(){
-    $(".signin-popup").css("display", "none");
-  });
-}); */
-
-
-
-
-
-// latest search
-/* $('.latest-search-slider').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  speed:1500,
-  dots: false,
-  prevArrow: '<span class="prev"><i class="fas fa-chevron-left"></i></span>',
-        nextArrow: '<span class="next"><i class="fas fa-chevron-right"></i></span>',
-  responsive: [
-    {
-      breakpoint: 1440,
-      settings: {
-        centerPadding: '30px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        centerPadding: '30px',
-        slidesToShow: 2
-      }
-    },
-    {
-      breakpoint: 767,
-      settings: {
-        centerPadding: '15px',
-        slidesToShow: 1
-      }
-    }
-  ]
-}); */

@@ -5,6 +5,10 @@
   .footer ul.submenu.pl-0 {
     display: block !important;
   }
+      .section.Available_plans .row:last-child > div .row > div {
+    /*flex: 0 0 33.33%;*/
+}
+
 }
 
 @media screen and (min-width: 1025px) {
@@ -89,6 +93,83 @@
   .bottom-blog-gallery-section .Artisanal-slider_second i.fas.fa-arrow-right {
     bottom: -2%;
   }
+  .main_banner_new.home .left-side h1, .banner .left-side h2, .section-head .heading {
+    width: 30%;
+    }
+    .section.trustBrand .heading-inner {
+    font-size: 70px;
+}
+.section.features.artisanalExperiences .btn.btn-black {
+    font-size: 24px;
+}
+.section.Sustainability .wrapper .disc {
+    font-size: 13px;
+    line-height: 18px;
+    width: 65%;
+}
+.main_banner_new.about_us_banner.new.about-changed h1 {
+    font-size: 70px !important;
+        font-weight: 600;
+}
+section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 h2.heading-inner {
+    font-size: 40px;
+}
+.banner .left-side h1 {
+    color: #fff;
+    font-size: 70px !important;
+    font-weight: 700;
+}
+.about_us_banner .left-side h6 {
+    color: #fff;
+    font-size: 24px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.change h5 {
+    font-size: 22px;
+}
+.blog.changed_new_blog .brands:nth-child(2) .inner__heading,.blog.changed_new_blog .brands:nth-child(3) .inner__heading,.blog.changed_new_blog .brands:nth-child(4) .inner__heading {
+    font-size: 28px !important;
+}
+.blog.changed_new_blog .brands:nth-child(2) .info,.blog.changed_new_blog .brands:nth-child(3) .info,.blog.changed_new_blog .brands:nth-child(4) .info {
+    font-size: 15px;
+}
+.blog.changed_new_blog .brands:nth-child(2),.blog.changed_new_blog .brands:nth-child(3),.blog.changed_new_blog .brands:nth-child(4){
+    margin-bottom:70px !important;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content {
+    width: 80%;
+}
+.story-page .post_sehdule {
+    font-size: 12px;
+}
+.story-page .post_sehdule .post_cat {
+    font-weight: 900;
+}
+.story-page .post_head .post-details h3.sub_heading {
+    font-size: 18px;
+    line-height: 20px;
+}
+.story-page .post__footer h3 {
+    font-size: 22px;
+}
+.story-page .post__footer p {
+    font-size: 18px;
+    line-height: 20px;
+}
+.banner .left-side h2 {
+    font-size: 100px !important;
+}
+}
+
+@media screen and (max-width:1400px) and (min-width:1000px){
+    .section.trustBrand.manufacturers .row > div:first-child {
+    width: 40%;
+}
+    .section.trustBrand.manufacturers .row > .col-md-12 {
+    width: 100% !important;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .col-9 {
+    width: 80%;
+}
 }
 
 @media screen and (max-width: 1440px) {
@@ -187,6 +268,9 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about1 {
 }
 #blog_new .section.trustBrand.manufacturers .all_manu_brand_wrapper > div {
   flex: 0 0 33%;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content {
+    width: 100%;
 }
 }
 
@@ -1363,6 +1447,7 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
 .banner .banner-inner {
     margin-bottom: 10px;
 }
+
 }
 
 
@@ -1848,8 +1933,9 @@ section.section.products {
   padding-bottom: 0;
 }
 .section.products p.feature-tag {
-  top: 49%;
-  padding: 4px 30px;
+    top: 54%;
+    padding: 4px 20px;
+    font-size: 10px;
 }
 .about_us_banner .bg-img_about img {
   top: 29%;
@@ -2074,7 +2160,7 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
     width: 90%;
 }
 .header .Navbar, .header .Navbar.active {
-    padding: 0 0 0 5%;
+    padding: 1% 0 0 5%;
 }
 .header .Navbar li {
     font-size: 25px;
@@ -2645,9 +2731,9 @@ section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_
 }
 .header .Navbar.active li.bottom-buttons p {
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 100;
     color: #000;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 section.explore.explore2.section.trustBrand.manufacturers.trustBrand_new_change.brands.changed_new {
     padding-top: 0;
@@ -2659,6 +2745,26 @@ section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .
 .expore_details_banner .header {
     background: transparent;
 }
+.header.active {
+    opacity: 1;
+}
+.section.products .card-content .cardDisc {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.section.products .follower .Label {
+    font-size: 11px;
+}
+.section.products .follower {
+    margin-top: -40px;
+}
+section.section.trustBrand .row .col-md-12 .brand-logo .col-md-4 img {
+    transform: scale(1);
+}
+
+
+
+
 }
 
 

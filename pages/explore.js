@@ -63,7 +63,7 @@ const Explore = (props)=>{
                 <title>Indigo | Explore</title>
             </Head>
 
-            <div className="main_banner_new about_us_banner expore_details_banner">
+            <div className="main_banner_new about_us_banner banner_min_height expore_details_banner">
                 <Navbar preview={props.preview} nav={props.nav}  />
             </div>
             

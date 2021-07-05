@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react'
+import {useContext, useEffect, Fragment} from 'react'
 import { usePreviewSubscription } from '../utils/previewConfig';
 import {Context} from '../context'
 
@@ -85,10 +85,10 @@ const Navbar = (props) => {
                                 </div>
                                 <ul className="Navbar">
                                     {data[0]?.navlinks && data[0].navlinks.map((item,i)=>(
-                                        <span key={i}>
-                                        { item.slug.current=="/" ? <li  ><a href="/">{item && item.linkname}</a></li>:
-                                        <li  ><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
-                                        </span>
+                                        <Fragment key={i}>
+                                        { item.slug.current=="/" ? <li><a href="/">{item && item.linkname}</a></li>:
+                                        <li><a href={item && "/"+item.slug.current}>{item && item.linkname}</a></li>}
+                                        </Fragment>
                                     ))}
                                     {user === null && 
                                         <li className="bottom-buttons"><p>Sign up</p>

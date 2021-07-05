@@ -10,38 +10,21 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
   // const [showmanufacture,setshowmanufacture] = useState(false);
   
     const settings = {
-      slidesToShow: 4,
+      slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: false,
-      autoplaySpeed: 3000,
-      accessibility: false,
-      infinite: true,
-      dots: false,
-      cssEase: 'linear',
+      autoplaySpeed: 0,
+      centerPadding: '10px',
+      speed:2000,
+        dots: false,
       arrows: false,
       responsive: [
         {
-          breakpoint: 1500,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 2,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            centerPadding: '20px'
-          }
-        },
-        {
           breakpoint: 767,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
+            centerPadding: '15px',
+            autoplay: true,
+            slidesToShow: 1
           }
         }
       ]
@@ -69,11 +52,12 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                   <div className="tab-content" id="nav-tabContent">
 
                       <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                          <div className="row Artisanal-slider">
+                          <div className="row Artisanal-slider_new">
 
                             <Slider {...settings}>
                                 {contentbrand?.map((item,i)=>(
-                                      <div key={i} className="content">
+                                    <div key={i} className="content">
+                                      <div className="box_wrapper">
                                           <img src={urlFor(item.image)} alt="" />
                                           <div className="text-wrapper">
                                             <div className="text">
@@ -88,6 +72,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                               </div>
                                           </div>
                                       </div>
+                                    </div>
                                   </div>
                                 ))}
                             </Slider>
@@ -96,15 +81,16 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                       </div>
 
                       <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <div className="row Artisanal-slider">
+                        <div className="row Artisanal-slider_new">
 
                           
 
                             <Slider {...settings}>
                                 {contentmanufacture?.map((item,i)=>(
-                                      <div key={i} className="content">
-                                          <img src={urlFor(item.image)} alt="" />
-                                          <div className="text-wrapper">
+                                    <div key={i} className="content">
+                                      <div className="box_wrapper">
+                                        <img src={urlFor(item.image)} alt="" />
+                                        <div className="text-wrapper">
                                             <div className="text">
                                               <div className="left_side">
                                                   <span className="strip">Manufacturer</span>
@@ -117,6 +103,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                               </div>
                                           </div>
                                       </div>
+                                    </div>
                                   </div>
                                 ))}
                             </Slider>

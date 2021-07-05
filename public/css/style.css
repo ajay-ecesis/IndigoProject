@@ -106,7 +106,7 @@ a:hover {
   color: #000 !important;
 }
 .btn.btn-black {
-  background: #000;
+  background: #181818;
   color: #fff;
   font-size: 20px;
   border-radius: 70px;
@@ -319,7 +319,7 @@ ul.slick-dots li.slick-active button {
   color: #8f8372;
 }
 .header .Navbar li.bottom-buttons {
-  display: none;
+  /*display: none;*/
 }
 .header .bookmark-menu {
   position: fixed;
@@ -584,7 +584,12 @@ section.section.trustBrand {
   color: #fff;
   left: 10%;
 }
-
+section.section.trustBrand.trustBrand-change.manufacturers .content {
+  position: absolute;
+  bottom: 10%;
+  color: #fff;
+  left: 40px;
+}
 .section.trustBrand .heading-inner {
   font-size: 49px;
   font-weight: 800;
@@ -644,6 +649,9 @@ section.section.features {
 .section.trustBrand.manufacturers .manufacturers-content .disc {
   margin-top: 40px;
   margin-left: 0;
+      width: 90%;
+    font-size: 18px;
+    line-height: 18px;
 }
 .section.trustBrand.manufacturers .manufacturers-content .title {
   font-size: 25px;
@@ -652,7 +660,7 @@ section.section.features {
 }
 
 .section.trustBrand.manufacturers .heading-inner {
-  font-size: 49px;
+  font-size: 70px;
   font-weight: 800;
   text-shadow: 1px 1px 10px #1a1919;
 }
@@ -1032,7 +1040,7 @@ section.explore.stories.section.trustBrand.manufacturers.brands .thumb img {
 section.explore.stories.section.trustBrand.manufacturers.brands
   .bottom-content
   .btn.btn-black {
-  font-size: 18px;
+  font-size: 13px;
   padding: 7px 30px;
   font-weight: 300;
 }
@@ -2046,7 +2054,7 @@ section.section.artisanal__experiences {
     padding: 8px 20px;
     border-radius: 50px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 100;
         color: #000;
 }
 .header .Navbar li:last-child a:after {
@@ -2724,11 +2732,8 @@ ul.slick-dots li.slick-active button {
   z-index: -1;
   max-height: 100vh;
 }
-.banner .left-side h1 {
-  color: #fff;
-}
 .banner .left-side h2 {
-  -webkit-text-stroke: 1px #fff;
+    -webkit-text-stroke: 1px #fff;
 }
 .banner .left-side p {
   color: #fff;
@@ -2755,6 +2760,8 @@ ul.slick-dots li.slick-active button {
   margin: 0;
   margin-right: auto !important;
   margin-top: 24%;
+      font-size: 80px;
+    line-height: 80px;
 }
 .section.features .container-fluid {
   padding: 0 5% !important;
@@ -2910,6 +2917,7 @@ section.section.trustBrand .container-fluid {
   object-fit: cover;
   max-height: 450px;
   min-height: 450px;
+  border-radius:15px;
 }
 .section.Sustainability .wrapper {
   position: relative;
@@ -3005,11 +3013,13 @@ section.section.trustBrand .container-fluid {
 }
 .section.Available_plans .content {
   position: relative;
-  padding: 0 20px 0 0;
 }
 .section.Available_plans .row:last-child > div {
-  padding: 0 10px;
+  
   position: relative;
+}
+.section.Available_plans .box_wrapper {
+    padding: 10px;
 }
 .section.Available_plans .content img {
   display: block;
@@ -3018,7 +3028,6 @@ section.section.trustBrand .container-fluid {
   min-height: 300px;
   max-height: 300px;
   border-radius: 20px;
-  box-shadow: 0px 15px 30px -15px #646463;
 }
 .section.Available_plans .text .left_side {
   margin-left: 40px;
@@ -3056,7 +3065,7 @@ section.section.trustBrand .container-fluid {
 }
 .section.trustBrand.trustBrand-change .bottom_speed > div {
   flex: 0 0 25%;
-  margin-right: 10%;
+  margin-right: 8%;
 }
 
 /* rahul css */
@@ -3674,6 +3683,9 @@ section.section.trustBrand .container-fluid {
   width: 100%;
   max-height: 75vh;
 }
+.about_us_banner .bg-img_about.new img {
+    max-height: 80vh;
+}
 .about_us_banner .left-side h6 {
   color: #fff;
   font-size: 20px;
@@ -3767,8 +3779,10 @@ section.explore.section.trustBrand.manufacturers.brands {
   margin-bottom: 50px;
 }
 .section.trustBrand.manufacturers .manufacturers-content .info {
-  margin-bottom: 40px;
-  width: 60%;
+    margin-bottom: 40px;
+    width: 90%;
+    font-size: 18px;
+    line-height: 18px;
 }
 .section.trustBrand.manufacturers .manufacturers-content .row.gallery{
   margin-left: 30%;
@@ -3923,6 +3937,37 @@ section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_
     display: block;
 }
 
+/* new css 7/7/21 */
+.main_banner_new.about_us_banner.banner_min_height.expore_details_banner.show .header {
+    opacity: 1;
+}
+.l-footer02-bottom ul li a {
+    font-size: 11px;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .content,section.explore.explore2.section.trustBrand.manufacturers.trustBrand_new_change.brands.changed_new .content {
+    left: 40px;
+}
+.header.active {
+    opacity: 1;
+}
+.header .Navbar.active li.bottom-buttons p {
+    font-size: 15px;
+    font-weight: 100;
+    color: #000;
+    margin-top: 20px;
+}
+.header .Navbar li {
+    font-size: 28px;
+    text-transform: capitalize;
+    font-weight: 900;
+}
+section.section.trustBrand .row .col-md-12 .brand-logo .col-md-4 img{
+       transform: scale(1.5);
+}
+section.section.aboutus-slider .container-fluid {
+    padding: 0 5%;
+}
+
 
 
 
@@ -3964,7 +4009,6 @@ li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
 
 .action { margin-top:5px; }
 
-.header .Navbar li:last-child a{color: #000000 !important;}
 
 .signin-popup.registar-popup.uploadFile #myCertification,.signin-popup.registar-popup.uploadFile #myMultiphoto {
   display: none;
@@ -3983,27 +4027,5 @@ li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
     text-align: left !important;
   }
 }
-
-/* @media screen and (max-width: 480px){
-  .topBannerRadius img {
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
-  .hideMobile {
-    display: none;
-  }
-  .about_section_one_description_dev{
-    padding-left: 72px;
-    color: #8A8A8F;
-    margin-top: 29px;
-  }
-  .about_section_one_heading_dev{
-    padding-left: 34px;
-    font-size: 18px;
-    text-align: left;
-  }
-  .hideBorder {
-    border-radius: 0 0 0 0;
-    box-shadow: 0 0 0 0 #d2d2d2;
-  }
-} */
+/* 
+.header .Navbar li:last-child a{color: #000000 !important;}  */
