@@ -43,169 +43,170 @@ const Details = (props)=>{
     return(
         <>
             <Head>
-            <meta charSet="UTF-8" />
-            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Indigo | Product</title>
+                <meta charSet="UTF-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Indigo | Upgrade Plans</title>
             </Head>
 
-            <div className="main_banner_new about_us_banner banner_min_height expore_details_banner">
+            <div className="main_banner_new about_us_banner expore_details_banner">
                 <Navbar preview={props.preview} nav={props.nav} />
             </div>
 
-            <section className="explore stories section trustBrand manufacturers brands product-detail">
-                <div className="container-fluid ">
+            <main id="upgrade_plans">
+                <section className="upgrade-plans-section">
+                    <div className="container-fluid">
                         <div className="row">
-                            <div className="col-12">
-                                <a className="backArrow" href={props.prevUrl}> <img src="/images/back-arrow.svg" alt="" /> </a>
-                            </div>
-                            <div className="col-md-12 section-head">
-                                    <div className="left-side">
-                                        <h2 className="heading">
-                                            Basic plan
-                                        </h2>
-                                        <span className="heading__span txt-light">A Modern Tradition</span>
-                                    </div>
-                                    <div id="productBtn" className="right-side">
-                                        <span>More info</span>
-                                        <i className="fa fa-chevron-down"></i>
-                                    </div>
-                            </div>
+                            <h2 className="heading">Upgrade your plan</h2>
+                            <hr/>
                         </div>
-                        <div className="row row--chnage">
-                                <div className="col-9">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="thumb">
-                                                <img src="images/12.jpg" alt="" />
-                                            </div>
+                        <div className="row content">
+                            <div className="col-12"><h6 className="heading_new">
+                                For Brands
+                            </h6></div>
+                            <div className="col">
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Free</h4>
                                         </div>
-                                        <div className="col-md-12">
-                                            <div className="manufacturers-content">
-                                                <div className="head">
-                                                    <p className="price">$0/month</p>
-                                                    <a className="btn btn-yellow" href="">Coming Soon</a>
-                                                </div>
-                                                <div className="footer-info">
-                                                <ul id="accordion" className="accordion pl-0">
-                                                    <div role="contentinfo" className="l-footer02">
-                                                        <div className="l-footer02-inner cf">
-                                                            <nav className="l-footer02-nav">
-                                                                    <ul className="l-footer02-nav-list">
-                                                                        <li className="l-footer02-nav-item">
-                                                                        <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change"><span>Details</span><i className="fa fa-chevron-down"></i></h2>
-                                                                        <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display:'none'}}>
-                                                                            <ul className="l-footer02-nav-panel-inner">
-                                                                            <li className="l-footer02-nav-panel-item">
-                                                                                <a href="#"><p>Create a free profile and get matched with information and connections.</p>
-                                                                                <ul className="details">
-                                                                                    <li>Access all free content</li>
-                                                                                    <li>5 connections per month</li>
-                                                                                    <li>Basic individual profile</li>
-                                                                                    <li>3 portfolio files</li>
-                                                                                    <li>Basic business profile</li>
-                                                                                    <li>3 portfolio / product files</li>
-                                                                                </ul>
-                                                                                </a>
-                                                                            </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        </li>
-                                                                    </ul>
-                                                            </nav>
-                                                        </div>
-                                                    </div>
-                                                </ul>
-                                                </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>0€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Lite</h4>
+                                        </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>9€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Premium</h4>
+                                        </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>29€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row-change">
+                                    <div className="col-12"><h6 className="heading_new">
+                                        For Manufacturers
+                                    </h6></div>
+                                </div>
+                                <div className="row row_manufacturers">
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Silver</h4>
+                                        </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>9€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Gold</h4>
+                                        </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>39€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="left-side">
+                                            <h4>Platinum</h4>
+                                        </div>
+                                        <div className="right-side">
+                                            <h5>Basic Plan</h5>
+                                            <ul>
+                                                <li>Access all free content</li>
+                                                <li>5 connections per month</li>
+                                                <li>Basic individual profile</li>
+                                                <li>3 portfolio files </li>
+                                                <li>Basic business profile</li>
+                                                <li>3 portfolio / product files</li>
+                                            </ul>
+                                            <div className="price">
+                                                <h5>99€/Emonth </h5>
+                                                <p>Billed annually</p>
+                                            </div>
+                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                </div>
-            </section>
-        
-   <section className="section artisanalExperiences Plans bottom-blog-gallery-section product-detail">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-12 section-head text-center">
-                        <p className="browse_plan">Browse other plans</p>
-                        <div className="view__all">
-                            <h6>View all</h6>
                         </div>
                     </div>
-                </div>
-                <div className="row Artisanal-slider_second Artisanal-slider_second_view_all">
-                    <Slider {...settings} >
-                    <div className="col-md-4">
-                        <div className="product">
-                            <img src="images/15.jpg" alt="" />
-                        <div className="product-footer">
-                            <h5 className="title">Professional plan</h5>
-                            <p>A modern take on tradition</p>
-                            <div className="product_price">
-                                <p>$21</p>
-                                <img src="images/cart-checkout.png" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="product">
-                            <img src="images/14.jpg" alt="" />
-                        <div className="product-footer">
-                            <h5 className="title">Professional plan</h5>
-                            <p>A modern take on tradition</p>
-                            <div className="product_price">
-                                <p>$21</p>
-                                <img src="images/cart-checkout.png" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="product">
-                            <img src="images/15.jpg" alt="" />
-                        <div className="product-footer">
-                            <h5 className="title">Professional plan</h5>
-                            <p>A modern take on tradition</p>
-                            <div className="product_price">
-                                <p>$21</p>
-                                <img src="images/cart-checkout.png" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="product">
-                            <img src="images/14.jpg" alt="" />
-                        <div className="product-footer">
-                            <h5 className="title">Professional plan</h5>
-                            <p>A modern take on tradition</p>
-                            <div className="product_price">
-                                <p>$21</p>
-                                <img src="images/cart-checkout.png" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="product">
-                            <img src="images/15.jpg" alt="" />
-                        <div className="product-footer">
-                            <h5 className="title">Professional plan</h5>
-                            <p>A modern take on tradition</p>
-                            <div className="product_price">
-                                <p>$21</p>
-                                <img src="/images/cart-checkout.png" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </Slider>
-                </div>
-            </div>
-        </section>  
+                </section>
+            </main>
+
+            
         <Footer />
         </>
 
