@@ -93,8 +93,7 @@ const Navbar = (props) => {
                                     {user === null && 
                                         <li className="bottom-buttons"><p>Sign up</p>
                                             <p>
-                                                <a href="/brandregister">Brand</a>
-                                                <a href="/manufactureregister">Manufacturer</a>
+                                                <a href="/brandregister">Brand</a> <a href="/manufactureregister">Manufacturer</a>                                         
                                             </p>
                                         </li>
                                     }
