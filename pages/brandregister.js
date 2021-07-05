@@ -5,6 +5,8 @@ import {toast} from 'react-toastify'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Footer from '../pagecomponents/Footer';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 //import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 
@@ -12,6 +14,10 @@ const brandregister = (props) => {
 
     const [categories, setCategories] = useState([]);
     const [markets, setMarkets] = useState([]);
+    const [visibility,setvisibility] = useState('password');
+    const [visibility1,setvisibility1] = useState('password');
+
+    const [open, setOpen] = useState(false);
 
     const loadCategory = async() => {
         try {
@@ -56,6 +62,14 @@ const brandregister = (props) => {
         loading: false
     })
     const handleChangeRegBrand = name => event => {
+
+        let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
+
+        if(name === "password"){
+            if(!pwdRegExp.test(event.target.value)) {
+                return toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
+            } 
+        }
         setRegBrandValues({...regBrandValues, [name]:event.target.value, loading: false})
     }
 
@@ -80,8 +94,9 @@ const brandregister = (props) => {
                 country: regBrandValues.country,
             });
             toast.success('Registration successfull, Please login to continue.');
+            setOpen(true);
             //push('/signin'); 
-            return window.location.replace("/signin");
+            //return window.location.replace("/signin");
             setRegBrandValues({...regBrandValues, firstName:'', lastName:'', email:'', password:'', password1:'',brandName:'', url:'', category:'', market:'', linkedIn:'', zipCode:'', city:'', country:'', loading:false})
          
         } catch (error) {
@@ -91,6 +106,39 @@ const brandregister = (props) => {
         }
     }
 
+    const showSuccessfullMsg = () => {
+        if(open){
+            return (
+                <>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Registration successfull,</strong> Please <a href="/signin">Login</a>
+                    <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+                </div>
+            </>
+            )
+        }
+    }
+
+    const togglevisibility = (field)=>{
+        switch (field) {
+            case 'password1':
+                if(visibility1=='password'){
+                    setvisibility1('text')
+                }
+                if(visibility1=='text') {
+                    setvisibility1('password')
+                }
+                break;
+        
+            case 'password':
+                if(visibility == 'password'){
+                    setvisibility('text')
+                }
+                if(visibility == 'text')
+                setvisibility('password')
+                break;
+        }
+    }
 
     return(
         <>
@@ -100,7 +148,7 @@ const brandregister = (props) => {
         <div className="main_banner_new about_us_banner expore_details_banner">
             <Navbar nav={props.nav}/>
         </div>
-       
+      
          <div className="signin-popup registar-popup_new registar-popup active">
             <div className="modal-bg active">
                 <div className="modal_box">
@@ -111,7 +159,7 @@ const brandregister = (props) => {
                     </div>
                     <form onSubmit={clickSubmitRegBrand}>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name *" value={regBrandValues.brandName} required />
+                            <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name *" value={regBrandValues.brandName} />
                         </div>
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegBrand('url')} placeholder="Website url" value={regBrandValues.url} />
@@ -143,18 +191,18 @@ const brandregister = (props) => {
                             <input type="text" onChange={handleChangeRegBrand('linkedIn')} placeholder="LinkedIn" value={regBrandValues.linkedIn} />
                         </div>
                         <div className="form-group form-group-change">
-                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City" required>
-                                <option value="" disabled selected hidden>City *</option>
+                            <select onChange={handleChangeRegBrand('city')} defaultValue={regBrandValues.city} placeholder="City">
+                                <option value="" disabled  hidden>City *</option>
                                 <option value="volvo">America</option>
                                 <option value="saab">London</option>
                                 <option value="mercedes">Canada</option>
                                 <option value="audi">Austrailia</option>
                             </select>
-                            <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code *" value={regBrandValues.zipCode} required/>
+                            <input type="text" onChange={handleChangeRegBrand('zipCode')} placeholder="Zip Code *" value={regBrandValues.zipCode}/>
                         </div>
                         <div className="form-group form-group-change full-width">
-                            <select required onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
-                                <option value="" disabled selected hidden>Country *</option>
+                            <select onChange={handleChangeRegBrand('country')} placeholder="Country" defaultValue={regBrandValues.country}>
+                                <option value="" disabled  hidden>Country *</option>
                                 <option value="volvo">America</option>
                                 <option value="saab">London</option>
                                 <option value="mercedes">Canada</option>
@@ -166,20 +214,25 @@ const brandregister = (props) => {
                         </div>
                         
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name *" value={regBrandValues.firstName} required />
+                            <input type="text" onChange={handleChangeRegBrand('firstName')} placeholder="First name *" value={regBrandValues.firstName} />
                         </div>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name *" value={regBrandValues.lastName} required />
+                            <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name *" value={regBrandValues.lastName} />
                         </div>
                         <div className="form-group">
-                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email *" value={regBrandValues.email} required />
+                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email *" value={regBrandValues.email} />
                         </div>
-                        <div className="form-group">
-                            <input type="password" onChange={handleChangeRegBrand('password')} placeholder="Password *" value={regBrandValues.password} />
+                        <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
+                            <input type={visibility} onBlur={handleChangeRegBrand('password')} placeholder="Password *" />
+                            <input type="checkbox" onClick={(e)=>(togglevisibility('password'))} id="toggle" style={{width:'10%'}} hidden />
+                            <label htmlFor="toggle">{visibility=='password' ?<VisibilityIcon /> :<VisibilityOffIcon />}</label>
                         </div>
-                        <div className="form-group">
-                            <input type="password" onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password *" value={regBrandValues.password1} />
+                        <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
+                            <input type={visibility1} onChange={handleChangeRegBrand('password1')} placeholder="Confirm Password *" value={regBrandValues.password1} />
+                            <input type="checkbox" onClick={(e)=>(togglevisibility('password1'))} id="toggle1" style={{width:'10%'}} hidden />
+                            <label htmlFor="toggle1">{visibility1=='password' ?<VisibilityIcon /> :<VisibilityOffIcon />}</label>
                         </div>
+                        
                         <div className="bottom-btn">
                             <input id="forUpload" type="submit" className="btn-yellow" value={regBrandValues.loading ? 'Loading...' : "Register"} />
                         </div>
@@ -188,6 +241,8 @@ const brandregister = (props) => {
                             <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
                         </div>
                     </form>
+                    
+                    {showSuccessfullMsg()}
                 </div>
             </div>
         </div>

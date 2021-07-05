@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   
   return(
     <Provider>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" autoClose={false} />
         <AppWrapper>
           <Component {...pageProps} />
         </AppWrapper>
