@@ -226,6 +226,22 @@ module.exports = {
       },
 
       // Manage Newsletter Section END
+
+      // Edit Post - Brand
+      {
+        source:'/api/get/brands/user',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/brands/user`
+      },
+      // Edit Post - Manufacturer
+      {
+        source:'/api/get/manufacturer/user',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/manufacturer/user`
+      },
+      //reset password
+      {
+        source:'/api/user/resetpassword',
+        destination:`${process.env.EXTERNAL_RESOLVER}/api/user/resetpassword`
+      },
     ]
   },
 }

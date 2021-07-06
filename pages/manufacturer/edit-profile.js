@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
-import AdminRoute from '../../../../pagecomponents/routes/AdminRoute'
-import AdminLayout from '../../../../pagecomponents/layout/admin/AdminLayout'
-import { useRouter } from 'next/router'
+import {Context} from '../../context'
+import ManufacturerLayout from '../../pagecomponents/layout/manufacturer/ManufacturerLayout'
+import ManufacturerRoute from '../../pagecomponents/routes/ManufacturerRoute'
 import {toast} from 'react-toastify'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -16,13 +16,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const EditManufacturer = () => {
+const EditProfile = () => {
 
     const classes = useStyles();
 
-    const router = useRouter()
-
-    const { id } = router.query
+    const {state:{user}} = useContext(Context);
 
     const [loading, setLoading] = useState(true);
 
@@ -89,8 +87,8 @@ const EditManufacturer = () => {
     const loadManufacturer = async (id) => {
         try {
            
-            let { data } = await axios.post(`/api/getManufacturerById`, {
-                Id: id
+            let { data } = await axios.post(`/api/get/manufacturer/user`, {
+                userId: id
             })
             setSupplier(data);
             if(data){
@@ -132,10 +130,12 @@ const EditManufacturer = () => {
     };
 
     useEffect(() => {
-        if(id){
-            loadManufacturer(id)
+        if(user !== null){
+            if(user._id){
+                loadManufacturer(user._id);
+            }
         }
-    },[id])
+    },[user])
 
 
     // handle change to reflect changes
@@ -190,7 +190,7 @@ const EditManufacturer = () => {
         try {
             setBtnloading(true);
             let { data } = await axios.put(`/api/update/manufacturer`, {
-                Id: id,
+                Id: supplier._id,
                 userId,
                 firstName, lastName, email, category, city, zipCode, country,
                 addressLine1, addressLine2, monthlyCapacity, employees, factoryInfo, heading, importantClients,samplingTime,sku,supplierName,terms,year,
@@ -199,7 +199,7 @@ const EditManufacturer = () => {
             })
             setBtnloading(false)
             toast.success("Successfully Updated");
-            router.push('/admin/manufacturers');
+            //router.push('/admin/manufacturers');
 
         } catch (error) {
             console.log("error", error)
@@ -253,7 +253,6 @@ const EditManufacturer = () => {
         { label:"3 Weeks",value: "3 Weeks"},
         { label:"4 Weeks",value: "4 Weeks"},
     ])
-
 
     const showUpdateForm = () => (
 
@@ -447,13 +446,13 @@ const EditManufacturer = () => {
     )
 
     return (
-        <AdminRoute>
-            <AdminLayout>
+        <ManufacturerRoute>
+            <ManufacturerLayout>
                     <Head>
                         <meta charSet="UTF-8" />
                         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>Indigo | Admin-Edit Manufacturer</title>
+                        <title>Indigo | Manufacturer-Edit Profile</title>
                     </Head>
                 <div className="row">
                     <div className="col-md-12">
@@ -466,9 +465,10 @@ const EditManufacturer = () => {
                 <Backdrop className={classes.backdrop} open={loading} >
                     <CircularProgress color="inherit" />
                 </Backdrop>
-            </AdminLayout>
-        </AdminRoute>
+            </ManufacturerLayout>
+        </ManufacturerRoute>
     )
 }
 
-export default EditManufacturer
+export default EditProfile
+
