@@ -246,7 +246,7 @@ const manufacture = (props) => {
                             <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name *" value={regManufacturerValues.supplierName}  />
                         </div>
                         <div className="form-group">
-                            <input type="text" onChange={handleChangeRegManufacturer('year')} placeholder="Year established" value={regManufacturerValues.year} />
+                            <input type="number" onChange={handleChangeRegManufacturer('year')} placeholder="Year established" value={regManufacturerValues.year} />
                         </div>
                         <div className="form-group form-group-change full-width">
                             <select onChange={handleChangeRegManufacturer('employees')} placeholder="Number of employees *" defaultValue={regManufacturerValues.employees}>

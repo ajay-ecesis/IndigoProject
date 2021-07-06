@@ -268,7 +268,7 @@ const EditManufacturer = () => {
 
                     <div className="form-group">
                         <label className="text-muted">Year</label>
-                        <input onChange={handleChange('year')} type="text" className="form-control" value={year} />
+                        <input onChange={handleChange('year')} type="number" className="form-control" value={year} required />
                     </div>
 
                     <div className="form-group">
