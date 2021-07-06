@@ -11,6 +11,32 @@ import Footer from "../pagecomponents/Footer";
 //import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
 const Details = (props)=>{
+
+    const  postQuery= `*[_type=="siteplans"]`
+
+    const {data} = usePreviewSubscription(postQuery, {
+        initialData: props.data,
+        enabled: props.preview,
+    })
+
+    const overrides = {
+        h2: props => <h5 className="heading" {...props} />,
+    }
+  
+    const serializers = {
+        types: {
+        block: props =>
+            // Check if we have an override for the “style”
+            overrides[props.node.style] 
+            // if so, call the function and pass in the children, ignoring
+            // the other unnecessary props
+            ? overrides[props.node.style]({ children: props.children })
+    
+            // otherwise, fallback to the provided default with all props
+            : BlockContent.defaultSerializers.types.block(props),
+        }
+    }
+
     const settings = {
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -39,7 +65,8 @@ const Details = (props)=>{
             }
             }
         ]
-      };
+    };
+
     return(
         <>
             <Head>
@@ -57,7 +84,7 @@ const Details = (props)=>{
                 <section className="upgrade-plans-section">
                     <div className="container-fluid">
                         <div className="row">
-                            <h2 className="heading">Upgrade your plan</h2>
+                            {data[0]?.pageHeading && <BlockContent blocks={data[0]?.pageHeading} serializers={serializers} />}
                             <hr/>
                         </div>
                         <div className="row content">
@@ -66,69 +93,24 @@ const Details = (props)=>{
                             </h6></div>
                             <div className="col">
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Free</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>0€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Lite</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>9€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Premium</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>29€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
+                                    {data[0]?.brandplans.map((plan,i)=>(
+                                         <div key={i} className="col-md-4">
+                                         <div className="left-side">
+                                             <h4>{plan?.plantype}</h4>
+                                         </div>
+                                         <div className="right-side">
+                                             <h5>{plan?.planname}</h5>
+                                            { plan.plandata && <BlockContent blocks={plan?.plandata}  />}
+                                            
+                                             <div className="price">
+                                                { plan.planprice && <BlockContent blocks={plan?.planprice} />}
+                                            
+                                             </div>
+                                             <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                         </div>
+                                     </div>
+                                    ))}
+                                   
                                 </div>
                                 <div className="row-change">
                                     <div className="col-12"><h6 className="heading_new">
@@ -136,69 +118,23 @@ const Details = (props)=>{
                                     </h6></div>
                                 </div>
                                 <div className="row row_manufacturers">
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Silver</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>9€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Gold</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>39€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="left-side">
-                                            <h4>Platinum</h4>
-                                        </div>
-                                        <div className="right-side">
-                                            <h5>Basic Plan</h5>
-                                            <ul>
-                                                <li>Access all free content</li>
-                                                <li>5 connections per month</li>
-                                                <li>Basic individual profile</li>
-                                                <li>3 portfolio files </li>
-                                                <li>Basic business profile</li>
-                                                <li>3 portfolio / product files</li>
-                                            </ul>
-                                            <div className="price">
-                                                <h5>99€/Emonth </h5>
-                                                <p>Billed annually</p>
-                                            </div>
-                                            <a href="#" className="btn btn-yellow"> Coming Soon</a>
-                                        </div>
-                                    </div>
+                                {data[0]?.manufacturerplans.map((plan,i)=>(
+                                         <div key={i} className="col-md-4">
+                                         <div className="left-side">
+                                             <h4>{plan?.plantype}</h4>
+                                         </div>
+                                         <div className="right-side">
+                                             <h5>{plan?.planname}</h5>
+                                            { plan.plandata && <BlockContent blocks={plan?.plandata}  />}
+                                            
+                                             <div className="price">
+                                                { plan.planprice && <BlockContent blocks={plan?.planprice} />}
+                                            
+                                             </div>
+                                             <a href="#" className="btn btn-yellow"> Coming Soon</a>
+                                         </div>
+                                     </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -229,17 +165,17 @@ export async function getServerSideProps(context) {
     let preview = context.preview ? context.preview : null
     if(context.preview){
        
-        data = await client.fetch('*[_type=="sitedetail"]');
+        data = await client.fetch('*[_type=="siteplans"]');
     }
     else{
-        data = await clientRead.fetch('*[_type=="sitedetail"]');
+        data = await clientRead.fetch('*[_type=="siteplans"]');
     }
     console.log(data)
-//   if (!data || data.length<1) {
-//     return {
-//       notFound: true,
-//     }
-//   }
+  if (!data || data.length<1) {
+    return {
+      notFound: true,
+    }
+  }
   
     return {
       props: { data,preview,nav, prevUrl }, // will be passed to the page component as props

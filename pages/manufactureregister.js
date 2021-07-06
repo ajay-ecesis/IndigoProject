@@ -215,7 +215,7 @@ const manufacture = (props) => {
             return (
                 <>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Registration successfull,</strong> Please <a href="/signin">Login</a>
+                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
                     <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
                 </div>
             </>
@@ -241,7 +241,7 @@ const manufacture = (props) => {
                         <h2>Welcome to Projekt Indigo</h2>
                         <p>Please tell us about your company</p>
                     </div>
-                    <form onSubmit={clickSubmitRegManufacturer}>
+                    {!open ? <form onSubmit={clickSubmitRegManufacturer}>
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name *" value={regManufacturerValues.supplierName}  />
                         </div>
@@ -395,7 +395,7 @@ const manufacture = (props) => {
                             <p>By clicking the “Register” button, you are creating a Projekt Indigo account, and you agree to Projekt Indigo’s Terms of Use and Privacy Policy. </p>
                         </div>
                     </form>
-                    {showSuccessfullMsg()}
+                    : showSuccessfullMsg()}
                 </div>
             </div>
         </div>

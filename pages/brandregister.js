@@ -9,7 +9,6 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 //import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
 
-
 const brandregister = (props) => {
 
     const [categories, setCategories] = useState([]);
@@ -61,6 +60,7 @@ const brandregister = (props) => {
         country:'',
         loading: false
     })
+
     const handleChangeRegBrand = name => event => {
 
         let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
@@ -111,7 +111,7 @@ const brandregister = (props) => {
             return (
                 <>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Registration successfull,</strong> Please <a href="/signin">Login</a>
+                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
                     <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
                 </div>
             </>
@@ -157,7 +157,7 @@ const brandregister = (props) => {
                         <h2>Welcome to Projekt Indigo</h2>
                         <p>Please tell us about your brand</p>
                     </div>
-                    <form onSubmit={clickSubmitRegBrand}>
+                    {!open ? <form onSubmit={clickSubmitRegBrand}>
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegBrand('brandName')} placeholder="Brand name *" value={regBrandValues.brandName} />
                         </div>
@@ -242,7 +242,7 @@ const brandregister = (props) => {
                         </div>
                     </form>
                     
-                    {showSuccessfullMsg()}
+                    : showSuccessfullMsg()}
                 </div>
             </div>
         </div>
