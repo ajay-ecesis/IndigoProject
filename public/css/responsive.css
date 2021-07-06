@@ -2761,7 +2761,10 @@ section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .
 section.section.trustBrand .row .col-md-12 .brand-logo .col-md-4 img {
     transform: scale(1);
 }
-
+.main_banner_new.about_us_banner.new.about-changed .Nav {
+    position: fixed;
+    top: 30px;
+}
 
 
 
