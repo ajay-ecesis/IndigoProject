@@ -1,6 +1,5 @@
 import {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
 import {toast} from 'react-toastify'
 import {Context} from '../../context'
 //import PasswordRoute from './PasswordRoute';
@@ -20,12 +19,9 @@ const Preloader = () => (
 
 const BrandRoute = ({children}) => {
 
-    const {state:{user}} = useContext(Context);
+    const {state:{user}, dispatch} = useContext(Context);
 
     const [ok, setOk] = useState(false);
-
-    // router
-    const router = useRouter();
 
     useEffect(() => {
         fetchUser()
@@ -33,28 +29,29 @@ const BrandRoute = ({children}) => {
 
     const fetchUser = async () => {
         try {
-            if(user){
+            if(user !== null){
                 if(user.role === 0){
                     setOk(true);
                     return;
                 }
                 else {
+                    const {data} = await axios.get('/api/logout');
                     toast("Unauthorized access to this page");
                     return window.location.replace("/signin");
                 }
             }
             else {
                 const {data} = await axios.get('/api/auth');
-                console.log("Brand Data", data);
+                
                 if(data.user.role === 0){
+                    dispatch({
+                        type:"LOGIN",
+                        payload: data.user
+                    })
                     setOk(true);
                 }
-                else if(data.user.role === 1) {
-                    //router.push('/manufacturer/dashboard');
-                    return window.location.replace("/manufacturer/dashboard");
-                } 
                 else {
-                    //const {data} = await axios.get('/api/logout');
+                    const {data} = await axios.get('/api/logout');
                     toast("Unauthorized access to this page");
                     return window.location.replace("/signin");
                 } 

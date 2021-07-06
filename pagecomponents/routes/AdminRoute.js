@@ -20,7 +20,7 @@ const Preloader = () => (
 
 const AdminRoute = ({children}) => {
 
-    const {state:{user}} = useContext(Context);
+    const {state:{user}, dispatch} = useContext(Context);
 
     const [ok, setOk] = useState(false);
 
@@ -33,12 +33,13 @@ const AdminRoute = ({children}) => {
 
     const fetchUser = async () => {
         try {
-            if(user){
+            if(user !== null){
                 if(user.role === 2){
                     setOk(true);
                     return;
                 }
                 else {
+                    const {data} = await axios.get('/api/logout');
                     toast("Unauthorized access to this page");
                     return window.location.replace("/signin");
                 }
@@ -47,6 +48,10 @@ const AdminRoute = ({children}) => {
                 const {data} = await axios.get('/api/auth');
                 console.log("Brand Data", data);
                 if(data.user.role === 2){
+                    dispatch({
+                        type:"LOGIN",
+                        payload: data.user
+                    })
                     setOk(true);
                 }
                 else if(data.user.role === 1) {
