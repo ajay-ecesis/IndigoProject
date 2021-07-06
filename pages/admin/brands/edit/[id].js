@@ -123,10 +123,10 @@ const EditBrand = () => {
         e.preventDefault();
         try { 
             setBtnloading(true);
-            let { data } = await axios.post(`/api/update/brand`, {
+            let { data } = await axios.put(`/api/update/brand`, {
                 Id: id, 
                 userId,
-                firstName, lastName, email, category, city, zipCode,
+                firstName, lastName, email, category, city, zipCode, country,
                 brandName, linkedIn, market, url
             })
             setBtnloading(false)
