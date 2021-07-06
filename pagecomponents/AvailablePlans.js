@@ -68,7 +68,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                               </div>
                                                      
                                               <div className="right_side">
-                                                <a href="/brandregister"><i className="fas fa-arrow-right"></i></a>
+                                                <a href="/product-detail"><i className="fas fa-arrow-right"></i></a>
                                               </div>
                                           </div>
                                       </div>
@@ -97,7 +97,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                               </div>
                                                      
                                               <div className="right_side">
-                                                <a href="/manufactureregister"><i className="fas fa-arrow-right"></i></a>
+                                                <a href="/product-detail"><i className="fas fa-arrow-right"></i></a>
                                               </div>
                                           </div>
                                       </div>
