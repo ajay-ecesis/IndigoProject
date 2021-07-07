@@ -216,7 +216,7 @@ const manufacture = (props) => {
             if(value.length !== 4)
             {
                 toast.error("Year should be in 4 digit only!")
-                setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
+                //setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
             }   
             return;   
         }
