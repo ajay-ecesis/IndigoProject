@@ -49,11 +49,21 @@ export default Register;
 export async function getServerSideProps(context) {
     // console.log("the context",context)
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
-    console.log("the navbar",nav)
 
-    let prevUrl = "/";
+    let prevUrl = "/signin";
+    
     if(context.req.headers.referer){
         prevUrl = context.req.headers.referer
+        prevUrl = new URL(prevUrl).pathname;
+        if(String(prevUrl) === "/brandregister"){
+            prevUrl = "/signin"
+        }
+        else if(String(prevUrl) === "/manufactureregister"){
+            prevUrl = "/signin"
+        }
+        else if(String(prevUrl) === "/register"){
+            prevUrl = "/signin"
+        }
     }
      
     return {

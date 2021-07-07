@@ -137,8 +137,23 @@ export async function getServerSideProps(context) {
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
     const query = context?.query || null;
     let prevUrl = "/";
+    
     if(context.req.headers.referer){
+    
         prevUrl = context.req.headers.referer
+        prevUrl = new URL(prevUrl).pathname;
+        if(String(prevUrl) === "/brandregister"){
+            prevUrl = "/"
+        }
+        else if(String(prevUrl) === "/manufactureregister"){
+            prevUrl = "/"
+        }
+        else if(String(prevUrl) === "/register"){
+            prevUrl = "/"
+        }
+        else if(String(prevUrl) === "/signin"){
+            prevUrl = "/"
+        }
     }
      
     return {
