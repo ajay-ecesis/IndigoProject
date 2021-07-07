@@ -18,6 +18,8 @@ const manufacture = (props) => {
 
     const [open, setOpen] = useState(false);
 
+    const [previewImg, setPreviewImg] = useState([]);
+
     // Register Manufacturer values
     const [regManufacturerValues, setRegManufacturerValues] = useState({
         firstName:'',
@@ -85,7 +87,7 @@ const manufacture = (props) => {
                 samplingTime:regManufacturerValues.samplingTime,
                 /* dailyCapacity:regManufacturerValues.dailyCapacity, */
                 certifications:regManufacturerValues.certifications,
-                multiphotos:regManufacturerValues.multiphotos
+                multiphotos:JSON.stringify(regManufacturerValues.multiphotos)
             })
 
             toast.success('Registration successfull, Please login to continue...');
@@ -171,12 +173,19 @@ const manufacture = (props) => {
             let val = event.target.files;
             if(val.length >= 1){
                 var baseData;
-                var result = [];
+                var result = []
+                if(regManufacturerValues.multiphotos.length){
+                    //result.push(regManufacturerValues.multiphotos[0])
+                    result = [...regManufacturerValues.multiphotos]
+                }
+                
                 for(var i=0;i<val.length;i++){
                     baseData = await getBase64(val[i]);
                     result.push(baseData);
                 }
-                setRegManufacturerValues({...regManufacturerValues, multiphotos:JSON.stringify(result), loading:false});
+               
+                setRegManufacturerValues({...regManufacturerValues, multiphotos:result, loading:false});
+                setPreviewImg(JSON.stringify(result))
                 //toast.success('Image Upload successfully.')
             }
             else {
@@ -384,7 +393,7 @@ const manufacture = (props) => {
                             <input onChange={handleChangeRegManufacturer('certifications')} type="file" id="myCertification" name="certifications" />
                         </div>
                         {regManufacturerValues.certifications && <div>
-                            <object data={getcontent(regManufacturerValues.certifications)} width="100" height="100"></object>
+                            <object data={getcontent(regManufacturerValues.certifications)} width="60" height="auto"></object>
                         </div>}
                         <div className="form-group form-group-change  upload">
                             <a href="#">Please share between 5-10 photos of your factory and your products for Brands to see. *</a>
@@ -392,13 +401,21 @@ const manufacture = (props) => {
                             <input  type="file" multiple onChange={handleChangeRegManufacturer('multiphotos')}  accept="image/*" id="myMultiphoto" name="multiphotos" />
                         </div>
                         <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+                            {previewImg.length>0 && getmultiphotos(previewImg).map((item,i)=>(
+                                <div key={i} >
+                                    <object data={item} style={{margin:'1px'}} width="60" height="auto"></object>
+                                </div>  
+                            ))
+                            }
+                        </div>
+                        {/* <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
                             {regManufacturerValues.multiphotos.length>0 && getmultiphotos(regManufacturerValues.multiphotos).map((item,i)=>(
                                 <div key={i} >
                                     <object data={item} width="100" height="100"></object>
                                 </div>  
                             ))
                             }
-                        </div>
+                        </div> */}
                         <div className="mid-heading">
                             <p>Register</p>
                         </div>
@@ -445,9 +462,7 @@ export default manufacture;
 
 
 export async function getServerSideProps(context) {
-    // console.log("the context",context)
     let nav = await client.fetch(`*[_id=="navbar"]{navlinks[]->}`);
-    console.log("the navbar",nav)
 
     let prevUrl = "/";
     if(context.req.headers.referer){
