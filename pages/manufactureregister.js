@@ -231,6 +231,16 @@ const manufacture = (props) => {
             } 
             return;
         }
+
+        let emailRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if(name === "email"){
+            if(!emailRegexp.test(value)) {
+                toast.error('Please enter a valid Email!');
+                //setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
+            } 
+            return;
+        }
     }
 
     const showSuccessfullMsg = () => {
@@ -400,7 +410,7 @@ const manufacture = (props) => {
                             <input type="text" onChange={handleChangeRegManufacturer('lastName')} placeholder="Last name *" value={regManufacturerValues.lastName} />
                         </div>
                         <div className="form-group">
-                            <input type="email" onChange={handleChangeRegManufacturer('email')} placeholder="Email *" value={regManufacturerValues.email}  />
+                            <input type="email" onChange={handleChangeRegManufacturer('email')} onBlur={handleClick('email')} placeholder="Email *" value={regManufacturerValues.email}  />
                         </div>
                         <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
                             <input type={visibility} onChange={handleChangeRegManufacturer('password')} onBlur={handleClick('password')} placeholder="Password *"  value={regManufacturerValues.password}  />

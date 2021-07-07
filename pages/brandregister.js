@@ -112,6 +112,15 @@ const brandregister = (props) => {
             } 
             return;
         }
+
+        let emailRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if(name === "email"){
+            if(!emailRegexp.test(value)) {
+                toast.error('Please enter a valid Email!');
+            } 
+            return;
+        }
     }
 
     const showSuccessfullMsg = () => {
@@ -227,7 +236,7 @@ const brandregister = (props) => {
                             <input type="text" onChange={handleChangeRegBrand('lastName')} placeholder="Last name *" value={regBrandValues.lastName} />
                         </div>
                         <div className="form-group">
-                            <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email *" value={regBrandValues.email} />
+                            <input type="email" onChange={handleChangeRegBrand('email')} onBlur={handleClick('email')} placeholder="Email *" value={regBrandValues.email} />
                         </div>
                         <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
                             <input type={visibility} onChange={handleChangeRegBrand('password')} onBlur={handleClick('password')} placeholder="Password *" value={regBrandValues.password} />
