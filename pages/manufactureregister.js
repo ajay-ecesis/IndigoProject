@@ -155,6 +155,12 @@ const manufacture = (props) => {
 
     const handleChangeRegManufacturer = (name) => async (event ) => {
 
+        if(name === "year"){
+            const message = event.target.value.slice(0, event.target.maxLength);
+            setRegManufacturerValues({...regManufacturerValues, [name]:message, loading: false})
+            return;
+        }
+
         if(name === "certifications"){
             var baseData;
             baseData = await getBase64(event.target.files[0]);
@@ -265,7 +271,7 @@ const manufacture = (props) => {
                             <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name *" value={regManufacturerValues.supplierName}  />
                         </div>
                         <div className="form-group">
-                            <input type="number" onChange={handleChangeRegManufacturer('year')} onBlur={handleClick('year')} placeholder="Year established" value={regManufacturerValues.year} />
+                            <input type="number" onChange={handleChangeRegManufacturer('year')} onBlur={handleClick('year')} maxLength="4" placeholder="Year established" value={regManufacturerValues.year} />
                         </div>
                         <div className="form-group form-group-change full-width">
                             <select onChange={handleChangeRegManufacturer('employees')} placeholder="Number of employees *" defaultValue={regManufacturerValues.employees}>
