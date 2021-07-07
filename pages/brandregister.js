@@ -90,6 +90,7 @@ const brandregister = (props) => {
             //push('/signin'); 
             //return window.location.replace("/signin");
             setRegBrandValues({...regBrandValues, firstName:'', lastName:'', email:'', password:'', password1:'',brandName:'', url:'', category:'', market:'', linkedIn:'', zipCode:'', city:'', country:'', loading:false})
+            return window.scrollTo(0, 0);
          
         } catch (error) {
             console.log("Error", error);

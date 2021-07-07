@@ -123,6 +123,7 @@ const manufacture = (props) => {
                 multiphotos:[],
                 loading:false
             }) 
+            return window.scrollTo(0, 0);
           
         } catch (error) {
             toast.error(error.response.data);
