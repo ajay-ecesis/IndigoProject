@@ -155,14 +155,6 @@ const manufacture = (props) => {
 
     const handleChangeRegManufacturer = (name) => async (event ) => {
 
-        let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
-
-        if(name === "password"){
-            if(!pwdRegExp.test(event.target.value)) {
-                return toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
-            } 
-        }
-
         if(name === "certifications"){
             var baseData;
             baseData = await getBase64(event.target.files[0]);
@@ -214,12 +206,36 @@ const manufacture = (props) => {
         if(open){
             return (
                 <>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div className="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
                     <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
                 </div>
             </>
             )
+        }
+    }
+
+    const handleClick = name => event => {
+
+        const value = event.target.value;
+
+        if(name === "year"){
+            if(value.length !== 4)
+            {
+                toast.error("Year should be in 4 digit only!")
+                setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
+            }   
+            return;   
+        }
+
+        let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
+
+        if(name === "password"){
+            if(!pwdRegExp.test(value)) {
+                toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
+                setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
+            } 
+            return;
         }
     }
 
@@ -246,7 +262,7 @@ const manufacture = (props) => {
                             <input type="text" onChange={handleChangeRegManufacturer('supplierName')} placeholder="Supplier name *" value={regManufacturerValues.supplierName}  />
                         </div>
                         <div className="form-group">
-                            <input type="number" onChange={handleChangeRegManufacturer('year')} placeholder="Year established" value={regManufacturerValues.year} />
+                            <input type="number" onChange={handleChangeRegManufacturer('year')} onBlur={handleClick('year')} placeholder="Year established" value={regManufacturerValues.year} />
                         </div>
                         <div className="form-group form-group-change full-width">
                             <select onChange={handleChangeRegManufacturer('employees')} placeholder="Number of employees *" defaultValue={regManufacturerValues.employees}>
@@ -377,7 +393,7 @@ const manufacture = (props) => {
                             <input type="email" onChange={handleChangeRegManufacturer('email')} placeholder="Email *" value={regManufacturerValues.email}  />
                         </div>
                         <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
-                            <input type={visibility} onBlur={handleChangeRegManufacturer('password')} placeholder="Password *" /* value={regManufacturerValues.password} */  />
+                            <input type={visibility} onChange={handleChangeRegManufacturer('password')} onBlur={handleClick('password')} placeholder="Password *"  value={regManufacturerValues.password}  />
                             <input type="checkbox" onClick={(e)=>(togglevisibility('password'))} id="toggle" style={{width:'10%'}} hidden />
                             <label htmlFor="toggle">{visibility=='password' ?<VisibilityIcon /> :<VisibilityOffIcon />}</label>
                         </div>
