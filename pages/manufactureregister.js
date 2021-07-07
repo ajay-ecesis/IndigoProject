@@ -202,19 +202,6 @@ const manufacture = (props) => {
         }
     }
 
-    const showSuccessfullMsg = () => {
-        if(open){
-            return (
-                <>
-                    <div className="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
-                    <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-                </div>
-            </>
-            )
-        }
-    }
-
     const handleClick = name => event => {
 
         const value = event.target.value;
@@ -233,9 +220,25 @@ const manufacture = (props) => {
         if(name === "password"){
             if(!pwdRegExp.test(value)) {
                 toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
-                setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
+                //setRegManufacturerValues({...regManufacturerValues, [name]:'', loading: false})
             } 
             return;
+        }
+    }
+
+    const showSuccessfullMsg = () => {
+        if(open){
+            return (
+                <>
+                    {/* <div className="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
+                        <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+                    </div> */}
+                    <div className="form-heading">
+                        <h6>Registration Successfull, Please <a style={{textDecoration:'underline', color:'#106eea'}} href="/signin">Login</a> to continue.</h6>
+                    </div>
+            </>
+            )
         }
     }
 

@@ -62,14 +62,6 @@ const brandregister = (props) => {
     })
 
     const handleChangeRegBrand = name => event => {
-
-        let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
-
-        if(name === "password"){
-            if(!pwdRegExp.test(event.target.value)) {
-                return toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
-            } 
-        }
         setRegBrandValues({...regBrandValues, [name]:event.target.value, loading: false})
     }
 
@@ -106,14 +98,28 @@ const brandregister = (props) => {
         }
     }
 
+    const handleClick = name => event => {
+
+        const value = event.target.value;
+
+        let pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,15}$");
+
+        if(name === "password"){
+            if(!pwdRegExp.test(value)) {
+                toast.error('Password must contains min 6 and max 15 characters, including one uppercase, lowercase letters, special characters and numbers');
+                //setRegBrandValues({...regBrandValues, [name]:'', loading: false})
+            } 
+            return;
+        }
+    }
+
     const showSuccessfullMsg = () => {
         if(open){
             return (
                 <>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
-                    <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-                </div>
+                    <div className="form-heading">
+                        <h6>Registration Successfull, Please <a style={{textDecoration:'underline', color:'#106eea'}} href="/signin">Login</a> to continue.</h6>
+                    </div>
             </>
             )
         }
@@ -223,7 +229,7 @@ const brandregister = (props) => {
                             <input type="email" onChange={handleChangeRegBrand('email')} placeholder="Email *" value={regBrandValues.email} />
                         </div>
                         <div className="form-group" style={{display:"flex",flexDirection:'row'}}>
-                            <input type={visibility} onBlur={handleChangeRegBrand('password')} placeholder="Password *" />
+                            <input type={visibility} onChange={handleChangeRegBrand('password')} onBlur={handleClick('password')} placeholder="Password *" value={regBrandValues.password} />
                             <input type="checkbox" onClick={(e)=>(togglevisibility('password'))} id="toggle" style={{width:'10%'}} hidden />
                             <label htmlFor="toggle">{visibility=='password' ?<VisibilityIcon /> :<VisibilityOffIcon />}</label>
                         </div>
