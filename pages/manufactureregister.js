@@ -7,8 +7,6 @@ import axios from 'axios'
 import Footer from '../pagecomponents/Footer';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-//import PasswordRoute from '../pagecomponents/routes/PasswordRoute';
-
 
 const manufacture = (props) => {
 
@@ -45,7 +43,7 @@ const manufacture = (props) => {
         zipCode:'',
         city:'',
         country:'',
-        certifications:'',
+        certifications:[],
         multiphotos:[],
         loading: false
     })
@@ -84,7 +82,7 @@ const manufacture = (props) => {
                 sku:regManufacturerValues.sku,
                 samplingTime:regManufacturerValues.samplingTime,
                 /* dailyCapacity:regManufacturerValues.dailyCapacity, */
-                certifications:regManufacturerValues.certifications,
+                certifications:JSON.stringify(regManufacturerValues.certifications),
                 multiphotos:JSON.stringify(regManufacturerValues.multiphotos)
             })
 
@@ -119,7 +117,7 @@ const manufacture = (props) => {
                 zipCode:'',
                 city:'',
                 country:'',
-                certifications:'',
+                certifications:[],
                 multiphotos:[],
                 loading:false
             }) 
@@ -163,9 +161,24 @@ const manufacture = (props) => {
         }
 
         if(name === "certifications"){
-            var baseData;
-            baseData = await getBase64(event.target.files[0]);
-            setRegManufacturerValues({...regManufacturerValues, [name]:JSON.stringify(baseData), loading: false})
+            let val = event.target.files;
+            if(val.length >= 1){
+                var baseData1;
+                var result1 = []
+                if(regManufacturerValues.certifications.length){
+                    result1 = [...regManufacturerValues.certifications]
+                }
+                
+                for(var i=0;i<val.length;i++){
+                    baseData1 = await getBase64(val[i]);
+                    result1.push(baseData1);
+                }
+               
+                setRegManufacturerValues({...regManufacturerValues, [name]:result1, loading:false});
+            }
+            else {
+                toast.error("Unable to upload images, because the Certification field is empty!")
+            } 
         }
         else if(name === "multiphotos"){
             let val = event.target.files;
@@ -173,7 +186,6 @@ const manufacture = (props) => {
                 var baseData;
                 var result = []
                 if(regManufacturerValues.multiphotos.length){
-                    //result.push(regManufacturerValues.multiphotos[0])
                     result = [...regManufacturerValues.multiphotos]
                 }
                 
@@ -183,11 +195,9 @@ const manufacture = (props) => {
                 }
                
                 setRegManufacturerValues({...regManufacturerValues, multiphotos:result, loading:false});
-                
-                //toast.success('Image Upload successfully.')
             }
             else {
-                toast.error("Unable to upload images, because the field is empty!")
+                toast.error("Unable to upload images, because the Multiphotos field is empty!")
             }
         }
         else {
@@ -254,16 +264,19 @@ const manufacture = (props) => {
         if(open){
             return (
                 <>
-                    {/* <div className="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Registration successfull,</strong> Please <a style={{textDecoration:'underline'}} href="/signin"><b>Login</b></a>
-                        <button type="button" onClick={() => setOpen(false)} className="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-                    </div> */}
                     <div className="form-heading">
                         <h6>Registration Successfull, Please <a style={{textDecoration:'underline', color:'#106eea'}} href="/signin">Login</a> to continue.</h6>
                     </div>
             </>
             )
         }
+    }
+
+    const removeCertification = (e,i) => {
+        e.preventDefault();
+        var img1 = [...regManufacturerValues.certifications];
+        img1.splice(i,1);
+        setRegManufacturerValues({...regManufacturerValues, certifications:img1, loading:false});
     }
 
     const removeImage = (e,i) => {
@@ -324,15 +337,7 @@ const manufacture = (props) => {
                                 <option value="Dresses">Dresses</option>
                             </select>
                         </div>
-                       {/*  <div className="form-group form-group-change full-width">
-                            <select onChange={handleChangeRegManufacturer('speciality')}  placeholder="Speciality" defaultValue={regManufacturerValues.speciality} required>
-                                <option value="" disabled selected hidden>Speciality</option>
-                                <option value="volvo">option</option>
-                                <option value="volvo">option</option>
-                                <option value="volvo">option</option>
-                                <option value="volvo">option</option>
-                            </select>
-                        </div> */}
+                     
                         <div className="form-group">
                             <input type="number" onChange={handleChangeRegManufacturer('sku')} placeholder="Minimum order per SKU *" value={regManufacturerValues.sku}  />
                         </div>
@@ -344,9 +349,7 @@ const manufacture = (props) => {
                                 <option value="4 Weeks">4 Weeks</option>
                             </select>
                         </div>
-                        {/* <div className="form-group">
-                            <input type="number" onChange={handleChangeRegManufacturer('dailyCapacity')} placeholder="Maximum daily capacity" value={regManufacturerValues.dailyCapacity} required />
-                        </div> */}
+                      
                         <div className="form-group">
                             <input type="number" onChange={handleChangeRegManufacturer('monthlyCapacity')} placeholder="Maximum monthly capacity *" value={regManufacturerValues.monthlyCapacity} />
                         </div>
@@ -364,9 +367,6 @@ const manufacture = (props) => {
                             <input type="text" onChange={handleChangeRegManufacturer('factoryInfo')} placeholder="Please share as much information *" value={regManufacturerValues.factoryInfo} />
                         </div>
     
-                        {/* <div className="form-group">
-                            <input type="text" onChange={handleChangeRegManufacturer('skills')} placeholder="Add skills" value={regManufacturerValues.skills} required />
-                        </div> */}
                         <div className="form-group">
                             <input type="text" onChange={handleChangeRegManufacturer('addressLine1')} placeholder="First line of address *" value={regManufacturerValues.addressLine1}  />
                         </div>
@@ -392,14 +392,28 @@ const manufacture = (props) => {
                                 <option value="audi">Austrailia</option>
                             </select>
                         </div>
+
                         <div className="form-group form-group-change  upload">
                             <a href="#">Please share any certifications and/or Audits that you have *</a>
                             <label htmlFor="myCertification">Upload</label>
-                            <input onChange={handleChangeRegManufacturer('certifications')} type="file" id="myCertification" name="certifications" />
+                            <input onChange={handleChangeRegManufacturer('certifications')} type="file" multiple id="myCertification" name="certifications" />
                         </div>
-                        {regManufacturerValues.certifications && <div>
+
+                        <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+                            {regManufacturerValues.certifications.length>0 && regManufacturerValues.certifications.map((item,i)=>(
+                                <div className="multi-image-area" key={i} >
+                                    {/* <iframe width="60" height="auto" src={item}></iframe> */}
+                                     {/* <img src={item}  /> */} <object data={item} width="60" height="auto"></object> 
+                                    <a style={{display:'inline', cursor:'pointer'}} className="remove-multi-image" onClick={(e)=>removeCertification(e,i)}>&#215;</a>                                 
+                                </div>  
+                            ))
+                            }
+                        </div>
+
+                        {/* {regManufacturerValues.certifications && <div>
                             <object data={getcontent(regManufacturerValues.certifications)} width="60" height="auto"></object>
-                        </div>}
+                        </div>} */}
+
                         <div className="form-group form-group-change  upload">
                             <a href="#">Please share between 5-10 photos of your factory and your products for Brands to see. *</a>
                             <label htmlFor="myMultiphoto">Upload</label>

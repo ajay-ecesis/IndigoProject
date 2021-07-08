@@ -37,6 +37,7 @@ const manufacturerDetails = () => {
                 setSupplier(null);
             }
             else {
+                console.log("Data",data);
                 setSupplier(data);
                 console.log(data)
             } 
@@ -115,11 +116,16 @@ const manufacturerDetails = () => {
                         )}
                         <hr/>
                         <h5>Certification</h5>
+                        {(supplier.certifications && supplier.certifications.length >0) && supplier.certifications.map((s,i) => (
+                            <>
+                                <object data={`${supplier.certifications[i]}`} width="20%" height="auto" ></object>
+                            </>)
+                        )}
                         {/* <img src={supplier.certifications} alt="certification" width="20%" height="auto" /> */}
-                        {checkmimetype(supplier.certifications) && <object data={`${supplier.certifications}`} width="20%" height="auto" ></object>}
+                      {/*   {checkmimetype(supplier.certifications) && <object data={`${supplier.certifications}`} width="20%" height="auto" ></object>} */}
                         <div>
-                        <a href={`${supplier.certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
-                         {checkmimetype(supplier.certifications) &&<a href=""  onClick={(event)=>viewCertifications(supplier.certifications,event)}>View Document</a>}
+                        {/* <a href={`${supplier.certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
+                         {checkmimetype(supplier.certifications) &&<a href=""  onClick={(event)=>viewCertifications(supplier.certifications,event)}>View Document</a>} */}
                          </div>
                     </div>
                     

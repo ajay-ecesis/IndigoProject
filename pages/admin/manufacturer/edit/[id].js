@@ -156,17 +156,36 @@ const EditManufacturer = () => {
     };
 
     const handleChangeFile=(name)=>async(event)=>{
-        if(name=='certifications')
+        if(name === 'certifications')
         {
-            let temp= await getBase64(event.target.files[0]);
-            setManufacturerValues({...ManufacturerValues, [name]: temp})
+            let val = event.target.files;
+            if(val.length >= 1){
+                var baseData1;
+                var result1 = [];
+                if(certifications.length){
+                    result1 = [...ManufacturerValues.certifications]
+                }
+                
+                for(var i=0;i<val.length;i++){
+                    baseData1 = await getBase64(val[i]);
+                    result1.push(baseData1);
+                }
+                setManufacturerValues({...ManufacturerValues, certifications:result1});
+                //toast.success('Image Upload successfully.')
+            }
+            else {
+                toast.error("Unable to upload certifications, because the field is empty!")
+            }
         }
-        if (name=='multiphotos')
+        if (name ==='multiphotos')
         {
             let val = event.target.files;
             if(val.length >= 1){
                 var baseData;
                 var result = [];
+                if(multiphotos.length){
+                    result = [...ManufacturerValues.multiphotos]
+                }
                 for(var i=0;i<val.length;i++){
                     baseData = await getBase64(val[i]);
                     result.push(baseData);
@@ -253,6 +272,20 @@ const EditManufacturer = () => {
         { label:"3 Weeks",value: "3 Weeks"},
         { label:"4 Weeks",value: "4 Weeks"},
     ])
+
+    const removeCertification = (e,i) => {
+        e.preventDefault();
+        var img1 = [...ManufacturerValues.certifications];
+        img1.splice(i,1);
+        setManufacturerValues({...ManufacturerValues, certifications:img1, loading:false});
+    }
+
+    const removeImage = (e,i) => {
+        e.preventDefault();
+        var img = [...ManufacturerValues.multiphotos];
+        img.splice(i,1);
+        setManufacturerValues({...ManufacturerValues, multiphotos:img, loading:false});
+    }
 
 
     const showUpdateForm = () => (
@@ -365,10 +398,19 @@ const EditManufacturer = () => {
                     <div className="form-group">
                         <label className="text-muted">Multiphotos<span style={{color:"red"}}> *</span></label>                 
                         {/* <img src={multiphotos} alt="multiphotos"  width="200px" height="150px" /> */}
-                        {(multiphotos && multiphotos.length >0) && multiphotos.map((s,i) => (
+                        {/* {(multiphotos && multiphotos.length >0) && multiphotos.map((s,i) => (
                             <>
                                 <img src={multiphotos[i]} style={{margin:'10px'}} alt="multiphotos" width="15%" height="auto" />
                             </>)
+                        )} */}
+                    </div>
+
+                    <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+                        {(multiphotos && multiphotos.length >0) && multiphotos.map((s,i) => (
+                            <div className="multi-image-area" key={i}>
+                                <img src={multiphotos[i]} alt="multiphotos" width="60" height="auto"  />
+                                <a style={{display:'inline', cursor:'pointer'}} className="remove-multi-image" onClick={(e)=>removeImage(e,i)}>&#215;</a>                                 
+                            </div>)
                         )}
                     </div>
 
@@ -377,18 +419,28 @@ const EditManufacturer = () => {
                         <input onChange={handleChangeFile('multiphotos')} multiple type="file" accept="image/*" className="form-control"   />
                     </div>
 
-                    {/* <img src={certifications} alt="certification" width="15%" height="auto" /> */}
-                    {/* <button onClick={(event)=>viewCertifications(certifications,event)}>View certifications</button> */}
-                   {checkmimetype(certifications) && <object data={`${certifications}`} width="200" height="200" ></object>}
+                  
+                  {/*  {checkmimetype(certifications) && <object data={`${certifications}`} width="200" height="200" ></object>} */}
                     <div>
-                    <a href={`${certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
-                    {checkmimetype(certifications) &&<a href="" onClick={(event)=>viewCertifications(certifications,event)}>View Document</a>}
+                   {/*  <a href={`${certifications}` } download="certification" target="_blank">Download Document</a> <>&nbsp;</>
+                    {checkmimetype(certifications) &&<a href="" onClick={(event)=>viewCertifications(certifications,event)}>View Document</a>} */}
+                    </div>
+
+                    <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+                            {certifications.length>0 && certifications.map((item,i)=>(
+                                <div className="multi-image-area" key={i} >
+                                    {/* <iframe width="60" height="auto" src={item}></iframe> */}
+                                     {/* <img src={item}  /> */} <object data={certifications[i]} width="60" height="auto"></object> 
+                                    <a style={{display:'inline', cursor:'pointer'}} className="remove-multi-image" onClick={(e)=>removeCertification(e,i)}>&#215;</a>                                 
+                                </div>  
+                            ))
+                            }
                     </div>
                     
 
                     <div className="form-group">
                         <label className="text-muted">Upload new Certification<span style={{color:"red"}}> *</span></label>
-                        <input onChange={handleChangeFile('certifications')} type="file" className="form-control"    />
+                        <input onChange={handleChangeFile('certifications')} multiple type="file" className="form-control"    />
                     </div>
                 </div>
 
