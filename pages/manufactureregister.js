@@ -18,8 +18,6 @@ const manufacture = (props) => {
 
     const [open, setOpen] = useState(false);
 
-    const [previewImg, setPreviewImg] = useState([]);
-
     // Register Manufacturer values
     const [regManufacturerValues, setRegManufacturerValues] = useState({
         firstName:'',
@@ -185,7 +183,7 @@ const manufacture = (props) => {
                 }
                
                 setRegManufacturerValues({...regManufacturerValues, multiphotos:result, loading:false});
-                setPreviewImg(JSON.stringify(result))
+                
                 //toast.success('Image Upload successfully.')
             }
             else {
@@ -266,6 +264,13 @@ const manufacture = (props) => {
             </>
             )
         }
+    }
+
+    const removeImage = (e,i) => {
+        e.preventDefault();
+        var img = [...regManufacturerValues.multiphotos];
+        img.splice(i,1);
+        setRegManufacturerValues({...regManufacturerValues, multiphotos:img, loading:false});
     }
 
 
@@ -401,21 +406,15 @@ const manufacture = (props) => {
                             <input  type="file" multiple onChange={handleChangeRegManufacturer('multiphotos')}  accept="image/*" id="myMultiphoto" name="multiphotos" />
                         </div>
                         <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
-                            {previewImg.length>0 && getmultiphotos(previewImg).map((item,i)=>(
-                                <div key={i} >
-                                    <object data={item} style={{margin:'1px'}} width="60" height="auto"></object>
+                            {regManufacturerValues.multiphotos.length>0 && regManufacturerValues.multiphotos.map((item,i)=>(
+                                <div className="multi-image-area" key={i} >
+                                     <img src={item}  />
+                                    <a style={{display:'inline', cursor:'pointer'}} className="remove-multi-image" onClick={(e)=>removeImage(e,i)}>&#215;</a>                                 
                                 </div>  
                             ))
                             }
                         </div>
-                        {/* <div style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
-                            {regManufacturerValues.multiphotos.length>0 && getmultiphotos(regManufacturerValues.multiphotos).map((item,i)=>(
-                                <div key={i} >
-                                    <object data={item} width="100" height="100"></object>
-                                </div>  
-                            ))
-                            }
-                        </div> */}
+                        
                         <div className="mid-heading">
                             <p>Register</p>
                         </div>
