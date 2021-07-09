@@ -5,7 +5,7 @@ import { urlFor } from "../utils/tools"
 import BlockContent from '@sanity/block-content-to-react';
 
 const AvailablePlans =({contentbrand,contentmanufacture})=> {
-
+    console.log(contentbrand)
   // const [showbrand,setshowbrand] = useState(true);
   // const [showmanufacture,setshowmanufacture] = useState(false);
   
@@ -62,13 +62,13 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                           <div className="text-wrapper">
                                             <div className="text">
                                               <div className="left_side">
-                                                  <span className="strip">Brand</span>
+                                                  <span className="strip">{item?.specialtext}</span>
                                                   {/* <p class="title">Free</p> */}
                                                   <p className="title"><BlockContent blocks={item.description} /></p>
                                               </div>
                                                      
                                               <div className="right_side">
-                                                <a href="/product-detail"><i className="fas fa-arrow-right"></i></a>
+                                                <a href={item?.link}><i className="fas fa-arrow-right"></i></a>
                                               </div>
                                           </div>
                                       </div>
@@ -91,13 +91,13 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                         <div className="text-wrapper">
                                             <div className="text">
                                               <div className="left_side">
-                                                  <span className="strip">Manufacturer</span>
+                                                  <span className="strip">{item?.specialtext}</span>
                                                   {/* <p class="title">Free</p> */}
                                                   <p className="title"><BlockContent blocks={item.description} /></p>
                                               </div>
                                                      
                                               <div className="right_side">
-                                                <a href="/product-detail"><i className="fas fa-arrow-right"></i></a>
+                                                <a href={item?.link}><i className="fas fa-arrow-right"></i></a>
                                               </div>
                                           </div>
                                       </div>

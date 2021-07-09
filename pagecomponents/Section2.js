@@ -20,7 +20,14 @@ const Section2 = ({content})=>{
               : BlockContent.defaultSerializers.types.block(props),
         }
       }
-
+      const serializersCta = {
+        marks: {  
+          link: ({mark, children}) => {
+            const { href } = mark
+            return <a href={href} className="btn btn-black btnSm">{children} <i className="fa fa-chevron-right"></i></a>
+          }
+        }
+      }
 
     return(
         <>
@@ -38,8 +45,8 @@ const Section2 = ({content})=>{
                                   </div>
                                   <div className="content">
                                        <BlockContent blocks={content?.subhead} serializers={serializers} />
-                                     
-                                      <a href="/register" className="btn btn-black btnSm">Get Started <i className="fa fa-chevron-right"></i></a>
+                                       {content?.calltoaction && <BlockContent blocks={content?.calltoaction} serializers={serializersCta}/>}
+                                      {/* <a href="/register" className="btn btn-black btnSm">Get Started <i className="fa fa-chevron-right"></i></a> */}
                                   </div>
                               </div>
                               <div className="col-md-6">
