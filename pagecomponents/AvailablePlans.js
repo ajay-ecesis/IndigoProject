@@ -5,7 +5,6 @@ import { urlFor } from "../utils/tools"
 import BlockContent from '@sanity/block-content-to-react';
 
 const AvailablePlans =({contentbrand,contentmanufacture})=> {
-    console.log(contentbrand)
   // const [showbrand,setshowbrand] = useState(true);
   // const [showmanufacture,setshowmanufacture] = useState(false);
   

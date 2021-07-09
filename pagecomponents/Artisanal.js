@@ -22,6 +22,15 @@ const Artisanal = ({content})=>{
     }
   }
     
+  const serializerslink = {
+    marks: {  
+      link: ({mark, children}) => {
+        const { href } = mark
+        return <a href={href} className="btn btn-hover btn-black">{children}</a>
+      }
+    }
+  }
+
     return(
         <>
         <section className="section features artisanalExperiences">
@@ -36,12 +45,13 @@ const Artisanal = ({content})=>{
                                 <div className="content">
                                 {content?.subheading &&<p className="title"> <BlockContent blocks={content?.subheading} serializers={serializers} /></p>}
                                     
-                                    <span><p className="sub_title">Designer Artisan Connection</p></span>
-                                    <a href="/artisanal" className="btn btn-hover btn-black">Explore more</a>
+                                    <span><p className="sub_title">{content?.text}</p></span>
+                                    {/* <a href="/artisanal" className="btn btn-hover btn-black">Explore more</a> */}
+                                    {content.link && <BlockContent blocks={content?.link} serializers={serializerslink} />}
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <img src="images/artisnal2.jpg" alt="" />
+                                <img src={urlFor(content?.mainImage)} alt="" />
                             </div>
                         </div>
                     </div>
