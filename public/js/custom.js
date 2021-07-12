@@ -128,6 +128,22 @@ $('.search_input_wrapper i').click(function(){
   $('#search_btn').show();
 });
 
+$("#country_selector").countrySelect({
+  preferredCountries: ['us', 'ca', 'gb']
+});
+
+$(document).ready(function() {
+            $(".range-example-input").asRange({
+              range: false,
+              limit: false
+            });
+
+
+$(".filter_toggle").click(function(){
+  $(".more_filters").slideToggle();
+});
+});
+
 
 
 

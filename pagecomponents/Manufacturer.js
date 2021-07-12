@@ -47,7 +47,7 @@ const Manufacturer = ({content})=>{
                                 </div>
                                 {content?.featureImages &&  <div className="row gallery2" >
                                   {content.featureImages.map((item,i)=>(
-                                       <div key={i} className="col-md-3" style={{textAlign:'center'}}>
+                                       <div key={i} className="col-md-3">
                                        <img src={urlFor(item.image)} alt="" />
                                        <p htmlFor="" ><BlockContent blocks={item.description} /></p>
                                    </div>

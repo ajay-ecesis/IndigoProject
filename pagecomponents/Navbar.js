@@ -72,7 +72,7 @@ const Navbar = (props) => {
 
             {/* <!-- header --> */}
 
-            <div className="header">
+            <div className={props.terms ? "header terms-privacy" : "header"}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-4">
@@ -120,7 +120,7 @@ const Navbar = (props) => {
                         </div>
                         <div className="col-md-4 text-right">
                             {user === null && <div className="manufacturer_brand_btn">
-                                <a href="/signin/?target=manufacturer">Manufacturer login</a>
+                                <a href="/signin/?target=manufacturer">Manufacturer login</a>&nbsp;
                                 <a href="/signin/?target=brand">Brand login</a>
                             </div> }
                             {user !== null && 
