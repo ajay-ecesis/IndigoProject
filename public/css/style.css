@@ -776,19 +776,19 @@ section.section.artisanalExperiences.Plans .row.Artisanal-slider .col-md-4 img {
   min-height: 250px;
 }
 .slick-next {
-  background-image: url(../images/arrows.png);
-  position: absolute;
-  right: -50px;
-  height: 32px;
-  width: 32px;
+  background-image: url(../images/arrows.png) !important;
+  position: absolute !important;
+  right: -50px !important;
+  height: 32px !important;
+  width: 32px !important;
 }
 .slick-prev {
-  background-image: url(../images/arrows.png);
-  position: absolute;
-  left: -50px;
-  height: 32px;
-  transform: rotate(180deg);
-  width: 32px;
+  background-image: url(../images/arrows.png) !important;
+  position: absolute !important;
+  left: -50px !important;
+  height: 32px !important;
+  transform: rotate(180deg) !important;
+  width: 32px !important;
 }
 .slick-prev:hover {
   opacity: 1;
