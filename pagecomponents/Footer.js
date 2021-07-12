@@ -3,127 +3,307 @@ const Footer = () => {
 
   return(
 
-                  <footer className="footer">
-                    <div className="container-fluid">
-                        <div className="row footer-head">
-                            <div className="col-md-3 footer-info">
-                                <ul id="accordion" className="accordion pl-0">
-                                    <div role="contentinfo" className="l-footer02">
-                                        <div className="l-footer02-inner cf">
-                                          <nav className="l-footer02-nav">
-                                            <ul className="l-footer02-nav-list">
-                                              <li className="l-footer02-nav-item">
-                                                <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change">We are Projekt Indigo<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                                <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                                  <ul className="l-footer02-nav-panel-inner">
-                                                    <li className="l-footer02-nav-panel-item"><a href="/"><p>Projekt Indigo brings together the yin and yang of the denim industry to create a symbiotic, sustainable system. A circular system where the journey of denim is completely traceable, beginning to end. Because we believe that a truly sustainable structure can be achieved only through traceability</p><button className="btn btn-black btnSm">Read more</button></a></li>
-                                                  </ul>
-                                                </div>
-                                              </li>
-                                            </ul>
-                                          </nav>
+    <>
+
+        <footer className="footer fordesktop">
+            <div className="container-fluid">
+                <div className="row footer-head">
+                    <div className="col-md-12 footer-info">
+                        <ul id="accordion" className="accordion pl-0">
+                            <div role="contentinfo" className="l-footer02">
+                                <div className="l-footer02-inner cf">
+                                  <nav className="l-footer02-nav">
+                                    <ul className="l-footer02-nav-list">
+                                      <li className="l-footer02-nav-item">
+                                        <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change">We are Projekt Indigo<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                        <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                          <ul className="l-footer02-nav-panel-inner">
+                                            <li className="l-footer02-nav-panel-item"><a href="#"><p>Projekt Indigo brings together the yin and yang of the denim industry to create a symbiotic, sustainable system. A circular system where the journey of denim is completely traceable, beginning to end. Because we believe that a truly sustainable structure can be achieved only through traceability</p><button className="btn btn-black btnSm">Read more</button></a></li>
+                                          </ul>
                                         </div>
-                                    </div>
-                              </ul>
-                            </div>
-                            <div className="col-md-9">
-                                <div role="contentinfo" className="l-footer02">
-                                    <div className="l-footer02-inner cf">
-                                      <nav className="l-footer02-nav">
-                                        <ul className="l-footer02-nav-list">
-                                          <li className="l-footer02-nav-item">
-                                            <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"> <img className="country-img" src="/images/united-states.svg" alt="" /> Select country<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                            <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                              <ul className="l-footer02-nav-panel-inner">
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              </ul>
-                                            </div>
-                                          </li>
-                                          {/* <li className="l-footer02-nav-item">
-                                            <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Terms & condition<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                            <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                              <ul className="l-footer02-nav-panel-inner">
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-
-                                              </ul>
-                                            </div>
-                                          </li> */}
-                                          <li className="l-footer02-nav-item">
-                                            <a href="/terms"><h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Terms & condition</h2></a>
-                                          </li>
-                                          <li className="l-footer02-nav-item">
-                                            <a href="/privacy"><h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Privacy policy</h2></a>
-                                          </li>
-                                          {/* <li className="l-footer02-nav-item">
-                                            <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Privacy policy <span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                            <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                              <ul className="l-footer02-nav-panel-inner">
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-
-                                              </ul>
-                                            </div>
-                                          </li> */}
-                                          <li className="l-footer02-nav-item">
-                                            <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact us<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                            <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                              <ul className="l-footer02-nav-panel-inner">
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                                <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-
-                                              </ul>
-                                            </div>
-                                          </li>
-                                          <li className="l-footer02-nav-item">
-                                            <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Social links<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
-                                            <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
-                                              <ul className="l-footer02-nav-panel-inner">
-                                                <li className="l-footer02-nav-panel-item">
-                                                    <div className="social-links">
-                                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                                        <a href="#"><i className="fab fa-twitter"></i></a>
-                                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                                                      </div>
-                                                </li>
-                                                
-
-                                                
-                                              </ul>
-                                            </div>
-                                          </li>
-                                        </ul>
-                                      </nav>
-                                    </div>
+                                      </li>
+                                    </ul>
+                                  </nav>
                                 </div>
+                            </div>
+                      </ul>
+                    </div>
+                    <div className="col-md-12">
+                        <div role="contentinfo" className="l-footer02">
+                            <div className="l-footer02-inner cf">
+                              <nav className="l-footer02-nav">
+                                <ul className="l-footer02-nav-list">
+                                  <li className="l-footer02-nav-item mb-0">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-text-small-contry">  Select country<span className="c-btn-bg-bottom"></span></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                      <ul className="l-footer02-nav-panel-inner">
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                  <li className="l-footer02-nav-item">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"> <a href="/terms">Terms & condition</a><span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                      <ul className="l-footer02-nav-panel-inner">
+                                        
+
+                                      </ul>
+                                    </div>
+                                  </li>
+                                  <li className="l-footer02-nav-item">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact Us  <span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                      <ul className="l-footer02-nav-panel-inner">
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+
+                                      </ul>
+                                    </div>
+                                  </li>
+                                  <li className="l-footer02-nav-item border_custom">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"> <img className="country-img" src="/images/united-states.svg" alt="" /> United States<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                      <ul className="l-footer02-nav-panel-inner">
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                      </ul>
+                                    </div>
+                                  </li>
+                                  <li className="l-footer02-nav-item">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"><a href="/privacy">Privacy Policy</a><span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                    </div>
+                                  </li>
+                                  <li className="l-footer02-nav-item">
+                                    <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Social links<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                    <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                      <ul className="l-footer02-nav-panel-inner">
+                                        <li className="l-footer02-nav-panel-item">
+                                            <div className="social-links">
+                                                <a href="#"><i className="fab fa-facebook-f"></i></a>
+                                                <a href="#"><i className="fab fa-instagram"></i></a>
+                                                <a href="#"><i className="fab fa-twitter"></i></a>
+                                                <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                              </div>
+                                        </li>
+                                        
+
+                                        
+                                      </ul>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </nav>
                             </div>
                         </div>
                     </div>
-                    <div className="l-footer02-bottom">
-                        <ul>
-                          <li><a href="/"><img src="images/logo.png" alt="" /> Copyright 2021 Projekt Indigo</a></li>
-                        </ul>
-                       
+                </div>
+            </div>
+            <div className="l-footer02-bottom">
+                <ul>
+                  <li><a href="#"><img src="/images/logo.png" alt="" /> Copyright 2021 Projekt Indigo</a></li>
+                </ul>
+              
+              </div>
+        </footer>
+
+        <footer className="footer formobile">
+                  <div className="container-fluid">
+                      <div className="row footer-head">
+                          <div className="col-md-3 footer-info">
+                              <ul id="accordion" className="accordion pl-0">
+                                  <div role="contentinfo" className="l-footer02">
+                                      <div className="l-footer02-inner cf">
+                                        <nav className="l-footer02-nav">
+                                          <ul className="l-footer02-nav-list">
+                                            <li className="l-footer02-nav-item">
+                                              <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01 footer-col-text-change">We are Projekt Indigo<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                              <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                                <ul className="l-footer02-nav-panel-inner">
+                                                  <li className="l-footer02-nav-panel-item"><a href="#"><p>Projekt Indigo brings together the yin and yang of the denim industry to create a symbiotic, sustainable system. A circular system where the journey of denim is completely traceable, beginning to end. Because we believe that a truly sustainable structure can be achieved only through traceability</p><button className="btn btn-black btnSm">Read more</button></a></li>
+                                                </ul>
+                                              </div>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                      </div>
+                                  </div>
+                            </ul>
+                          </div>
+                          <div className="col-md-9">
+                              <div role="contentinfo" className="l-footer02">
+                                  <div className="l-footer02-inner cf">
+                                    <nav className="l-footer02-nav">
+                                      <ul className="l-footer02-nav-list">
+                                        <li className="l-footer02-nav-item">
+                                          <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"> <img className="country-img" src="images/united-states.svg" alt="" /> United States<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                          <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                            <ul className="l-footer02-nav-panel-inner">
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                            </ul>
+                                          </div>
+                                        </li>
+                                        <li className="l-footer02-nav-item">
+                                          <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01"> <a href="http://claruz.com/indigo/terms-and-conditions.html">Terms & condition</a><span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                          <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                                    <section className="section privacy_policy_section">
+          <div className="container-fluid">
+              <div className="row">
+                  <div className="col-md-12">
+                      <h1 className="heading">
+                          Terms and conditions
+                      </h1>
+                      <h6>1. INTRODUCTION</h6>
+                      <p>1.1 Welcome to the Common Objective (CO) website. Common Objective is a trading name of the Ethical Fashion Group Limited (“EFG” “we”, “us”, “our”), an impact company dedicated to furthering sustainable and ethical business. These Terms of Use (“Terms of Use”), together with any documents referred to below, govern the way in which you may use our website, which is accessible at https://www.commonobjective.co/ and any related domains (the “Site”), whether as a visitor to the Site or as a registered user. Please read through these Terms of Use carefully before you start to use the Site as they form a legally binding contract between you and us relating to your use of the Site. By using the Site, you accept these Terms of Use and agree to be bound by them. If you do not accept these Terms of Use, please refrain from using the Site. <br/> <br/> 1.2 EFG may, at our sole discretion and at any time make changes to these Terms of Use. If we do this, we will either post the changes on this page or, we may send an email to registered users notifying them of any changes. We will indicate the effective date of any change to the Terms of Use at the top of the page. You should, however, check this page on a regular basis to take notice of any changes. <br/><br/>1.3 If you find any change to these Terms of Use unacceptable, you should stop using the Site immediately. If you continue to use the Site following a new set of terms being posted on the Site, you will be deemed to have accepted such new Terms of Use and will be legally bound by them. <br/><br/></p>
+                      <h6>2. ACCESSING THE SITE</h6>
+                      <p>2.1 The Site may be accessed through the internet or through WAP (Wireless Application Protocol) services provided by certain mobile network providers and such access is permitted on a temporary basis. EFG reserves the right to, at our sole discretion, withdraw or vary the services we provide on the Site without any prior notice.<br/> <br/>2.2 We are constantly seeking to improve and develop the Site and from time to time, EFG may restrict access to some parts of the Site, or the entire Site. You accept EFG will not be liable if, for any reason, the Site is unavailable at any time or for any period.<br/><br/>2.3 The Site is not for use by anyone under the age of 16 (“Minimum Age”). By registering as a user on, or otherwise accessing, the Site, you represent and warrant that you at least the Minimum Age and that you have the capacity to understand, agree to be bound by and comply with these Terms of Use. In addition, if the law requires that you must be older than the Minimum Age to lawfully register as a user or otherwise access the Site without parental consent (including using of your personal data) then the Minimum Age is such older age <br/><br/>2.4 You are responsible for making all arrangements necessary for you to have access to the Site including any charges associated with such access. EFG shall not be held responsible for any reduced functionality, resulting from or in connection with, your accessing the Site through the internet or WAP services. By accessing or agreeing to receive messages or notifications from the Site through your mobile phone or any other mobile media device you may incur charges from your wireless or mobile service provider. EFG shall not under any circumstances be liable for such charges. <br/><br/>2.5 The Site is maintained, controlled and operated by EFG from the United Kingdom and we make no representation that any of the Site’s content is appropriate or available for use in other territories. If you access the Site from outside the United Kingdom, you accept that you are responsible for compliance with all applicable local laws and regulations. <br/><br/></p>
+                      <h6>3. NON-REGISTERED USERS</h6>
+                      <p>3.1 As a non-registered user, you will only have access to certain parts of the Site. You will not have a profile page or the ability to upload material, write reviews or be entitled to other benefits of a registered user. You must register as a user if you want to take advantage of these services. <br/><br/></p>
+                      <h6>4. REGISTERED USERS</h6>
+                      <p>4.1 By registering as a user of the Site you accept and agree to be bound by these Terms of Use and the Site’s privacy policy. You will be required to provide information about yourself when you register. This information must be true, accurate and complete for you to become a registered user. As part of the registration process, you will be asked to select a username and password. You are solely responsible for all acts or omissions that occur under your registered account, including the content of any Material (as defined below) uploaded or submitted on the Site. For this reason, you should make sure that you choose a strong password, keep your password secure and not disclose your username or password to anyone or permit anyone else to use your username or password. You shall not be permitted to share an account with another individual, and only one account per person shall be permitted. <br/><br/>4.2 EFG shall not be held liable for any harm or damage caused or related to the theft, misappropriation of, disclosure of, or authorisation of the use of your username or password. You agree to immediately notify EFG if you become aware of, or suspect that the security of your account has been compromised. <br/><br/>4.3 We may refuse to grant you a username that has already been selected by another user, impersonates someone else, is or may be protected by trademark or other intellectual property law, or is deemed offensive or otherwise inappropriate by EFG, at its sole discretion. <br/><br/>4.4 EFG may at its sole discretion, deactivate any user account or user names that have been inactive for more than 180 days. <br/><br/></p>
+                      <h6>5. PAYMENT</h6>
+                      <p>5.1. To access certain services (“Paid Services”) which we provide through the Site, you may be required to pay a fee (“Fee”). All Fees stated are exclusive of tax, unless otherwise stated. <br/><br/>5.2 You agree that, where you subscribe to any Paid Services you will honour your payment obligations. <br/><br/>5.3 Where you pay for any Paid Services, we shall redirect you to a third party payment provider, who will collect and process payment on our behalf. Your payment will be subject to that the payment provider’s own terms and conditions and privacy policy. We will not store your payment information, although we may make receipts of your payment available for you to view in your “My Account” section of the Site. <br/><br/>5.4 Failure to pay any Fee due may result in the suspension or termination of the relevant Paid Services. Also, you agree that: <br/><br/>Your purchase may be subject to foreign exchange fees or differences in prices based on location (e.g. exchange rates).
+                          If you purchase a subscription, your payment method automatically will be charged at the start of each subscription period for the fees applicable to that period. To avoid future charges, you must notify us of your intention to cancel before the renewal date by contacting info@commonobjective.co , or by cancelling your subscription within the Account’ section when logged in to your profile. We will however endeavour to send you a reminder in advance of the renewal date. We will also give you an opportunity to cancel after renewal, free from any cancellation fee. <br/>Your purchase may be subject to foreign exchange fees or differences in prices based on location (e.g. exchange rates).If you purchase a subscription, your payment method automatically will be charged at the start of each subscription period for the fees applicable to that period. To avoid future charges, you must notify us of your intention to cancel before the renewal date by contacting info@commonobjective.co , or by cancelling your subscription within the Account’ section when logged in to your profile. We will however endeavour to send you a reminder in advance of the renewal date. We will also give you an opportunity to cancel after renewal, free from any cancellation fee. <br/>We may calculate taxes payable by you based on the billing information that you provide us at the time of purchase. <br/><br/>
+                      </p>
+                      <h6>6. UPLOADING MATERIAL TO THE SITE</h6>
+                      <p>6.1 As a registered user, we may now or in the future provide you with the ability to upload or submit material, including, without limitation, text, photographs, graphics, video or audio material and any underlying material (“Material”) to the Site. Whenever you make use of a feature that allows you to upload Material to the Site, or make contact with other users of the Site, you must comply with the relevant Common Objective Do’s and Don’t’s set out at Sections 7 and 8 below. <br/><br/>6.2 By uploading or submitting any Material to any area of the Site and in consideration of our providing you with the opportunity to upload or submit Material to the Site (which you acknowledge as a sufficient benefit to you), you irrevocably and unconditionally grant EFG a non-exclusive, irrevocable, unrestricted, worldwide, royalty-free licence (including the right to sub-license) of the entire right, title and interest in and to the Material so that EFG and any successor may, subject to these Terms of Use, use the Material in any way, including (without limitation) the right to copy, edit, adapt, reformat, translate, create derivative works from, incorporate into other works, distribute, perform, play, broadcast, commercialise and otherwise make available to the public the Material (whether in whole or in part, or copies of the same) in any format or medium currently known or developed in the future, for the full period during which such rights subsist (including all renewals, revivals, reversions and extensions of the same) and thereafter to the fullest extent possible in perpetuity. <br/><br/>6.3 You agree to waive any moral rights (or any similar rights in any jurisdiction) you may have in and to any of your Material, even if it is modified, altered or changed in a manner which is not agreeable to you. <br/><br/>6.5 You warrant that: <br/><br/>6.5.1 any Material you submit or upload to the Site complies with the applicable requirements set out in Sections 7 and 8 below; and <br/><br/>6.5.2 the Material is your own original work and you own the entire right, title and interest in and to the Material and/or you have all necessary licences, rights, consents and permissions to use, and to authorise us to use, any and all intellectual property rights in such Material to enable us to use the Material in the manner contemplated by these Terms of Use. <br/><br/>6.6 When you upload Material to the Site it may be publicly available which means that both non-registered and registered users can view your Material. EFG shall be free to position your Material anywhere on the Site, as we choose in our sole discretion. <br/><br/>6.7 EFG does not exercise any editorial control over Material submitted on your profile and as such, we do not have any obligation to check the accuracy or truthfulness of the Materials, nor to monitor any users’ use of the Site. <br/><br/>6.8 We have the right but not the obligation, at our sole discretion, to remove any Material that you submit or upload to the Site. <br/><br/>6.9 You agree that by accessing the Site you may be exposed to Material which you find, vulgar, offensive, or otherwise objectionable. You accept that you access the Site at your own risk. <br/><br/></p>
+                      <h6>7. USER DO’S</h6>
+                      <p>7.1 You agree that you will: <br/><br/>7.1.1 comply at all times with these Terms of Use and with all applicable laws and regulations; <br/><br/>7.1.2 use your real name on your public profile; <br/><br/>7.1.3 use an image which is truly your own on your public profile; and <br/><br/>7.1.4 use the Site in a professional manner. <br/><br/></p>
+                      <h6>8. USER DON’TS</h6>
+                      <p>8.1 You agree NOT to: <br/><br/>8.1.1 access or use the Site for any unlawful purposes.; <br/><br/>8.1.2 access the Site and its contents for any commercial or similar purpose, including advertising or selling any goods or services (other than where you are seeking to promote your own business or practices relevant to the purpose of the Site). Otherwise, the Site is provided for your own personal and non-commercial use. We reserve the right to remove any links at any time for any reason without notice to you at our sole discretion; <br/><br/>8.1.3 submit or upload Material that is unlawful or promote or encourage any illegal activity, or that would violate the property or any rights of others; <br/><br/>8.1.4 upload or submit Material that is defamatory, obscene, pornographic, sexually explicit, abusive, harassing, threatening or offensive, racially, ethnically or otherwise objectionable or otherwise violates the privacy, publicity or any other rights of others; <br/><br/>8.1.5 upload or submit any Material that infringes any patent, trademark, trade secret, copyright, rights of privacy or publicity, or other proprietary right of any party or infringes any intellectual property law or otherwise is not in compliance with any applicable law; <br/><br/>8.1.6 copy, adapt, alter or create a derivative work from any content on the Site <br/><br/>8.1.7 submit Materials of any third party without such third party’s prior written consent, or Materials that falsely express or imply that such Materials are sponsored or endorsed by EFG or a third party; <br/><br/>8.1.8 impersonate another person or create a false or misleading identity for the purpose of misleading others as to your identity, your current or previous positions, qualifications or affiliations with a person or entity, or to collect information about other users; <br/><br/>8.1.9 create a business profile for an business you are not affiliated with; <br/><br/>8.1.10 submit any Materials containing links to any offensive or unsuitable website addresses, such as pornographic or commercial sites; <br/><br/>8.1.11 solicit, collect, obtain, compile, gather, transmit, reproduce, delete, revise, view or display any Material, data or information, whether personally identifiable or not, posted by or concerning any other user, unless either (a) you are reproducing or sharing the Material belonging to another user solely using the sharing functionality made available within the Site or (b) where you have obtained the express, prior written permission of such other person, firm or enterprise to do so; <br/><br/>8.1.12 conduct or forward surveys, contests, pyramid selling schemes or chain letters; <br/><br/>8.1.13 submit any Material or do anything that results in the transmission of junk email, chain letters, duplicative or unsolicited messages or so-called “spamming” and “phishing”; <br/><br/>8.1.14 use other users’ personal data for purposes other than making contact with them that is reasonably expected to be welcomed by such other users; <br/><br/>8.1.15 upload or submit any Material containing any virus, corrupt file, worm programme or other malicious code designed to interrupt, destroy or limit the functionality of or disrupt any software, hardware, telecommunications, networks, servers or other equipment, nor any adware, spy ware, Trojan horse or any other material designed to damage, interfere with, wrongly intercept, gain unauthorised access to or expropriate any data or personal information; <br/><br/>8.1.16 interfere with another user’s use and enjoyment of the Site or use the Site in any other manner that could damage, disable, overburden or impair the Site; <br/><br/>8.1.17 use or attempt to use another user’s account; <br/><br/>8.1.18 harass, abuse or harm another person; <br/><br/>8.1.19 develop, support or use software, devices, scripts, robots, or any other means or processes (including crawlers, browser plugins and add-ons, or any other technology or manual work) to scrape the Site or otherwise copy profiles and other data from the Site; <br/><br/>8.1.20 solicit email addresses or other personal information from users you don’t know, without authorisation; <br/><br/>8.1.21. use, disclose or distribute any data obtained in violation of this policy; <br/><br/>8.1.22. disclose information that you do not have the consent to disclose (such as confidential information of others (including your employer)); <br/><br/>8.1.23 violate the intellectual property or other rights of EFG, including, without limitation, (i) copying or distributing our resources, videos, articles or guides or (ii) copying or distributing our technology, unless it is released under open source licences; <br/><br/>8.1.24 manipulate identifiers in order to disguise the origin of any message or post transmitted through the Site; <br/><br/>8.1.25 create profiles or provide content that promotes escort services or prostitution; <br/><br/>8.1.26 create or operate a pyramid scheme, fraud or other similar practice; or <br/><br/>8.1.27 reverse-engineer, decompile, disassemble, decipher or otherwise attempt to derive the source code for the Site or any related technology that is not open source. <br/><br/></p>
+                      <h6>9. INDEMNITY</h6>
+                      <p>9.1 You agree to fully and effectively indemnify EFG and any of its officers, directors, employees, agents, subsidiaries, affiliates, representatives, licensors, suppliers and operational service providers from and against any and all third party claims, actions, proceedings, demands, damages (actual and/or consequential), losses, liabilities, costs and expenses (including reasonable solicitor’s fees) suffered or reasonably incurred by us as a result of, or in connection with, your access to and use of the Site or conduct other than in accordance with these Terms of Use or any applicable law or regulation (“Third Party Claim”). <br/><br/>9.2 You will co-operate fully and reasonably as required by EFG in the defence of any claim. Notwithstanding the foregoing, EFG retains the exclusive right to settle, compromise and pay any and all claims, demands, proceedings, suits, actions or causes of action which are brought against EFF under the terms of and conditions of this Section 7 and in no event shall you settle any such action with EFG’s prior written approval. <br/><br/></p>
+                      <h6>10. PRIVACY POLICY</h6>
+                      <p>10.1 We process information about you in accordance with our Privacy Policy. You must read the terms of our Privacy Policy before using the Site. By using the Site, you warrant that all data provided by you is accurate. <br/><br/></p>
+                      <h6>11. HOW TO MAKE A COMPLAINT OR REPORT COPYRIGHT INFRINGEMENT</h6>
+                      <p>11.1 You can report abuse or complain about content or Materials on the Site by sending an email to info@commonobjective.co with abuse or complaint in the title and setting out the nature of the complaint and/or abuse encountered on the Site and/or in the Site’s Materials or content. <br/><br/>11.2 If you are a rights owner (or acting on behalf of a rights owner) and believe that any Material infringes your copyright, you must give us notice by sending a written statement including the information set out below (in the same order as set out below): <br/><br/>a) that you are the rights owner or are authorised to act on the rights owner’s behalf; <br/><br/>b) that you have identified Material on the Site which infringes your copyright (or infringes the copyright of a third party on whose behalf you are entitled to act, if applicable) and you believe in good faith that use of the Material in the manner complained of is not authorised by you, the rights owner’s agent or by law; <br/><br/>c) a description of the copyright work that you claim has been infringed, which should include the type of work (e.g. photograph, video or a sound recording) and any relevant further details (e.g. the title and date of publication of the copyright work, as applicable); <br/><br/>d) a description of the way in which the copyright material has been infringed; <br/><br/>e) information reasonably sufficient to permit us to locate the Material in question on the Site (including a URL and/or screen shot); <br/><br/>f) information that will enable us to contact you, such as your name, a postal address, telephone number and, if available, an email address (please note: these contact will also be provided to the alleged infringer so that they may contact you directly, in order to attempt to resolve the complaint); and <br/><br/>g) confirmation that the information in the notification is true and accurate. <br/><br/>Completed statements should then be sent to the attention of: <br/><br/>Tamsin Lejeune, Ethical Fashion Group Ltd, 50 Brook St, London W1K 5DR <br/><br/>This ‘notice and takedown’ process is regulated by statute. There may be negative consequences if you falsely allege copyright infringement or send a copyright infringement notice to us in bad faith. We suggest that you take legal advice before sending a copyright infringement notice if you are unsure about your rights in the Material or whether there has been an infringement of your rights. <br/><br/>11.3 If you believe that we have removed Material uploaded by you to the Site in error, you may send us a written counter-notice including the information set out below (in the same order as set out below): <br/><br/>a) details of the Material that has been removed or to which access has been disabled; <br/><br/>b) information reasonably sufficient to permit us to know where the Material in question had been located on the Site (including a URL and/or screen shot); <br/><br/>c) a statement that you believe in good faith that the Material that you have identified has been removed by mistake and your reasons for believing this; <br/><br/>d) information that will enable us to contact you, such as your name, a postal address, telephone number and, if available, an email address; and <br/><br/>e) a statement that you agree to be contacted by the person (or an authorised representative of such person) who gave us the notice in the first place. <br/><br/>Completed counter-notices should then be sent to the attention of: <br/><br/>Tamsin Lejeune, Ethical Fashion Group Ltd, 50 Brook St, London W1K 5DR <br/><br/>11.4 EFG has a policy of terminating the accounts of repeat infringers. A repeat infringer includes any user who has submitted two or more items of Material for which EFG receives a copyright infringement notice in accordance with these Terms of Use. You agree that if your account is terminated in accordance with this provision you shall not register or attempt to register a new user account. You agree to indemnify and hold harmless EFG for any and all liability that may be incurred as a result of a user breaching this Section 11.4. <br/><br/></p>
+                      <h6>12. LINKS</h6>
+                      <p>12.1 The Site may contain links to other sites, resources and purchase opportunities provided by third parties. These sites may contain Materials which you may find objectionable, unlawful or inaccurate. These links are provided for your information only. If you access these links you may be directed to third party websites. These third party websites will have their own Terms of Use and privacy policies which may differ from EFG’s Terms of Use and privacy policy. This display of a link to third party sites does not constitute an endorsement by EFG of any of the third party sites, resources, content information or resources provided. <br/><br/>12.2 EFG has no control over the contents of those sites or resources, and accepts no responsibility for them including but not limited to the third party site’s compliance with the The General Data Protection Regulation (GDPR) (Regulation (EU) 2016/679, The Consumer Contracts Regulations 2013, The Privacy and Electronic Communications (EC Directive) Regulations 2003, Electronic Commerce (EC Directive) Regulations 2002, British Codes of Advertising and Sales Promotion and/or any equivalent legislation in the relevant jurisdiction. <br/><br/></p>
+                      <h6>13. LINKING TO OUR SITE</h6>
+                      <p>13.1 You may link to our Site, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it. You must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part where none exists. <br/><br/>13.2 Links to the Site do not imply that EFG endorses, is affiliated with, or is associated with any linked site or that any linked site is authorised to use any of our trade marks, trade names, brands, logos or copyright symbols or those of any of our affiliates or licensors. <br/><br/>13.3 You must not frame any portion or pages of the Site on any other site. We reserve the right to withdraw linking permission without notice. The website from which you are linking must comply in all respects with the applicable requirements set out at Sections 7 and 8 of these Terms of Use. If you wish to make any use of material on the Site other than that set out above, please address your request to Info@commonobjective.co <br/><br/></p>
+                      <h6>14. TERMINATION OF USE</h6>
+                      <p>14.1 EFG reserves the right, at our sole discretion at any time without liability and with or without prior notice to you: <br/><br/>(a) not to post any Material on the Site; <br/><br/>(b) to remove or suspend or disable access to any Materials; <br/><br/>(c) to suspend or revoke your registered user account (where applicable) and your right to access and/or use the Site or submit any Materials where we have reasonable grounds to suspect that you are in material breach of any of these Terms of Use or have infringed our intellectual property or that of any third party; and <br/><br/>(d) to use any technological, legal, operational or other means available to enforce these Terms of Use, including (without limitation) blocking specific IP addresses or deactivating your registration and/or user name and password (where applicable). <br/><br/>14.2 You can terminate your account at any time by sending an email to EFG with ‘terminate account’ in the title and details of the account which you are seeking to terminate. This will remove your profile and other personal information from view and prohibit you from accessing the Site as a registered user. Once your registration is terminated, we will have the right to delete your account and any related Material that you have submitted or uploaded. <br/><br/>14.3 Material that you have uploaded to the Site, other than personal information and information from your profile removed pursuant to Section 14.2 following termination of your account, may still appear on the Site even after your registration has terminated. In accordance with the licence granted at Section 6.2, we shall have the right to use your Material anywhere on the Site as we choose, at our sole discretion, subject always to EFC’s compliance with applicable data protection and privacy laws. <br/><br/>14.4 Sections 5, 8, 9, 10, 16, 17, and 18 shall survive any termination of your membership. <br/><br/></p>
+                      <h6>15. INTELLECTUAL PROPERTY</h6>
+                      <p>15.1 All information, data, text, graphics, logos, designs, documents, images, pictures, photographs, videos, software, interactive features, advertisements or other content, services or materials (or any part of them) on the Site (collectively “Content”) are protected by copyright, trade marks, database rights and other intellectual property rights (whether registered or unregistered and including applications for the grant of any such rights) and are owned by or licensed to EFG or are otherwise used by us to the fullest extent permitted by any applicable law or regulation. Nothing contained in these Terms of Use shall be construed as conferring by implication, estoppel or otherwise, any licence or right for you to use the same other than as permitted in these Terms of Use. <br/><br/></p>
+                      <h6>16. RELIANCE ON INFORMATION</h6>
+                      <p>16.1 Commentary, articles and Material (“Commentary”) posted on the Site is not intended to amount to advice on which reliance should be placed. EFG disclaims to the fullest extent permitted by law all liability and responsibility arising from or in connection with any reliance placed on Commentary by any visitor to the Site, or by anyone who may be informed of any of its contents. <br/><br/></p>
+                      <h6>17. DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY</h6>
+                      <p>17.1 The Site is provided “as is” and on an “as available” basis. You use the Site at your own risk. The content displayed on the Site is provided without any guarantees, conditions or warranties as to its accuracy. To the fullest extent permitted by law, EFG, other members of our group of companies and third parties connected to us expressly exclude: <br/><br/>a) All conditions, warranties and other terms which might otherwise be implied by statute, common law or the law of equity; and <br/><br/>b) Any liability incurred by any user in connection with the Site or in connection with the use, inability to use, or results of the use of the Site, any websites linked to it and any Materials posted on it, including, without limitation any liability for: <br/><br/>i. loss of income or revenue; <br/><br/>ii. loss of business; <br/><br/>iii. loss of profits or contracts; <br/><br/>iv. loss of anticipated savings; <br/><br/>v. loss of data;<br/><br/>vi. loss of goodwill; <br/><br/>vii. wasted management or office time; and <br/><br/>viii. for any other loss or damage of any kind, however arising and whether caused by tort (including negligence), breach of contract or otherwise, even if foreseeable whether arising directly or indirectly. <br/><br/>17.2 Under no circumstances shall EFG, its parent, subsidiaries, or affiliates or the directors, officers, employees, or other representatives, of each of them (collectively, the “EFG Entities and Individuals”) be liable for any errors or omissions in the Sites’ technical operations, even if foreseeable or even if the EFG Entities and Individuals have been advised of the possibility of such damages whether in a contractual action, negligence, strict liability tort (including but not limited to, negligence, acts of God, telecommunications failure, or theft or destruction of the Site). Nothing in these Terms of Use limits or excludes EFG’s liability for: <br/><br/>(a) death or personal injury caused by its proven negligence; <br/><br/>(b) the tort of deceit; <br/><br/>(c) fraudulent misrepresentation or misrepresentation; or <br/><br/>(d) any liability which cannot be limited or excluded by law. <br/><br/>17.3 The EFG entities and individuals are not responsible for any damage to any user’s computer hardware, computer software, or other equipment or technology including, but without limitation damage from any security breach or from any virus, bugs, tampering fraud, error, omission, interruption, defect, delay in operation or transmission, computer line or network failure or any other technical or other malfunction. <br/><br/>17.4 As a user you accept that the Site will not be uninterrupted or error free, that defects may not be corrected or that the Site or the server that makes it available are free of viruses or bugs. <br/><br/></p>
+                  
+                  </div>
+              </div>
+          </div>
+      </section> 
+                                          </div>
+                                        </li>
+                                        <li className="l-footer02-nav-item">
+                                          <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Privacy policy <span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                          <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                              <section className="section privacy_policy_section">
+                                                  <div className="container-fluid">
+                                                      <div className="row">
+                                                          <div className="col-md-12">
+                                                              <h1 className="heading">
+                                                                  Privacy policy
+                                                              </h1>
+                                                              <p>We are Ethical Fashion Group Limited (“us”, “we” and “our”), and our registered office is at 3 Princes Street, London, W1B 2LD. <br/><br/>This Privacy & Cookies Policy and our Terms of Use (https://www.commonobjective.co/terms-of-use) set out the basis on which we will process any personal data that we collect from you, or that you provide to us, through our website at https://www.commonobjective.co/ (the “Site”). By “personal data”, we mean any information which directly or indirectly identifies you and including any identifiers such as IP address. <br/><br/>We are the data controller responsible for processing your personal data. If you have any questions, please contact us via (Info@commonobjective.co). Please read the following carefully to understand what information we collect, how we use and share that information and how we use cookies. <br/><br/></p>
+                                                              <h6>1. INFORMATION WE COLLECT ABOUT YOU</h6>
+                                                              <p>Information you provide to us: <br/><br/>We collect information from you that you provide to us via the Site. This includes any information that you post or upload to the Site and any information you provide to us when you register on the Site, participate in online discussion forums, fill out any form, complete surveys or enter competitions and promotions. It also includes information you give us when you contact us with feedback, report a problem with the Site or communicate with us for any other reason. <br/><br/>This information may include your name, email address, your interests, your location, your image, what you are looking for, your job role and experience, your skills, and information about the organisation that you work for. <br/>><br/>Information we collect about you: <br/><br/>With regard to each of your visits to the Site we will automatically collect the following information: <br/><br/>Technical information which may include your IP address, operating system and browser type. <br/>Details of your visits to the Site which may include traffic data, location data, weblogs, search data, other communication data, and the people and organisations that you click on, connect with, message, view, bookmark or share (e.g. articles, resources, video, individual and business profiles and ads (this could include ads on or off the Site)). <br/>Purchase details which may include links to third party goods and services that you click on and any purchases made by you of such third party goods and services. <br/>
+                                                                  We use log-ins, cookies, device information (as described below) and IP address to identify you and log your use. <br/>Device information. We receive data from your devices and networks, including location data. When you visit or leave our Services (including our plugins or cookies or similar technology on the sites of others), we receive the URL of both the site you came from and the one you go to next. We also get information about your IP address, proxy server, operating system, web browser and add-ons, device identifier and features, and/or ISP or your mobile carrier. If you use our Services from a mobile device, that device will send us data about your location. Most devices allow you to prevent location data from being sent to us by setting your preferences and we honour your preferences. <br/><br/></p>
+                                                              <h6>2. BASIS FOR PROCESSING YOUR INFORMATION</h6>
+                                                              <p>Where we collect your personal data as described above, we will process such information (i) for the purposes of making the Site available to you, in accordance with our Terms of Use (https://www.commonobjective.co/terms-of-use), (ii) for the purposes of meeting out legitimate interests (see Section 4 for more details) and (iii) as required by law. <br/><br/></p>
+                                                              <h6>3. STORAGE</h6>
+                                                              <p>3.1 We may transfer your information to any destination within the European Economic Area (“EEA”), where it may also be stored. Your information may be processed by staff within the EEA, who work for us or for one of our suppliers. Such staff may be engaged in, among other things, providing support services. We will implement appropriate administrative, technical and physical safeguards to protect the confidentiality, integrity and availability of your personal data. We will take all steps reasonably necessary to ensure that your personal data is treated securely and in accordance with this Privacy & Cookies Policy. <br/><br/>3.2 You acknowledge that the personal data we obtain from you may be processed by our direct and indirect subsidiaries and/or other entities based in countries outside of the EEA for the purposes of providing you with support services in relation to the Site. Such countries may not have laws offering the same level of protection for personal data as those inside the EEA; however where such transfers of data occur, we will take steps to ensure that adequate safeguards are in place beforehand so that your personal data is given the same level of protection as it would be inside the EEA. <br/><br/>3.3 Where you have chosen a password which enables you to access certain parts of the Site, you are responsible for keeping this password confidential. <br/><br/>3.4 The transmission of information via the internet is never completely secure. Although we will do our best to protect your personal data and use industry standard procedures and security features to try to prevent any unauthorised access, we cannot guarantee the security of your data transmitted to our site. Any transmission of your personal data is done at your own risk. <br/><br/>3.5 We will store your personal data only until the purposes for which we have collected or received your personal data (as described below) have been fulfilled. We may store your personal data for a longer period where we need to meet our legal, regulatory or audit obligations. <br/><br/></p>
+                                                              <h6>4. USE OF INFORMATION</h6>
+                                                              <p>We will use your information in the following ways: <br/><br/>Information you give to us. We will use this information: <br/><br/>to contact you and send you notifications or information related to the Site or our services; <br/><br/>for security reasons to allow us to verify your identity; <br/><br/>for the purposes of promoting our business. This may include using your image within promotional materials such as event flyers and online articles; <br/>to find relevant matches for you to connect you with other users, organisations and content based on your preferences. When you connect with other users you will be able to search each other’s connections in order to exchange opportunities; <br/>to assist you in populating your profiles, including uploading of your proprietary images or other media as requested by you; <br/>to give you access to groups, education and learning and other services on the Site; and <br/>if we think it’s necessary for security purposes or to investigate possible fraud or other violations of our Terms of Use or this Privacy & Cookies Policy and/or attempts to harm other users. <br/>Information we collect about you. We will use this information: <br/><br/>to administer the Site and for internal operations, including troubleshooting, data analysis, testing, research, statistical and survey purposes;to improve the Site to ensure that content is presented in the most effective manner for you and for your device; <br/>as part of our efforts to keep the Site safe and secure; and <br/>to produce aggregate insights that do not identify you. For example we may use your personal data to generate statistics about our users, their profession or industry, the number of articles, resources or ads clicked on, or the demographic distribution of visitors to a site. <br/>You can set preferences and control the elements of your personal data which are shared with other users of the Site. If you choose to display personal data such as comments, videos, photos or other information to other users of the Site, you do so at your own risk. You can review and change your personal profile on the Site, at any time by clicking “My Profile”. Subject to your settings, your profile may be fully visible to all users of the Site. <br/><br/></p>
+                                                              <h6>5. DISCLOSURE</h6>
+                                                              <p>We may share your personal data with: <br/><br/>selected third parties and other users where you post Material (as defined in Section 5 of the Terms of Use) on the Site; <br/>our direct and indirect subsidiaries;our selected partners or suppliers where you have chosen to participate in surveys, enter competitions and promotions or activities relating to your use of the Site and have consented to our sharing your personal data with such partners of suppliers for direct marketing purposes; <br/>a prospective seller or buyer in the event of a sale or purchase of any business or asset of ours so that the buyer can continue to operate the Site; <br/>third parties that we engage to provide services for us. Where we provide your personal data to such third parties, they are required to keep your personal data confidential and secure, and must only use your personal data as instructed by us; and <br/>our partners or service providers, including for marketing purposes or where you have chosen to share your information through various features and functionalities provided via the Site. <br/>In our fight against spam on our Site, we may use the reCAPTCHA tool when you submit information to us. This helps ensure requests we receive are genuine. Certain information about you and your device may be collected. reCAPTCHA data collection and use is governed by the Google Privacy Policy and Terms of Service. Please make sure you have reviewed these. <br/><br/>We may also disclose your personal data if we are under a duty to disclose or share your personal data to comply with any legal obligation, or to enforce or apply our Terms of Use (https://www.commonobjective.co/terms-of-use) and other agreements; or to protect the rights, property, or our safety or the safety of our users or others. <br/><br/></p>
+                                                              <h6>6. CHILDREN</h6>
+                                                              <p>You must be 16 or over to register on the Site. We do not knowingly collect personal data from anyone who is under the age of 16 or allow them to register as a user of the Site. If we become aware that we have collected personal data from such a person then we will we delete this information (including their registered user account). If you have reason to believe that this occurred then please contact us at info@commonobjective.co and we will delete all such personal data. <br/><br/></p>
+                                                              <h6>7. LINKS</h6>
+                                                              <p>The Site may contain links to and from third party websites or the websites of our partner networks, advertisers and affiliates. If you follow a link to any of these websites, please note that these websites have their own privacy policies. We do not accept any responsibility or liability for such policies. Please check these policies before you submit any personal data to these websites. <br/><br/></p>
+                                                              <h6>8. COOKIES</h6>
+                                                              <p>We use cookies to distinguish you from other users of the Site. A cookie is a small text file that can be placed on your device when using the Site. Two kinds of cookies are used on the Site - session cookies and persistent cookies. <br/><br/>Session cookies are used to remember selections made when you use the Site. Session cookies are deleted automatically when you leave the Site or close your browser. <br/>Persistent cookies are used to identify you when you return to the Site and/or to remember specific information about your preferences. These cookies also help us understand browsing behaviour within the Site, which can help us develop the Site in a way we believe will be most relevant to your interests. Persistent cookies are stored on your device and are not deleted when the browser is closed - these cookies must be 'manually' deleted if you want to remove them. <br/>To learn more about cookies, please visit www.allaboutcookies.org or www.youronlinechoices.eu. <br/><br/>First and third party cookies <br/>We set cookies (first party cookies) on the Site, however, where we require additional information or services, we may also allow other companies to host cookies on our Site (third party cookies). These partner companies have been carefully selected by us and are required to meet minimum contractual obligations. <br/><br/>What do we use cookies for? <br/>The cookies we use are categorised into four groups: <br/><br/>Strictly Necessary cookies - these cookies are used for technical reasons and are necessary to enable the Site to operate efficiently so that you can navigate the Site with ease and use specific features. These include, for example, cookies that enable you to log into secure areas of the Site and cookies that help us to debug any errors. If these cookies are blocked or disabled, some of the Site’s functions will not be available to you and you may not be able to use our service. <br/>Performance cookies - these cookies are used to obtain statistics about the number of users of the Site and how such users interact with the Site. These cookies collect information that is aggregated and therefore cannot be used to identify an individual's identity. Such information allows us to continuously improve the Site to provide users with a better online experience (such as enabling users to find what they are looking for more easily). <br/>Functionality cookies - these cookies are used to improve the functionality of the Site and make it easier to use. They help us to identify you as a repeat user of the Site and help us remember your preferences, which saves you time by making the user experience easier. <br/>Analytical - these cookies gather information about your habits when using the Site (including the pages you have visited). We may combine such information with other personal data that we have collected about you (for example your user profile) to enhance the Site and make it more tailored to you). These cookies may be placed on the Site by carefully selected third parties on our behalf (with our permission) in order to help us collect statistical data about users of the Site and conduct market research. <br/><br/>We may share information that we collected through cookies, in aggregated form, with carefully selected third parties for the purposes set out above, unless you disable or block cookies as set out below. <br/><br/>You may refuse to accept cookies by activating the settings on your browser which allow you to refuse the setting of cookies. You should access the ‘Help’ function on your browser to learn how to do this. However, if you select this setting, you may be unable to access certain parts of the Site or discover that you have a reduced functionality whilst using the Site. Unless you have adjusted your browser setting so that it will refuse cookies, our system will issue cookies when you log on to the Site. <br/><br/>Please be aware that our advertisers may also use cookies. Advertisers’ use of cookies is not under our control and is therefore not subject to this Privacy & Cookies Policy. <br/><br/></p>
+                                                              <h6>9. ADVERTISING & OTHER COMMUNICATIONS</h6>
+                                                              <p>Where you have consented to receive marketing communications, you may be contacted by us or by one of our selected partners, in accordance with your marketing preferences. <br/><br/>You may opt out of receiving marketing communications at any time by contacting us at info@commonobjective.co or by using the unsubscribe link in the applicable communication. You can also change your preferences in the ‘Account’ section when logged in to your profile. <br/><br/>We may transfer statistical or generic trend information about use of the Site, such as information stored via cookies or statistical information, to advertisers. This information will not identify any individuals. <br/><br/>We will continue to contact you for non-marketing related purposes where we need to send a service message or any other information relevant to your use of the Site or information arising under a legal or regulatory requirement. <br/><br/></p>
+                                                              <h6>10. ACCESS TO INFORMATION</h6>
+                                                              <p>10.1 You have a number of rights in relation to how we process your personal data. These include the right to: <br/><br/>be informed about any personal data held about you by us; <br/>request access to your personal data; <br/>request us to have any inaccurate personal data amended or erased; <br/>request us to restrict processing of the personal data on certain grounds; <br/>receive a copy of your personal data in a machine-readable format and have it sent to another company <br/>object to the processing of your personal data; and <br/>file a complaint with the relevant supervisory authority if you think we have violated data protection laws. <br/>You can exercise any of these rights any time by contacting us at info@commonobjective.co. <br/><br/>If you have any concerns or complaints about how we handle your personal data, please contact us at info@commonobjective.co or by writing to us at 3 Princes Street, London, W1B 2LD, marked for the attention of the Legal Team. Alternatively, you may contact the Information Commissioner’s Office - https://ico.org.uk/concerns/. <br/><br/></p>
+                                                              <h6>11. CONSENT</h6>
+                                                              <p>Where the basis of processing or transferring your personal data is consent, you can withdraw your consent at any time. This will not affect the lawfulness of our processing based on your consent before the withdrawal. You can withdraw your consent by sending an email to info@commonobjective.co. or by writing to us at 3 Princes Street, London, W1B 2LD, marked for the attention of the Legal Team. <br/><br/></p>
+                                                              <h6>12. CHANGES TO THE PRIVACY & COOKIES POLICY</h6>
+                                                              <p>12.1 We may, at our sole discretion, amend, modify or make changes to this Privacy & Cookies Policy at any time. If we do this, we will post the changes on this page. We may also, at our sole discretion, send an email to registered users giving notification of any changes. We recommend that you regularly check this page from time to time to take notice of any changes. This Privacy & Cookies Policy should be read in conjunction with the Terms of Use (https://www.commonobjective.co/terms-of-use).</p>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </section>    
+                                          </div>
+                                        </li>
+                                        <li className="l-footer02-nav-item">
+                                          <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact us<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                          <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                            <ul className="l-footer02-nav-panel-inner">
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+
+                                            </ul>
+                                          </div>
+                                        </li>
+                                        <li className="l-footer02-nav-item">
+                                          <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Social links<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
+                                          <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
+                                            <ul className="l-footer02-nav-panel-inner">
+                                              <li className="l-footer02-nav-panel-item">
+                                                  <div className="social-links">
+                                                      <a href="#"><i className="fab fa-facebook-f"></i></a>
+                                                      <a href="#"><i className="fab fa-instagram"></i></a>
+                                                      <a href="#"><i className="fab fa-twitter"></i></a>
+                                                      <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                                    </div>
+                                              </li>
+                                              
+
+                                              
+                                            </ul>
+                                          </div>
+                                        </li>
+                                      </ul>
+                                    </nav>
+                                  </div>
+                              </div>
+                          </div>
                       </div>
-                </footer>
+                  </div>
+                  <div className="l-footer02-bottom">
+                      <ul>
+                        <li><a href="#"><img src="images/logo.png" alt="" /> Copyright 2021 Projekt Indigo</a></li>
+                      </ul>
+                     
+                    </div>
+              </footer>
+
+    </>
       
   )
 }
