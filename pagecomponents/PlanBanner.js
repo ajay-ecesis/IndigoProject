@@ -45,8 +45,8 @@ const PlanBanner = ({content}) => {
         <div className="container-fluid ">
             <div className="row">
                 <div className="wrapper col-12">
-                    <div className="row project_indigo_slider">
-                    <Slider {...settings}>
+                   
+                    <Slider className="row project_indigo_slider" {...settings}>
                         {content.map((item,i)=>(
                              <div key={i} className="col-md-12 col">
                              <img src={urlFor(item?.image)} className="projekt-img"  alt="" />
@@ -57,7 +57,7 @@ const PlanBanner = ({content}) => {
                         ))}
                          
                         </Slider>
-                    </div>
+                   
                 </div>
                 
             </div>

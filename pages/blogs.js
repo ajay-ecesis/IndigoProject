@@ -410,9 +410,9 @@ accessibility: false,
                             </div>
                         </div>
                     </div>
-                    <div className="row Artisanal-slider_second">
+                    
                                     
-                        <Slider {...settings}>
+                        <Slider className="row Artisanal-slider_second" {...settings}>
                             { mappedPosts.length && mappedPosts.map((item,i)=>(
                                 
                                     <div key={item._id} className="col-md-4">
@@ -433,7 +433,7 @@ accessibility: false,
                                     </div>          
                             ))}
                             </Slider>
-                    </div>
+                   
                 </div>
             </section>
         )

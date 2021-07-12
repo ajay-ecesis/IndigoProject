@@ -38,17 +38,16 @@ const Logoslider = ({content})=>{
 
     return(
         <>
-         {/* <div className="col-md-12"> */}
-                        <div className="row brand-logo">
-                            <Slider {...settings}>
+                       
+                            <Slider className="row brand-logo" {...settings}>
                                 {content.map((item,i)=>(
                                      <div key={i} className="col-md-4">
                                       <img src={urlFor(item.asset)} alt="" />
                                  </div>
                                 ))}          
                             </Slider>
-                        </div>
-                    {/* </div> */}
+                       
+                 
         </>
     )
 }

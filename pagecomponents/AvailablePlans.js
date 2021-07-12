@@ -51,9 +51,9 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                   <div className="tab-content" id="nav-tabContent">
 
                       <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                          <div className="row Artisanal-slider_new">
+                         
 
-                            <Slider {...settings}>
+                            <Slider className="row Artisanal-slider_new" {...settings}>
                                 {contentbrand?.map((item,i)=>(
                                     <div key={i} className="content">
                                       <div className="box_wrapper">
@@ -76,13 +76,13 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                                 ))}
                             </Slider>
 
-                          </div>
+                         
                       </div>
 
                       <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <div className="row Artisanal-slider_new">
+                       
 
-                            <Slider {...settings}>
+                            <Slider className="row Artisanal-slider_new" {...settings}>
                                 {contentmanufacture?.map((item,i)=>(
                                     <div key={i} className="content">
                                       <div className="box_wrapper">
@@ -106,7 +106,7 @@ const AvailablePlans =({contentbrand,contentmanufacture})=> {
                             </Slider>
 
 
-                        </div>
+                        
                       </div>
 
                   </div>

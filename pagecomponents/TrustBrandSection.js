@@ -83,8 +83,8 @@ const Trustbrand = ({content,slider}) => {
                         </div>
                     </div>
                     <div className="col-md-12">
-                        <div className="row brand-logo">
-                        {slider && <Slider {...settings}>
+                       
+                        {slider && <Slider className="row brand-logo" {...settings}>
                             {slider.map((item,i)=>(
                                  <div key={i} className="col-md-4">
                                  <img src={urlFor(item.asset)} alt="" />
@@ -93,7 +93,7 @@ const Trustbrand = ({content,slider}) => {
                            
                             
                             </Slider>}
-                        </div>
+                       
                     </div>
                 </div>
             </div>
