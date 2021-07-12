@@ -520,10 +520,10 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
     width: 60% !important;
   }
   section.section.products .slick-next {
-    right: -20px;
+    right: -20px!important;
   }
   section.section.products .slick-prev {
-    left: -20px;
+    left: -20px!important;
   }
   .section.trustBrand.trustBrand-change .bottom_speed {
     flex-wrap: wrap;
@@ -605,10 +605,10 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
     margin-right: 20px;
   }
   .slick-prev {
-    left: 0;
+    left: 0 !important;
   }
   .slick-next {
-    right: 0;
+    right: 0 !important;
   }
   .section.trustBrand .slick-dots {
     bottom: -25px;

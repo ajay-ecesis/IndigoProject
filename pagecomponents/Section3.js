@@ -88,8 +88,8 @@ const Section3 = ({content})=>{
                 </div>
                 <div className="row">
                     <div className="wrapper col-12">
-                        <div className="row products-slider">
-                            <Slider {...settings}>
+                       
+                            <Slider className="row products-slider" {...settings}>
                             <div className="col-md-4">
                                 
                                 <div className="Card">
@@ -283,7 +283,7 @@ const Section3 = ({content})=>{
 
                             </div>
                             </Slider>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
