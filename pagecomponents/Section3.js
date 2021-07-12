@@ -228,7 +228,7 @@ const Section3 = ({content})=>{
                                     <div className="card-content">
                                         <h5 className="cardTitle">Atlantic Mills</h5>
                                         <p className="cardDisc txt-light">Mills</p>
-                                        <div className="card-footer">
+                                        <div className="Card-footer">
                                             <div className="rate">
                                                 <input className="star-inner" type="radio" id="star5" name="rate" value="5" />
                                                 <label htmlFor="star5" title="text">5 stars</label>
