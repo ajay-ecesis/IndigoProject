@@ -530,7 +530,7 @@ accessibility: false,
                 </div>
             </div>
 
-            <div id="blog_new" className="blog changed_new_blog">
+            <div id="blog_new" className="blog changed_new_blog new">
                 {mappedPosts.length && showTopBlogSection()}
                 {mappedPosts.length && showSection1()}
                 {mappedPosts.length >=2 && showSection2()}
