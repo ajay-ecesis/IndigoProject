@@ -120,7 +120,7 @@ const Detail = (props)=>{
               ))}       
             </div>
 
-            <section className="section aboutus-slider">
+            <section className="section aboutus-slider new">
                 <div className="container-fluid about">           
                     <div className="row">
                         <div className="col-md-12">
