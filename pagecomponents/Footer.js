@@ -93,10 +93,10 @@ const Footer = () => {
                                       <ul className="l-footer02-nav-panel-inner">
                                         <li className="l-footer02-nav-panel-item">
                                             <div className="social-links">
-                                                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                <a href="#"><i className="fab fa-instagram"></i></a>
-                                                <a href="#"><i className="fab fa-twitter"></i></a>
-                                                <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                                <a href="https://www.facebook.com/ProjektInd"><i className="fab fa-facebook-f"></i></a>
+                                                <a href="https://www.instagram.com/projektindigo/"><i className="fab fa-instagram"></i></a>
+                                                <a href="https://twitter.com/ProjektIndigo"><i className="fab fa-twitter"></i></a>
+                                                <a href="https://www.linkedin.com/company/projektindigo/"><i className="fab fa-linkedin-in"></i></a>
                                               </div>
                                         </li>
                                         
@@ -276,10 +276,10 @@ const Footer = () => {
                                             <ul className="l-footer02-nav-panel-inner">
                                               <li className="l-footer02-nav-panel-item">
                                                   <div className="social-links">
-                                                      <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                      <a href="#"><i className="fab fa-instagram"></i></a>
-                                                      <a href="#"><i className="fab fa-twitter"></i></a>
-                                                      <a href="#"><i className="fab fa-linkedin-in"></i></a>
+                                                      <a href="https://www.facebook.com/ProjektInd"><i className="fab fa-facebook-f"></i></a>
+                                                      <a href="https://www.instagram.com/projektindigo/"><i className="fab fa-instagram"></i></a>
+                                                      <a href="https://twitter.com/ProjektIndigo"><i className="fab fa-twitter"></i></a>
+                                                      <a href="https://www.linkedin.com/company/projektindigo/"><i className="fab fa-linkedin-in"></i></a>
                                                     </div>
                                               </li>
                                               
