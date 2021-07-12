@@ -114,7 +114,7 @@ const Navbar = (props) => {
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <a className="main_logo" href="/"> <img src="images/logo.svg" alt="" /> Project Indigo</a>
+                            <a className="main_logo" href="/"> <img src="images/logo.svg" alt="" /> Projekt Indigo</a>
                         </div>
                         <div className="col-md-4 text-right">
                             {user === null && <div className="manufacturer_brand_btn">
