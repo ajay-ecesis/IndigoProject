@@ -6,15 +6,49 @@ import BlockContent from '@sanity/block-content-to-react';
 const Section3 = ({content})=>{
 
 
+    function SampleNextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <button
+            className={className}
+            style={{ ...style,  backgroundImage: `url(/images/arrows.png)`,
+                position: 'absolute',
+                right: '-50px',
+                height: '32px',
+                width: '32px', }}
+            onClick={onClick}
+          />
+        );
+      }
+      
+      function SamplePrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+          <button
+            className={className}
+            style={{ ...style,  backgroundImage: `url(/images/arrows.png)`,
+                position: 'absolute',
+                left: '-50px',
+                height: '32px',
+                transform: 'rotate(180deg)',
+                width: '32px', }}
+            onClick={onClick}
+          />
+        );
+      }
+
     const settings = {
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         centerMode: false,
-        speed:1500,
+        cssEase: 'linear',
         centerPadding: '60px',
+        accessibility: false,
         slidesToShow: 4,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
         responsive: [
             {
-            breakpoint: 1440,
+                breakpoint: 1440,
                 settings: {
                     arrows: true,
                     centerMode: false,
@@ -23,7 +57,7 @@ const Section3 = ({content})=>{
                 }
             },
             {
-            breakpoint: 1024,
+                breakpoint: 1024,
                 settings: {
                     arrows: true,
                     centerMode: false,
