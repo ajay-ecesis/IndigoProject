@@ -116,7 +116,7 @@ const DynamicPage = (props)=>{
             case 'components':
               return(
                 <>
-                    <section key={i} className="artisnal-details-section">
+                    <section key={i} className="artisnal-details-section new">
         <div className="container-fluid">
             <div className="row wrapper">
                 <div className="col-md-6">
