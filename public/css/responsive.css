@@ -8,6 +8,90 @@
       .section.Available_plans .row:last-child > div .row > div {
     /*flex: 0 0 33.33%;*/
 }
+.header .main_logo {
+    font-size: 35px;
+}
+.header .main_logo img {
+    margin-top: -5px;
+}
+section.section.trustBrand.trustBrand-change.trustBrand_new .container-fluid,section.section.trustBrand.trustBrand-change.trustBrand_new .container-fluid > div{
+    padding: 0 !important;
+}
+section.section.trustBrand.trustBrand-change.trustBrand_new .container-fluid .row .wrapper.col-12,section.section.trustBrand.trustBrand-change.trustBrand_new .container-fluid .row .col-md-12.col{
+    padding: 0 !important;
+}
+.section.trustBrand.manufacturers .manufacturers-content {
+    padding: 40px 40px 40px 5%;
+}
+.section.trustBrand.manufacturers .row > div .thumb img {
+    padding-bottom: 80px;
+}
+section.section.trustBrand.trustBrand-change.manufacturers.brands .thumb {
+    padding-top: 15px;
+}
+section.section.trustBrand.trustBrand-change.manufacturers.brands img {
+    padding-bottom: 36px;
+}
+section.section.Sustainability.new {
+    padding-top: 0;
+}
+.section.Sustainability .content {
+    left: 4%;
+}
+section.section.trustBrand.projektIndigo .container-fluid {
+    padding: 0 !important;
+}
+section.section.trustBrand.projektIndigo .container-fluid .wrapper.col-12 {
+    padding: 0;
+}
+.section.trustBrand.projektIndigo img {
+    max-height: 660px;
+    min-height: 660px;
+}
+.section.trustBrand.projektIndigo .content {
+    bottom: 10%;
+}
+.section.trustBrand.manufacturers .manufacturers-content .info {
+    width: 70%;
+    color:#8A8A8F;
+    letter-spacing: 0.4px;
+}
+.section.trustBrand.manufacturers .manufacturers-content .disc {
+    width: 70%;
+    color:#8A8A8F;
+    letter-spacing: 0.4px;
+}
+section.section.aboutus-slider img {
+    max-height: inherit;
+    min-height: inherit;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .content {
+    bottom: 20%;
+    left: 5%;
+}
+section.explore.explore2.section.trustBrand.manufacturers.trustBrand_new_change.brands.changed_new .content {
+    left: 5%;
+    bottom: 20%;
+}
+section.section.aboutus-slider.new img {
+    max-height: inherit;
+    min-height: inherit;
+}
+.humburger-menu {
+    top: 44px;
+}
+.header .container-fluid > .row {
+    align-items: center;
+}
+.header.active {
+    height: auto;
+}
+.header.active .humburger-menu {
+    top: 40px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands .icon-gallery img {
+    min-width: 30px;
+}
 
 }
 
@@ -20,6 +104,7 @@
   }
   .container-fluid {
     padding-left: 5%;
+    padding-right:5%;
   }
   section.section.features .container-fluid,
   section.section.trustBrand .container-fluid,
@@ -158,7 +243,19 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
 .banner .left-side h2 {
     font-size: 100px !important;
 }
+.humburger-menu {
+    position: absolute;
 }
+}
+
+
+@media only screen and (min-width:1600px){
+    #blog_new.blog.changed_new_blog.new {
+    width: 80%;
+}
+}
+
+
 
 @media screen and (max-width:1400px) and (min-width:1000px){
     .section.trustBrand.manufacturers .row > div:first-child {
@@ -272,6 +369,16 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about1 {
 section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content {
     width: 100%;
 }
+/* ----------------------------- new in section style
+        ---------------------------------------------------------------------- */
+        section.section.dashboard-product-new .product .content h6 {
+          font-size: 10px;
+      }
+
+      section.section.dashboard-product-new .product .content p {
+        font-size: 14px;
+    }
+
 }
 
 @media screen and (max-width: 1199px) {
@@ -437,6 +544,14 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
 #upgrade_plans .container-fluid {
   padding: 50px 5% 0;
 }
+
+/* ----------------------------- dashboard page section style
+        ---------------------------------------------------------------------- */
+        main#dashboard  section .container-fluid {
+          padding: 0 1% 0 1%;
+      }
+
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -592,6 +707,19 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
   .header .bookmark-menu {
     right: 10%;
   }
+  .row.dashboard_navbar {
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    background: linen;
+    min-height: 100vh;
+    top: 0;
+    width: 60%;
+    display: none !important;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item:first-child .accordion-button {
+  font-size: 16px;
+}
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1448,6 +1576,108 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
     margin-bottom: 10px;
 }
 
+
+
+
+
+
+
+/* ----------------------------- new in section style
+        ---------------------------------------------------------------------- */
+
+.dashboard-banner .banner_center-search {
+  display: none;
+}
+.dashboard-banner.banner .banner-inner .left-side {
+  display: none;
+}
+main#dashboard .dashboard-banner {
+  display: none;
+}
+main#dashboard .dashboard-banner.new {
+  display: block;
+}
+main#dashboard .main_banner_new .bg-img_banner img {
+  display: block;
+}
+main#dashboard .main_banner_new.about_us_banner .left-side h1 {
+  margin-bottom: 0;
+  font-size: 25px;
+  line-height: 40px;
+}
+main#dashboard .main_banner_new.about_us_banner .left-side h1 span:last-child {
+  font-size: 16px;
+  font-weight: 400;
+}
+main#dashboard .main_banner_new.about_us_banner .banner .banner-inner {
+  margin-bottom: 0;
+}
+main#dashboard .main_banner_new .bg-img_banner img {
+  max-height: 468px;
+  min-height: 468px;
+  border-radius: 0 !important;
+}
+main#dashboard .header .main_logo {
+  display: flex;
+  visibility: visible;
+  color: #000;
+  font-size: 16px;
+  align-items: center;
+}
+main#dashboard .header .bookmark-menu {
+  display: none;
+}
+main#dashboard .header .main_logo img {
+  margin-right: 10px;
+}
+#dashboard .header {
+  padding: 24px 0;
+}
+#dashboard .humburger-menu {
+  left: auto;
+  right: 5%;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item:first-child .accordion-button {
+  font-size: 14px;
+}
+#dashboard .footer .accordion-flush .accordion-item .accordion-button {
+  font-size: 13px;
+}
+#dashboard .header .Navbar {
+  right: -100%;
+  left: auto;
+}
+#dashboard .header .Navbar.active {
+  right: 0;
+  left: auto;
+}
+#dashboard section.section.select-cloth-section .row .cloth-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.section.select-cloth-section .row {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  padding-bottom: 20px;
+}
+#dashboard .main_banner_new.about_us_banner.sustainability_details_banner {
+  display: block;
+}
+section.section.bottom_sticky_options {
+  display: block;
+}
+.section.search_mobile_section {
+  display: block;
+}
+.humburger-span {
+  background-color: #000;
+}
+footer.footer.formobile {
+  display: block;
+}
+footer.footer.fordesktop{
+  display: none;
+}
 }
 
 
@@ -1613,13 +1843,14 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
   section.section.pt-0.latest-search-section.suppliers-section .search-card {
     max-width: 100%;
     flex: 0 0 100%;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 0;
+    padding-bottom: 10px;
   }
   section.section.pt-0.latest-search-section.suppliers-section
     .search-card
     > div:first-child {
-    flex: 0 0 100%;
+    flex: 0 0 20%;
   }
   section.section.pt-0.latest-search-section.suppliers-section
     .search-card
@@ -1627,12 +1858,12 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  section.section.pt-0.latest-search-section.suppliers-section
-    .search-card
-    > div:first-child
-    img {
-    border-radius: 16px 16px 0 0;
-  }
+  section.section.pt-0.latest-search-section.suppliers-section .search-card > div:first-child img {
+    border-radius: 16px 0 0 16px;
+    min-width: 116px;
+    min-height: 120px;
+    max-height: 120px;
+}
   section.section.pt-0.latest-search-section.suppliers-section
     .search-card
     > div:last-child {
@@ -1644,7 +1875,7 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
     object-fit: cover;
   }
   #dashboard .container-fluid {
-    padding: 0 15px !important;
+    padding: 0 10px !important;
   }
   section.section.dashboard-Experiences-section .product img {
     min-height: 290px;
@@ -1809,6 +2040,7 @@ section.section.trustBrand .row .col-md-12 .row .col-md-4 {
 section.section.trustBrand.trustBrand-change.manufacturers .content {
   position: absolute;
   bottom: 15%;
+  left: 0;
 }
 section.section.trustBrand.trustBrand-change.manufacturers
   .content
@@ -2093,7 +2325,8 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .con
     bottom: -20px;
 }
 section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content .btn.btn-black {
-    font-size: 8px;
+    font-size: 10px;
+    font-weight: 900;
 }
 .explore.section.trustBrand.manufacturers .gallery img {
     height: 60px;
@@ -2153,8 +2386,9 @@ section.explore.stories.section.trustBrand.manufacturers.brands .bottom-content 
 }
 .header .bookmark-menu {
     right: 20%;
-    top: 30px;
+    top: 35px;
     display: block;
+    position: absolute;
 }
 .header .bookmark-menu img {
     width: 90%;
@@ -2249,10 +2483,13 @@ section.section.trustBrand.trustBrand-change .heading-inner {
 }
 .banner .banner-inner {
     margin-bottom: 10px;
+    padding-left: 15px;
 }
 .header .humburger-menu {
     left: initial;
     right: 15px;
+    position: absolute;
+    top: 37px;
 }
 .header .main_logo {
     display: block;
@@ -2292,14 +2529,15 @@ section.section.features {
 .section.features .btnSm {
     margin-right: 0;
     float: right;
-    margin-right: 115px;
-    text-align:left;
+    margin-right: 96px;
+    text-align: left;
 }
 .section.features .title {
     text-align: left;
     margin-right: 0px;
-    width: 70%;
+    width: 67%;
     margin-left: auto;
+    font-size: 15px;
 }
 .section.features .content .btn i {
     margin-left: 5px;
@@ -2470,6 +2708,7 @@ section.section.trustBrand.manufacturers.Sustainability.brands.about.about2 .con
 }
 #blog_new section.explore.stories.trustBrand.manufacturers .manufacturers-content {
     margin-bottom: 40px;
+    background: #fff;
 }
 section.section.artisanalExperiences.Plans.bottom-blog-gallery-section .col-md-4 img {
     min-height: 280px;
@@ -2532,13 +2771,17 @@ ul.l-footer02-nav-list li.l-footer02-nav-item {
     padding-bottom: 11px;
     border-bottom: 1px solid #E1D8CF;
 }
-ul.l-footer02-nav-list li.l-footer02-nav-item:first-child {
-    border-bottom: none;
-}
-ul.l-footer02-nav-list li.l-footer02-nav-item:nth-child(2) {
+.footer.formobile .row.footer-head .col-md-9 ul.l-footer02-nav-list li.l-footer02-nav-item:first-child {
     border: 1px solid #000;
-    padding:10px;
+    padding: 10px;
+    position: relative;
 }
+.footer .footer-info ul.l-footer02-nav-list li.l-footer02-nav-item:first-child{
+  border: none;
+}
+/*ul.l-footer02-nav-list li.l-footer02-nav-item:nth-child(2) {*/
+/*    border-bottom: none;*/
+/*}*/
 .footer {
     padding: 45px 10px 0;
 }
@@ -2640,6 +2883,7 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 {
 }
 section.section.products.new .section-head .heading {
     width: 90% !important;
+    padding-left: 15px;
 }
 .section.trustBrand .heading-inner br {
     display: none;
@@ -2767,7 +3011,250 @@ section.section.trustBrand .row .col-md-12 .brand-logo .col-md-4 img {
 }
 
 
-
+/* ----------------------------- new in section style
+        ---------------------------------------------------------------------- */
+section.section.latest-search-section .search-card img {
+  min-height: 105px;
+  max-height: 105px;
+}
+section.section.latest-search-section.new .search-card {
+  background: #fff;
+  padding: 0;
+  margin: 0 5px;
+  border-radius: 0 0 15px 15px;
+}
+section.section.latest-search-section .search-card .title {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+section.section.latest-search-section .search-card .catagory, section.section.latest-search-section .search-card .timing {
+  padding-left: 10px;
+}
+section.section.latest-search-section .search-card .timing{
+  padding-bottom: 20px;
+}
+section.section.latest-search-section .search-card .catagory, section.section.latest-search-section .search-card .timing {
+  font-size: 9px;
+  line-height: 13px;
+}
+section.section.latest-search-section .search-card .varified-strip {
+  font-size: 5px;
+  padding: 3px 7px;
+  border-radius: 50px;
+  left: 7px;
+  top: 13px;
+}
+section.section.latest-search-section .row:first-child .col-12 h2 {
+  font-size: 18px;
+}
+main#dashboard  .section.select-cloth-section {
+   padding: 20px 0;
+ }
+ section.section.pt-0.latest-search-section.suppliers-section .search-card > div:last-child {
+  border-radius: 0 10px 10px 0;
+  padding: 10px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .upper .title {
+  font-size: 13px;
+  line-height: 18px;
+  padding: 0;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card > div:first-child {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card > div:last-child {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .upper .place {
+  font-size: 9px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .bottom .catagory, section.section.pt-0.latest-search-section.suppliers-section .search-card .content .bottom .timing {
+  font-size: 9px;
+  padding-left: 0;
+}
+section.section.latest-search-section .search-card .timing {
+  padding-bottom: 10px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq p {
+  font-size: 18px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq .moq span {
+  font-size: 9px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .both-icon img {
+  transform: scale(0.8);
+}
+.section.pt-0.latest-search-section.suppliers-section .col-12 h2 {
+  width: 50%;
+}
+.section.pt-0.latest-search-section.suppliers-section .row:first-child .col-12 {
+  padding: 0 0 10px 10px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq .moq span:first-child:after {
+  height: 13px;
+  transform: rotate( 17deg);
+  top: 1px;
+}
+section.section.dashboard-Experiences-section.pt-0 {
+  display: none;
+}
+main#dashboard .section.features.artisanalExperiences {
+  display: block;
+  padding: 0;
+}
+main#dashboard .section.features.artisanalExperiences h2.heading {
+  font-size: 18px;
+  line-height: 15px;
+}
+main#dashboard .section.features.artisanalExperiences .section-head {
+  padding-bottom: 5px;
+}
+main#dashboard section.section.features.artisanalExperiences .content {
+  position: unset;
+  padding-left: 35px;
+}
+main#dashboard section.section.features.artisanalExperiences .content .title {
+  font-size: 21px;
+  margin-left: 0;
+  width: 100%;
+}
+main#dashboard section.section.features.artisanalExperiences  .btn.btn-black {
+  padding: 10px 25px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+main#dashboard section.section.features.artisanalExperiences .container-fluid {
+  padding: 0 !important;
+}
+main#dashboard section.section.features.artisanalExperiences .container-fluid .row .col-md-12{
+  padding: 0 !important;
+}
+main#dashboard section.section.features.artisanalExperiences img {
+  border-radius: 20px 20px 0px 0px;
+  object-position: top;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+#dashboard section.section.dashboard-product-new .product {
+  padding: 0 10px;
+}
+#dashboard section.section.dashboard-product-new .product .rating-img .text {
+  font-size: 7px;
+}
+#dashboard section.section.dashboard-product-new .product .content h6 {
+  font-size: 13px;
+  line-height: 15px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#dashboard section.section.dashboard-product-new .product .content p {
+  font-size: 9px;
+}
+#dashboard section.section.dashboard-product-new .both-icon {
+  display: flex;
+}
+#dashboard section.section.eco-responsible-section .content h2 {
+  font-size: 16px;
+}
+#dashboard section.section.eco-responsible-section .content .show-supplier-btn {
+  font-size: 8px;
+}
+#dashboard section.section.eco-responsible-section .content {
+  top: 57%;
+}
+#dashboard .footer {
+  padding: 5px 0 0;
+}
+#dashboard section.section.eco-responsible-section .row .col-12 {
+  padding: 0 10px;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item:nth-child(4) .accordion-body {
+  width: 94%;
+}
+main#dashboard footer.footer.desktop{
+  display: none;
+}
+main#dashboard footer.footer.mobile {
+  display: block;
+}
+.header .btn_new#toggle-btn span {
+  width: 31px;
+}
+.header .btn_new#toggle-btn span {
+  margin-bottom: 6px;
+}
+#toggle-check:checked ~ .btn_new#toggle-btn span:nth-child(3) {
+  margin-top: -19px;
+}
+.footer .section.privacy_policy_section .container-fluid,.footer .section.privacy_policy_section {
+  padding: 0 !important;
+}
+.footer .section.privacy_policy_section .heading {
+  font-size: 16px;
+}
+.footer .section.privacy_policy_section h6,.footer .section.privacy_policy_section p{
+  font-size: 12px;
+}
+.header.dashboard-header.terms.results_header .user-info,.header.dashboard-header.terms.results_header  .search_bar form {
+  display: none !important;
+}
+section.section.privacy_policy_section .container-fluid{
+  padding: 0 15px !important;
+}
+.section.privacy_policy_section .heading {
+  font-size: 16px;
+}
+.section.privacy_policy_section p,.section.privacy_policy_section h6 {
+  font-size: 12px;
+}
+.section.privacy_policy_section p{
+  word-break: break-all;
+}
+.footer.formobile .row.footer-head .col-md-9 ul.l-footer02-nav-list li.l-footer02-nav-item:first-child:before {
+    content: 'Select country';
+    position: absolute;
+    left: 0;
+    top: -28px;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section .section-head p {
+    font-size: 15px;
+    font-weight: 300;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section .section-head h6 {
+    font-size: 15px;
+}
+section.explore.stories.section.trustBrand.manufacturers.brands.product-detail ul.l-footer02-nav-list li.l-footer02-nav-item {
+    border-bottom: none;
+}
+section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .row.gallery > div:first-child img {
+    width: 40px !important;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    height: 40px;
+}
+section.artisnal-details-section.new .btn-yellow {
+    margin: 30px auto;
+    display: block;
+    max-width: 300px;
+}
+section.section.products.new {
+    padding-top: 30px;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section.artisnal-details_gallery_new .view__all h6 {
+    color: #FED07A;
+    font-size: 15px;
+}
+section.section.artisanalExperiences.Plans.bottom-blog-gallery-section.artisnal-details_gallery_new .row.Artisanal-slider_second.artisnal-details_gallery_new_slider .col-md-4 img {
+    min-height: 140px;
+    max-height: 140px;
+}
+.bottom-blog-gallery-section .Artisanal-slider_second i.fas.fa-arrow-right {
+    font-size: 20px;
+}
 }
 
 

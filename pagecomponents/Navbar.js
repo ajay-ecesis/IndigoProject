@@ -78,7 +78,9 @@ const Navbar = (props) => {
                         <div className="col-md-4">
                             <div className="Nav">
                                 <div className="humburger-menu">
-                                    <img src="/images/nav_open.svg" alt="" />
+                                    <span className="humburger-span"></span>
+                                    <span className="humburger-span"></span>
+                                    <span className="humburger-span"></span>
                                 </div>
                                 <div className="bookmark-menu">
                                     <div className="bookmark"><a href="#"><img className="bookmark-icon" src="/images/bookmark-white.svg" /></a></div>

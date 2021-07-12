@@ -7,7 +7,13 @@
   margin-right: 0;
   margin-left: 0;
 }
+::-moz-selection {
+  background: #fed07a ;
+}
 
+::selection {
+  background: #fed07a ;
+}
 body {
   background-color: #faf0e6;
   font-family: "SFProText" !important;
@@ -27,12 +33,15 @@ a:hover {
 }
 
 /* humburger toggle */
-.btn_new#toggle-btn span {
-  width: 28px;
-  height: 3px;
-  background-color: #000;
+.header .btn_new#toggle-btn span {
+  width: 34px;
+  height: 4px;
+  background-color: #fff;
   border-radius: 60px;
   transition: all 0.3s linear;
+}
+.header.active .btn_new#toggle-btn span {
+  background-color: #000;
 }
 .btn_new#toggle-btn span:nth-child(2) {
   top: 6%;
@@ -56,7 +65,7 @@ a:hover {
   flex-direction: column;
 }
 .btn_new#toggle-btn span {
-  margin-bottom: 4px;
+  margin-bottom: 7px;
 }
 #toggle-check:checked ~ .btn_new#toggle-btn span:nth-child(2) {
   opacity: 0;
@@ -72,8 +81,10 @@ a:hover {
 }
 
 #toggle-check:checked ~ .btn_new#toggle-btn span:nth-child(3) {
-  transform: rotate(-45deg);
-  margin-top: -14px;
+  transform: rotate(
+-45deg
+);
+  margin-top: -21px;
 }
 .humburger-menu {
   display: none;
@@ -178,7 +189,7 @@ ul.slick-dots li.slick-active button {
 
 /* preloader */
 
-@import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
+
 * {
   margin: 0px;
   padding: 0px;
@@ -199,7 +210,7 @@ ul.slick-dots li.slick-active button {
   position: absolute;
   width: 15rem;
   height: 15rem;
-  border-right: 0.3rem solid #000;
+  border-right: none;
   border-radius: 50%;
   animation: pre 2s linear infinite;
 }
@@ -582,13 +593,13 @@ section.section.trustBrand {
   position: absolute;
   bottom: 10%;
   color: #fff;
-  left: 10%;
+  left: 5%;
 }
 section.section.trustBrand.trustBrand-change.manufacturers .content {
   position: absolute;
   bottom: 10%;
   color: #fff;
-  left: 40px;
+  left: 5%;
 }
 .section.trustBrand .heading-inner {
   font-size: 49px;
@@ -821,7 +832,7 @@ section.section.artisanalExperiences.Plans .row.Artisanal-slider .col-md-4 img {
 }
 .l-footer02-bottom {
   border-top: 1px solid #e1e1e1;
-  padding-top: 10px;
+  padding-top: 30px;
   display: flex;
   justify-content: center;
 }
@@ -840,6 +851,12 @@ h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 i {
   margin-left: 7px;
   font-size: 13px;
   color: #404040;
+  float: right;
+  margin-top: 5px;
+}
+.footer-col-text-change i {
+  font-size: 26px !important;
+  color: #000 !important;
 }
 li.l-footer02-nav-item {
   cursor: pointer;
@@ -913,7 +930,8 @@ li.l-footer02-nav-panel-item a {
   color: #fff;
 }
 .l-footer02-bottom img {
-  margin-right: 10px;
+    margin-right: 10px;
+    margin-top: -15px;
 }
 .footer-col-text-change {
   font-size: 1.5vw !important;
@@ -2090,6 +2108,10 @@ section.section.artisanal__experiences {
   border-radius: 50%;
   margin-right: 10px;
 }
+#dashboard .dashboard-header.active .user-info img {
+  background: #fed07a;
+}
+
 #dashboard .dashboard-header .user-info h4 {
   font-weight: 900;
   margin-bottom: 0;
@@ -2121,13 +2143,13 @@ section.section.artisanal__experiences {
   justify-content: space-between;
 }
 .dashboard-banner .row.banner_center-search .search-main .row .col-4 h4 {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 900;
-  margin-bottom: 3px;
+  margin-bottom: 0;
   color: #777777;
 }
 .dashboard-banner .row.banner_center-search .search-main .row .col-4 p {
-  font-size: 12px;
+  font-size: 10px;
   font-family: "Roboto", sans-serif;
   margin-bottom: 0;
   color: #777777;
@@ -2172,9 +2194,18 @@ section.section.artisanal__experiences {
 .dashboard-banner.banner .banner-inner .left-side h1 {
   font-size: 70px;
   width: 40%;
+  color: #000;
 }
 .dashboard-banner.banner .banner-inner .left-side h2 {
   font-size: 100px;
+  -webkit-text-stroke: 1px #000;
+}
+.dashboard-banner.banner .banner-inner .left-side p {
+  font-size: 24px;
+  color: #000;
+}
+.dashboard-banner.banner .banner-inner .left-side p::before {
+  background: #000;
 }
 .dashboard-header .Navbar li a:after {
   background: #707070;
@@ -2233,9 +2264,7 @@ section.section.select-cloth-section .catagory-img:hover {
 section.section.select-cloth-section .catagory-img:hover img {
   transform: scale(1.1);
 }
-section.section.select-cloth-section .catagory-img:hover + p {
-  font-weight: 600;
-}
+
 
 /* ----------------------------- latest searches style
         ---------------------------------------------------------------------- */
@@ -2258,7 +2287,7 @@ section.section.latest-search-section .search-card img {
   max-height: 285px;
 }
 section.section.latest-search-section .search-card .varified-strip {
-  font-size: 9px;
+  font-size: 7px;
   margin-bottom: 0;
   background: #fff;
   display: inline-block;
@@ -2270,19 +2299,20 @@ section.section.latest-search-section .search-card .varified-strip {
 }
 section.section.latest-search-section .search-card .title {
   margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 10px;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
 }
-section.section.latest-search-section .search-card .catagory,
-section.section.latest-search-section .search-card .timing {
+section.section.latest-search-section .search-card .catagory, section.section.latest-search-section .search-card .timing {
   color: #8a8a8f;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   margin-bottom: 0;
+  line-height: 17px;
 }
 section.section.latest-search-section .row:first-child .col-12 h2 {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 900;
   margin-bottom: 0;
 }
@@ -2345,12 +2375,10 @@ section.section.pt-0.latest-search-section.suppliers-section
   img:first-child {
   margin-right: 10px;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .both-icon {
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .both-icon {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 section.section.pt-0.latest-search-section.suppliers-section
   .search-card
@@ -2360,13 +2388,9 @@ section.section.pt-0.latest-search-section.suppliers-section
   flex-direction: column;
   justify-content: space-between;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .price-moq
-  p {
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq p {
   margin-bottom: 0;
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
 }
 section.section.pt-0.latest-search-section.suppliers-section
@@ -2386,50 +2410,34 @@ section.section.pt-0.latest-search-section.suppliers-section
   padding-right: 6px;
   margin-right: 5px;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .price-moq
-  .moq
-  span:first-child:after {
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq .moq span {
+  font-size: 14px;
+}
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .price-moq .moq span:first-child:after {
   content: "";
   position: absolute;
   width: 1px;
-  height: 17px;
+  height: 14px;
   background: #000;
-  transform: rotate(10deg);
+  transform: rotate(
+10deg
+);
   right: 0;
-  top: 5px;
+  top: 4px;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .upper
-  .title {
-  font-size: 20px;
-  margin-bottom: 5px;
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .upper .title {
+  font-size: 21px;
+  margin-bottom: 0;
   margin-top: 0;
+  line-height: 29px;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .upper
-  .place {
-  font-size: 15px;
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .upper .place {
+  font-size: 14px;
   color: #8a8a8f;
   margin-bottom: 0;
 }
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .bottom
-  .catagory,
-section.section.pt-0.latest-search-section.suppliers-section
-  .search-card
-  .content
-  .bottom
-  .timing {
-  font-size: 15px;
+section.section.pt-0.latest-search-section.suppliers-section .search-card .content .bottom .catagory, section.section.pt-0.latest-search-section.suppliers-section .search-card .content .bottom .timing {
+  font-size: 14px;
   font-weight: 400;
 }
 section.section.pt-0.latest-search-section.suppliers-section
@@ -2467,7 +2475,7 @@ section.section.dashboard-Experiences-section .container-fluid {
   padding: 0 4%;
 }
 section.section.dashboard-Experiences-section h2 {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   font-size: 30px;
   font-weight: 900;
 }
@@ -2480,14 +2488,16 @@ section.section.dashboard-Experiences-section .product img {
   border-radius: 10px;
 }
 section.section.dashboard-Experiences-section .product .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 0;
   margin-top: 15px;
+  line-height: 22px;
 }
 section.section.dashboard-Experiences-section .product .disc {
-  font-size: 15px;
+  font-size: 13px;
   margin-bottom: 0;
+  line-height: 18px;
 }
 
 /* ----------------------------- new in section style
@@ -2550,8 +2560,8 @@ section.section.dashboard-product-new .product .both-icon img:last-child {
   margin-left: 4px;
 }
 section.section.dashboard-product-new.pt-0 h2 {
-  font-size: 30px;
-  padding-bottom: 20px;
+  font-size: 18px;
+  padding-bottom: 5px;
   font-weight: 900;
 }
 
@@ -2589,6 +2599,7 @@ section.section.eco-responsible-section .img-thumb:before {
 }
 section.section.eco-responsible-section .row .col-12 {
   position: relative;
+  padding: 0 10px;
 }
 section.section.eco-responsible-section .content {
   position: absolute;
@@ -2600,6 +2611,7 @@ section.section.eco-responsible-section .content .show-supplier-btn {
   border: 1px solid #fff;
   padding: 5px 15px;
   color: #fff;
+  font-size: 16px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -2619,10 +2631,10 @@ section.section.eco-responsible-section .img-thumb {
   position: relative;
 }
 section.section.eco-responsible-section ul.slick-dots li button {
-  max-height: 20px;
-  height: 20px;
+  max-height: 20px !important;
+  height: 20px !important;
   min-height: 20px;
-  width: 20px;
+  width: 20px !important;
   background-color: #fff;
 }
 
@@ -2742,7 +2754,8 @@ ul.slick-dots li.slick-active button {
   background: #fff;
 }
 .banner .banner-inner > div:first-child {
-  padding-top: 10%;
+    padding-top: 10%;
+    padding-left: 0;
 }
 .banner .banner-inner .btn.btn-hover.btn-black {
   position: absolute;
@@ -2798,7 +2811,7 @@ section.section.products .section-head .heading {
   margin: 0;
   margin-right: auto;
   font-size: 36px;
-  padding-left: 15px;
+  padding-left: 0;
 }
 section.section.products {
   padding-top: 50px;
@@ -3045,7 +3058,7 @@ section.section.trustBrand .container-fluid {
   align-items: center;
 }
 .footer ul.l-footer02-nav-list > li {
-  flex: 0 0 33.33%;
+  flex: 0 0 25.33%;
   margin-bottom: 20px;
 }
 .footer
@@ -3920,6 +3933,9 @@ section.explore.stories.section.trustBrand.manufacturers.brands.product-detail .
 .main_banner_new {
   z-index: 2;
 }
+.main-banner-wrrapper-dashboard .main_banner_new {
+  z-index: inherit;
+}
 section.explore.section.trustBrand.trustBrand_new_change.manufacturers .backArrow {
     display: none;
 }
@@ -3943,6 +3959,7 @@ section.explore.section.trustBrand.trustBrand_new_change.manufacturers .row.new_
 }
 .l-footer02-bottom ul li a {
     font-size: 11px;
+    color: #A2A2A2;
 }
 section.explore.section.trustBrand.trustBrand_new_change.manufacturers.changed .content,section.explore.explore2.section.trustBrand.manufacturers.trustBrand_new_change.brands.changed_new .content {
     left: 40px;
@@ -3967,6 +3984,328 @@ section.section.trustBrand .row .col-md-12 .brand-logo .col-md-4 img{
 section.section.aboutus-slider .container-fluid {
     padding: 0 5%;
 }
+
+
+
+/* ------------------ new style for dashboard page
+-------------------------------- */
+.banner.dashboard-banner .humburger-menu {
+  display: none;
+}
+.banner.dashboard-banner .Navbar2{
+  display: flex;
+  justify-content: center;
+}
+.banner.dashboard-banner .Navbar2 li{
+  margin: 0 10px;
+}
+.banner.dashboard-banner .Navbar2 li a{
+  font-size: 12px;
+  position: relative;
+}
+.banner.dashboard-banner .Navbar2 li a:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  background: #707070;
+  opacity: 1;
+  width: 0;
+  height: 1px;
+  transition: all 0.4s ease-in-out;
+}
+.banner.dashboard-banner .Navbar2 li:hover a:after {
+  width: 40%;
+}
+section.section.pt-0.latest-search-section.suppliers-section {
+  padding-bottom: 10px;
+}
+section.section.dashboard-Experiences-section.pt-0 {
+  padding-bottom: 0;
+}
+section.section.eco-responsible-section.pt-0 {
+  padding-bottom: 0 !important;
+}
+#dashboard .footer {
+  padding: 45px 0 0;
+  border-top: none;
+}
+#dashboard  .footer .l-footer02-bottom {
+  border-top: none;
+  padding-top: 0;
+}
+#dashboard .footer h2.l-footer02-nav-title.js-dropdown-footer.c-btn.c-btn-hover01.footer-col-text-change {
+  font-size: 20px !important;
+  line-height: 24px;
+}
+#dashboard .footer h2.l-footer02-nav-title.js-dropdown-footer.c-btn-hover01 {
+  font-size: 16px;
+  line-height: 21px;
+}
+#dashboard .footer div#accordionFlushExample {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  background: linen;
+  border: none;
+}
+#dashboard .footer .accordion-flush .accordion-item .accordion-button {
+  border-radius: 0;
+  background: linen;
+  box-shadow: none;
+  border: none;
+  padding-left: 0;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item:first-child .accordion-button {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* arrow according to xd files 
+
+#dashboard .footer .accordion-button::after {
+  background-image: url('../images/down-arrow.png');
+}
+#dashboard .footer .accordion-button:not(.collapsed)::after {
+  background-image: url('../images/down-arrow.png') ;
+  transform: rotate(
+-180deg
+);
+}
+
+*/
+
+
+#dashboard .footer .accordion-button:not(.collapsed)::after {
+  background-image: url('../images/footer-arrow.svg');
+  transform: rotate(
+-180deg
+);
+}
+#dashboard .footer .accordion-button:not(.collapsed) {
+  color: #000;
+}
+#dashboard .footer div#accordionFlushExample .accordion-item:nth-child(4) .accordion-body {
+  padding: 0 !important;
+  border: 1px solid;
+  width: 80%;
+}
+#dashboard .footer .country-select.inside input, .country-select.inside input[type=text] {
+  width: 100%;
+  background: linen;
+  border: none;
+}
+#dashboard .footer .country-select {
+  width: 100%;
+  padding: 3px;
+}
+#dashboard .dashboard-banner .dashboard_mobile {
+  display: none;
+}
+#dashboard .main_banner_new.about_us_banner.sustainability_details_banner {
+  display: none;
+}
+main#dashboard .section.features.artisanalExperiences {
+  display: none;
+}
+main#dashboard footer.footer.mobile {
+  display: none;
+}
+main#dashboard section.section.dashboard-product-new .product {
+    position: relative;
+    padding: 0 10px;
+}
+section.section.bottom_sticky_options {
+  padding-bottom: 0 !important;
+  background: linen;
+  padding-top: 20px !important;
+  box-shadow: 0 -5px 32px -5px #b0aeae;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+}
+.section.bottom_sticky_options .row >div {
+  text-align: center;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+.section.bottom_sticky_options .row >div p {
+  font-size: 12px;
+}
+.section.search_mobile_section form {
+  padding: 20px 10px;
+  background: linen;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgb(106 99 99 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+  margin: 30px auto;
+  width:90%;
+}
+.section.search_mobile_section{
+  padding: 0 !important;
+  position: absolute;
+  top: 71%;
+  left:0;
+  z-index: 111;
+  display: none;
+  padding:10px;
+}
+.section.search_mobile_section .search input[type="text"] {
+  border: none;
+  background: transparent;
+  font-size: 9px;
+}
+.section.search_mobile_section .search {
+  border-radius: 50px;
+  padding: 12px 5px;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) .row .col-sm-6 {
+  flex: 0 0 50%;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) .row .col-sm-6 p{
+  font-size: 15px;
+  line-height: 20px;
+  margin-bottom: 0;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) .row .col-sm-6 span {
+  font-size: 12px;
+  line-height: 16px;
+  color: #8A8A8F;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(3) [type=submit]{
+  border: none;
+  font-size: 15px;
+  line-height: 20px;
+  background-color: #FED07A;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: block;
+  width: 100%;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) {
+  margin: 15px 0;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) .col-sm-6:last-child {
+  position: relative;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(3){
+  padding: 0;
+}
+.section.search_mobile_section .row .col-sm-12:nth-child(2) .col-sm-6:last-child:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #D8D8D8;
+}
+
+.humburger-menu{
+  cursor: pointer;
+}
+.humburger-span {
+  width: 34px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 60px;
+  display: block;
+  margin-bottom: 5px;
+  transition: all 0.3s linear;
+}
+.header.active .humburger-span{
+  background-color: #000;
+}
+.humburger-menu.active .humburger-span{
+  background-color: #000;
+}
+.humburger-menu.active .humburger-span:nth-child(1) {
+  transform: rotate(
+45deg
+);
+  margin-top: 7px;
+}
+.humburger-menu.active .humburger-span:nth-child(3) {
+  transform: rotate(
+-45deg
+);
+  margin-top: -17px;
+}
+.humburger-menu.active .humburger-span:nth-child(2) {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+textarea:focus, input:focus{
+  outline-style: none;
+	box-shadow: none;
+	border-color: transparent; 
+}
+.main_banner_new.about_us_banner.banner_min_height.expore_details_banner .humburger-span {
+    background-color: #000;
+}
+.main_banner_new.about_us_banner.banner_min_height.expore_details_banner .header,.main_banner_new.about_us_banner.expore_details_banner .header{
+  opacity: 1;
+}
+#dashboard .dashboard-header .brand-logo-main {
+  position: unset;
+}
+.main_banner_new.about_us_banner.sustainability_details_banner .header .main_logo {
+  color: #000;
+}
+.main_banner_new.about_us_banner.sustainability_details_banner .humburger-span,.main_banner_new.about_us_banner.banner_min_height.expore_details_banner .humburger-span,.main_banner_new.about_us_banner.expore_details_banner .humburger-span {
+  background-color: #000;
+}
+
+
+/* ------------------ new style for dashboard page
+-------------------------------- */
+.section.privacy_policy_section .heading {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.section.privacy_policy_section h6 {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 0;
+}
+.section.privacy_policy_section p {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.section.privacy_policy_section .container-fluid {
+  padding: 0 5%;
+}
+footer.footer.formobile {
+  display: none;
+}
+.footer .footer-text-small-contry {
+  font-size: 11px !important;
+  margin-bottom: 0 !important;
+}
+li.l-footer02-nav-item.border_custom  {
+  border: 1px solid;
+  padding: 10px;
+}
+.header.terms-privacy .main_logo {
+    color: #000;
+}
+.header.terms-privacy .humburger-span {
+    background-color: #000;
+}
+
+
+
 
 
 

@@ -92,8 +92,9 @@ responsive: [
  */
 
 
- $(".humburger-menu img").click(function(){
+$(".humburger-menu").click(function(){
   $(".Navbar").toggleClass("active");
+  $(this).toggleClass("active");
 });
 
 $(".humburger-menu img").click(function(){
@@ -107,6 +108,7 @@ $(".humburger-menu img").click(function(){
 $(".humburger-menu img").click(function(){
   $(".logo_text-span").toggleClass("active");
 });
+
 
 
 
@@ -129,7 +131,8 @@ $('.search_input_wrapper i').click(function(){
 
 
 
-var toggle_img = $('.humburger-menu img').attr('src');
+
+/* var toggle_img = $('.humburger-menu img').attr('src');
 
 $('.humburger-menu').click(function(){
   
@@ -142,4 +145,4 @@ $('.humburger-menu').click(function(){
     $('.humburger-menu img').attr("src", "images/nav_open.svg");
   }
 });
-
+ */
