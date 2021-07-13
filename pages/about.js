@@ -89,10 +89,10 @@ const About = (props) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>Indigo | About Us</title>
           </Head>
-
+         
+          
           <div className="main_banner_new about_us_banner new about-changed">
-              <Navbar preview={props.preview} nav={props.nav} />
-
+          <Navbar preview={props.preview} nav={props.nav} />
               <div className="banner ">
                   <div>
                     <a className="backArrow" href={props.prevUrl}> <img src="/images/back-arrow.svg" alt="" /> </a>
@@ -106,13 +106,12 @@ const About = (props) => {
                           <div className="banner-inner row">
                               <div className="left-side col-md-6">
                                   {data[0]?.heading1 && <h6>{data[0].heading1}</h6>}
-                                  {data[0]?.heading2 && <h1>{data[0]?.heading2}</h1>}
+                                  {data[0]?.heading2 && <BlockContent blocks={data[0]?.heading2} />}
                               </div>
                           </div>
                       </div>
                   </div>
-              </div>
-
+                  </div> 
           </div>
 
           <div className="about-us-main" id="main2">
