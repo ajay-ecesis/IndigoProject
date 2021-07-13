@@ -59,12 +59,12 @@ const Footer = () => {
                                     <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact Us  <span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
                                     <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
                                       <ul className="l-footer02-nav-panel-inner">
+                                        <li className="l-footer02-nav-panel-item"><a href="mailto:hello@projektindigo.com">hello@projektindigo.com</a></li>
+                                       {/*  <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
                                         <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
                                         <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
                                         <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                        <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li> */}
 
                                       </ul>
                                     </div>
@@ -260,12 +260,8 @@ const Footer = () => {
                                           <h2 className="l-footer02-nav-title js-dropdown-footer c-btn c-btn-hover01">Contact us<span className="c-btn-bg-bottom"></span><i className="fa fa-chevron-down"></i></h2>
                                           <div className="l-footer02-nav-panel js-dropdown-footer-menu" style={{display: 'none'}}>
                                             <ul className="l-footer02-nav-panel-inner">
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
-                                              <li className="l-footer02-nav-panel-item"><a href="#">Lorem Ipsum is simply</a></li>
+                                              <li className="l-footer02-nav-panel-item"><a href="mailto:hello@projektindigo.com">hello@projektindigo.com</a></li>
+                                              
 
                                             </ul>
                                           </div>
